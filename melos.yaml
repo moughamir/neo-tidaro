@@ -1,0 +1,18 @@
+
+name: neo_tidaro
+
+packages:
+  - packages/**
+
+scripts:
+  analyze:
+    run: melos exec -- flutter analyze
+    description: Run `flutter analyze` in all packages.
+
+  test:
+    run: melos exec -- flutter test
+    description: Run `flutter test` in all packages.
+
+  run:app:
+    run: melos exec --scope="app" -- flutter run
+    description: Run the main application.
