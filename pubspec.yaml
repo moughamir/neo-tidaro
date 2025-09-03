@@ -1,0 +1,20 @@
+name: neo_tidaro
+publish_to: 'none'
+environment:
+  sdk: '^3.9.0'
+
+workspace:
+  - packages/ui_kit
+  - apps/tidash
+
+
+melos:
+  scripts:
+    generate:
+      run: melos exec -c 1 --depends-on build_runner -- dart run build_runner build
+
+dev_dependencies:
+  melos: ^7.1.0
+
+
+

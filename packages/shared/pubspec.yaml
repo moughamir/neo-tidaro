@@ -1,0 +1,12 @@
+name: kui_shared
+description: "A Fresh Shared for Flutter."
+version: 0.0.1
+homepage: https://github.com/neo-tidaro/kui_shared
+repository: https://github.com/neo-tidaro/kui_shared
+
+resolution: workspace
+
+environment:
+  sdk: '3.9.0'
+  flutter: '>=3.35.0'
+

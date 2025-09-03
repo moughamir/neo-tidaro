@@ -14,5 +14,9 @@ scripts:
     description: Run `flutter test` in all packages.
 
   run:app:
-    run: melos exec --scope="app" -- flutter run
+    run: melos exec -c "flutter run"
     description: Run the main application.
+
+  pub_upgrade:
+    run: melos exec -c "flutter pub upgrade"
+    description: Run `flutter pub upgrade` in all packages.
