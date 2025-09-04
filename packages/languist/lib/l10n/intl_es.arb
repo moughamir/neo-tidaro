@@ -1,0 +1,75 @@
+{
+  "@@locale": "es",
+  "@@last_modified": "2025-09-04T18:13:48+00:00",
+  "appTitle": "TiDaro",
+  "@appTitle": {
+    "description": "Application Title"
+  },
+  "settings": "Ajustes",
+  "@settings": {
+    "description": "Settings"
+  },
+  "themeSettings": "Ajustes de tema",
+  "@themeSettings": {
+    "description": "Theme Settings"
+  },
+  "languageSettings": "Ajustes de idioma",
+  "@languageSettings": {
+    "description": "Language Settings"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "hello": "Hola",
+  "@hello": {
+    "description": "A simple greeting"
+  },
+  "helloUser": "Hola {userName}",
+  "@helloUser": {
+    "description": "A greeting to the user.",
+    "placeholders": {
+      "userName": {}
+    }
+  },
+  "fromNow": "hace {time}",
+  "@fromNow": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "justNow": "ahora mismo",
+  "@justNow": {
+    "description": "Used for something that just happened"
+  },
+  "aMinuteAgo": "hace un minuto",
+  "@aMinuteAgo": {
+    "description": "One minute in the past"
+  },
+  "minutesAgo": "hace {minutes} minutos",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "anHourAgo": "hace una hora",
+  "@anHourAgo": {
+    "description": "One hour in the past"
+  },
+  "hoursAgo": "hace {hours} horas",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "aDayAgo": "hace un día",
+  "@aDayAgo": {
+    "description": "One day in the past"
+  },
+  "daysAgo": "hace {days} días",
+  "@daysAgo": {
+    "placeholders": {
+      "days": {}
+    }
+  }
+}

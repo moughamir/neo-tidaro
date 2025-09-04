@@ -1,27 +1,75 @@
 {
-    "@@locale": "fr",
-    "@@last_modified": "2025-09-04T16:16:37+00:00",
-    "appTitle": "TiDaro",
-    "@appTitle": {
-        "description": "Application Title"
-    },
-    "settings": "Paramètres",
-    "@settings": {
-        "description": "Settings"
-    },
-    "themeSettings": "Paramètres du thème",
-    "languageSettings": "Paramètres de langue",
-    "hello": "Bonjour",
-    "helloUser": "Bonjour {userName}",
-    "@helloUser": {
-        "description": "A greeting to the user."
-    },
-    "fromNow": "il y a {time}",
-    "justNow": "à l'instant",
-    "aMinuteAgo": "il y a une minute",
-    "minutesAgo": "il y a {minutes} minutes",
-    "anHourAgo": "il y a une heure",
-    "hoursAgo": "il y a {hours} heures",
-    "aDayAgo": "il y a un jour",
-    "daysAgo": "il y a {days} jours"
+  "@@locale": "fr",
+  "@@last_modified": "2025-09-04T17:12:12+00:00",
+  "appTitle": "TiDaro",
+  "@appTitle": {
+    "description": "Application Title"
+  },
+  "settings": "Paramètres",
+  "@settings": {
+    "description": "Settings"
+  },
+  "themeSettings": "Paramètres du thème",
+  "@themeSettings": {
+    "description": "Theme Settings"
+  },
+  "languageSettings": "Paramètres de langue",
+  "@languageSettings": {
+    "description": "Language Settings"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "hello": "Bonjour",
+  "@hello": {
+    "description": "A simple greeting"
+  },
+  "helloUser": "Bonjour {userName}",
+  "@helloUser": {
+    "description": "A greeting to the user.",
+    "placeholders": {
+      "userName": {}
+    }
+  },
+  "fromNow": "il y a {time}",
+  "@fromNow": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "justNow": "à l'instant",
+  "@justNow": {
+    "description": "Used for something that just happened"
+  },
+  "aMinuteAgo": "il y a une minute",
+  "@aMinuteAgo": {
+    "description": "One minute in the past"
+  },
+  "minutesAgo": "il y a {minutes} minutes",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "anHourAgo": "il y a une heure",
+  "@anHourAgo": {
+    "description": "One hour in the past"
+  },
+  "hoursAgo": "il y a {hours} heures",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "aDayAgo": "il y a un jour",
+  "@aDayAgo": {
+    "description": "One day in the past"
+  },
+  "daysAgo": "il y a {days} jours",
+  "@daysAgo": {
+    "placeholders": {
+      "days": {}
+    }
+  }
 }

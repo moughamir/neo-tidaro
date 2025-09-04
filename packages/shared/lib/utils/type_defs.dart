@@ -12,6 +12,11 @@ typedef Result<T> = Either<Failure, T>;
 /// Standardizes async error handling across the application using Future<Either<Failure, T>>
 typedef ResultFuture<T> = Future<Result<T>>;
 
+/// Type definition for void result operations using Either from fpdart
+///
+/// Standardizes void operations that can fail using Future<Either<Failure, void>>
+typedef ResultVoid = ResultFuture<void>;
+
 /// Type definition for void callback functions
 ///
 /// Used for consistent typing of callback functions that don't return a value

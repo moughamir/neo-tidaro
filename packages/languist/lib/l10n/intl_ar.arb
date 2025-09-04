@@ -1,6 +1,6 @@
 {
   "@@locale": "ar",
-  "@@last_modified": "2025-09-04T16:19:51+00:00",
+  "@@last_modified": "2025-09-04T17:12:12+00:00",
   "appTitle": "تيدارو",
   "@appTitle": {
     "description": "Application Title"
@@ -10,17 +10,66 @@
     "description": "Settings"
   },
   "themeSettings": "إعدادات السمة",
-  "@themeSettings": {},
+  "@themeSettings": {
+    "description": "Theme Settings"
+  },
   "languageSettings": "إعدادات اللغة",
-  "@languageSettings": {},
+  "@languageSettings": {
+    "description": "Language Settings"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
   "hello": "مرحبًا",
-  "@hello": {},
-  "fromNow": "من الآن",
-  "@fromNow": {},
+  "@hello": {
+    "description": "A simple greeting"
+  },
+  "helloUser": "مرحبًا {userName}",
+  "@helloUser": {
+    "description": "A greeting to the user.",
+    "placeholders": {
+      "userName": {}
+    }
+  },
+  "fromNow": "منذ {time}",
+  "@fromNow": {
+    "placeholders": {
+      "time": {}
+    }
+  },
   "justNow": "الآن",
-  "@justNow": {},
+  "@justNow": {
+    "description": "Used for something that just happened"
+  },
   "aMinuteAgo": "منذ دقيقة",
-  "@aMinuteAgo": {},
-  "minutesAgo": "منذ دقائق",
-  "@minutesAgo": {}
+  "@aMinuteAgo": {
+    "description": "One minute in the past"
+  },
+  "minutesAgo": "منذ {minutes} دقائق",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "anHourAgo": "منذ ساعة",
+  "@anHourAgo": {
+    "description": "One hour in the past"
+  },
+  "hoursAgo": "منذ {hours} ساعات",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "aDayAgo": "منذ يوم",
+  "@aDayAgo": {
+    "description": "One day in the past"
+  },
+  "daysAgo": "منذ {days} أيام",
+  "@daysAgo": {
+    "placeholders": {
+      "days": {}
+    }
+  }
 }

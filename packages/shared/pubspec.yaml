@@ -1,4 +1,4 @@
-name: kui_shared
+name: shared
 description: "Shared utilities and widgets for TiDaro applications."
 version: 0.1.0
 homepage: https://github.com/neo-tidaro/neo-tidaro
@@ -16,13 +16,18 @@ dependencies:
     sdk: flutter
   fpdart: ^1.1.1
   equatable: ^2.0.5
-  intl: ^0.18.1
+  intl: ^0.20.1
   languist:
     path: ../languist
   clay_containers: ^0.3.4
   google_fonts: ^6.1.0
+  
+  # Redux State Management
+  flutter_redux: ^0.10.0
+  redux: ^5.0.0
+  redux_thunk: ^0.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0

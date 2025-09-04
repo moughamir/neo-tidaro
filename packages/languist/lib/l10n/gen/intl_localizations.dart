@@ -7,7 +7,9 @@ import 'package:intl/intl.dart' as intl;
 
 import 'intl_localizations_ar.dart';
 import 'intl_localizations_en.dart';
+import 'intl_localizations_es.dart';
 import 'intl_localizations_fr.dart';
+import 'intl_localizations_zgh.dart';
 
 // ignore_for_file: type=lint
 
@@ -94,7 +96,9 @@ abstract class IntlLocalizations {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
     Locale('en'),
-    Locale('fr')
+    Locale('es'),
+    Locale('fr'),
+    Locale('zgh')
   ];
 
   /// Application Title
@@ -109,19 +113,25 @@ abstract class IntlLocalizations {
   /// **'Settings'**
   String get settings;
 
-  /// No description provided for @themeSettings.
+  /// Theme Settings
   ///
   /// In en, this message translates to:
   /// **'Theme Settings'**
   String get themeSettings;
 
-  /// No description provided for @languageSettings.
+  /// Language Settings
   ///
   /// In en, this message translates to:
   /// **'Language Settings'**
   String get languageSettings;
 
-  /// No description provided for @hello.
+  /// OK button
+  ///
+  /// In en, this message translates to:
+  /// **'OK'**
+  String get ok;
+
+  /// A simple greeting
   ///
   /// In en, this message translates to:
   /// **'Hello'**
@@ -139,13 +149,13 @@ abstract class IntlLocalizations {
   /// **'{time} ago'**
   String fromNow(Object time);
 
-  /// No description provided for @justNow.
+  /// Used for something that just happened
   ///
   /// In en, this message translates to:
   /// **'just now'**
   String get justNow;
 
-  /// No description provided for @aMinuteAgo.
+  /// One minute in the past
   ///
   /// In en, this message translates to:
   /// **'a minute ago'**
@@ -157,7 +167,7 @@ abstract class IntlLocalizations {
   /// **'{minutes} minutes ago'**
   String minutesAgo(Object minutes);
 
-  /// No description provided for @anHourAgo.
+  /// One hour in the past
   ///
   /// In en, this message translates to:
   /// **'an hour ago'**
@@ -169,7 +179,7 @@ abstract class IntlLocalizations {
   /// **'{hours} hours ago'**
   String hoursAgo(Object hours);
 
-  /// No description provided for @aDayAgo.
+  /// One day in the past
   ///
   /// In en, this message translates to:
   /// **'a day ago'**
@@ -191,7 +201,7 @@ class _IntlLocalizationsDelegate extends LocalizationsDelegate<IntlLocalizations
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en', 'fr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en', 'es', 'fr', 'zgh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_IntlLocalizationsDelegate old) => false;
@@ -204,7 +214,9 @@ IntlLocalizations lookupIntlLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'ar': return IntlLocalizationsAr();
     case 'en': return IntlLocalizationsEn();
+    case 'es': return IntlLocalizationsEs();
     case 'fr': return IntlLocalizationsFr();
+    case 'zgh': return IntlLocalizationsZgh();
   }
 
   throw FlutterError(

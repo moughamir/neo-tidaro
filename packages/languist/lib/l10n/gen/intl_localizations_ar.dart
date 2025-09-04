@@ -21,16 +21,19 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get languageSettings => 'إعدادات اللغة';
 
   @override
+  String get ok => 'OK';
+
+  @override
   String get hello => 'مرحبًا';
 
   @override
   String helloUser(Object userName) {
-    return 'Hello $userName';
+    return 'مرحبًا $userName';
   }
 
   @override
   String fromNow(Object time) {
-    return 'من الآن';
+    return 'منذ $time';
   }
 
   @override
@@ -41,22 +44,22 @@ class IntlLocalizationsAr extends IntlLocalizations {
 
   @override
   String minutesAgo(Object minutes) {
-    return 'منذ دقائق';
+    return 'منذ $minutes دقائق';
   }
 
   @override
-  String get anHourAgo => 'an hour ago';
+  String get anHourAgo => 'منذ ساعة';
 
   @override
   String hoursAgo(Object hours) {
-    return '$hours hours ago';
+    return 'منذ $hours ساعات';
   }
 
   @override
-  String get aDayAgo => 'a day ago';
+  String get aDayAgo => 'منذ يوم';
 
   @override
   String daysAgo(Object days) {
-    return '$days days ago';
+    return 'منذ $days أيام';
   }
 }

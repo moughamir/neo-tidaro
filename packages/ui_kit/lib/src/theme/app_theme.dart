@@ -1,92 +1,125 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+import 'palette.dart';
+import 'typography.dart';
+
+/// A comprehensive theme system with DRY principles,
+/// independent color palette, and typography system.
 class AppTheme {
-  static ThemeData lightTheme = ThemeData(
-    useMaterial3: true,
-    colorScheme: _lightColorScheme,
-    textTheme: _buildTextTheme(_lightColorScheme),
-  );
+  // Static themes for direct usage
+  static ThemeData get lightTheme => _buildTheme(ThemeMode.light);
+  static ThemeData get darkTheme => _buildTheme(ThemeMode.dark);
 
-  static ThemeData darkTheme = ThemeData(
-    useMaterial3: true,
-    colorScheme: _darkColorScheme,
-    textTheme: _buildTextTheme(_darkColorScheme),
-  );
+  // Core theme builder
+  static ThemeData _buildTheme(ThemeMode mode) {
+    final palette = TidaroColorPalette.forMode(mode);
+    final typography = TidaroTypography.forPalette(palette);
 
-  static const ColorScheme _lightColorScheme = ColorScheme(
-    brightness: Brightness.light,
-    primary: Color(0xFF1C2C4C), // Primary
-    onPrimary: Colors.white,
-    secondary: Color(0xFF3AAFA9), // Secondary
-    onSecondary: Colors.white,
-    error: Color(0xFFE53E3E), // Error
-    onError: Colors.white,
-    surface: Color(0xFFF9FAFB), // Background
-    onSurface: Color(0xFF111827),
-  );
-
-  static const ColorScheme _darkColorScheme = ColorScheme(
-    brightness: Brightness.dark,
-    primary: Color(0xFF1C2C4C), // Primary (can be adjusted for dark mode)
-    onPrimary: Colors.white,
-    secondary: Color(0xFF3AAFA9), // Secondary (can be adjusted for dark mode)
-    onSecondary: Colors.white,
-    error: Color(0xFFE53E3E), // Error
-    onError: Colors.white,
-
-    surface: Color(0xFF2D3748), // Darker surface
-    onSurface: Color(0xFFF9FAFB),
-  );
-
-  static TextTheme _buildTextTheme(ColorScheme colorScheme) {
-    final baseTextStyle = GoogleFonts.notoSans(color: colorScheme.onSurface);
-    final arabicTextStyle = GoogleFonts.notoSansArabic(
-      color: colorScheme.onSurface,
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: palette.toColorScheme(),
+      textTheme: typography.textTheme,
+      appBarTheme: _buildAppBarTheme(palette),
+      cardTheme: _buildCardTheme(palette),
+      elevatedButtonTheme: _buildElevatedButtonTheme(palette),
+      outlinedButtonTheme: _buildOutlinedButtonTheme(palette),
+      inputDecorationTheme: _buildInputTheme(palette, typography),
+      tooltipTheme: _buildTooltipTheme(palette, typography),
+      brightness: mode == ThemeMode.light ? Brightness.light : Brightness.dark,
+      visualDensity: VisualDensity.adaptivePlatformDensity,
     );
-    final tifinaghTextStyle = GoogleFonts.notoSansTifinagh(
-      color: colorScheme.onSurface,
-    );
+  }
 
-    return TextTheme(
-      displayLarge: baseTextStyle.copyWith(
-        fontSize: 32,
-        fontWeight: FontWeight.w700,
-        color: colorScheme.primary,
+  // Component theme builders
+  static AppBarTheme _buildAppBarTheme(TidaroColorPalette palette) {
+    return AppBarTheme(
+      backgroundColor: palette.background,
+      foregroundColor: palette.onBackground,
+      elevation: 0,
+      centerTitle: false,
+    );
+  }
+
+  static CardThemeData _buildCardTheme(TidaroColorPalette palette) {
+    return CardThemeData(
+      color: palette.surface,
+      shadowColor: palette.shadow,
+      elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      clipBehavior: Clip.antiAlias,
+    );
+  }
+
+  static ElevatedButtonThemeData _buildElevatedButtonTheme(
+    TidaroColorPalette palette,
+  ) {
+    return ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: palette.primary,
+        foregroundColor: palette.onPrimary,
+        minimumSize: const Size(88, 48),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
-      displayMedium: baseTextStyle.copyWith(
-        fontSize: 24,
-        fontWeight: FontWeight.w500,
-        color: colorScheme.secondary,
+    );
+  }
+
+  static OutlinedButtonThemeData _buildOutlinedButtonTheme(
+    TidaroColorPalette palette,
+  ) {
+    return OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: palette.primary,
+        side: BorderSide(color: palette.primary),
+        minimumSize: const Size(88, 48),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
-      bodyLarge: baseTextStyle.copyWith(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        color: colorScheme.onSurface,
+    );
+  }
+
+  static InputDecorationTheme _buildInputTheme(
+    TidaroColorPalette palette,
+    TidaroTypography typography,
+  ) {
+    return InputDecorationTheme(
+      filled: true,
+      fillColor: palette.surface,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: palette.outline),
       ),
-      bodyMedium: baseTextStyle.copyWith(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-        color: colorScheme.onSurface,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: palette.outline),
       ),
-      bodySmall: baseTextStyle.copyWith(
-        fontSize: 12,
-        fontWeight: FontWeight.w300,
-        color: colorScheme.onSurface,
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: palette.primary, width: 2),
       ),
-      // You can define more text styles and apply specific fonts as needed
-      // For example, for Arabic text:
-      headlineMedium: arabicTextStyle.copyWith(
-        fontSize: 20,
-        fontWeight: FontWeight.w500,
-        color: colorScheme.onSurface,
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(12),
+        borderSide: BorderSide(color: palette.error, width: 2),
       ),
-      // For Tifinagh text:
-      headlineSmall: tifinaghTextStyle.copyWith(
-        fontSize: 18,
-        fontWeight: FontWeight.w500,
-        color: colorScheme.onSurface,
+      labelStyle: typography.body2,
+      hintStyle: typography.body2.copyWith(
+        color: palette.onSurface.withValues(alpha: 0.6),
       ),
+    );
+  }
+
+  static TooltipThemeData _buildTooltipTheme(
+    TidaroColorPalette palette,
+    TidaroTypography typography,
+  ) {
+    return TooltipThemeData(
+      decoration: BoxDecoration(
+        color: palette.inverseSurface,
+        borderRadius: BorderRadius.circular(6),
+      ),
+      textStyle: typography.caption.copyWith(color: palette.onInverseSurface),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
     );
   }
 }

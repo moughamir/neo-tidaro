@@ -9,25 +9,25 @@ import 'package:flutter/material.dart';
 class GlassyCard extends StatelessWidget {
   /// Title text for the card
   final String? title;
-  
+
   /// Subtitle text for the card
   final String? subtitle;
-  
+
   /// Main content widget
   final Widget child;
-  
+
   /// Optional background color (defaults to semi-transparent white/black)
   final Color? backgroundColor;
-  
+
   /// Blur intensity for the glass effect
   final double blur;
-  
+
   /// Opacity level for the glass effect
   final double opacity;
-  
+
   /// Border radius for the card
   final double borderRadius;
-  
+
   /// Optional callback when card is tapped
   final VoidCallback? onTap;
 
@@ -47,10 +47,10 @@ class GlassyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    final defaultColor = isDark 
-        ? Colors.black.withOpacity(opacity)
-        : Colors.white.withOpacity(opacity);
-    
+    final defaultColor = isDark
+        ? Colors.black.withValues(alpha: opacity)
+        : Colors.white.withValues(alpha: opacity);
+
     return GestureDetector(
       onTap: onTap,
       child: ClipRRect(
@@ -62,21 +62,21 @@ class GlassyCard extends StatelessWidget {
               color: backgroundColor ?? defaultColor,
               borderRadius: BorderRadius.circular(borderRadius),
               border: Border.all(
-                color: isDark 
-                    ? Colors.white.withOpacity(0.2)
-                    : Colors.black.withOpacity(0.1),
+                color: isDark
+                    ? Colors.white.withValues(alpha: 0.2)
+                    : Colors.black.withValues(alpha: 0.1),
                 width: 1.0,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: isDark 
-                      ? Colors.black.withOpacity(0.3)
-                      : Colors.grey.withOpacity(0.2),
+                  color: isDark
+                      ? Colors.black.withValues(alpha: 0.3)
+                      : Colors.grey.withValues(alpha: 0.2),
                   blurRadius: 15,
                   offset: const Offset(5, 5),
                 ),
                 BoxShadow(
-                  color: Colors.white.withOpacity(isDark ? 0.1 : 0.3),
+                  color: Colors.white.withValues(alpha: isDark ? 0.1 : 0.3),
                   blurRadius: 15,
                   offset: const Offset(-5, -5),
                 ),

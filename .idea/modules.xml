@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<module fileurl="file://$PROJECT_DIR$/packages/core/melos_core.iml" filepath="$PROJECT_DIR$/packages/core/melos_core.iml" />
+<module fileurl="file://$PROJECT_DIR$/packages/shared/melos_kui_shared.iml" filepath="$PROJECT_DIR$/packages/shared/melos_kui_shared.iml" />
+<module fileurl="file://$PROJECT_DIR$/packages/languist/melos_languist.iml" filepath="$PROJECT_DIR$/packages/languist/melos_languist.iml" />
+<module fileurl="file://$PROJECT_DIR$/apps/tidaro/melos_tidaro.iml" filepath="$PROJECT_DIR$/apps/tidaro/melos_tidaro.iml" />
+<module fileurl="file://$PROJECT_DIR$/apps/tidaro_mini/melos_tidaro_mini.iml" filepath="$PROJECT_DIR$/apps/tidaro_mini/melos_tidaro_mini.iml" />
 <module fileurl="file://$PROJECT_DIR$/apps/tidash/melos_tidash.iml" filepath="$PROJECT_DIR$/apps/tidash/melos_tidash.iml" />
 <module fileurl="file://$PROJECT_DIR$/packages/ui_kit/melos_ui_kit.iml" filepath="$PROJECT_DIR$/packages/ui_kit/melos_ui_kit.iml" />
 <module fileurl="file://$PROJECT_DIR$/melos_neo_tidaro.iml" filepath="$PROJECT_DIR$/melos_neo_tidaro.iml" />

@@ -1,6 +1,6 @@
 {
   "@@locale": "en",
-  "@@last_modified": "2025-09-04T16:16:37+00:00",
+  "@@last_modified": "2025-09-04T17:12:12+00:00",
   "appTitle": "TiDaro",
   "@appTitle": {
     "description": "Application Title"
@@ -10,19 +10,62 @@
     "description": "Settings"
   },
   "themeSettings": "Theme Settings",
+  "@themeSettings": {
+    "description": "Theme Settings"
+  },
   "languageSettings": "Language Settings",
+  "@languageSettings": {
+    "description": "Language Settings"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
   "hello": "Hello",
+  "@hello": {
+    "description": "A simple greeting"
+  },
   "helloUser": "Hello {userName}",
   "@helloUser": {
-    "description": "A greeting to the user."
+    "description": "A greeting to the user.",
+    "placeholders": {
+      "userName": {}
+    }
   },
   "fromNow": "{time} ago",
+  "@fromNow": {
+    "placeholders": {
+      "time": {}
+    }
+  },
   "justNow": "just now",
+  "@justNow": {
+    "description": "Used for something that just happened"
+  },
   "aMinuteAgo": "a minute ago",
+  "@aMinuteAgo": {
+    "description": "One minute in the past"
+  },
   "minutesAgo": "{minutes} minutes ago",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
   "anHourAgo": "an hour ago",
+  "@anHourAgo": {
+    "description": "One hour in the past"
+  },
   "hoursAgo": "{hours} hours ago",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
   "aDayAgo": "a day ago",
+  "@aDayAgo": {
+    "description": "One day in the past"
+  },
   "daysAgo": "{days} days ago",
   "@daysAgo": {
     "placeholders": {

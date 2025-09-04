@@ -1,4 +1,4 @@
-import 'package:kui_shared/utils/type_defs.dart';
+import 'package:shared/utils/type_defs.dart';
 
 import '../entities/entity.dart';
 

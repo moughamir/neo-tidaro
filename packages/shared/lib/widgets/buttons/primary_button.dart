@@ -26,7 +26,7 @@ class PrimaryButton extends StatefulWidget {
     this.borderRadius = NeumorphicTheme.borderRadius,
     this.isActive = false,
   });
-  
+
   @override
   State<PrimaryButton> createState() => _PrimaryButtonState();
 }
@@ -39,7 +39,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final backgroundColor = widget.color ?? theme.scaffoldBackgroundColor;
-    
+
     return GestureDetector(
       onTapDown: (_) {
         if (widget.onPressed != null) {
@@ -65,24 +65,22 @@ class _PrimaryButtonState extends State<PrimaryButton> {
         decoration: widget.onPressed == null
             ? NeumorphicTheme.neumorphicBoxDecoration(
                 isDark: isDark,
-                color: backgroundColor.withOpacity(0.7),
+                color: backgroundColor.withValues(alpha: 0.7),
                 radius: widget.borderRadius,
                 intensity: 0.3,
               )
             : _isPressed || widget.isActive
-                ? NeumorphicTheme.neumorphicInsetBoxDecoration(
-                    isDark: isDark,
-                    color: backgroundColor,
-                    radius: widget.borderRadius,
-                  )
-                : NeumorphicTheme.neumorphicBoxDecoration(
-                    isDark: isDark,
-                    color: backgroundColor,
-                    radius: widget.borderRadius,
-                  ),
-        child: Center(
-          child: widget.child,
-        ),
+            ? NeumorphicTheme.neumorphicInsetBoxDecoration(
+                isDark: isDark,
+                color: backgroundColor,
+                radius: widget.borderRadius,
+              )
+            : NeumorphicTheme.neumorphicBoxDecoration(
+                isDark: isDark,
+                color: backgroundColor,
+                radius: widget.borderRadius,
+              ),
+        child: Center(child: widget.child),
       ),
     );
   }

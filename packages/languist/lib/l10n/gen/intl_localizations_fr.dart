@@ -21,6 +21,9 @@ class IntlLocalizationsFr extends IntlLocalizations {
   String get languageSettings => 'Paramètres de langue';
 
   @override
+  String get ok => 'OK';
+
+  @override
   String get hello => 'Bonjour';
 
   @override

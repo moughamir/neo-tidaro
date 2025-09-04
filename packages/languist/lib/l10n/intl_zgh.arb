@@ -1,0 +1,75 @@
+{
+  "@@locale": "zgh",
+  "@@last_modified": "2025-09-04T18:13:48+00:00",
+  "appTitle": "ⵜⵉⴷⴰⵔⵓ",
+  "@appTitle": {
+    "description": "Application Title"
+  },
+  "settings": "ⵜⵉⵙⵖⴰⵍ",
+  "@settings": {
+    "description": "Settings"
+  },
+  "themeSettings": "ⵜⵉⵙⵖⴰⵍ ⵏ ⵓⴷⵎⴰⵡⴰⵍ",
+  "@themeSettings": {
+    "description": "Theme Settings"
+  },
+  "languageSettings": "ⵜⵉⵙⵖⴰⵍ ⵏ ⵜⵓⵜⵍⴰⵢⵜ",
+  "@languageSettings": {
+    "description": "Language Settings"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "hello": "ⴰⵣⵓⵍ",
+  "@hello": {
+    "description": "A simple greeting"
+  },
+  "helloUser": "ⴰⵣⵓⵍ {userName}",
+  "@helloUser": {
+    "description": "A greeting to the user.",
+    "placeholders": {
+      "userName": {}
+    }
+  },
+  "fromNow": "ⵣⴳ {time}",
+  "@fromNow": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "justNow": "ⵖⵉⵍⴰⴷ",
+  "@justNow": {
+    "description": "Used for something that just happened"
+  },
+  "aMinuteAgo": "ⵣⴳ ⵢⴰⵏ ⵓⵙⴷⵉⴷ",
+  "@aMinuteAgo": {
+    "description": "One minute in the past"
+  },
+  "minutesAgo": "ⵣⴳ {minutes} ⵜⵓⵙⴷⵉⴷⵉⵏ",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "anHourAgo": "ⵣⴳ ⵢⴰⵏ ⵓⵙⵔⴰⴳ",
+  "@anHourAgo": {
+    "description": "One hour in the past"
+  },
+  "hoursAgo": "ⵣⴳ {hours} ⵜⵙⵔⴰⴳⵉⵏ",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "aDayAgo": "ⵣⴳ ⵢⴰⵏ ⵡⴰⵙⵙ",
+  "@aDayAgo": {
+    "description": "One day in the past"
+  },
+  "daysAgo": "ⵣⴳ {days} ⵡⵓⵙⵙⴰⵏ",
+  "@daysAgo": {
+    "placeholders": {
+      "days": {}
+    }
+  }
+}

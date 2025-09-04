@@ -1,5 +1,0 @@
-name: feature
-description: Generates a new Flutter feature module.
-
-vars:
-  - name
