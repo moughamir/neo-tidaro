@@ -1,0 +1,26 @@
+{
+  "@@locale": "ar",
+  "@@last_modified": "2025-09-04T16:19:51+00:00",
+  "appTitle": "تيدارو",
+  "@appTitle": {
+    "description": "Application Title"
+  },
+  "settings": "إعدادات",
+  "@settings": {
+    "description": "Settings"
+  },
+  "themeSettings": "إعدادات السمة",
+  "@themeSettings": {},
+  "languageSettings": "إعدادات اللغة",
+  "@languageSettings": {},
+  "hello": "مرحبًا",
+  "@hello": {},
+  "fromNow": "من الآن",
+  "@fromNow": {},
+  "justNow": "الآن",
+  "@justNow": {},
+  "aMinuteAgo": "منذ دقيقة",
+  "@aMinuteAgo": {},
+  "minutesAgo": "منذ دقائق",
+  "@minutesAgo": {}
+}

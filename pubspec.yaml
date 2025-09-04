@@ -4,17 +4,50 @@ environment:
   sdk: '^3.9.0'
 
 workspace:
-  - packages/ui_kit
-  - apps/tidash
+  - packages/ui_kit # UI Kit for Widgets and Styles
+  - packages/shared # Shared and Utils
+  - packages/core # Core Packages
+  - packages/languist # Internationalization and localization
+  - apps/tidash # Admin Dashboard
+  - apps/tidaro_mini # Mini TiDaro App for Quick retention
+  - apps/tidaro # Full TiDaro App
 
+dependencies:
+  flutter:
+    sdk: flutter
+  fpdart: ^1.1.1
+  equatable: ^2.0.5
+  intl: ^0.20.1
 
 melos:
   scripts:
+    analyze:
+      run: melos exec -- flutter analyze
+      description: Run `flutter analyze` in all packages.
+
+    test:
+      run: melos exec -- flutter test
+      description: Run `flutter test` in all packages.
+
+    run:app:
+      run: melos exec -c "flutter run"
+      description: Run the main application.
+
+    pub:upgrade:
+      run: melos exec -- flutter pub upgrade
+      description: Run `flutter pub upgrade` in all packages.
+
     generate:
       run: melos exec -c 1 --depends-on build_runner -- dart run build_runner build
+      description: Run build_runner in all packages.
+      
+    gen:l10n:
+      run: melos exec --scope="languist" -- dart run bin/generate_l10n.dart
+      description: Generate localization files for the languist package using configuration from languist.yaml.
+
+    clean:
+      run: melos exec -- flutter clean && melos exec -- flutter pub get
+      description: Clean build directories and get dependencies in all packages.
 
 dev_dependencies:
   melos: ^7.1.0
-
-
-

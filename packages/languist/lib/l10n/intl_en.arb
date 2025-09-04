@@ -1,0 +1,32 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2025-09-04T16:16:37+00:00",
+  "appTitle": "TiDaro",
+  "@appTitle": {
+    "description": "Application Title"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings"
+  },
+  "themeSettings": "Theme Settings",
+  "languageSettings": "Language Settings",
+  "hello": "Hello",
+  "helloUser": "Hello {userName}",
+  "@helloUser": {
+    "description": "A greeting to the user."
+  },
+  "fromNow": "{time} ago",
+  "justNow": "just now",
+  "aMinuteAgo": "a minute ago",
+  "minutesAgo": "{minutes} minutes ago",
+  "anHourAgo": "an hour ago",
+  "hoursAgo": "{hours} hours ago",
+  "aDayAgo": "a day ago",
+  "daysAgo": "{days} days ago",
+  "@daysAgo": {
+    "placeholders": {
+      "days": {}
+    }
+  }
+}
