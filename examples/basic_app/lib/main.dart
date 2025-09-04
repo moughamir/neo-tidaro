@@ -57,15 +57,15 @@ class ExampleHomePage extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(height: 16),
-                
+
                 // Primary Button Example
                 PrimaryButton(
-                  text: 'Primary Button',
                   onPressed: () {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(content: Text('Primary button pressed!')),
                     );
                   },
+                  child: Text('Primary Button'),
                 ),
                 const SizedBox(height: 16),
 
@@ -89,7 +89,9 @@ class ExampleHomePage extends StatelessWidget {
                 // Info Card Example
                 InfoCard(
                   title: 'Info Card',
-                  content: 'This demonstrates the info card component from the UI Kit.',
+                  content: Text(
+                    'This demonstrates the info card component from the UI Kit.',
+                  ),
                   icon: Icons.info,
                 ),
                 const SizedBox(height: 16),
@@ -127,21 +129,26 @@ class ExampleHomePage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             StoreConnector<AppState, VoidCallback>(
-                              converter: (store) => () => store.dispatch(IncrementCounterAction()),
+                              converter: (store) =>
+                                  () =>
+                                      store.dispatch(IncrementCounterAction()),
                               builder: (context, callback) => ElevatedButton(
                                 onPressed: callback,
                                 child: const Text('Increment'),
                               ),
                             ),
                             StoreConnector<AppState, VoidCallback>(
-                              converter: (store) => () => store.dispatch(DecrementCounterAction()),
+                              converter: (store) =>
+                                  () =>
+                                      store.dispatch(DecrementCounterAction()),
                               builder: (context, callback) => ElevatedButton(
                                 onPressed: callback,
                                 child: const Text('Decrement'),
                               ),
                             ),
                             StoreConnector<AppState, VoidCallback>(
-                              converter: (store) => () => store.dispatch(ResetCounterAction()),
+                              converter: (store) =>
+                                  () => store.dispatch(ResetCounterAction()),
                               builder: (context, callback) => ElevatedButton(
                                 onPressed: callback,
                                 child: const Text('Reset'),
@@ -169,7 +176,9 @@ class ExampleHomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('${l10n.hello} - Simple greeting'),
-                        Text('${l10n.helloUser('Developer')} - Parameterized greeting'),
+                        Text(
+                          '${l10n.helloUser('Developer')} - Parameterized greeting',
+                        ),
                         Text('${l10n.justNow} - Time format'),
                         Text('${l10n.aMinuteAgo} - Time format'),
                         Text('${l10n.anHourAgo} - Time format'),
