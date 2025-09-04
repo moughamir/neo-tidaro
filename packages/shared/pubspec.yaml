@@ -1,8 +1,9 @@
 name: kui_shared
-description: "A Fresh Shared for Flutter."
-version: 0.0.1
-homepage: https://github.com/neo-tidaro/kui_shared
-repository: https://github.com/neo-tidaro/kui_shared
+description: "Shared utilities and widgets for TiDaro applications."
+version: 0.1.0
+homepage: https://github.com/neo-tidaro/neo-tidaro
+repository: https://github.com/neo-tidaro/neo-tidaro
+publish_to: none
 
 resolution: workspace
 
@@ -10,3 +11,18 @@ environment:
   sdk: '3.9.0'
   flutter: '>=3.35.0'
 
+dependencies:
+  flutter:
+    sdk: flutter
+  fpdart: ^1.1.1
+  equatable: ^2.0.5
+  intl: ^0.18.1
+  languist:
+    path: ../languist
+  clay_containers: ^0.3.4
+  google_fonts: ^6.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0

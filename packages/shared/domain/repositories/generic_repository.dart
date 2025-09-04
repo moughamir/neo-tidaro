@@ -1,7 +1,6 @@
-// lib/shared/domain/repositories/generic_repository.dart
+import 'package:kui_shared/utils/type_defs.dart';
 
-import 'package:tidaro/shared/domain/entities/entity.dart';
-import 'package:tidaro/shared/utils/type_defs.dart';
+import '../entities/entity.dart';
 
 /// An abstract interface for a generic repository providing standard CRUD operations.
 ///

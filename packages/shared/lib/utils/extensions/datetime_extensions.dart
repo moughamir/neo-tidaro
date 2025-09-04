@@ -1,7 +1,10 @@
 // lib/shared/utils/extensions/datetime_extensions.dart
 
 import 'package:intl/intl.dart';
-import 'package:tidaro/l10n/app_localizations.dart';
+import 'package:languist/l10n/gen/intl_localizations.dart';
+
+/// This extension provides DateTime formatting utilities for consistent date handling
+/// across the application.
 
 /// Extension methods for [DateTime] to provide formatting and relative time logic,
 /// similar to the popular moment.js library.
@@ -19,8 +22,8 @@ extension DateTimeExtensions on DateTime {
 
   /// Returns a human-readable relative time string (e.g., "a moment ago", "in 5 minutes").
   ///
-  /// Requires [AppLocalizations] to provide localized strings.
-  String fromNow(AppLocalizations l10n) {
+  /// Requires [IntlLocalizations] to provide localized strings.
+  String fromNow(IntlLocalizations l10n) {
     final now = DateTime.now();
     final difference = now.difference(this);
 
