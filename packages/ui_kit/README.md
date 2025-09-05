@@ -1,39 +1,25 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# UI Kit Package
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+This package contains the design system and reusable UI components for the Tidaro workspace.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+## Overview
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+The `ui_kit` package is a collection of Flutter widgets and themes that implement the Tidaro design system. It provides a consistent look and feel across all the applications in the workspace.
 
-## Features
+Key features:
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+-   **Theme:** Defines the color palette, typography, and other design tokens.
+-   **Widgets:** A library of reusable UI components, such as buttons, cards, and input fields.
+-   **Showcase:** A gallery of all the UI components, which can be run as a standalone app.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+To use this package, add it as a dependency in your `pubspec.yaml` file:
 
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  ui_kit:
+    path: ../../packages/ui_kit
 ```
 
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+To view the component showcase, run the example app in the `examples/ui_kit_showcase` directory.

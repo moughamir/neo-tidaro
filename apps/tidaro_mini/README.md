@@ -1,16 +1,20 @@
-# tidaro_mini
+# Tidaro Mini App
 
-A new Flutter project.
+This is a lightweight version of the main Tidaro application.
+
+## Overview
+
+`tidaro_mini` is designed to be a smaller, faster, and more focused version of the main app. It may include a subset of the features available in the main app, and it is optimized for performance on lower-end devices and slower networks.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run this app, follow the instructions in the root `README.md` file.
 
-A few resources to get you started if this is your first Flutter project:
+## Dependencies
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This app may depend on the following packages from this workspace:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-   `core`
+-   `languist`
+-   `shared`
+-   `ui_kit`

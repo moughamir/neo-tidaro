@@ -1,125 +1,21 @@
-# KUI Shared Package
+# Shared Package
 
-A collection of shared widgets, utilities, and domain objects for TiDaro applications using Material UI with Neumorphic styling.
+This package contains shared domain models, business logic, and data access layers for the Tidaro workspace.
 
-## Features
+## Overview
 
-### Widgets
+The `shared` package is a central place for all the business logic and data-related code that is shared across multiple applications. It is organized into the following layers:
 
-The package provides a set of reusable, responsive widgets built with Material UI and Neumorphic styling:
-
-- **Buttons**: PrimaryButton (with Neumorphic styling)
-- **Containers**: InfoCard, GlassyCard
-- **Dialogs**: GenericDialog
-- **Indicators**: LoadingIndicator, ErrorDisplay
-- **Layout**: PageScaffold, ResponsiveLayout
-- **Lists**: ResponsiveGridView
-- **Theme**: NeumorphicTheme
-
-### Utilities
-
-Commonly used utilities to simplify development:
-
-- **Extensions**:
-  - DateTimeExtensions: Format dates, relative time strings
-  - StringExtensions: Capitalize, title case, truncation
-
-- **Failures**:
-  - Standardized failure handling with `Either` monad
-  - Predefined failure types: Server, Connection, Validation, Unexpected
-
-- **Type Definitions**:
-  - Result<T> and ResultFuture<T> for functional error handling
-
-### Domain Layer
-
-Base classes for clean architecture:
-
-- **Entities**: Base Entity class with Equatable support
-- **Repositories**: Generic CRUD repository interface
+-   **Domain:** Contains the core business objects (entities, value objects) and their logic.
+-   **Data:** Contains the repositories and data sources that are responsible for fetching and storing data.
+-   **DTOs (Data Transfer Objects):** Contains the models that are used to transfer data between the app and the backend.
 
 ## Usage
 
-### Installation
-
-Add this package to your pubspec.yaml:
+To use this package, add it as a dependency in your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  kui_shared:
-    path: ../shared
+  shared:
+    path: ../../packages/shared
 ```
-
-### Import
-
-```dart
-import 'package:kui_shared/kui_shared.dart';
-```
-
-### Examples
-
-#### Using Responsive Layout
-
-```dart
-ResponsiveLayout(
-  smallBuilder: (context) => MobileView(),
-  mediumBuilder: (context) => TabletView(),
-  largeBuilder: (context) => DesktopView(),
-  defaultBuilder: (context) => MobileView(),
-)
-```
-
-#### Using Neumorphic Theme and Components
-
-```dart
-// Apply theme to your app
-MaterialApp(
-  theme: NeumorphicTheme.createThemeData(isDark: false),
-  darkTheme: NeumorphicTheme.createThemeData(isDark: true),
-  // ...
-)
-
-// Use Neumorphic button
-PrimaryButton(
-  onPressed: () => print('Pressed!'),
-  child: Text('Neumorphic Button'),
-)
-
-// Use Glassy Card with blur effect
-GlassyCard(
-  title: 'Frosted Glass Card',
-  child: SomeContent(),
-  blur: 10.0,
-  opacity: 0.2,
-)
-```
-
-#### Error Handling
-
-```dart
-Result<User> result = await userRepository.getUser(id);
-
-result.fold(
-  (failure) => ErrorDisplay(failure: failure, onRetry: fetchData),
-  (user) => UserProfileView(user: user),
-);
-```
-
-#### DateTime Formatting
-
-```dart
-final dateTime = DateTime.now();
-final formatted = dateTime.format('dd/MM/yyyy');
-final relativeTime = dateTime.fromNow(l10n);
-```
-
-## Dependency Notes
-
-This package depends on:
-
-- Material UI (Flutter's built-in Material Design)
-- Languist for localization
-- fpdart for functional programming
-- equatable for value equality
-- clay_containers for enhanced Neumorphic effects
-- google_fonts for typography

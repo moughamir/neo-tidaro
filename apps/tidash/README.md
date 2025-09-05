@@ -1,16 +1,20 @@
-# tidash
+# Tidash App
 
-A new Flutter project.
+This is the admin dashboard for the Tidaro platform.
+
+## Overview
+
+`tidash` is a web application built with Flutter that provides administrative and management tools for the Tidaro platform. It is used by the Tidaro team to manage users, services, bookings, and other aspects of the platform.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run this app, follow the instructions in the root `README.md` file.
 
-A few resources to get you started if this is your first Flutter project:
+## Dependencies
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+This app may depend on the following packages from this workspace:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+-   `core`
+-   `languist`
+-   `shared`
+-   `ui_kit`
