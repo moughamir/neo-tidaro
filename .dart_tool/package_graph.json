@@ -129,11 +129,9 @@
       "name": "tidaro",
       "version": "1.0.0+1",
       "dependencies": [
-        "core",
         "cupertino_icons",
         "flutter",
-        "languist",
-        "shared"
+        "ui_kit"
       ],
       "devDependencies": [
         "flutter_lints",
@@ -144,11 +142,8 @@
       "name": "basic_app_example",
       "version": "1.0.0+1",
       "dependencies": [
-        "core",
         "cupertino_icons",
         "flutter",
-        "languist",
-        "shared",
         "ui_kit"
       ],
       "devDependencies": []
@@ -157,11 +152,8 @@
       "name": "auth_flow_example",
       "version": "1.0.0+1",
       "dependencies": [
-        "core",
         "cupertino_icons",
         "flutter",
-        "languist",
-        "shared",
         "ui_kit"
       ],
       "devDependencies": []
@@ -182,11 +174,8 @@
       "name": "ui_kit_showcase",
       "version": "1.0.0+1",
       "dependencies": [
-        "core",
         "cupertino_icons",
         "flutter",
-        "languist",
-        "shared",
         "ui_kit"
       ],
       "devDependencies": []
