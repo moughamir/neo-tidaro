@@ -53,5 +53,34 @@ melos:
       run: melos exec -- flutter clean && melos exec -- flutter pub get
       description: Clean build directories and get dependencies in all packages.
 
+    # Example runners
+    run:basic_app:
+      run: melos exec --scope="basic_app_example" -- flutter run -d linux
+      description: Run the basic app example on Linux desktop.
+
+    run:auth_flow:
+      run: melos exec --scope="auth_flow_example" -- flutter run -d linux
+      description: Run the authentication flow example on Linux desktop.
+
+    run:redux_showcase:
+      run: melos exec --scope="redux_showcase_example" -- flutter run -d linux
+      description: Run the Redux showcase example on Linux desktop.
+
+    run:ui_kit_showcase:
+      run: melos exec --scope="ui_kit_showcase" -- flutter run -d linux
+      description: Run the UI Kit showcase example on Linux desktop.
+
+    run:tidaro:
+      run: melos exec --scope="tidaro" -- flutter run -d linux
+      description: Run the main Tidaro application on Linux desktop.
+
+    run:tidaro_mini:
+      run: melos exec --scope="tidaro_mini" -- flutter run -d linux
+      description: Run the Tidaro Mini application on Linux desktop.
+
+    run:tidash:
+      run: melos exec --scope="tidash" -- flutter run -d linux
+      description: Run the Tidash admin dashboard on Linux desktop.
+
 dev_dependencies:
   melos: ^7.1.0
