@@ -1,4 +1,5 @@
 name: neo_tidaro
+version: 0.1.0-pre-alpha.1+1
 publish_to: 'none'
 environment:
   sdk: '^3.9.0'
