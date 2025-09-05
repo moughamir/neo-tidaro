@@ -1,13 +1,17 @@
 {
   "roots": [
+    "auth_flow_example",
+    "basic_app_example",
     "core",
     "languist",
     "neo_tidaro",
+    "redux_showcase_example",
     "shared",
     "tidaro",
     "tidaro_mini",
     "tidash",
-    "ui_kit"
+    "ui_kit",
+    "ui_kit_showcase"
   ],
   "packages": [
     {
@@ -137,6 +141,57 @@
       ]
     },
     {
+      "name": "basic_app_example",
+      "version": "1.0.0+1",
+      "dependencies": [
+        "core",
+        "cupertino_icons",
+        "flutter",
+        "languist",
+        "shared",
+        "ui_kit"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "auth_flow_example",
+      "version": "1.0.0+1",
+      "dependencies": [
+        "core",
+        "cupertino_icons",
+        "flutter",
+        "languist",
+        "shared",
+        "ui_kit"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "redux_showcase_example",
+      "version": "1.0.0+1",
+      "dependencies": [
+        "core",
+        "cupertino_icons",
+        "flutter",
+        "languist",
+        "shared"
+      ],
+      "devDependencies": []
+    },
+    {
+      "name": "ui_kit_showcase",
+      "version": "1.0.0+1",
+      "dependencies": [
+        "core",
+        "cupertino_icons",
+        "flutter",
+        "languist",
+        "shared",
+        "ui_kit"
+      ],
+      "devDependencies": []
+    },
+    {
       "name": "melos",
       "version": "7.1.0",
       "dependencies": [
@@ -200,6 +255,11 @@
       ]
     },
     {
+      "name": "cupertino_icons",
+      "version": "1.0.8",
+      "dependencies": []
+    },
+    {
       "name": "flutter_lints",
       "version": "6.0.0",
       "dependencies": [
@@ -223,11 +283,6 @@
         "test_api",
         "vector_math"
       ]
-    },
-    {
-      "name": "cupertino_icons",
-      "version": "1.0.8",
-      "dependencies": []
     },
     {
       "name": "yaml",

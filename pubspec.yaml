@@ -11,6 +11,10 @@ workspace:
   - apps/tidash # Admin Dashboard
   - apps/tidaro_mini # Mini TiDaro App for Quick retention
   - apps/tidaro # Full TiDaro App
+  - examples/basic_app # Basic integration example
+  - examples/auth_flow # Authentication flow example
+  - examples/redux_showcase # Redux patterns showcase
+  - examples/ui_kit_showcase # UI Kit components showcase
 
 dependencies:
   flutter:

@@ -1,0 +1,27 @@
+name: auth_flow_example
+description: "Authentication flow example with form validation and state management"
+publish_to: 'none'
+resolution: workspace
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.9.0'
+  flutter: '>=3.35.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  
+  # Workspace Dependencies
+  shared:
+    path: ../../packages/shared
+  core:
+    path: ../../packages/core
+  ui_kit:
+    path: ../../packages/ui_kit
+  languist:
+    path: ../../packages/languist
+
+flutter:
+  uses-material-design: true

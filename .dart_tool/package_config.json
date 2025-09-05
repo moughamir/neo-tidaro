@@ -942,6 +942,30 @@
       "rootUri": "../apps/tidaro",
       "packageUri": "lib/",
       "languageVersion": "3.9"
+    },
+    {
+      "name": "basic_app_example",
+      "rootUri": "../examples/basic_app",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
+      "name": "auth_flow_example",
+      "rootUri": "../examples/auth_flow",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
+      "name": "redux_showcase_example",
+      "rootUri": "../examples/redux_showcase",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
+    },
+    {
+      "name": "ui_kit_showcase",
+      "rootUri": "../examples/ui_kit_showcase",
+      "packageUri": "lib/",
+      "languageVersion": "3.9"
     }
   ],
   "generator": "pub",
