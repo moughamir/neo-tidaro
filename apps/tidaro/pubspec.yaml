@@ -10,14 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  languist:
-    path: ../../packages/languist
   
-  # Workspace Dependencies
-  shared:
-    path: ../../packages/shared
-  core:
-    path: ../../packages/core
+  # Workspace Dependencies - temporarily excluding core/shared to avoid flutter_secure_storage Linux issues
+  ui_kit:
+    path: ../../packages/ui_kit
 dev_dependencies:
   flutter_test:
     sdk: flutter

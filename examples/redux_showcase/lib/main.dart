@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 
 void main() {
@@ -11,21 +10,13 @@ class ReduxShowcaseApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Create Redux store with logging enabled
-    final Store<AppState> store = createStore(enableLogging: true);
-
-    return StoreProvider<AppState>(
-      store: store,
-      child: MaterialApp(
-        title: 'Redux Showcase',
-        localizationsDelegates: Languist.localizationsDelegates,
-        supportedLocales: Languist.supportedLocales,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-          useMaterial3: true,
-        ),
-        home: const ReduxDashboard(),
+    return MaterialApp(
+      title: 'Redux Showcase',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        useMaterial3: true,
       ),
+      home: const ReduxDashboard(),
     );
   }
 }
@@ -48,15 +39,15 @@ class ReduxDashboard extends StatelessWidget {
             // Counter State Section
             _CounterSection(),
             const SizedBox(height: 24),
-            
+
             // Loading State Section
             _LoadingSection(),
             const SizedBox(height: 24),
-            
+
             // Message State Section
             _MessageSection(),
             const SizedBox(height: 24),
-            
+
             // Authentication State Section
             _AuthSection(),
           ],
@@ -80,7 +71,7 @@ class _CounterSection extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 16),
-            
+
             // Counter Display
             StoreConnector<AppState, int>(
               converter: (store) => UiSelectors.getCounter(store.state),
@@ -93,13 +84,14 @@ class _CounterSection extends StatelessWidget {
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       const SizedBox(height: 16),
-                      
+
                       // Action Buttons
                       Wrap(
                         spacing: 8.0,
                         children: [
                           StoreConnector<AppState, VoidCallback>(
-                            converter: (store) => () => store.dispatch(IncrementCounterAction()),
+                            converter: (store) =>
+                                () => store.dispatch(IncrementCounterAction()),
                             builder: (context, callback) => ElevatedButton.icon(
                               onPressed: callback,
                               icon: const Icon(Icons.add),
@@ -107,7 +99,8 @@ class _CounterSection extends StatelessWidget {
                             ),
                           ),
                           StoreConnector<AppState, VoidCallback>(
-                            converter: (store) => () => store.dispatch(DecrementCounterAction()),
+                            converter: (store) =>
+                                () => store.dispatch(DecrementCounterAction()),
                             builder: (context, callback) => ElevatedButton.icon(
                               onPressed: callback,
                               icon: const Icon(Icons.remove),
@@ -115,7 +108,8 @@ class _CounterSection extends StatelessWidget {
                             ),
                           ),
                           StoreConnector<AppState, VoidCallback>(
-                            converter: (store) => () => store.dispatch(SetCounterAction(10)),
+                            converter: (store) =>
+                                () => store.dispatch(SetCounterAction(10)),
                             builder: (context, callback) => ElevatedButton.icon(
                               onPressed: callback,
                               icon: const Icon(Icons.exposure_plus_1),
@@ -123,7 +117,8 @@ class _CounterSection extends StatelessWidget {
                             ),
                           ),
                           StoreConnector<AppState, VoidCallback>(
-                            converter: (store) => () => store.dispatch(ResetCounterAction()),
+                            converter: (store) =>
+                                () => store.dispatch(ResetCounterAction()),
                             builder: (context, callback) => ElevatedButton.icon(
                               onPressed: callback,
                               icon: const Icon(Icons.refresh),
@@ -158,7 +153,7 @@ class _LoadingSection extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 16),
-            
+
             StoreConnector<AppState, bool>(
               converter: (store) => UiSelectors.isLoading(store.state),
               builder: (context, isLoading) {
@@ -170,21 +165,23 @@ class _LoadingSection extends StatelessWidget {
                       const Text('Loading...'),
                     ] else
                       const Text('Not loading'),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         StoreConnector<AppState, VoidCallback>(
-                          converter: (store) => () => store.dispatch(SetLoadingAction(true)),
+                          converter: (store) =>
+                              () => store.dispatch(SetLoadingAction(true)),
                           builder: (context, callback) => ElevatedButton(
                             onPressed: isLoading ? null : callback,
                             child: const Text('Start Loading'),
                           ),
                         ),
                         StoreConnector<AppState, VoidCallback>(
-                          converter: (store) => () => store.dispatch(SetLoadingAction(false)),
+                          converter: (store) =>
+                              () => store.dispatch(SetLoadingAction(false)),
                           builder: (context, callback) => ElevatedButton(
                             onPressed: !isLoading ? null : callback,
                             child: const Text('Stop Loading'),
@@ -217,7 +214,7 @@ class _MessageSection extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 16),
-            
+
             StoreConnector<AppState, UiState>(
               converter: (store) => store.state.uiState,
               builder: (context, uiState) {
@@ -239,7 +236,8 @@ class _MessageSection extends StatelessWidget {
                             const SizedBox(width: 8),
                             Expanded(child: Text('Error: ${uiState.error}')),
                             StoreConnector<AppState, VoidCallback>(
-                              converter: (store) => () => store.dispatch(ClearErrorAction()),
+                              converter: (store) =>
+                                  () => store.dispatch(ClearErrorAction()),
                               builder: (context, callback) => IconButton(
                                 onPressed: callback,
                                 icon: const Icon(Icons.close),
@@ -248,7 +246,7 @@ class _MessageSection extends StatelessWidget {
                           ],
                         ),
                       ),
-                    
+
                     // Success Message Display
                     if (uiState.successMessage != null)
                       Container(
@@ -263,9 +261,14 @@ class _MessageSection extends StatelessWidget {
                           children: [
                             const Icon(Icons.check_circle, color: Colors.green),
                             const SizedBox(width: 8),
-                            Expanded(child: Text('Success: ${uiState.successMessage}')),
+                            Expanded(
+                              child: Text('Success: ${uiState.successMessage}'),
+                            ),
                             StoreConnector<AppState, VoidCallback>(
-                              converter: (store) => () => store.dispatch(ClearSuccessMessageAction()),
+                              converter: (store) =>
+                                  () => store.dispatch(
+                                    ClearSuccessMessageAction(),
+                                  ),
                               builder: (context, callback) => IconButton(
                                 onPressed: callback,
                                 icon: const Icon(Icons.close),
@@ -274,36 +277,49 @@ class _MessageSection extends StatelessWidget {
                           ],
                         ),
                       ),
-                    
+
                     if (uiState.error == null && uiState.successMessage == null)
                       const Text('No messages'),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     // Message Action Buttons
                     Wrap(
                       spacing: 8.0,
                       children: [
                         StoreConnector<AppState, VoidCallback>(
-                          converter: (store) => () => store.dispatch(ShowErrorAction('This is an error message')),
+                          converter: (store) =>
+                              () => store.dispatch(
+                                ShowErrorAction('This is an error message'),
+                              ),
                           builder: (context, callback) => ElevatedButton.icon(
                             onPressed: callback,
                             icon: const Icon(Icons.error),
                             label: const Text('Show Error'),
-                            style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade100),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red.shade100,
+                            ),
                           ),
                         ),
                         StoreConnector<AppState, VoidCallback>(
-                          converter: (store) => () => store.dispatch(ShowSuccessMessageAction('Operation completed successfully!')),
+                          converter: (store) =>
+                              () => store.dispatch(
+                                ShowSuccessMessageAction(
+                                  'Operation completed successfully!',
+                                ),
+                              ),
                           builder: (context, callback) => ElevatedButton.icon(
                             onPressed: callback,
                             icon: const Icon(Icons.check),
                             label: const Text('Show Success'),
-                            style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade100),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green.shade100,
+                            ),
                           ),
                         ),
                         StoreConnector<AppState, VoidCallback>(
-                          converter: (store) => () => store.dispatch(ClearAllMessagesAction()),
+                          converter: (store) =>
+                              () => store.dispatch(ClearAllMessagesAction()),
                           builder: (context, callback) => ElevatedButton.icon(
                             onPressed: callback,
                             icon: const Icon(Icons.clear_all),
@@ -337,7 +353,7 @@ class _AuthSection extends StatelessWidget {
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 16),
-            
+
             StoreConnector<AppState, AuthState>(
               converter: (store) => store.state.authState,
               builder: (context, authState) {
@@ -348,55 +364,75 @@ class _AuthSection extends StatelessWidget {
                       width: double.infinity,
                       padding: const EdgeInsets.all(12.0),
                       decoration: BoxDecoration(
-                        color: authState.isAuthenticated ? Colors.green.shade100 : Colors.grey.shade100,
+                        color: authState.isAuthenticated
+                            ? Colors.green.shade100
+                            : Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(8.0),
                         border: Border.all(
-                          color: authState.isAuthenticated ? Colors.green : Colors.grey,
+                          color: authState.isAuthenticated
+                              ? Colors.green
+                              : Colors.grey,
                         ),
                       ),
                       child: Row(
                         children: [
                           Icon(
-                            authState.isAuthenticated ? Icons.verified_user : Icons.person_outline,
-                            color: authState.isAuthenticated ? Colors.green : Colors.grey,
+                            authState.isAuthenticated
+                                ? Icons.verified_user
+                                : Icons.person_outline,
+                            color: authState.isAuthenticated
+                                ? Colors.green
+                                : Colors.grey,
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            authState.isAuthenticated ? 'Authenticated' : 'Not Authenticated',
+                            authState.isAuthenticated
+                                ? 'Authenticated'
+                                : 'Not Authenticated',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              color: authState.isAuthenticated ? Colors.green : Colors.grey,
+                              color: authState.isAuthenticated
+                                  ? Colors.green
+                                  : Colors.grey,
                             ),
                           ),
                         ],
                       ),
                     ),
-                    
+
                     if (authState.user != null) ...[
                       const SizedBox(height: 8),
                       Text('User: ${authState.user}'),
                     ],
-                    
+
                     if (authState.error != null) ...[
                       const SizedBox(height: 8),
-                      Text('Error: ${authState.error}', style: const TextStyle(color: Colors.red)),
+                      Text(
+                        'Error: ${authState.error}',
+                        style: const TextStyle(color: Colors.red),
+                      ),
                     ],
-                    
+
                     if (authState.isLoading) ...[
                       const SizedBox(height: 8),
                       const CircularProgressIndicator(),
                       const Text('Processing...'),
                     ],
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     // Auth Action Buttons
                     Wrap(
                       spacing: 8.0,
                       children: [
                         if (!authState.isAuthenticated) ...[
                           StoreConnector<AppState, VoidCallback>(
-                            converter: (store) => () => store.dispatch(LoginSuccessAction({'email': 'demo@example.com'})),
+                            converter: (store) =>
+                                () => store.dispatch(
+                                  LoginSuccessAction({
+                                    'email': 'demo@example.com',
+                                  }),
+                                ),
                             builder: (context, callback) => ElevatedButton.icon(
                               onPressed: authState.isLoading ? null : callback,
                               icon: const Icon(Icons.login),
@@ -404,17 +440,23 @@ class _AuthSection extends StatelessWidget {
                             ),
                           ),
                           StoreConnector<AppState, VoidCallback>(
-                            converter: (store) => () => store.dispatch(LoginFailureAction('Invalid credentials')),
+                            converter: (store) =>
+                                () => store.dispatch(
+                                  LoginFailureAction('Invalid credentials'),
+                                ),
                             builder: (context, callback) => ElevatedButton.icon(
                               onPressed: authState.isLoading ? null : callback,
                               icon: const Icon(Icons.error),
                               label: const Text('Simulate Login Error'),
-                              style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade100),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red.shade100,
+                              ),
                             ),
                           ),
                         ] else
                           StoreConnector<AppState, VoidCallback>(
-                            converter: (store) => () => store.dispatch(LogoutAction()),
+                            converter: (store) =>
+                                () => store.dispatch(LogoutAction()),
                             builder: (context, callback) => ElevatedButton.icon(
                               onPressed: callback,
                               icon: const Icon(Icons.logout),

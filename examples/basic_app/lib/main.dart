@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:languist/languist.dart';
-import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 void main() {
@@ -12,198 +10,155 @@ class BasicAppExample extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Create Redux store
-    final Store<AppState> store = createStore(enableLogging: true);
-
-    return StoreProvider<AppState>(
-      store: store,
-      child: MaterialApp(
-        title: 'Basic App Example',
-        localizationsDelegates: Languist.localizationsDelegates,
-        supportedLocales: Languist.supportedLocales,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-          useMaterial3: true,
-        ),
-        home: const ExampleHomePage(),
+    return MaterialApp(
+      title: 'Basic App Example',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        useMaterial3: true,
       ),
+      home: const ExampleHomePage(),
     );
   }
 }
 
-class ExampleHomePage extends StatelessWidget {
+class ExampleHomePage extends StatefulWidget {
   const ExampleHomePage({super.key});
 
   @override
+  State<ExampleHomePage> createState() => _ExampleHomePageState();
+}
+
+class _ExampleHomePageState extends State<ExampleHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  void _decrementCounter() {
+    setState(() {
+      _counter--;
+    });
+  }
+
+  void _resetCounter() {
+    setState(() {
+      _counter = 0;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final IntlLocalizations l10n = Languist.of(context);
-
-    return StoreConnector<AppState, int>(
-      converter: (store) => UiSelectors.getCounter(store.state),
-      builder: (context, counter) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('${l10n.appTitle} - Example'),
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          ),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                // UI Kit Components Showcase
-                Text(
-                  'UI Kit Components',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                const SizedBox(height: 16),
-
-                // Primary Button Example
-                PrimaryButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Primary button pressed!')),
-                    );
-                  },
-                  child: Text('Primary Button'),
-                ),
-                const SizedBox(height: 16),
-
-                // Glassy Card Example
-                GlassyCard(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Glassy Card Example',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          'This showcases the glassy card component',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Colors.grey[600],
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Text('Counter: $counter'),
-                        const SizedBox(height: 8),
-                        Text(l10n.minutesAgo(counter)),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                // Info Card Example
-                InfoCard(
-                  title: 'Info Card',
-                  content: Text(
-                    'This demonstrates the info card component from the UI Kit.',
-                  ),
-                  icon: Icons.info,
-                ),
-                const SizedBox(height: 16),
-
-                // Loading Indicator Example
-                const Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        Text('Loading Indicator Example'),
-                        SizedBox(height: 8),
-                        LoadingIndicator(),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                // Redux State Management Example
-                Text(
-                  'Redux State Management',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                const SizedBox(height: 16),
-
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        Text('Current Counter: $counter'),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            StoreConnector<AppState, VoidCallback>(
-                              converter: (store) =>
-                                  () =>
-                                      store.dispatch(IncrementCounterAction()),
-                              builder: (context, callback) => ElevatedButton(
-                                onPressed: callback,
-                                child: const Text('Increment'),
-                              ),
-                            ),
-                            StoreConnector<AppState, VoidCallback>(
-                              converter: (store) =>
-                                  () =>
-                                      store.dispatch(DecrementCounterAction()),
-                              builder: (context, callback) => ElevatedButton(
-                                onPressed: callback,
-                                child: const Text('Decrement'),
-                              ),
-                            ),
-                            StoreConnector<AppState, VoidCallback>(
-                              converter: (store) =>
-                                  () => store.dispatch(ResetCounterAction()),
-                              builder: (context, callback) => ElevatedButton(
-                                onPressed: callback,
-                                child: const Text('Reset'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                // Localization Example
-                Text(
-                  'Localization Examples',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                const SizedBox(height: 16),
-
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('${l10n.hello} - Simple greeting'),
-                        Text(
-                          '${l10n.helloUser('Developer')} - Parameterized greeting',
-                        ),
-                        Text('${l10n.justNow} - Time format'),
-                        Text('${l10n.aMinuteAgo} - Time format'),
-                        Text('${l10n.anHourAgo} - Time format'),
-                        Text('${l10n.aDayAgo} - Time format'),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Basic App Example'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // UI Kit Components Showcase
+            Text(
+              'UI Kit Components',
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
-          ),
-        );
-      },
+            const SizedBox(height: 16),
+
+            // Glassy Card Example
+            GlassyCard(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Text(
+                      'Glassy Card Example',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'This showcases the glassy card component from the UI Kit',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Text('Counter: $_counter'),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Counter Example
+            Text(
+              'Counter Example',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const SizedBox(height: 16),
+
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Text(
+                      'Current Counter: $_counter',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(height: 16),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _incrementCounter,
+                          child: const Text('Increment'),
+                        ),
+                        ElevatedButton(
+                          onPressed: _decrementCounter,
+                          child: const Text('Decrement'),
+                        ),
+                        ElevatedButton(
+                          onPressed: _resetCounter,
+                          child: const Text('Reset'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Basic Examples
+            Text(
+              'Basic Flutter Components',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const SizedBox(height: 16),
+
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text('Hello World! - Simple greeting'),
+                    Text('Hello Developer! - Parameterized greeting'),
+                    Text('Counter value: $_counter'),
+                    const Text('This is a basic Flutter app example'),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
