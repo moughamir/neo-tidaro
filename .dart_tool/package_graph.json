@@ -16,7 +16,7 @@
   "packages": [
     {
       "name": "neo_tidaro",
-      "version": "0.0.0",
+      "version": "0.1.0-pre-alpha.1+1",
       "dependencies": [
         "equatable",
         "flutter",
@@ -101,7 +101,7 @@
     },
     {
       "name": "tidash",
-      "version": "1.0.0+1",
+      "version": "0.1.0-pre-alpha.1+1",
       "dependencies": [
         "cupertino_icons",
         "flutter",
@@ -114,7 +114,7 @@
     },
     {
       "name": "tidaro_mini",
-      "version": "1.0.0+1",
+      "version": "0.1.0-pre-alpha.1+1",
       "dependencies": [
         "cupertino_icons",
         "flutter",
@@ -127,7 +127,7 @@
     },
     {
       "name": "tidaro",
-      "version": "1.0.0+1",
+      "version": "0.1.0-pre-alpha.1+1",
       "dependencies": [
         "cupertino_icons",
         "flutter",
