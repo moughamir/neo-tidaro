@@ -654,5 +654,69 @@
   "passwordTooShort": "Password must be at least 8 characters",
   "@passwordTooShort": {
     "description": "Password too short validation message"
+  },
+  "bookings": "Bookings",
+  "@bookings": {
+    "description": "Bookings navigation and page title"
+  },
+  "noBookings": "No Bookings Found",
+  "@noBookings": {
+    "description": "Empty state title for bookings list"
+  },
+  "noBookingsDescription": "You haven't created any bookings yet. Create your first booking to get started.",
+  "@noBookingsDescription": {
+    "description": "Empty state description for bookings list"
+  },
+  "createBooking": "Create Booking",
+  "@createBooking": {
+    "description": "Button text to create a new booking"
+  },
+  "comingSoon": "Coming Soon",
+  "@comingSoon": {
+    "description": "Placeholder text for features not yet implemented"
+  },
+  "viewDetails": "View Details",
+  "@viewDetails": {
+    "description": "Button text to view item details"
+  },
+  "staff": "Staff",
+  "@staff": {
+    "description": "Staff navigation and page title"
+  },
+  "noStaff": "No Staff Found",
+  "@noStaff": {
+    "description": "Empty state title for staff list"
+  },
+  "noStaffDescription": "You haven't added any staff members yet. Add your first staff member to get started.",
+  "@noStaffDescription": {
+    "description": "Empty state description for staff list"
+  },
+  "addStaff": "Add Staff",
+  "@addStaff": {
+    "description": "Button text to add a new staff member"
+  },
+  "totalBookings": "Total Bookings",
+  "@totalBookings": {
+    "description": "Total bookings metric title"
+  },
+  "activeBookings": "Active Bookings",
+  "@activeBookings": {
+    "description": "Active bookings metric title"
+  },
+  "monthlyRevenue": "Monthly Revenue",
+  "@monthlyRevenue": {
+    "description": "Monthly revenue metric title"
+  },
+  "activeCleaners": "Active Cleaners",
+  "@activeCleaners": {
+    "description": "Active cleaners metric title"
+  },
+  "totalCustomers": "Total Customers",
+  "@totalCustomers": {
+    "description": "Total customers metric title"
+  },
+  "totalRevenue": "Total Revenue",
+  "@totalRevenue": {
+    "description": "Total revenue metric title"
   }
 }

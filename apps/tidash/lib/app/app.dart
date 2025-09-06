@@ -7,6 +7,7 @@ import '../pages/auth/auth_wrapper.dart';
 import '../pages/auth/login_page.dart';
 import '../pages/auth/signup_page.dart';
 import '../pages/dashboard/dashboard_page.dart';
+import '../pages/bookings/bookings_page.dart';
 
 class TiDashboard extends StatelessWidget {
   const TiDashboard({super.key});
@@ -52,6 +53,7 @@ class TiDashboard extends StatelessWidget {
           '/login': (BuildContext context) => const LoginPage(),
           '/signup': (BuildContext context) => const SignUpPage(),
           '/dashboard': (BuildContext context) => const DashboardPage(),
+          '/bookings': (BuildContext context) => const BookingsPage(),
         },
       ),
     );

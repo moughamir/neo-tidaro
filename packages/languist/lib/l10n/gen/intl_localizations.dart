@@ -1042,6 +1042,102 @@ abstract class IntlLocalizations {
   /// In en, this message translates to:
   /// **'Password must be at least 8 characters'**
   String get passwordTooShort;
+
+  /// Bookings navigation and page title
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get bookings;
+
+  /// Empty state title for bookings list
+  ///
+  /// In en, this message translates to:
+  /// **'No Bookings Found'**
+  String get noBookings;
+
+  /// Empty state description for bookings list
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t created any bookings yet. Create your first booking to get started.'**
+  String get noBookingsDescription;
+
+  /// Button text to create a new booking
+  ///
+  /// In en, this message translates to:
+  /// **'Create Booking'**
+  String get createBooking;
+
+  /// Placeholder text for features not yet implemented
+  ///
+  /// In en, this message translates to:
+  /// **'Coming Soon'**
+  String get comingSoon;
+
+  /// Button text to view item details
+  ///
+  /// In en, this message translates to:
+  /// **'View Details'**
+  String get viewDetails;
+
+  /// Staff navigation and page title
+  ///
+  /// In en, this message translates to:
+  /// **'Staff'**
+  String get staff;
+
+  /// Empty state title for staff list
+  ///
+  /// In en, this message translates to:
+  /// **'No Staff Found'**
+  String get noStaff;
+
+  /// Empty state description for staff list
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t added any staff members yet. Add your first staff member to get started.'**
+  String get noStaffDescription;
+
+  /// Button text to add a new staff member
+  ///
+  /// In en, this message translates to:
+  /// **'Add Staff'**
+  String get addStaff;
+
+  /// Total bookings metric title
+  ///
+  /// In en, this message translates to:
+  /// **'Total Bookings'**
+  String get totalBookings;
+
+  /// Active bookings metric title
+  ///
+  /// In en, this message translates to:
+  /// **'Active Bookings'**
+  String get activeBookings;
+
+  /// Monthly revenue metric title
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Revenue'**
+  String get monthlyRevenue;
+
+  /// Active cleaners metric title
+  ///
+  /// In en, this message translates to:
+  /// **'Active Cleaners'**
+  String get activeCleaners;
+
+  /// Total customers metric title
+  ///
+  /// In en, this message translates to:
+  /// **'Total Customers'**
+  String get totalCustomers;
+
+  /// Total revenue metric title
+  ///
+  /// In en, this message translates to:
+  /// **'Total Revenue'**
+  String get totalRevenue;
 }
 
 class _IntlLocalizationsDelegate extends LocalizationsDelegate<IntlLocalizations> {

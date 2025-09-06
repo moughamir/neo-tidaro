@@ -500,4 +500,52 @@ class IntlLocalizationsZgh extends IntlLocalizations {
 
   @override
   String get passwordTooShort => 'ⵜⴰⴳⵓⵔⵉ ⵏ ⵓⵣⵔⴰⵢ ⵎⵥⵥⵉⵢⵏ';
+
+  @override
+  String get bookings => 'Bookings';
+
+  @override
+  String get noBookings => 'No Bookings Found';
+
+  @override
+  String get noBookingsDescription => 'You haven\'t created any bookings yet. Create your first booking to get started.';
+
+  @override
+  String get createBooking => 'Create Booking';
+
+  @override
+  String get comingSoon => 'Coming Soon';
+
+  @override
+  String get viewDetails => 'View Details';
+
+  @override
+  String get staff => 'Staff';
+
+  @override
+  String get noStaff => 'No Staff Found';
+
+  @override
+  String get noStaffDescription => 'You haven\'t added any staff members yet. Add your first staff member to get started.';
+
+  @override
+  String get addStaff => 'Add Staff';
+
+  @override
+  String get totalBookings => 'Total Bookings';
+
+  @override
+  String get activeBookings => 'Active Bookings';
+
+  @override
+  String get monthlyRevenue => 'Monthly Revenue';
+
+  @override
+  String get activeCleaners => 'Active Cleaners';
+
+  @override
+  String get totalCustomers => 'Total Customers';
+
+  @override
+  String get totalRevenue => 'Total Revenue';
 }

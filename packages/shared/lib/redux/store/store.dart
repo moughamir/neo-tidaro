@@ -4,6 +4,7 @@ import 'package:redux/redux.dart';
 import '../app_state.dart';
 import '../middleware/logging_middleware.dart';
 import '../middleware/dashboard_middleware.dart';
+import '../housekeeping/housekeeping_middleware.dart';
 import '../reducers/app_reducer.dart';
 
 /// Creates and configures the Redux store
@@ -12,6 +13,9 @@ Store<AppState> createStore({bool enableLogging = kDebugMode}) {
 
   // Add dashboard middleware
   middleware.addAll(createDashboardMiddleware());
+  
+  // Add housekeeping middleware
+  middleware.addAll(createHousekeepingMiddleware());
 
   // Add logging middleware in debug mode
   if (enableLogging) {

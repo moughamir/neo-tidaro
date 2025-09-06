@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 
-import '../dashboard/dashboard_page.dart';
+import '../main/main_layout.dart';
 import 'login_page.dart';
 
 class AuthWrapper extends StatelessWidget {
@@ -14,8 +14,8 @@ class AuthWrapper extends StatelessWidget {
           AuthWrapperViewModel.fromStore(store),
       builder: (BuildContext context, AuthWrapperViewModel viewModel) {
         if (viewModel.isAuthenticated) {
-          // User is authenticated, show dashboard
-          return const DashboardPage();
+          // User is authenticated, show main layout
+          return const MainLayout();
         } else {
           // User is not authenticated, show login
           return const LoginPage();
