@@ -356,18 +356,6 @@
   "@required": {
     "description": "Required field validation"
   },
-  "invalidEmail": "بريد إلكتروني غير صحيح",
-  "@invalidEmail": {
-    "description": "Invalid email validation"
-  },
-  "passwordTooShort": "كلمة المرور قصيرة جداً",
-  "@passwordTooShort": {
-    "description": "Password too short validation"
-  },
-  "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
-  "@passwordsDoNotMatch": {
-    "description": "Passwords do not match validation"
-  },
   "invalidPhoneNumber": "رقم هاتف غير صحيح",
   "@invalidPhoneNumber": {
     "description": "Invalid phone number validation"
@@ -576,11 +564,59 @@
       "count": {}
     }
   },
-  "totalCount": "المجموع: {count}",
+  "totalCount": "الإجمالي: {count}",
   "@totalCount": {
     "description": "Total count",
     "placeholders": {
       "count": {}
     }
+  },
+  "appBranding": "إدارة تيدارو",
+  "@appBranding": {},
+  "welcomeBackMessage": "مرحباً بعودتك! يرجى تسجيل الدخول للمتابعة.",
+  "@welcomeBackMessage": {},
+  "createAccount": "إنشاء حساب",
+  "@createAccount": {},
+  "createAccountSubtitle": "أدخل تفاصيلك أدناه لإنشاء حسابك",
+  "@createAccountSubtitle": {},
+  "emailHint": "name@example.com",
+  "@emailHint": {},
+  "passwordHint": "أدخل كلمة المرور",
+  "@passwordHint": {},
+  "nameHint": "أدخل اسمك الكامل",
+  "@nameHint": {},
+  "createPasswordHint": "إنشاء كلمة مرور",
+  "@createPasswordHint": {},
+  "confirmPasswordHint": "تأكيد كلمة المرور",
+  "@confirmPasswordHint": {},
+  "confirmPasswordLabel": "تأكيد كلمة المرور",
+  "@confirmPasswordLabel": {},
+  "forgotPasswordQuestion": "نسيت كلمة المرور؟",
+  "@forgotPasswordQuestion": {},
+  "noAccountQuestion": "ليس لديك حساب؟",
+  "@noAccountQuestion": {},
+  "haveAccountQuestion": "لديك حساب بالفعل؟",
+  "@haveAccountQuestion": {},
+  "resetPasswordTitle": "إعادة تعيين كلمة المرور",
+  "@resetPasswordTitle": {},
+  "resetPasswordMessage": "أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.",
+  "@resetPasswordMessage": {},
+  "sendResetLink": "إرسال رابط الإعادة",
+  "@sendResetLink": {},
+  "passwordResetEmailSent": "تم إرسال بريد إعادة تعيين كلمة المرور!",
+  "@passwordResetEmailSent": {},
+  "termsAgreement": "بالنقر على متابعة، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا.",
+  "@termsAgreement": {},
+  "passwordsDontMatch": "كلمات المرور غير متطابقة",
+  "@passwordsDontMatch": {
+    "description": "Passwords don't match validation message"
+  },
+  "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+  "@invalidEmail": {
+    "description": "Invalid email validation message"
+  },
+  "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+  "@passwordTooShort": {
+    "description": "Password too short validation message"
   }
 }

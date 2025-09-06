@@ -275,15 +275,6 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get required => 'مطلوب';
 
   @override
-  String get invalidEmail => 'بريد إلكتروني غير صحيح';
-
-  @override
-  String get passwordTooShort => 'كلمة المرور قصيرة جداً';
-
-  @override
-  String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
-
-  @override
   String get invalidPhoneNumber => 'رقم هاتف غير صحيح';
 
   @override
@@ -444,6 +435,69 @@ class IntlLocalizationsAr extends IntlLocalizations {
 
   @override
   String totalCount(Object count) {
-    return 'المجموع: $count';
+    return 'الإجمالي: $count';
   }
+
+  @override
+  String get appBranding => 'إدارة تيدارو';
+
+  @override
+  String get welcomeBackMessage => 'مرحباً بعودتك! يرجى تسجيل الدخول للمتابعة.';
+
+  @override
+  String get createAccount => 'إنشاء حساب';
+
+  @override
+  String get createAccountSubtitle => 'أدخل تفاصيلك أدناه لإنشاء حسابك';
+
+  @override
+  String get emailHint => 'name@example.com';
+
+  @override
+  String get passwordHint => 'أدخل كلمة المرور';
+
+  @override
+  String get nameHint => 'أدخل اسمك الكامل';
+
+  @override
+  String get createPasswordHint => 'إنشاء كلمة مرور';
+
+  @override
+  String get confirmPasswordHint => 'تأكيد كلمة المرور';
+
+  @override
+  String get confirmPasswordLabel => 'تأكيد كلمة المرور';
+
+  @override
+  String get forgotPasswordQuestion => 'نسيت كلمة المرور؟';
+
+  @override
+  String get noAccountQuestion => 'ليس لديك حساب؟';
+
+  @override
+  String get haveAccountQuestion => 'لديك حساب بالفعل؟';
+
+  @override
+  String get resetPasswordTitle => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get resetPasswordMessage => 'أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.';
+
+  @override
+  String get sendResetLink => 'إرسال رابط الإعادة';
+
+  @override
+  String get passwordResetEmailSent => 'تم إرسال بريد إعادة تعيين كلمة المرور!';
+
+  @override
+  String get termsAgreement => 'بالنقر على متابعة، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا.';
+
+  @override
+  String get passwordsDontMatch => 'كلمات المرور غير متطابقة';
+
+  @override
+  String get invalidEmail => 'يرجى إدخال عنوان بريد إلكتروني صحيح';
+
+  @override
+  String get passwordTooShort => 'يجب أن تكون كلمة المرور 8 أحرف على الأقل';
 }

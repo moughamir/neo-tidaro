@@ -11,7 +11,7 @@ class AuthState extends Equatable {
 
   final bool isAuthenticated;
   final bool isLoading;
-  final dynamic user; // User model from core package
+  final Map<String, dynamic>? user; // User data from Supabase
   final String? error;
 
   /// Initial state factory

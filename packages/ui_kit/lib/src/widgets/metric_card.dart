@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/ui_kit.dart';
+import 'package:ui_kit/src/widgets/glassy_card.dart';
 
 class MetricCard extends StatelessWidget {
   const MetricCard({

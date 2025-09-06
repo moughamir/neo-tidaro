@@ -275,15 +275,6 @@ class IntlLocalizationsFr extends IntlLocalizations {
   String get required => 'Requis';
 
   @override
-  String get invalidEmail => 'E-mail invalide';
-
-  @override
-  String get passwordTooShort => 'Mot de passe trop court';
-
-  @override
-  String get passwordsDoNotMatch => 'Les mots de passe ne correspondent pas';
-
-  @override
   String get invalidPhoneNumber => 'Numéro de téléphone invalide';
 
   @override
@@ -446,4 +437,67 @@ class IntlLocalizationsFr extends IntlLocalizations {
   String totalCount(Object count) {
     return 'Total : $count';
   }
+
+  @override
+  String get appBranding => 'TiDaro Admin';
+
+  @override
+  String get welcomeBackMessage => 'Welcome back! Please sign in to continue.';
+
+  @override
+  String get createAccount => 'Create an account';
+
+  @override
+  String get createAccountSubtitle => 'Enter your details below to create your account';
+
+  @override
+  String get emailHint => 'name@example.com';
+
+  @override
+  String get passwordHint => 'Enter your password';
+
+  @override
+  String get nameHint => 'Enter your full name';
+
+  @override
+  String get createPasswordHint => 'Create a password';
+
+  @override
+  String get confirmPasswordHint => 'Confirm your password';
+
+  @override
+  String get confirmPasswordLabel => 'Confirm Password';
+
+  @override
+  String get forgotPasswordQuestion => 'Forgot password?';
+
+  @override
+  String get noAccountQuestion => 'Don\'t have an account?';
+
+  @override
+  String get haveAccountQuestion => 'Already have an account?';
+
+  @override
+  String get resetPasswordTitle => 'Reset Password';
+
+  @override
+  String get resetPasswordMessage => 'Enter your email address and we\'ll send you a link to reset your password.';
+
+  @override
+  String get sendResetLink => 'Send Reset Link';
+
+  @override
+  String get passwordResetEmailSent => 'Password reset email sent!';
+
+  @override
+  String get termsAgreement => 'By clicking continue, you agree to our Terms of Service and Privacy Policy.';
+
+  @override
+  String get passwordsDontMatch => 'Passwords don\'t match';
+
+  @override
+  String get invalidEmail => 'E-mail invalide';
+
+  @override
+  String get passwordTooShort => 'Mot de passe trop court';
 }

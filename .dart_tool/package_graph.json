@@ -34,7 +34,8 @@
         "flutter",
         "google_fonts",
         "languist",
-        "material_color_utilities"
+        "material_color_utilities",
+        "shared"
       ],
       "devDependencies": [
         "flutter_lints",

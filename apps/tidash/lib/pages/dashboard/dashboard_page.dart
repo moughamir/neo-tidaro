@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
+import 'package:ui_kit/ui_kit.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-
-import '../../widgets/dashboard/dashboard_header.dart';
-import '../../widgets/dashboard/metric_card.dart';
-import '../../widgets/dashboard/activity_feed.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
-import 'package:tidash/pages/dashboard/dashboard_page.dart';
+
+import '../pages/auth/auth_wrapper.dart';
+import '../pages/auth/login_page.dart';
+import '../pages/auth/signup_page.dart';
+import '../pages/dashboard/dashboard_page.dart';
 
 class TiDashboard extends StatelessWidget {
   const TiDashboard({super.key});
@@ -42,7 +47,12 @@ class TiDashboard extends StatelessWidget {
             ),
           ),
         ),
-        home: const DashboardPage(),
+        home: const AuthWrapper(),
+        routes: <String, WidgetBuilder>{
+          '/login': (BuildContext context) => const LoginPage(),
+          '/signup': (BuildContext context) => const SignUpPage(),
+          '/dashboard': (BuildContext context) => const DashboardPage(),
+        },
       ),
     );
   }

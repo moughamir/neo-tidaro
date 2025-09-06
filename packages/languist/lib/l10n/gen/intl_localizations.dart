@@ -623,29 +623,11 @@ abstract class IntlLocalizations {
   /// **'Try again'**
   String get tryAgain;
 
-  /// Required field validation
+  /// Required field indicator
   ///
   /// In en, this message translates to:
   /// **'Required'**
   String get required;
-
-  /// Invalid email validation
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid email'**
-  String get invalidEmail;
-
-  /// Password too short validation
-  ///
-  /// In en, this message translates to:
-  /// **'Password too short'**
-  String get passwordTooShort;
-
-  /// Passwords do not match validation
-  ///
-  /// In en, this message translates to:
-  /// **'Passwords do not match'**
-  String get passwordsDoNotMatch;
 
   /// Invalid phone number validation
   ///
@@ -934,6 +916,132 @@ abstract class IntlLocalizations {
   /// In en, this message translates to:
   /// **'Total: {count}'**
   String totalCount(Object count);
+
+  /// Application branding name
+  ///
+  /// In en, this message translates to:
+  /// **'TiDaro Admin'**
+  String get appBranding;
+
+  /// Welcome back message for login
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back! Please sign in to continue.'**
+  String get welcomeBackMessage;
+
+  /// Create account heading
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account'**
+  String get createAccount;
+
+  /// Create account subtitle
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your details below to create your account'**
+  String get createAccountSubtitle;
+
+  /// Email input hint
+  ///
+  /// In en, this message translates to:
+  /// **'name@example.com'**
+  String get emailHint;
+
+  /// Password input hint
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get passwordHint;
+
+  /// Name input hint
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your full name'**
+  String get nameHint;
+
+  /// Create password input hint
+  ///
+  /// In en, this message translates to:
+  /// **'Create a password'**
+  String get createPasswordHint;
+
+  /// Confirm password input hint
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your password'**
+  String get confirmPasswordHint;
+
+  /// Confirm password field label
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm Password'**
+  String get confirmPasswordLabel;
+
+  /// Forgot password link text
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPasswordQuestion;
+
+  /// No account question text
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account?'**
+  String get noAccountQuestion;
+
+  /// Have account question text
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account?'**
+  String get haveAccountQuestion;
+
+  /// Reset password dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Reset Password'**
+  String get resetPasswordTitle;
+
+  /// Reset password dialog message
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email address and we\'ll send you a link to reset your password.'**
+  String get resetPasswordMessage;
+
+  /// Send reset link button
+  ///
+  /// In en, this message translates to:
+  /// **'Send Reset Link'**
+  String get sendResetLink;
+
+  /// Password reset email sent message
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset email sent!'**
+  String get passwordResetEmailSent;
+
+  /// Terms agreement text
+  ///
+  /// In en, this message translates to:
+  /// **'By clicking continue, you agree to our Terms of Service and Privacy Policy.'**
+  String get termsAgreement;
+
+  /// Passwords don't match validation message
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords don\'t match'**
+  String get passwordsDontMatch;
+
+  /// Invalid email validation message
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address'**
+  String get invalidEmail;
+
+  /// Password too short validation message
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters'**
+  String get passwordTooShort;
 }
 
 class _IntlLocalizationsDelegate extends LocalizationsDelegate<IntlLocalizations> {

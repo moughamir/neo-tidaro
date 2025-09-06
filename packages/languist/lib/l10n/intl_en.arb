@@ -354,19 +354,7 @@
   },
   "required": "Required",
   "@required": {
-    "description": "Required field validation"
-  },
-  "invalidEmail": "Invalid email",
-  "@invalidEmail": {
-    "description": "Invalid email validation"
-  },
-  "passwordTooShort": "Password too short",
-  "@passwordTooShort": {
-    "description": "Password too short validation"
-  },
-  "passwordsDoNotMatch": "Passwords do not match",
-  "@passwordsDoNotMatch": {
-    "description": "Passwords do not match validation"
+    "description": "Required field indicator"
   },
   "invalidPhoneNumber": "Invalid phone number",
   "@invalidPhoneNumber": {
@@ -582,5 +570,89 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "appBranding": "TiDaro Admin",
+  "@appBranding": {
+    "description": "Application branding name"
+  },
+  "welcomeBackMessage": "Welcome back! Please sign in to continue.",
+  "@welcomeBackMessage": {
+    "description": "Welcome back message for login"
+  },
+  "createAccount": "Create an account",
+  "@createAccount": {
+    "description": "Create account heading"
+  },
+  "createAccountSubtitle": "Enter your details below to create your account",
+  "@createAccountSubtitle": {
+    "description": "Create account subtitle"
+  },
+  "emailHint": "name@example.com",
+  "@emailHint": {
+    "description": "Email input hint"
+  },
+  "passwordHint": "Enter your password",
+  "@passwordHint": {
+    "description": "Password input hint"
+  },
+  "nameHint": "Enter your full name",
+  "@nameHint": {
+    "description": "Name input hint"
+  },
+  "createPasswordHint": "Create a password",
+  "@createPasswordHint": {
+    "description": "Create password input hint"
+  },
+  "confirmPasswordHint": "Confirm your password",
+  "@confirmPasswordHint": {
+    "description": "Confirm password input hint"
+  },
+  "confirmPasswordLabel": "Confirm Password",
+  "@confirmPasswordLabel": {
+    "description": "Confirm password field label"
+  },
+  "forgotPasswordQuestion": "Forgot password?",
+  "@forgotPasswordQuestion": {
+    "description": "Forgot password link text"
+  },
+  "noAccountQuestion": "Don't have an account?",
+  "@noAccountQuestion": {
+    "description": "No account question text"
+  },
+  "haveAccountQuestion": "Already have an account?",
+  "@haveAccountQuestion": {
+    "description": "Have account question text"
+  },
+  "resetPasswordTitle": "Reset Password",
+  "@resetPasswordTitle": {
+    "description": "Reset password dialog title"
+  },
+  "resetPasswordMessage": "Enter your email address and we'll send you a link to reset your password.",
+  "@resetPasswordMessage": {
+    "description": "Reset password dialog message"
+  },
+  "sendResetLink": "Send Reset Link",
+  "@sendResetLink": {
+    "description": "Send reset link button"
+  },
+  "passwordResetEmailSent": "Password reset email sent!",
+  "@passwordResetEmailSent": {
+    "description": "Password reset email sent message"
+  },
+  "termsAgreement": "By clicking continue, you agree to our Terms of Service and Privacy Policy.",
+  "@termsAgreement": {
+    "description": "Terms agreement text"
+  },
+  "passwordsDontMatch": "Passwords don't match",
+  "@passwordsDontMatch": {
+    "description": "Passwords don't match validation message"
+  },
+  "invalidEmail": "Please enter a valid email address",
+  "@invalidEmail": {
+    "description": "Invalid email validation message"
+  },
+  "passwordTooShort": "Password must be at least 8 characters",
+  "@passwordTooShort": {
+    "description": "Password too short validation message"
   }
 }

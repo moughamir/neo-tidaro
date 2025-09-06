@@ -11,6 +11,7 @@ export 'dashboard/dashboard_state.dart';
 export 'actions/auth_actions.dart';
 export 'actions/ui_actions.dart';
 export 'actions/dashboard_actions.dart';
+export 'actions/dashboard_auth_actions.dart';
 
 // Reducers
 export 'reducers/app_reducer.dart';
@@ -28,6 +29,7 @@ export 'selectors/dashboard_selectors.dart';
 
 // Middleware
 export 'middleware/logging_middleware.dart';
+export 'middleware/dashboard_auth_middleware.dart';
 
 // External exports
 export 'package:flutter_redux/flutter_redux.dart';

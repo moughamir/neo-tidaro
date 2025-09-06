@@ -16,6 +16,8 @@ dependencies:
   
   languist:
     path: ../languist
+  shared:
+    path: ../shared
 dev_dependencies:
   flutter_test:
     sdk: flutter
