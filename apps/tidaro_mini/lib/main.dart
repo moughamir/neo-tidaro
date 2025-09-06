@@ -17,6 +17,27 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: Languist.localizationsDelegates,
       // Added supported locales from languist package
       supportedLocales: Languist.supportedLocales,
+      localeResolutionCallback:
+          (Locale? locale, Iterable<Locale> supportedLocales) {
+            // Handle ZGH locale fallback to Arabic for Material components
+            if (locale?.languageCode == 'zgh') {
+              // Return Arabic as fallback for Material localizations
+              // while keeping ZGH for our app localizations
+              return const Locale('ar');
+            }
+
+            // For other locales, use default resolution
+            if (locale != null) {
+              for (final Locale supportedLocale in supportedLocales) {
+                if (supportedLocale.languageCode == locale.languageCode) {
+                  return supportedLocale;
+                }
+              }
+            }
+
+            // Fallback to English if no match found
+            return const Locale('en');
+          },
       theme: ThemeData(
         // This is the theme of your application.
         //

@@ -18,42 +18,49 @@ class TiDashboard extends StatelessWidget {
 
     return StoreProvider<AppState>(
       store: store,
-      child: MaterialApp(
-        title: 'TiDaro Dashboard',
-        localizationsDelegates: Languist.localizationsDelegates,
-        supportedLocales: Languist.supportedLocales,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF6366F1), // Modern indigo
-            brightness: Brightness.light,
-          ),
-          useMaterial3: true,
-          cardTheme: const CardThemeData(
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
+      child: StoreConnector<AppState, UiState>(
+        converter: (Store<AppState> store) => store.state.uiState,
+        builder: (BuildContext context, UiState uiState) {
+          return MaterialApp(
+            title: 'TiDaro Dashboard',
+            localizationsDelegates: Languist.localizationsDelegates,
+            supportedLocales: Languist.supportedLocales,
+            locale: uiState.locale,
+            themeMode: uiState.themeMode,
+            theme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: const Color(0xFF6366F1), // Modern indigo
+                brightness: Brightness.light,
+              ),
+              useMaterial3: true,
+              cardTheme: const CardThemeData(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+              ),
             ),
-          ),
-        ),
-        darkTheme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF6366F1),
-            brightness: Brightness.dark,
-          ),
-          useMaterial3: true,
-          cardTheme: const CardThemeData(
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
+            darkTheme: ThemeData(
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: const Color(0xFF6366F1),
+                brightness: Brightness.dark,
+              ),
+              useMaterial3: true,
+              cardTheme: const CardThemeData(
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
+                ),
+              ),
             ),
-          ),
-        ),
-        home: const AuthWrapper(),
-        routes: <String, WidgetBuilder>{
-          '/login': (BuildContext context) => const LoginPage(),
-          '/signup': (BuildContext context) => const SignUpPage(),
-          '/dashboard': (BuildContext context) => const DashboardPage(),
-          '/bookings': (BuildContext context) => const BookingsPage(),
+            home: const AuthWrapper(),
+            routes: <String, WidgetBuilder>{
+              '/login': (BuildContext context) => const LoginPage(),
+              '/signup': (BuildContext context) => const SignUpPage(),
+              '/dashboard': (BuildContext context) => const DashboardPage(),
+              '/bookings': (BuildContext context) => const BookingsPage(),
+            },
+          );
         },
       ),
     );

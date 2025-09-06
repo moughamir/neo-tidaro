@@ -16,6 +16,7 @@ export 'package:ui_kit/src/localization/app_localizations.dart';
 // Housekeeping components
 export 'src/housekeeping/housekeeping_dashboard_header.dart';
 export 'src/housekeeping/housekeeping_activity_feed.dart';
+export 'src/housekeeping/activity_log_page.dart';
 export 'src/housekeeping/bookings_header.dart';
 export 'src/housekeeping/booking_card.dart';
 export 'src/housekeeping/staff_header.dart';

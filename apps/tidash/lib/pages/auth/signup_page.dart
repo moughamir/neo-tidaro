@@ -32,16 +32,19 @@ class _SignUpPageState extends State<SignUpPage> {
     final ThemeData theme = Theme.of(context);
     final IntlLocalizations l10n = Languist.of(context);
 
-    return AuthLayout(
-      backgroundImage: 'assets/images/orange.jpg',
-      isDarkMode: theme.brightness == Brightness.dark,
-      currentLanguage: 'en', // TODO: Get from app state
-      onThemeToggle: () {
-        // TODO: Implement theme toggle
-      },
-      onLanguageChanged: (String language) {
-        // TODO: Implement language change
-      },
+    return StoreConnector<AppState, UiState>(
+      converter: (Store<AppState> store) => store.state.uiState,
+      builder: (BuildContext context, UiState uiState) {
+        return AuthLayout(
+          backgroundImage: 'assets/images/orange.jpg',
+          isDarkMode: uiState.themeMode == ThemeMode.dark,
+          currentLanguage: uiState.locale.languageCode,
+          onThemeToggle: () {
+            StoreProvider.of<AppState>(context, listen: false).dispatch(const ToggleThemeModeAction());
+          },
+          onLanguageChanged: (String language) {
+            StoreProvider.of<AppState>(context, listen: false).dispatch(ChangeLanguageAction(language));
+          },
       child: StoreConnector<AppState, SignUpViewModel>(
         converter: (Store<AppState> store) => SignUpViewModel.fromStore(store),
         builder: (BuildContext context, SignUpViewModel viewModel) {
@@ -251,6 +254,8 @@ class _SignUpPageState extends State<SignUpPage> {
           );
         },
       ),
+        );
+      },
     );
   }
 

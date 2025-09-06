@@ -397,6 +397,90 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get licenses => 'التراخيص';
 
   @override
+  String get apply => 'Apply';
+
+  @override
+  String get clear => 'Clear';
+
+  @override
+  String get customerInfo => 'Customer Information';
+
+  @override
+  String get createBooking => 'Create Booking';
+
+  @override
+  String get addStaff => 'Add Staff';
+
+  @override
+  String get staff => 'Staff';
+
+  @override
+  String get activityLog => 'Activity Log';
+
+  @override
+  String get searchActivities => 'Search activities...';
+
+  @override
+  String get noActivitiesFound => 'No Activities Found';
+
+  @override
+  String get noActivitiesFoundDescription => 'Try adjusting your search or filter criteria to find activities.';
+
+  @override
+  String get filterActivities => 'Filter Activities';
+
+  @override
+  String get allActivities => 'All Activities';
+
+  @override
+  String get bookingCreated => 'Booking Created';
+
+  @override
+  String get bookingConfirmed => 'Booking Confirmed';
+
+  @override
+  String get bookingCompleted => 'Booking Completed';
+
+  @override
+  String get bookingCancelled => 'Booking Cancelled';
+
+  @override
+  String get bookingRescheduled => 'Booking Rescheduled';
+
+  @override
+  String get cleanerAssigned => 'Cleaner Assigned';
+
+  @override
+  String get cleanerUnassigned => 'Cleaner Unassigned';
+
+  @override
+  String get paymentReceived => 'Payment Received';
+
+  @override
+  String get reviewSubmitted => 'Review Submitted';
+
+  @override
+  String get customerRegistered => 'Customer Registered';
+
+  @override
+  String get cleanerRegistered => 'Cleaner Registered';
+
+  @override
+  String get personalInformation => 'Personal Information';
+
+  @override
+  String get userfullName => 'Full Name';
+
+  @override
+  String get userEmail => 'Email';
+
+  @override
+  String get userPhone => 'Phone';
+
+  @override
+  String get userJoined => 'Joined';
+
+  @override
   String get share => 'مشاركة';
 
   @override
@@ -511,25 +595,16 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get noBookingsDescription => 'You haven\'t created any bookings yet. Create your first booking to get started.';
 
   @override
-  String get createBooking => 'Create Booking';
-
-  @override
   String get comingSoon => 'Coming Soon';
 
   @override
   String get viewDetails => 'View Details';
 
   @override
-  String get staff => 'Staff';
-
-  @override
   String get noStaff => 'No Staff Found';
 
   @override
   String get noStaffDescription => 'You haven\'t added any staff members yet. Add your first staff member to get started.';
-
-  @override
-  String get addStaff => 'Add Staff';
 
   @override
   String get totalBookings => 'Total Bookings';

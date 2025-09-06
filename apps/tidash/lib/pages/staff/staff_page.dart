@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 import 'package:languist/languist.dart';
+import '../../widgets/dialogs/add_staff_dialog.dart';
+import '../../widgets/dialogs/staff_filter_dialog.dart';
+import '../../widgets/dialogs/staff_details_dialog.dart';
 
 /// Staff management page for TiDash
 class StaffPage extends StatefulWidget {
@@ -151,27 +152,38 @@ class _StaffPageState extends State<StaffPage> {
   }
 
   void _showAddStaffDialog(BuildContext context) {
-    // TODO: Implement add staff dialog
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(Languist.of(context).comingSoon)));
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) => const AddStaffDialog(),
+    );
   }
 
   void _showFilterDialog(BuildContext context) {
-    // TODO: Implement filter dialog
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(Languist.of(context).comingSoon)));
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) =>
+          StoreConnector<AppState, CleanerStatus?>(
+            converter: (Store<AppState> store) =>
+                HousekeepingSelectors.getCleanerFilters(store.state).status,
+            builder: (BuildContext context, CleanerStatus? currentFilter) =>
+                StaffFilterDialog(
+                  currentFilter: currentFilter,
+                  onFilterChanged: (CleanerStatus? filter) {
+                    StoreProvider.of<AppState>(context, listen: false).dispatch(
+                      UpdateCleanerFiltersAction(
+                        CleanerFilters(status: filter),
+                      ),
+                    );
+                  },
+                ),
+          ),
+    );
   }
 
   void _navigateToStaffDetails(BuildContext context, Cleaner cleaner) {
-    // TODO: Navigate to staff details page
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          '${Languist.of(context).viewDetails}: ${cleaner.fullName}',
-        ),
-      ),
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) => StaffDetailsDialog(cleaner: cleaner),
     );
   }
 }

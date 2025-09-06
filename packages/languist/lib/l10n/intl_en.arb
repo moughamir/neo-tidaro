@@ -496,23 +496,135 @@
   },
   "buildNumber": "Build Number",
   "@buildNumber": {
-    "description": "Build number label"
+    "description": "Build number system metadata"
   },
   "copyright": "Copyright",
   "@copyright": {
-    "description": "Copyright label"
+    "description": "Copyright system metadata"
   },
   "termsOfService": "Terms of Service",
   "@termsOfService": {
-    "description": "Terms of service"
+    "description": "Terms of service system metadata"
   },
   "privacyPolicy": "Privacy Policy",
   "@privacyPolicy": {
-    "description": "Privacy policy"
+    "description": "Privacy policy system metadata"
   },
   "licenses": "Licenses",
   "@licenses": {
-    "description": "Licenses"
+    "description": "Licenses system metadata"
+  },
+  "apply": "Apply",
+  "@apply": {
+    "description": "Apply action button"
+  },
+  "clear": "Clear",
+  "@clear": {
+    "description": "Clear action button"
+  },
+  "customerInfo": "Customer Information",
+  "@customerInfo": {
+    "description": "Customer information section header"
+  },
+  "createBooking": "Create Booking",
+  "@createBooking": {
+    "description": "Create booking action"
+  },
+  "addStaff": "Add Staff",
+  "@addStaff": {
+    "description": "Add staff member action"
+  },
+  "staff": "Staff",
+  "@staff": {
+    "description": "Staff navigation and page title"
+  },
+  "activityLog": "Activity Log",
+  "@activityLog": {
+    "description": "Activity log page title"
+  },
+  "searchActivities": "Search activities...",
+  "@searchActivities": {
+    "description": "Search placeholder for activity log"
+  },
+  "noActivitiesFound": "No Activities Found",
+  "@noActivitiesFound": {
+    "description": "Empty state title for activity log"
+  },
+  "noActivitiesFoundDescription": "Try adjusting your search or filter criteria to find activities.",
+  "@noActivitiesFoundDescription": {
+    "description": "Empty state description for activity log"
+  },
+  "filterActivities": "Filter Activities",
+  "@filterActivities": {
+    "description": "Filter dialog title for activities"
+  },
+  "allActivities": "All Activities",
+  "@allActivities": {
+    "description": "Show all activities filter option"
+  },
+  "bookingCreated": "Booking Created",
+  "@bookingCreated": {
+    "description": "Booking created activity type"
+  },
+  "bookingConfirmed": "Booking Confirmed",
+  "@bookingConfirmed": {
+    "description": "Booking confirmed activity type"
+  },
+  "bookingCompleted": "Booking Completed",
+  "@bookingCompleted": {
+    "description": "Booking completed activity type"
+  },
+  "bookingCancelled": "Booking Cancelled",
+  "@bookingCancelled": {
+    "description": "Booking cancelled activity type"
+  },
+  "bookingRescheduled": "Booking Rescheduled",
+  "@bookingRescheduled": {
+    "description": "Booking rescheduled activity type"
+  },
+  "cleanerAssigned": "Cleaner Assigned",
+  "@cleanerAssigned": {
+    "description": "Cleaner assigned activity type"
+  },
+  "cleanerUnassigned": "Cleaner Unassigned",
+  "@cleanerUnassigned": {
+    "description": "Cleaner unassigned activity type"
+  },
+  "paymentReceived": "Payment Received",
+  "@paymentReceived": {
+    "description": "Payment received activity type"
+  },
+  "reviewSubmitted": "Review Submitted",
+  "@reviewSubmitted": {
+    "description": "Review submitted activity type"
+  },
+  "customerRegistered": "Customer Registered",
+  "@customerRegistered": {
+    "description": "Customer registered activity type"
+  },
+  "cleanerRegistered": "Cleaner Registered",
+  "@cleanerRegistered": {
+    "description": "Cleaner registered activity type"
+  },
+  "personalInformation": "Personal Information",
+  "@personalInformation": {
+    "description": "Personal information section header"
+  },
+  "userfullName": "Full Name",
+  "@userfullName": {
+    "description": "User full name field"
+  },
+  "userEmail": "Email",
+  "@userEmail": {
+    "description": "User email field"
+  },
+  "userPhone": "Phone",
+  "@userPhone": {
+    "description": "User phone field"
+  },
+  "userJoined": "Joined",
+  "@userJoined": {
+    "description": "User joined date field"
   },
   "share": "Share",
   "@share": {
@@ -667,10 +779,6 @@
   "@noBookingsDescription": {
     "description": "Empty state description for bookings list"
   },
-  "createBooking": "Create Booking",
-  "@createBooking": {
-    "description": "Button text to create a new booking"
-  },
   "comingSoon": "Coming Soon",
   "@comingSoon": {
     "description": "Placeholder text for features not yet implemented"
@@ -679,10 +787,6 @@
   "@viewDetails": {
     "description": "Button text to view item details"
   },
-  "staff": "Staff",
-  "@staff": {
-    "description": "Staff navigation and page title"
-  },
   "noStaff": "No Staff Found",
   "@noStaff": {
     "description": "Empty state title for staff list"
@@ -690,10 +794,6 @@
   "noStaffDescription": "You haven't added any staff members yet. Add your first staff member to get started.",
   "@noStaffDescription": {
     "description": "Empty state description for staff list"
-  },
-  "addStaff": "Add Staff",
-  "@addStaff": {
-    "description": "Button text to add a new staff member"
   },
   "totalBookings": "Total Bookings",
   "@totalBookings": {

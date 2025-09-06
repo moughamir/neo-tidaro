@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 import 'package:languist/languist.dart';
+import '../../widgets/dialogs/create_booking_dialog.dart';
+import '../../widgets/dialogs/booking_filter_dialog.dart';
+import '../../widgets/dialogs/booking_details_dialog.dart';
 
 /// Bookings management page for TiDash
 class BookingsPage extends StatefulWidget {
@@ -149,25 +150,38 @@ class _BookingsPageState extends State<BookingsPage> {
   }
 
   void _showCreateBookingDialog(BuildContext context) {
-    // TODO: Implement create booking dialog
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(Languist.of(context).comingSoon)));
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) => const CreateBookingDialog(),
+    );
   }
 
   void _showFilterDialog(BuildContext context) {
-    // TODO: Implement filter dialog
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(SnackBar(content: Text(Languist.of(context).comingSoon)));
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) =>
+          StoreConnector<AppState, BookingStatus?>(
+            converter: (Store<AppState> store) =>
+                HousekeepingSelectors.getBookingFilters(store.state).status,
+            builder: (BuildContext context, BookingStatus? currentFilter) =>
+                BookingFilterDialog(
+                  currentFilter: currentFilter,
+                  onFilterChanged: (BookingStatus? filter) {
+                    StoreProvider.of<AppState>(context, listen: false).dispatch(
+                      UpdateBookingFiltersAction(
+                        BookingFilters(status: filter),
+                      ),
+                    );
+                  },
+                ),
+          ),
+    );
   }
 
   void _navigateToBookingDetails(BuildContext context, Booking booking) {
-    // TODO: Navigate to booking details page
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('${Languist.of(context).viewDetails}: ${booking.id}'),
-      ),
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) => BookingDetailsDialog(booking: booking),
     );
   }
 }
@@ -208,16 +222,16 @@ class BookingsViewModel {
       bookings: HousekeepingSelectors.getFilteredBookings(store.state),
       isLoading: store.state.housekeepingState.isLoading,
       error: store.state.housekeepingState.error,
-      currentFilter: HousekeepingSelectors.getBookingFilters(store.state).status,
+      currentFilter: HousekeepingSelectors.getBookingFilters(
+        store.state,
+      ).status,
       onRefresh: () => store.dispatch(const LoadBookingsAction()),
-      onFilterChanged: (BookingStatus? filter) =>
-          store.dispatch(UpdateBookingFiltersAction(BookingFilters(status: filter))),
+      onFilterChanged: (BookingStatus? filter) => store.dispatch(
+        UpdateBookingFiltersAction(BookingFilters(status: filter)),
+      ),
       onUpdateBookingStatus: (String bookingId, BookingStatus status) =>
           store.dispatch(
-            UpdateBookingStatusAction(
-              bookingId: bookingId,
-              status: status,
-            ),
+            UpdateBookingStatusAction(bookingId: bookingId, status: status),
           ),
     );
   }

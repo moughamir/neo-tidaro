@@ -9,7 +9,6 @@ import 'intl_localizations_ar.dart';
 import 'intl_localizations_en.dart';
 import 'intl_localizations_es.dart';
 import 'intl_localizations_fr.dart';
-import 'intl_localizations_zgh.dart';
 
 // ignore_for_file: type=lint
 
@@ -97,8 +96,7 @@ abstract class IntlLocalizations {
     Locale('ar'),
     Locale('en'),
     Locale('es'),
-    Locale('fr'),
-    Locale('zgh')
+    Locale('fr')
   ];
 
   /// Application Title
@@ -815,35 +813,203 @@ abstract class IntlLocalizations {
   /// **'Version'**
   String get version;
 
-  /// Build number label
+  /// Build number system metadata
   ///
   /// In en, this message translates to:
   /// **'Build Number'**
   String get buildNumber;
 
-  /// Copyright label
+  /// Copyright system metadata
   ///
   /// In en, this message translates to:
   /// **'Copyright'**
   String get copyright;
 
-  /// Terms of service
+  /// Terms of service system metadata
   ///
   /// In en, this message translates to:
   /// **'Terms of Service'**
   String get termsOfService;
 
-  /// Privacy policy
+  /// Privacy policy system metadata
   ///
   /// In en, this message translates to:
   /// **'Privacy Policy'**
   String get privacyPolicy;
 
-  /// Licenses
+  /// Licenses system metadata
   ///
   /// In en, this message translates to:
   /// **'Licenses'**
   String get licenses;
+
+  /// Apply action button
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get apply;
+
+  /// Clear action button
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get clear;
+
+  /// Customer information section header
+  ///
+  /// In en, this message translates to:
+  /// **'Customer Information'**
+  String get customerInfo;
+
+  /// Create booking action
+  ///
+  /// In en, this message translates to:
+  /// **'Create Booking'**
+  String get createBooking;
+
+  /// Add staff member action
+  ///
+  /// In en, this message translates to:
+  /// **'Add Staff'**
+  String get addStaff;
+
+  /// Staff navigation and page title
+  ///
+  /// In en, this message translates to:
+  /// **'Staff'**
+  String get staff;
+
+  /// Activity log page title
+  ///
+  /// In en, this message translates to:
+  /// **'Activity Log'**
+  String get activityLog;
+
+  /// Search placeholder for activity log
+  ///
+  /// In en, this message translates to:
+  /// **'Search activities...'**
+  String get searchActivities;
+
+  /// Empty state title for activity log
+  ///
+  /// In en, this message translates to:
+  /// **'No Activities Found'**
+  String get noActivitiesFound;
+
+  /// Empty state description for activity log
+  ///
+  /// In en, this message translates to:
+  /// **'Try adjusting your search or filter criteria to find activities.'**
+  String get noActivitiesFoundDescription;
+
+  /// Filter dialog title for activities
+  ///
+  /// In en, this message translates to:
+  /// **'Filter Activities'**
+  String get filterActivities;
+
+  /// Show all activities filter option
+  ///
+  /// In en, this message translates to:
+  /// **'All Activities'**
+  String get allActivities;
+
+  /// Booking created activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Booking Created'**
+  String get bookingCreated;
+
+  /// Booking confirmed activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Booking Confirmed'**
+  String get bookingConfirmed;
+
+  /// Booking completed activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Booking Completed'**
+  String get bookingCompleted;
+
+  /// Booking cancelled activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Booking Cancelled'**
+  String get bookingCancelled;
+
+  /// Booking rescheduled activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Booking Rescheduled'**
+  String get bookingRescheduled;
+
+  /// Cleaner assigned activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Cleaner Assigned'**
+  String get cleanerAssigned;
+
+  /// Cleaner unassigned activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Cleaner Unassigned'**
+  String get cleanerUnassigned;
+
+  /// Payment received activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Payment Received'**
+  String get paymentReceived;
+
+  /// Review submitted activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Review Submitted'**
+  String get reviewSubmitted;
+
+  /// Customer registered activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Customer Registered'**
+  String get customerRegistered;
+
+  /// Cleaner registered activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Cleaner Registered'**
+  String get cleanerRegistered;
+
+  /// Personal information section header
+  ///
+  /// In en, this message translates to:
+  /// **'Personal Information'**
+  String get personalInformation;
+
+  /// User full name field
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name'**
+  String get userfullName;
+
+  /// User email field
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get userEmail;
+
+  /// User phone field
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get userPhone;
+
+  /// User joined date field
+  ///
+  /// In en, this message translates to:
+  /// **'Joined'**
+  String get userJoined;
 
   /// Share action
   ///
@@ -1061,12 +1227,6 @@ abstract class IntlLocalizations {
   /// **'You haven\'t created any bookings yet. Create your first booking to get started.'**
   String get noBookingsDescription;
 
-  /// Button text to create a new booking
-  ///
-  /// In en, this message translates to:
-  /// **'Create Booking'**
-  String get createBooking;
-
   /// Placeholder text for features not yet implemented
   ///
   /// In en, this message translates to:
@@ -1079,12 +1239,6 @@ abstract class IntlLocalizations {
   /// **'View Details'**
   String get viewDetails;
 
-  /// Staff navigation and page title
-  ///
-  /// In en, this message translates to:
-  /// **'Staff'**
-  String get staff;
-
   /// Empty state title for staff list
   ///
   /// In en, this message translates to:
@@ -1096,12 +1250,6 @@ abstract class IntlLocalizations {
   /// In en, this message translates to:
   /// **'You haven\'t added any staff members yet. Add your first staff member to get started.'**
   String get noStaffDescription;
-
-  /// Button text to add a new staff member
-  ///
-  /// In en, this message translates to:
-  /// **'Add Staff'**
-  String get addStaff;
 
   /// Total bookings metric title
   ///
@@ -1149,7 +1297,7 @@ class _IntlLocalizationsDelegate extends LocalizationsDelegate<IntlLocalizations
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en', 'es', 'fr', 'zgh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['ar', 'en', 'es', 'fr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_IntlLocalizationsDelegate old) => false;
@@ -1164,7 +1312,6 @@ IntlLocalizations lookupIntlLocalizations(Locale locale) {
     case 'en': return IntlLocalizationsEn();
     case 'es': return IntlLocalizationsEs();
     case 'fr': return IntlLocalizationsFr();
-    case 'zgh': return IntlLocalizationsZgh();
   }
 
   throw FlutterError(

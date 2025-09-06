@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
+import 'activity_log_page.dart';
 
 /// Activity feed component for housekeeping operations
 class HousekeepingActivityFeed extends StatelessWidget {
@@ -67,7 +68,11 @@ class HousekeepingActivityFeed extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
               child: TextButton(
                 onPressed: () {
-                  // TODO: Navigate to full activity log
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ActivityLogPage(activities: activities),
+                    ),
+                  );
                 },
                 child: Text('View All Activities'),
               ),
