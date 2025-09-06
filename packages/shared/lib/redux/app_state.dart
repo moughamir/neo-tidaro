@@ -1,23 +1,19 @@
 import 'package:equatable/equatable.dart';
-
-import 'auth/auth_state.dart';
-import 'ui/ui_state.dart';
-import 'dashboard/dashboard_state.dart';
-import 'housekeeping/housekeeping_state.dart';
+import 'core/core.dart';
+import 'states/states.dart';
 
 /// The global application state that combines all feature states
-class AppState extends Equatable {
+/// Following Clean Architecture and functional programming patterns
+class AppState extends BaseState {
   const AppState({
     required this.authState,
     required this.uiState,
     required this.dashboardState,
-    required this.housekeepingState,
   });
 
   final AuthState authState;
   final UiState uiState;
   final DashboardState dashboardState;
-  final HousekeepingState housekeepingState;
 
   /// Initial state factory
   factory AppState.initial() {
@@ -25,7 +21,6 @@ class AppState extends Equatable {
       authState: AuthState.initial(),
       uiState: UiState.initial(),
       dashboardState: DashboardState.initial(),
-      housekeepingState: HousekeepingState.initial(),
     );
   }
 
@@ -34,19 +29,28 @@ class AppState extends Equatable {
     AuthState? authState,
     UiState? uiState,
     DashboardState? dashboardState,
-    HousekeepingState? housekeepingState,
   }) {
     return AppState(
       authState: authState ?? this.authState,
       uiState: uiState ?? this.uiState,
       dashboardState: dashboardState ?? this.dashboardState,
-      housekeepingState: housekeepingState ?? this.housekeepingState,
     );
   }
 
   @override
-  List<Object?> get props => [authState, uiState, dashboardState, housekeepingState];
+  String get stateType => 'AppState';
 
   @override
-  String toString() => 'AppState(authState: $authState, uiState: $uiState, dashboardState: $dashboardState, housekeepingState: $housekeepingState)';
+  List<Object?> get props => [
+    authState,
+    uiState,
+    dashboardState,
+  ];
+
+  @override
+  String toString() => 'AppState('
+      'authState: ${authState.stateType}, '
+      'uiState: ${uiState.stateType}, '
+      'dashboardState: ${dashboardState.stateType}'
+      ')';
 }

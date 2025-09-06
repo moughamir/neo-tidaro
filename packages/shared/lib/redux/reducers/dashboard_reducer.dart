@@ -1,48 +1,38 @@
-import '../actions/dashboard/dashboard_actions.dart';
-import '../dashboard/dashboard_state.dart';
+import 'package:fpdart/fpdart.dart';
+import '../core/core.dart';
+import '../actions/dashboard_actions.dart';
+import '../states/dashboard_state.dart';
+import '../../domain/models/models.dart';
 
-DashboardState dashboardReducer(DashboardState state, dynamic action) {
-  switch (action.runtimeType) {
-    case LoadDashboardAction:
-      return state.copyWith(isLoading: true, error: null);
+/// Dashboard reducer following Clean Architecture and functional programming principles
+class DashboardReducer extends BaseAsyncReducer<DashboardState, DashboardMetrics> {
+  @override
+  DashboardState reduce(DashboardState state, BaseAction action) {
+    return switch (action.type) {
+      DashboardActionTypes.loadDashboard => handleAsync(state, action, DashboardActionTypes.loadDashboard),
+      DashboardActionTypes.refreshDashboard => handleAsync(state, action, DashboardActionTypes.refreshDashboard),
+      DashboardActionTypes.updateMetrics => _handleUpdateMetrics(state, action),
+      DashboardActionTypes.clearError => _handleClearError(state),
+      _ => state,
+    };
+  }
 
-    case LoadDashboardSuccessAction:
-      final successAction = action as LoadDashboardSuccessAction;
-      return state.copyWith(
-        isLoading: false,
-        metrics: successAction.metrics,
-        lastUpdated: DateTime.now(),
-        error: null,
-      );
+  /// Handle metrics update
+  DashboardState _handleUpdateMetrics(DashboardState state, BaseAction action) {
+    if (action is! UpdateMetricsAction) return state;
+    
+    return state.copyWith(
+      data: Some(action.metrics),
+      isLoading: false,
+      error: const None(),
+    );
+  }
 
-    case LoadDashboardFailureAction:
-      final failureAction = action as LoadDashboardFailureAction;
-      return state.copyWith(isLoading: false, error: failureAction.error);
-
-    case RefreshDashboardAction:
-      return state.copyWith(isRefreshing: true, error: null);
-
-    case RefreshDashboardSuccessAction:
-      final successAction = action as RefreshDashboardSuccessAction;
-      return state.copyWith(
-        isRefreshing: false,
-        metrics: successAction.metrics,
-        lastUpdated: DateTime.now(),
-        error: null,
-      );
-
-    case RefreshDashboardFailureAction:
-      final failureAction = action as RefreshDashboardFailureAction;
-      return state.copyWith(isRefreshing: false, error: failureAction.error);
-
-    case UpdateDashboardMetricsAction:
-      final updateAction = action as UpdateDashboardMetricsAction;
-      return state.copyWith(metrics: updateAction.metrics);
-
-    case ClearDashboardErrorAction:
-      return state.copyWith(error: null);
-
-    default:
-      return state;
+  /// Handle clear error
+  DashboardState _handleClearError(DashboardState state) {
+    return state.copyWith(error: const None());
   }
 }
+
+/// Dashboard reducer instance
+final dashboardReducer = DashboardReducer();

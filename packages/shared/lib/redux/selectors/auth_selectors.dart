@@ -1,19 +1,76 @@
-import '../app_state.dart';
+import 'package:fpdart/fpdart.dart';
+import '../core/core.dart';
+import '../states/auth_state.dart';
+import '../actions/auth_actions.dart';
 
-/// Selectors for authentication state
+/// Authentication selectors following functional programming patterns
 class AuthSelectors {
-  /// Get authentication status
-  static bool isAuthenticated(AppState state) => state.authState.isAuthenticated;
+  const AuthSelectors._();
 
-  /// Get loading status
-  static bool isLoading(AppState state) => state.authState.isLoading;
+  /// Select if user is authenticated
+  static final isAuthenticated = SelectorUtils.create<AuthState, bool>(
+    (state) => state.isAuthenticated,
+  );
 
-  /// Get current user
-  static dynamic getCurrentUser(AppState state) => state.authState.user;
+  /// Select if authentication is loading
+  static final isLoading = SelectorUtils.isLoading<AuthState, AuthUser>();
 
-  /// Get authentication error
-  static String? getError(AppState state) => state.authState.error;
+  /// Select current user
+  static final currentUser = SelectorUtils.dataOrNull<AuthState, AuthUser>();
 
-  /// Check if user has error
-  static bool hasError(AppState state) => state.authState.error != null;
+  /// Select authentication error
+  static final error = SelectorUtils.errorOrNull<AuthState, AuthUser>();
+
+  /// Select if there's an authentication error
+  static final hasError = SelectorUtils.create<AuthState, bool>(
+    (state) => state.hasError,
+  );
+
+  /// Select auth token
+  static final authToken = SelectorUtils.create<AuthState, String?>(
+    (state) => state.authToken.toNullable(),
+  );
+
+  /// Select if user has valid token
+  static final hasValidToken = SelectorUtils.create<AuthState, bool>(
+    (state) => state.authToken.isSome() && state.isAuthenticated,
+  );
+
+  /// Select user email (if available)
+  static final userEmail = SelectorUtils.create<AuthState, String?>(
+    (state) => state.dataOrNull?.email,
+  );
+
+  /// Select user name (if available)
+  static final userName = SelectorUtils.create<AuthState, String?>(
+    (state) => state.dataOrNull?.name,
+  );
+
+  /// Select if user email is verified
+  static final isEmailVerified = SelectorUtils.create<AuthState, bool>(
+    (state) => state.dataOrNull?.emailVerified ?? false,
+  );
+
+  /// Select if user phone is verified
+  static final isPhoneVerified = SelectorUtils.create<AuthState, bool>(
+    (state) => state.dataOrNull?.phoneVerified ?? false,
+  );
+
+  /// Memoized selector for user profile data
+  static final userProfile = SelectorUtils.createMemoized<AuthState, Map<String, dynamic>?>(
+    (state) {
+      final user = state.dataOrNull;
+      if (user == null) return null;
+      
+      return {
+        'id': user.id,
+        'email': user.email,
+        'name': user.name,
+        'avatarUrl': user.avatarUrl,
+        'phoneNumber': user.phoneNumber,
+        'emailVerified': user.emailVerified,
+        'phoneVerified': user.phoneVerified,
+      };
+    },
+  );
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../main/main_layout.dart';
 import 'login_page.dart';
@@ -32,7 +33,7 @@ class AuthWrapperViewModel {
   });
 
   final bool isAuthenticated;
-  final Map<String, dynamic>? user;
+  final User? user;
 
   factory AuthWrapperViewModel.fromStore(Store<AppState> store) {
     return AuthWrapperViewModel(

@@ -2,6 +2,13 @@ library shared.models;
 
 import '../entities/entity.dart';
 
+// Export housekeeping-specific models
+export 'booking_models.dart';
+export 'cleaner_models.dart';
+export 'customer_models.dart';
+export 'housekeeping_models.dart';
+export 'dashboard_models.dart';
+
 class ProfileModel extends ProfileEntity {
   final List<String> skills;
   final List<ServiceModel> offeredServices;

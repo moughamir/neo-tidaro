@@ -9,7 +9,7 @@ import 'dashboard_reducer.dart';
 AppState appReducer(AppState state, dynamic action) {
   return AppState(
     authState: authReducer(state.authState, action),
-    dashboardState: dashboardReducer(state.dashboardState, action),
+    dashboardState: dashboardReducer.reduce(state.dashboardState, action),
     uiState: uiReducer(state.uiState, action),
     housekeepingState: housekeepingReducer(state.housekeepingState, action),
   );

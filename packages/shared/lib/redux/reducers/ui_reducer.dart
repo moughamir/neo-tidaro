@@ -1,39 +1,83 @@
 import 'package:flutter/material.dart';
-import 'ui_actions.dart';
-import 'ui_state.dart';
+import 'package:fpdart/fpdart.dart';
+import '../core/core.dart';
+import '../actions/ui_actions.dart';
+import '../states/ui_state.dart';
 
-/// Reducer for UI state following Single Responsibility Principle
-UiState uiReducer(UiState state, dynamic action) {
-  // Theme management
-  if (action is ChangeThemeModeAction) {
+/// UI reducer following Clean Architecture and functional programming principles
+class UiReducer extends BaseReducer<UiState> {
+  @override
+  UiState reduce(UiState state, BaseAction action) {
+    return switch (action.type) {
+      UiActionTypes.changeThemeMode => _handleChangeTheme(state, action),
+      UiActionTypes.toggleThemeMode => _handleToggleTheme(state),
+      UiActionTypes.changeLocale => _handleChangeLocale(state, action),
+      UiActionTypes.changeLanguage => _handleChangeLanguage(state, action),
+      UiActionTypes.showSnackBar => _handleShowSnackBar(state, action),
+      UiActionTypes.hideSnackBar => _handleHideSnackBar(state),
+      UiActionTypes.setLoading => _handleSetLoading(state, action),
+      _ => state,
+    };
+  }
+
+  /// Handle theme change
+  UiState _handleChangeTheme(UiState state, BaseAction action) {
+    if (action is! ChangeThemeModeAction) return state;
     return state.copyWith(themeMode: action.themeMode);
   }
 
-  if (action is ToggleThemeModeAction) {
+  /// Handle theme toggle
+  UiState _handleToggleTheme(UiState state) {
     final ThemeMode newThemeMode = _getNextThemeMode(state.themeMode);
     return state.copyWith(themeMode: newThemeMode);
   }
 
-  // Locale management
-  if (action is ChangeLocaleAction) {
+  /// Handle locale change
+  UiState _handleChangeLocale(UiState state, BaseAction action) {
+    if (action is! ChangeLocaleAction) return state;
     return state.copyWith(locale: action.locale);
   }
 
-  if (action is ChangeLanguageAction) {
+  /// Handle language change
+  UiState _handleChangeLanguage(UiState state, BaseAction action) {
+    if (action is! ChangeLanguageAction) return state;
     return state.copyWith(locale: Locale(action.languageCode));
   }
 
-  return state;
-}
+  /// Handle show snack bar
+  UiState _handleShowSnackBar(UiState state, BaseAction action) {
+    if (action is! ShowSnackBarAction) return state;
+    final snackBarMessage = SnackBarMessage(
+      message: action.message,
+      type: action.snackBarType,
+      duration: action.duration,
+    );
+    return state.copyWith(snackBarMessage: Some(snackBarMessage));
+  }
 
-/// Helper function to determine next theme mode (DRY principle)
-ThemeMode _getNextThemeMode(ThemeMode current) {
-  switch (current) {
-    case ThemeMode.light:
-      return ThemeMode.dark;
-    case ThemeMode.dark:
-      return ThemeMode.system;
-    case ThemeMode.system:
-      return ThemeMode.light;
+  /// Handle hide snack bar
+  UiState _handleHideSnackBar(UiState state) {
+    return state.copyWith(snackBarMessage: const None());
+  }
+
+  /// Handle set loading
+  UiState _handleSetLoading(UiState state, BaseAction action) {
+    if (action is! SetLoadingAction) return state;
+    final updatedLoadingStates = Map<String, bool>.from(state.loadingStates);
+    final key = action.loadingKey ?? 'default';
+    updatedLoadingStates[key] = action.isLoading;
+    return state.copyWith(loadingStates: updatedLoadingStates);
+  }
+
+  /// Helper function to determine next theme mode (DRY principle)
+  ThemeMode _getNextThemeMode(ThemeMode current) {
+    return switch (current) {
+      ThemeMode.light => ThemeMode.dark,
+      ThemeMode.dark => ThemeMode.system,
+      ThemeMode.system => ThemeMode.light,
+    };
   }
 }
+
+/// UI reducer instance
+final uiReducer = UiReducer();

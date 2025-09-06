@@ -1,75 +1,71 @@
+import 'package:fpdart/fpdart.dart';
+import '../core/core.dart';
 import '../actions/auth_actions.dart';
-import '../actions/dashboard_auth_actions.dart';
-import '../auth/auth_state.dart';
+import '../states/auth_state.dart';
 
-/// Reducer for authentication state
-AuthState authReducer(AuthState state, dynamic action) {
-  // Handle dashboard auth loading actions
-  if (action is DashboardAuthLoadingAction) {
-    return state.copyWith(
-      isLoading: action.isLoading,
-      error: action.isLoading ? null : state.error,
-    );
+/// Authentication reducer following functional programming patterns
+class AuthReducer extends BaseAsyncReducer<AuthState, AuthUser> {
+  const AuthReducer();
+
+  @override
+  AuthState reduce(AuthState state, BaseAction action) {
+    return switch (action.type) {
+      // Sign in flow
+      AuthActionTypes.signIn => handleAsync(state, action, AuthActionTypes.signIn),
+      
+      // Sign up flow
+      AuthActionTypes.signUp => handleAsync(state, action, AuthActionTypes.signUp),
+      
+      // Sign out flow
+      AuthActionTypes.signOut => handleAsync(state, action, AuthActionTypes.signOut),
+      
+      // Reset password flow
+      AuthActionTypes.resetPassword => handleAsync(state, action, AuthActionTypes.resetPassword),
+      
+      // Social sign in flow
+      AuthActionTypes.socialSignIn => handleAsync(state, action, AuthActionTypes.socialSignIn),
+      
+      // Phone sign in flow
+      AuthActionTypes.phoneSignIn => handleAsync(state, action, AuthActionTypes.phoneSignIn),
+      
+      // Clear error
+      AuthActionTypes.clearError => state.copyWith(
+        error: const None(),
+      ),
+      
+      // Check auth status
+      AuthActionTypes.checkAuthStatus => _handleCheckAuthStatus(state, action),
+      
+      // Default case
+      _ => state,
+    };
   }
 
-  // Handle dashboard auth success
-  if (action is DashboardAuthSuccessAction) {
-    return state.copyWith(
-      isAuthenticated: true,
-      isLoading: false,
-      user: action.user,
-      error: null,
-    );
+  @override
+  AuthState createLoadingState() => AuthState.loading();
+
+  @override
+  AuthState createSuccessState(AuthUser data) {
+    // For sign out, we don't have user data
+    if (data == null) {
+      return AuthState.initial();
+    }
+    
+    // For successful authentication, we need a token
+    // This should be handled by middleware to provide the token
+    return AuthState.authenticated(data, 'token_from_middleware');
   }
 
-  // Handle dashboard auth failure
-  if (action is DashboardAuthFailureAction) {
-    return state.copyWith(
-      isAuthenticated: false,
-      isLoading: false,
-      error: action.error,
-    );
-  }
+  @override
+  AuthState createErrorState(Exception error) => AuthState.error(error);
 
-  // Handle dashboard logout
-  if (action is DashboardLogoutAction) {
-    return const AuthState.initial();
+  /// Handle check auth status action
+  AuthState _handleCheckAuthStatus(AuthState state, BaseAction action) {
+    // This is a synchronous action that doesn't change loading state
+    // The actual auth check should be handled by middleware
+    return state;
   }
-
-  // Handle legacy auth actions
-  if (action is LoginStartAction ||
-      action is SignUpStartAction ||
-      action is ResetPasswordStartAction) {
-    return state.copyWith(isLoading: true, error: null);
-  }
-
-  if (action is LoginSuccessAction || action is SignUpSuccessAction) {
-    return state.copyWith(
-      isAuthenticated: true,
-      isLoading: false,
-      user: action.user,
-      error: null,
-    );
-  }
-
-  if (action is LoginFailureAction ||
-      action is SignUpFailureAction ||
-      action is ResetPasswordFailureAction) {
-    return state.copyWith(
-      isAuthenticated: false,
-      isLoading: false,
-      user: null,
-      error: action.error,
-    );
-  }
-
-  if (action is ResetPasswordSuccessAction) {
-    return state.copyWith(isLoading: false, error: null);
-  }
-
-  if (action is LogoutAction) {
-    return const AuthState.initial();
-  }
-
-  return state;
 }
+
+/// Create auth reducer instance
+final authReducer = const AuthReducer();
