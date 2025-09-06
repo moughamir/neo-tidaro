@@ -7,7 +7,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:shared/utils/failures/failure.dart';
 import 'package:shared/utils/type_defs.dart';
 
-import '../utils/logging/kui_verb.dart';
+import '../utils/logger.dart';
 import 'interfaces/auth_service.dart';
 import 'interfaces/database_service.dart';
 import 'interfaces/storage_service.dart';
@@ -47,10 +47,7 @@ class SupabaseService
   static Future<void> init(String url, String anonKey) async {
     await Supabase.initialize(url: url, anonKey: anonKey);
     _instance._client = Supabase.instance.client;
-    KuiVerb.info(
-      'SupabaseService initialized successfully.',
-      tag: 'SupabaseService',
-    );
+    CoreLogger.network('SupabaseService initialized successfully');
   }
 
   // --- Authentication Wrappers ---
@@ -562,17 +559,17 @@ class SupabaseService
     try {
       return Right(await future());
     } on AuthException catch (e) {
-      KuiVerb.error('$context failed', tag: tag, error: e.message);
+      CoreLogger.error('$context failed', error: e.message, tag: 'SUPABASE');
       return Left(ValidationFailure(e.message));
     } on PostgrestException catch (e) {
-      KuiVerb.error('$context failed', tag: tag, error: e.message);
+      CoreLogger.error('$context failed', error: e.message, tag: 'SUPABASE');
       return Left(Failure.server(e.message, code: int.tryParse(e.code ?? '')));
     } catch (e, stackTrace) {
-      KuiVerb.error(
+      CoreLogger.error(
         '$context failed',
-        tag: tag,
         error: e,
         stackTrace: stackTrace,
+        tag: 'SUPABASE',
       );
       return Left(Failure.unexpected(e.toString()));
     }

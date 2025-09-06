@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../ui/ui_actions.dart';
-import '../ui/ui_state.dart';
+import 'ui_actions.dart';
+import 'ui_state.dart';
 
 /// Reducer for UI state following Single Responsibility Principle
 UiState uiReducer(UiState state, dynamic action) {

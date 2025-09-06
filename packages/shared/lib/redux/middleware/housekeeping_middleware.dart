@@ -1,13 +1,17 @@
 import 'package:redux/redux.dart';
 import '../app_state.dart';
-import 'housekeeping_actions.dart';
-import 'housekeeping_models.dart';
+import '../actions/housekeeping_actions.dart';
+import '../housekeeping/housekeeping_models.dart';
 
 /// Middleware for handling housekeeping async operations
 List<Middleware<AppState>> createHousekeepingMiddleware() {
   return [
-    TypedMiddleware<AppState, LoadHousekeepingMetricsAction>(_loadMetricsMiddleware),
-    TypedMiddleware<AppState, RefreshHousekeepingMetricsAction>(_refreshMetricsMiddleware),
+    TypedMiddleware<AppState, LoadHousekeepingMetricsAction>(
+      _loadMetricsMiddleware,
+    ),
+    TypedMiddleware<AppState, RefreshHousekeepingMetricsAction>(
+      _refreshMetricsMiddleware,
+    ),
     TypedMiddleware<AppState, LoadBookingsAction>(_loadBookingsMiddleware),
     TypedMiddleware<AppState, LoadCleanersAction>(_loadCleanersMiddleware),
     TypedMiddleware<AppState, LoadCustomersAction>(_loadCustomersMiddleware),
@@ -27,184 +31,268 @@ List<Middleware<AppState>> createHousekeepingMiddleware() {
 // METRICS MIDDLEWARE
 // ============================================================================
 
-void _loadMetricsMiddleware(Store<AppState> store, LoadHousekeepingMetricsAction action, NextDispatcher next) {
+void _loadMetricsMiddleware(
+  Store<AppState> store,
+  LoadHousekeepingMetricsAction action,
+  NextDispatcher next,
+) {
   next(action);
-  
+
   store.dispatch(const SetHousekeepingLoadingAction(true));
   store.dispatch(const ClearHousekeepingErrorAction());
-  
-  _fetchHousekeepingMetrics().then((metrics) {
-    store.dispatch(SetHousekeepingMetricsAction(metrics));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  });
+
+  _fetchHousekeepingMetrics()
+      .then((metrics) {
+        store.dispatch(SetHousekeepingMetricsAction(metrics));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      });
 }
 
-void _refreshMetricsMiddleware(Store<AppState> store, RefreshHousekeepingMetricsAction action, NextDispatcher next) {
+void _refreshMetricsMiddleware(
+  Store<AppState> store,
+  RefreshHousekeepingMetricsAction action,
+  NextDispatcher next,
+) {
   next(action);
-  
+
   store.dispatch(const SetHousekeepingRefreshingAction(true));
   store.dispatch(const ClearHousekeepingErrorAction());
-  
-  _fetchHousekeepingMetrics().then((metrics) {
-    store.dispatch(SetHousekeepingMetricsAction(metrics));
-    store.dispatch(const SetHousekeepingRefreshingAction(false));
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-    store.dispatch(const SetHousekeepingRefreshingAction(false));
-  });
+
+  _fetchHousekeepingMetrics()
+      .then((metrics) {
+        store.dispatch(SetHousekeepingMetricsAction(metrics));
+        store.dispatch(const SetHousekeepingRefreshingAction(false));
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+        store.dispatch(const SetHousekeepingRefreshingAction(false));
+      });
 }
 
 // ============================================================================
 // BOOKING MIDDLEWARE
 // ============================================================================
 
-void _loadBookingsMiddleware(Store<AppState> store, LoadBookingsAction action, NextDispatcher next) {
+void _loadBookingsMiddleware(
+  Store<AppState> store,
+  LoadBookingsAction action,
+  NextDispatcher next,
+) {
   next(action);
-  
+
   store.dispatch(const SetHousekeepingLoadingAction(true));
   store.dispatch(const ClearHousekeepingErrorAction());
-  
-  _fetchBookings(action.filters).then((bookings) {
-    store.dispatch(SetBookingsAction(bookings));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  });
+
+  _fetchBookings(action.filters)
+      .then((bookings) {
+        store.dispatch(SetBookingsAction(bookings));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      });
 }
 
-void _createBookingMiddleware(Store<AppState> store, CreateBookingAction action, NextDispatcher next) {
-  _createBooking(action.booking).then((createdBooking) {
-    next(CreateBookingAction(createdBooking));
-    // Refresh metrics after creating booking
-    store.dispatch(const RefreshHousekeepingMetricsAction());
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-  });
+void _createBookingMiddleware(
+  Store<AppState> store,
+  CreateBookingAction action,
+  NextDispatcher next,
+) {
+  _createBooking(action.booking)
+      .then((createdBooking) {
+        next(CreateBookingAction(createdBooking));
+        // Refresh metrics after creating booking
+        store.dispatch(const RefreshHousekeepingMetricsAction());
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+      });
 }
 
-void _updateBookingMiddleware(Store<AppState> store, UpdateBookingAction action, NextDispatcher next) {
-  _updateBooking(action.booking).then((updatedBooking) {
-    next(UpdateBookingAction(updatedBooking));
-    // Refresh metrics after updating booking
-    store.dispatch(const RefreshHousekeepingMetricsAction());
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-  });
+void _updateBookingMiddleware(
+  Store<AppState> store,
+  UpdateBookingAction action,
+  NextDispatcher next,
+) {
+  _updateBooking(action.booking)
+      .then((updatedBooking) {
+        next(UpdateBookingAction(updatedBooking));
+        // Refresh metrics after updating booking
+        store.dispatch(const RefreshHousekeepingMetricsAction());
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+      });
 }
 
 // ============================================================================
 // CLEANER MIDDLEWARE
 // ============================================================================
 
-void _loadCleanersMiddleware(Store<AppState> store, LoadCleanersAction action, NextDispatcher next) {
+void _loadCleanersMiddleware(
+  Store<AppState> store,
+  LoadCleanersAction action,
+  NextDispatcher next,
+) {
   next(action);
-  
+
   store.dispatch(const SetHousekeepingLoadingAction(true));
   store.dispatch(const ClearHousekeepingErrorAction());
-  
-  _fetchCleaners(action.filters).then((cleaners) {
-    store.dispatch(SetCleanersAction(cleaners));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  });
+
+  _fetchCleaners(action.filters)
+      .then((cleaners) {
+        store.dispatch(SetCleanersAction(cleaners));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      });
 }
 
-void _createCleanerMiddleware(Store<AppState> store, CreateCleanerAction action, NextDispatcher next) {
-  _createCleaner(action.cleaner).then((createdCleaner) {
-    next(CreateCleanerAction(createdCleaner));
-    // Refresh metrics after creating cleaner
-    store.dispatch(const RefreshHousekeepingMetricsAction());
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-  });
+void _createCleanerMiddleware(
+  Store<AppState> store,
+  CreateCleanerAction action,
+  NextDispatcher next,
+) {
+  _createCleaner(action.cleaner)
+      .then((createdCleaner) {
+        next(CreateCleanerAction(createdCleaner));
+        // Refresh metrics after creating cleaner
+        store.dispatch(const RefreshHousekeepingMetricsAction());
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+      });
 }
 
-void _updateCleanerMiddleware(Store<AppState> store, UpdateCleanerAction action, NextDispatcher next) {
-  _updateCleaner(action.cleaner).then((updatedCleaner) {
-    next(UpdateCleanerAction(updatedCleaner));
-    // Refresh metrics after updating cleaner
-    store.dispatch(const RefreshHousekeepingMetricsAction());
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-  });
+void _updateCleanerMiddleware(
+  Store<AppState> store,
+  UpdateCleanerAction action,
+  NextDispatcher next,
+) {
+  _updateCleaner(action.cleaner)
+      .then((updatedCleaner) {
+        next(UpdateCleanerAction(updatedCleaner));
+        // Refresh metrics after updating cleaner
+        store.dispatch(const RefreshHousekeepingMetricsAction());
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+      });
 }
 
 // ============================================================================
 // CUSTOMER MIDDLEWARE
 // ============================================================================
 
-void _loadCustomersMiddleware(Store<AppState> store, LoadCustomersAction action, NextDispatcher next) {
+void _loadCustomersMiddleware(
+  Store<AppState> store,
+  LoadCustomersAction action,
+  NextDispatcher next,
+) {
   next(action);
-  
+
   store.dispatch(const SetHousekeepingLoadingAction(true));
   store.dispatch(const ClearHousekeepingErrorAction());
-  
-  _fetchCustomers(action.filters).then((customers) {
-    store.dispatch(SetCustomersAction(customers));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  });
+
+  _fetchCustomers(action.filters)
+      .then((customers) {
+        store.dispatch(SetCustomersAction(customers));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      });
 }
 
-void _createCustomerMiddleware(Store<AppState> store, CreateCustomerAction action, NextDispatcher next) {
-  _createCustomer(action.customer).then((createdCustomer) {
-    next(CreateCustomerAction(createdCustomer));
-    // Refresh metrics after creating customer
-    store.dispatch(const RefreshHousekeepingMetricsAction());
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-  });
+void _createCustomerMiddleware(
+  Store<AppState> store,
+  CreateCustomerAction action,
+  NextDispatcher next,
+) {
+  _createCustomer(action.customer)
+      .then((createdCustomer) {
+        next(CreateCustomerAction(createdCustomer));
+        // Refresh metrics after creating customer
+        store.dispatch(const RefreshHousekeepingMetricsAction());
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+      });
 }
 
-void _updateCustomerMiddleware(Store<AppState> store, UpdateCustomerAction action, NextDispatcher next) {
-  _updateCustomer(action.customer).then((updatedCustomer) {
-    next(UpdateCustomerAction(updatedCustomer));
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-  });
+void _updateCustomerMiddleware(
+  Store<AppState> store,
+  UpdateCustomerAction action,
+  NextDispatcher next,
+) {
+  _updateCustomer(action.customer)
+      .then((updatedCustomer) {
+        next(UpdateCustomerAction(updatedCustomer));
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+      });
 }
 
 // ============================================================================
 // SERVICE MIDDLEWARE
 // ============================================================================
 
-void _loadServicesMiddleware(Store<AppState> store, LoadServicesAction action, NextDispatcher next) {
+void _loadServicesMiddleware(
+  Store<AppState> store,
+  LoadServicesAction action,
+  NextDispatcher next,
+) {
   next(action);
-  
+
   store.dispatch(const SetHousekeepingLoadingAction(true));
   store.dispatch(const ClearHousekeepingErrorAction());
-  
-  _fetchServices().then((services) {
-    store.dispatch(SetServicesAction(services));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-    store.dispatch(const SetHousekeepingLoadingAction(false));
-  });
+
+  _fetchServices()
+      .then((services) {
+        store.dispatch(SetServicesAction(services));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+        store.dispatch(const SetHousekeepingLoadingAction(false));
+      });
 }
 
-void _createServiceMiddleware(Store<AppState> store, CreateServiceAction action, NextDispatcher next) {
-  _createService(action.service).then((createdService) {
-    next(CreateServiceAction(createdService));
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-  });
+void _createServiceMiddleware(
+  Store<AppState> store,
+  CreateServiceAction action,
+  NextDispatcher next,
+) {
+  _createService(action.service)
+      .then((createdService) {
+        next(CreateServiceAction(createdService));
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+      });
 }
 
-void _updateServiceMiddleware(Store<AppState> store, UpdateServiceAction action, NextDispatcher next) {
-  _updateService(action.service).then((updatedService) {
-    next(UpdateServiceAction(updatedService));
-  }).catchError((error) {
-    store.dispatch(SetHousekeepingErrorAction(error.toString()));
-  });
+void _updateServiceMiddleware(
+  Store<AppState> store,
+  UpdateServiceAction action,
+  NextDispatcher next,
+) {
+  _updateService(action.service)
+      .then((updatedService) {
+        next(UpdateServiceAction(updatedService));
+      })
+      .catchError((error) {
+        store.dispatch(SetHousekeepingErrorAction(error.toString()));
+      });
 }
 
 // ============================================================================
@@ -214,7 +302,7 @@ void _updateServiceMiddleware(Store<AppState> store, UpdateServiceAction action,
 Future<HousekeepingMetrics> _fetchHousekeepingMetrics() async {
   // Simulate API delay
   await Future.delayed(const Duration(milliseconds: 1500));
-  
+
   // Mock data - replace with actual Supabase queries
   return HousekeepingMetrics(
     totalBookings: 1247,
@@ -261,7 +349,7 @@ Future<HousekeepingMetrics> _fetchHousekeepingMetrics() async {
 
 Future<List<Booking>> _fetchBookings(filters) async {
   await Future.delayed(const Duration(milliseconds: 800));
-  
+
   // Mock data - replace with actual Supabase queries
   return [
     Booking(
@@ -286,7 +374,7 @@ Future<List<Booking>> _fetchBookings(filters) async {
 
 Future<List<Cleaner>> _fetchCleaners(filters) async {
   await Future.delayed(const Duration(milliseconds: 600));
-  
+
   // Mock data - replace with actual Supabase queries
   return [
     Cleaner(
@@ -297,7 +385,10 @@ Future<List<Cleaner>> _fetchCleaners(filters) async {
       phone: '+1-555-0123',
       status: CleanerStatus.active,
       joinedAt: DateTime.now().subtract(const Duration(days: 180)),
-      specialties: [ServiceCategory.regularCleaning, ServiceCategory.deepCleaning],
+      specialties: [
+        ServiceCategory.regularCleaning,
+        ServiceCategory.deepCleaning,
+      ],
       rating: 4.8,
       totalJobs: 156,
       isAvailable: true,
@@ -308,7 +399,7 @@ Future<List<Cleaner>> _fetchCleaners(filters) async {
 
 Future<List<Customer>> _fetchCustomers(filters) async {
   await Future.delayed(const Duration(milliseconds: 600));
-  
+
   // Mock data - replace with actual Supabase queries
   return [
     Customer(
@@ -335,7 +426,7 @@ Future<List<Customer>> _fetchCustomers(filters) async {
 
 Future<List<HousekeepingService>> _fetchServices() async {
   await Future.delayed(const Duration(milliseconds: 400));
-  
+
   // Mock data - replace with actual Supabase queries
   return [
     const HousekeepingService(

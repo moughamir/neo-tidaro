@@ -7,10 +7,16 @@ library core;
 // Utils exports (from shared package)
 export 'package:shared/utils/failures/failure.dart';
 export 'package:shared/utils/type_defs.dart';
-export 'utils/logging/kui_verb.dart';
+
+// Core utilities exports
+export 'utils/logger.dart';
+export 'utils/platform_utils.dart';
 
 // Config exports
 export 'config/app_config.dart';
+
+// Network exports
+export 'network/supabase_service.dart';
 
 // DI exports
 export 'di/service_locator.dart';

@@ -81,6 +81,7 @@
       ],
       "devDependencies": [
         "build_runner",
+        "flutter_dotenv",
         "flutter_lints",
         "flutter_test",
         "mocktail"
@@ -104,6 +105,7 @@
       "name": "tidash",
       "version": "0.1.0-pre-alpha.1+1",
       "dependencies": [
+        "core",
         "cupertino_icons",
         "flutter",
         "flutter_staggered_grid_view",
@@ -322,6 +324,13 @@
         "flutter",
         "intl",
         "path"
+      ]
+    },
+    {
+      "name": "flutter_dotenv",
+      "version": "6.0.0",
+      "dependencies": [
+        "flutter"
       ]
     },
     {

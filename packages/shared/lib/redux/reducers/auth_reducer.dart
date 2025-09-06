@@ -37,11 +37,10 @@ AuthState authReducer(AuthState state, dynamic action) {
   }
 
   // Handle legacy auth actions
-  if (action is LoginStartAction || action is SignUpStartAction || action is ResetPasswordStartAction) {
-    return state.copyWith(
-      isLoading: true,
-      error: null,
-    );
+  if (action is LoginStartAction ||
+      action is SignUpStartAction ||
+      action is ResetPasswordStartAction) {
+    return state.copyWith(isLoading: true, error: null);
   }
 
   if (action is LoginSuccessAction || action is SignUpSuccessAction) {
@@ -53,7 +52,9 @@ AuthState authReducer(AuthState state, dynamic action) {
     );
   }
 
-  if (action is LoginFailureAction || action is SignUpFailureAction || action is ResetPasswordFailureAction) {
+  if (action is LoginFailureAction ||
+      action is SignUpFailureAction ||
+      action is ResetPasswordFailureAction) {
     return state.copyWith(
       isAuthenticated: false,
       isLoading: false,
@@ -63,10 +64,7 @@ AuthState authReducer(AuthState state, dynamic action) {
   }
 
   if (action is ResetPasswordSuccessAction) {
-    return state.copyWith(
-      isLoading: false,
-      error: null,
-    );
+    return state.copyWith(isLoading: false, error: null);
   }
 
   if (action is LogoutAction) {

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'housekeeping_models.dart';
-import 'housekeeping_state.dart';
+import '../housekeeping/housekeeping_models.dart';
+import '../housekeeping/housekeeping_state.dart';
 
 /// Base class for all housekeeping actions
 abstract class HousekeepingAction extends Equatable {
@@ -121,10 +121,7 @@ class AssignCleanerToBookingAction extends HousekeepingAction {
 
 /// Cancel booking
 class CancelBookingAction extends HousekeepingAction {
-  const CancelBookingAction({
-    required this.bookingId,
-    this.reason,
-  });
+  const CancelBookingAction({required this.bookingId, this.reason});
 
   final String bookingId;
   final String? reason;

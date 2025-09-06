@@ -1,15 +1,21 @@
 import 'package:redux/redux.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import '../app_state.dart';
-import '../actions/dashboard_auth_actions.dart';
+import '../actions/dashboard/dashboard_auth_actions.dart';
 
 List<Middleware<AppState>> createDashboardAuthMiddleware() {
   return [
     TypedMiddleware<AppState, DashboardLoginAction>(_handleLogin),
-    TypedMiddleware<AppState, DashboardLoginWithProviderAction>(_handleSocialLogin),
+    TypedMiddleware<AppState, DashboardLoginWithProviderAction>(
+      _handleSocialLogin,
+    ),
     TypedMiddleware<AppState, DashboardSignUpAction>(_handleSignUp),
-    TypedMiddleware<AppState, DashboardForgotPasswordAction>(_handleForgotPassword),
-    TypedMiddleware<AppState, DashboardResetPasswordAction>(_handleResetPassword),
+    TypedMiddleware<AppState, DashboardForgotPasswordAction>(
+      _handleForgotPassword,
+    ),
+    TypedMiddleware<AppState, DashboardResetPasswordAction>(
+      _handleResetPassword,
+    ),
     TypedMiddleware<AppState, DashboardLogoutAction>(_handleLogout),
   ];
 }
@@ -23,16 +29,16 @@ void _handleLogin(
   store.dispatch(const DashboardAuthLoadingAction(true));
 
   try {
-    final AuthResponse response = await Supabase.instance.client.auth.signInWithPassword(
-      email: action.email,
-      password: action.password,
-    );
+    final AuthResponse response = await Supabase.instance.client.auth
+        .signInWithPassword(email: action.email, password: action.password);
 
     if (response.user != null) {
-      store.dispatch(DashboardAuthSuccessAction(
-        user: response.user!.toJson(),
-        accessToken: null, // UserResponse doesn't have session
-      ));
+      store.dispatch(
+        DashboardAuthSuccessAction(
+          user: response.user!.toJson(),
+          accessToken: null, // UserResponse doesn't have session
+        ),
+      );
     } else {
       store.dispatch(const DashboardAuthFailureAction('Login failed'));
     }
@@ -96,10 +102,12 @@ void _handleSignUp(
     );
 
     if (response.user != null) {
-      store.dispatch(DashboardAuthSuccessAction(
-        user: response.user!.toJson(),
-        accessToken: null, // UserResponse doesn't have session
-      ));
+      store.dispatch(
+        DashboardAuthSuccessAction(
+          user: response.user!.toJson(),
+          accessToken: null, // UserResponse doesn't have session
+        ),
+      );
     } else {
       store.dispatch(const DashboardAuthFailureAction('Sign up failed'));
     }
@@ -123,7 +131,7 @@ void _handleForgotPassword(
       action.email,
       redirectTo: 'your-app://reset-password',
     );
-    
+
     // Success - user will receive email
     store.dispatch(const DashboardAuthLoadingAction(false));
   } catch (error) {
@@ -141,15 +149,16 @@ void _handleResetPassword(
   store.dispatch(const DashboardAuthLoadingAction(true));
 
   try {
-    final UserResponse response = await Supabase.instance.client.auth.updateUser(
-      UserAttributes(password: action.newPassword),
-    );
+    final UserResponse response = await Supabase.instance.client.auth
+        .updateUser(UserAttributes(password: action.newPassword));
 
     if (response.user != null) {
-      store.dispatch(DashboardAuthSuccessAction(
-        user: response.user!.toJson(),
-        accessToken: null, // UserResponse doesn't have session
-      ));
+      store.dispatch(
+        DashboardAuthSuccessAction(
+          user: response.user!.toJson(),
+          accessToken: null, // UserResponse doesn't have session
+        ),
+      );
     }
   } catch (error) {
     store.dispatch(DashboardAuthFailureAction(error.toString()));
@@ -164,7 +173,7 @@ void _handleLogout(
   NextDispatcher next,
 ) async {
   next(action);
-  
+
   try {
     await Supabase.instance.client.auth.signOut();
     // Auth state will be updated by the auth state listener

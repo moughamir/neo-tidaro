@@ -39,11 +39,11 @@ class AppConfig {
     return AppConfig(
       appName: 'Neo-Tidaro (Dev)',
       supabaseUrl: const String.fromEnvironment('SUPABASE_URL', 
-          defaultValue: 'https://your-dev-project.supabase.co'),
+          defaultValue: 'http://127.0.0.1:54321'),
       supabaseAnonKey: const String.fromEnvironment('SUPABASE_ANON_KEY', 
-          defaultValue: 'your-dev-anon-key'),
+          defaultValue: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0'),
       isDebug: true,
-      apiBaseUrl: 'https://api-dev.example.com',
+      apiBaseUrl: 'http://127.0.0.1:54321',
     );
   }
 

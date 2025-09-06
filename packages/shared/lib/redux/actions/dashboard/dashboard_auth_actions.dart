@@ -1,18 +1,14 @@
 // Dashboard-specific auth actions
+
 class DashboardLoginAction {
-  const DashboardLoginAction({
-    required this.email,
-    required this.password,
-  });
+  const DashboardLoginAction({required this.email, required this.password});
 
   final String email;
   final String password;
 }
 
 class DashboardLoginWithProviderAction {
-  const DashboardLoginWithProviderAction({
-    required this.provider,
-  });
+  const DashboardLoginWithProviderAction({required this.provider});
 
   final String provider; // 'github', 'google', 'apple'
 }
@@ -30,9 +26,7 @@ class DashboardSignUpAction {
 }
 
 class DashboardForgotPasswordAction {
-  const DashboardForgotPasswordAction({
-    required this.email,
-  });
+  const DashboardForgotPasswordAction({required this.email});
 
   final String email;
 }
@@ -57,10 +51,7 @@ class DashboardAuthLoadingAction {
 }
 
 class DashboardAuthSuccessAction {
-  const DashboardAuthSuccessAction({
-    required this.user,
-    this.accessToken,
-  });
+  const DashboardAuthSuccessAction({required this.user, this.accessToken});
 
   final Map<String, dynamic> user;
   final String? accessToken;
