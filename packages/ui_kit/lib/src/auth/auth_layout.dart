@@ -45,9 +45,9 @@ class AuthLayout extends StatelessWidget {
       body: Row(
         children: [
           // Left column - Themed gradient background with brand and quote
-          Expanded(flex: 1, child: _buildLeftColumn(context, theme, l10n)),
+          Flexible(flex: 1, child: _buildLeftColumn(context, theme, l10n)),
           // Right column - Authentication form with controls
-          Expanded(flex: 1, child: _buildRightColumn(context, theme, l10n)),
+          Flexible(flex: 1, child: _buildRightColumn(context, theme, l10n)),
         ],
       ),
     );
@@ -69,7 +69,7 @@ class AuthLayout extends StatelessWidget {
               image: backgroundImage != null
                   ? DecorationImage(
                       image: AssetImage(backgroundImage!),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     )
                   : null,
               gradient: backgroundImage == null
@@ -184,7 +184,7 @@ class AuthLayout extends StatelessWidget {
         children: [
           // Controls bar at top
           Container(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -197,10 +197,10 @@ class AuthLayout extends StatelessWidget {
           // Auth form content
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 400),
+                  constraints: const BoxConstraints(maxWidth: 600),
                   child: child,
                 ),
               ),
@@ -373,7 +373,7 @@ class AuthLayout extends StatelessWidget {
           value: currentLanguage,
           onChanged: (String? value) => onLanguageChanged?.call(value!),
           icon: Icon(
-            Icons.keyboard_arrow_down,
+            Icons.language,
             color: Colors.white.withValues(alpha: 0.7),
             size: 16,
           ),
