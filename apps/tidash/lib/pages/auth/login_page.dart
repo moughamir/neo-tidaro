@@ -22,25 +22,97 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  void _handleLogin(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      StoreProvider.of<AppState>(context, listen: false).dispatch(
+        DashboardLoginAction(
+          email: _emailController.text.trim(),
+          password: _passwordController.text,
+        ),
+      );
+    }
+  }
+
+  void _handleSocialLogin(BuildContext context, String provider) {
+    StoreProvider.of<AppState>(context, listen: false).dispatch(
+      DashboardLoginWithProviderAction(provider: provider),
+    );
+  }
+
+  void _showForgotPasswordDialog(BuildContext context) {
+    final TextEditingController emailController = TextEditingController();
+    final ThemeData theme = Theme.of(context);
+    final IntlLocalizations l10n = Languist.of(context);
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(l10n.resetPasswordTitle),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text(
+              l10n.resetPasswordMessage,
+              style: theme.textTheme.bodyMedium,
+            ),
+            const SizedBox(height: 16),
+            AuthInputField(
+              label: l10n.email,
+              hint: l10n.emailHint,
+              controller: emailController,
+              keyboardType: TextInputType.emailAddress,
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.cancel),
+          ),
+          AuthButton(
+            onPressed: () {
+              if (emailController.text.isNotEmpty) {
+                StoreProvider.of<AppState>(context, listen: false).dispatch(
+                  DashboardForgotPasswordAction(email: emailController.text.trim()),
+                );
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(l10n.passwordResetEmailSent)),
+                );
+              }
+            },
+            text: l10n.sendResetLink,
+            width: 120,
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     final IntlLocalizations l10n = Languist.of(context);
 
-    return AuthLayout(
-      backgroundImage: 'assets/images/orange.jpg',
-      isDarkMode: theme.brightness == Brightness.dark,
-      currentLanguage: 'en', // TODO: Get from app state
-      onThemeToggle: () {
-        // TODO: Implement theme toggle
-      },
-      onLanguageChanged: (String language) {
-        // TODO: Implement language change
-      },
-      child: StoreConnector<AppState, LoginViewModel>(
-        converter: LoginViewModel.fromStore,
-        builder: (BuildContext context, LoginViewModel viewModel) {
-          return SingleChildScrollView(
+    return StoreConnector<AppState, UiState>(
+      converter: (Store<AppState> store) => store.state.uiState,
+      builder: (BuildContext context, UiState uiState) {
+        return AuthLayout(
+          backgroundImage: 'assets/images/orange.jpg',
+          isDarkMode: uiState.themeMode == ThemeMode.dark,
+          currentLanguage: uiState.locale.languageCode,
+          onThemeToggle: () {
+            StoreProvider.of<AppState>(context, listen: false)
+                .dispatch(const ToggleThemeModeAction());
+          },
+          onLanguageChanged: (String language) {
+            StoreProvider.of<AppState>(context, listen: false)
+                .dispatch(ChangeLanguageAction(language));
+          },
+          child: StoreConnector<AppState, AuthState>(
+            converter: (Store<AppState> store) => store.state.authState,
+            builder: (BuildContext context, AuthState authState) {
+              return SingleChildScrollView(
             child: AuthCard(
               child: Form(
                 key: _formKey,
@@ -110,8 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: AuthButton(
-                        onPressed: () =>
-                            _showForgotPasswordDialog(context, viewModel),
+                        onPressed: () => _showForgotPasswordDialog(context),
                         text: l10n.forgotPasswordQuestion,
                         variant: AuthButtonVariant.ghost,
                         width: 120,
@@ -121,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(height: 24),
 
                     // Error message
-                    if (viewModel.error != null) ...<Widget>[
+                    if (authState.error != null) ...<Widget>[
                       Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
@@ -146,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
-                                viewModel.error!,
+                                authState.error!,
                                 style: theme.textTheme.bodySmall?.copyWith(
                                   color: theme.colorScheme.error,
                                 ),
@@ -160,9 +231,9 @@ class _LoginPageState extends State<LoginPage> {
 
                     // Login button
                     AuthButton(
-                      onPressed: () => _handleLogin(viewModel),
+                      onPressed: () => _handleLogin(context),
                       text: l10n.login,
-                      isLoading: viewModel.isLoading,
+                      isLoading: authState.isLoading,
                     ),
 
                     const SizedBox(height: 24),
@@ -174,9 +245,9 @@ class _LoginPageState extends State<LoginPage> {
 
                     // Social login buttons
                     SocialAuthButton(
-                      onPressed: () => viewModel.loginWithProvider('github'),
+                      onPressed: () => _handleSocialLogin(context, 'github'),
                       provider: SocialAuthProvider.github,
-                      isLoading: viewModel.isLoading,
+                      isLoading: authState.isLoading,
                     ),
 
                     const SizedBox(height: 32),
@@ -208,96 +279,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
             ),
-          );
-        },
-      ),
-    );
-  }
-
-  void _handleLogin(LoginViewModel viewModel) {
-    if (_formKey.currentState!.validate()) {
-      viewModel.login(_emailController.text.trim(), _passwordController.text);
-    }
-  }
-
-  void _showForgotPasswordDialog(
-    BuildContext context,
-    LoginViewModel viewModel,
-  ) {
-    final TextEditingController emailController = TextEditingController();
-    final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
-
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text(l10n.resetPasswordTitle),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              l10n.resetPasswordMessage,
-              style: theme.textTheme.bodyMedium,
-            ),
-            const SizedBox(height: 16),
-            AuthInputField(
-              label: l10n.email,
-              hint: l10n.emailHint,
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-            ),
-          ],
-        ),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10n.cancel),
-          ),
-          AuthButton(
-            onPressed: () {
-              if (emailController.text.isNotEmpty) {
-                viewModel.forgotPassword(emailController.text.trim());
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text(l10n.passwordResetEmailSent)),
-                );
-              }
+              );
             },
-            text: l10n.sendResetLink,
-            width: 120,
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class LoginViewModel {
-  const LoginViewModel({
-    required this.isLoading,
-    required this.error,
-    required this.login,
-    required this.loginWithProvider,
-    required this.forgotPassword,
-  });
-
-  final bool isLoading;
-  final String? error;
-  final Function(String email, String password) login;
-  final Function(String provider) loginWithProvider;
-  final Function(String email) forgotPassword;
-
-  factory LoginViewModel.fromStore(Store<AppState> store) {
-    return LoginViewModel(
-      isLoading: store.state.authState.isLoading,
-      error: store.state.authState.error,
-      login: (String email, String password) => store.dispatch(
-        DashboardLoginAction(email: email, password: password),
-      ),
-      loginWithProvider: (String provider) =>
-          store.dispatch(DashboardLoginWithProviderAction(provider: provider)),
-      forgotPassword: (String email) =>
-          store.dispatch(DashboardForgotPasswordAction(email: email)),
+        );
+      },
     );
   }
 }

@@ -14,7 +14,6 @@ workspace:
   - apps/tidaro # Full TiDaro App
   - examples/basic_app # Basic integration example
   - examples/auth_flow # Authentication flow example
-  - examples/redux_showcase # Redux patterns showcase
   - examples/ui_kit_showcase # UI Kit components showcase
 
 dependencies:
@@ -148,9 +147,6 @@ melos:
       run: melos exec --scope="auth_flow_example" -- flutter run -d linux
       description: Run the authentication flow example on Linux desktop.
 
-    run:redux_showcase:
-      run: melos exec --scope="redux_showcase_example" -- flutter run -d linux
-      description: Run the Redux showcase example on Linux desktop.
 
     run:ui_kit_showcase:
       run: melos exec --scope="ui_kit_showcase" -- flutter run -d linux
