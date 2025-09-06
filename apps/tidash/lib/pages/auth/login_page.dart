@@ -28,6 +28,7 @@ class _LoginPageState extends State<LoginPage> {
     final IntlLocalizations l10n = Languist.of(context);
 
     return AuthLayout(
+      backgroundImage: 'assets/images/orange.jpg',
       isDarkMode: theme.brightness == Brightness.dark,
       currentLanguage: 'en', // TODO: Get from app state
       onThemeToggle: () {

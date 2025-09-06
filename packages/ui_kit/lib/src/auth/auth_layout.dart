@@ -8,6 +8,7 @@ class AuthLayout extends StatelessWidget {
   const AuthLayout({
     super.key,
     required this.child,
+    this.backgroundImage,
     this.onThemeToggle,
     this.onLanguageChanged,
     this.isDarkMode = false,
@@ -15,6 +16,7 @@ class AuthLayout extends StatelessWidget {
   });
 
   final Widget child;
+  final String? backgroundImage;
   final VoidCallback? onThemeToggle;
   final ValueChanged<String>? onLanguageChanged;
   final bool isDarkMode;
@@ -34,26 +36,28 @@ class AuthLayout extends StatelessWidget {
     }
   }
 
-  Widget _buildDesktopLayout(BuildContext context, ThemeData theme, IntlLocalizations l10n) {
+  Widget _buildDesktopLayout(
+    BuildContext context,
+    ThemeData theme,
+    IntlLocalizations l10n,
+  ) {
     return Scaffold(
       body: Row(
         children: [
           // Left column - Themed gradient background with brand and quote
-          Expanded(
-            flex: 1,
-            child: _buildLeftColumn(context, theme, l10n),
-          ),
+          Expanded(flex: 1, child: _buildLeftColumn(context, theme, l10n)),
           // Right column - Authentication form with controls
-          Expanded(
-            flex: 1,
-            child: _buildRightColumn(context, theme, l10n),
-          ),
+          Expanded(flex: 1, child: _buildRightColumn(context, theme, l10n)),
         ],
       ),
     );
   }
 
-  Widget _buildMobileLayout(BuildContext context, ThemeData theme, IntlLocalizations l10n) {
+  Widget _buildMobileLayout(
+    BuildContext context,
+    ThemeData theme,
+    IntlLocalizations l10n,
+  ) {
     return Scaffold(
       body: Column(
         children: [
@@ -62,28 +66,48 @@ class AuthLayout extends StatelessWidget {
             height: 140,
             width: double.infinity,
             decoration: BoxDecoration(
-              gradient: _buildTiDashGradient(theme),
+              image: backgroundImage != null
+                  ? DecorationImage(
+                      image: AssetImage(backgroundImage!),
+                      fit: BoxFit.fill,
+                    )
+                  : null,
+              gradient: backgroundImage == null
+                  ? _buildTiDashGradient(theme)
+                  : null,
             ),
-            child: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    // Controls row
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        _buildBrandSection(theme, compact: true),
-                        Row(
-                          children: [
-                            _buildLanguageSelector(theme, l10n),
-                            const SizedBox(width: 8),
-                            _buildThemeToggle(theme),
-                          ],
-                        ),
-                      ],
-                    ),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.black.withValues(alpha: 0.3),
+                    Colors.black.withValues(alpha: 0.1),
                   ],
+                ),
+              ),
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      // Controls row
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          _buildBrandSection(theme, compact: true),
+                          Row(
+                            children: [
+                              _buildLanguageSelector(theme, l10n),
+                              const SizedBox(width: 8),
+                              _buildThemeToggle(theme),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -106,28 +130,54 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildLeftColumn(BuildContext context, ThemeData theme, IntlLocalizations l10n) {
+  Widget _buildLeftColumn(
+    BuildContext context,
+    ThemeData theme,
+    IntlLocalizations l10n,
+  ) {
     return Container(
       decoration: BoxDecoration(
-        gradient: _buildTiDashGradient(theme),
+        image: backgroundImage != null
+            ? DecorationImage(
+                image: AssetImage(backgroundImage!),
+                fit: BoxFit.cover,
+              )
+            : null,
+        gradient: backgroundImage == null ? _buildTiDashGradient(theme) : null,
       ),
-      padding: const EdgeInsets.all(40),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Brand section at top-left
-          _buildBrandSection(theme),
-          
-          const Spacer(),
-          
-          // Today's quote at bottom-left
-          _buildQuoteSection(theme, l10n),
-        ],
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.black.withValues(alpha: 0.4),
+              Colors.black.withValues(alpha: 0.2),
+            ],
+          ),
+        ),
+        padding: const EdgeInsets.all(40),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Brand section at top-left
+            _buildBrandSection(theme),
+
+            const Spacer(),
+
+            // Today's quote at bottom-left
+            _buildQuoteSection(theme, l10n),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildRightColumn(BuildContext context, ThemeData theme, IntlLocalizations l10n) {
+  Widget _buildRightColumn(
+    BuildContext context,
+    ThemeData theme,
+    IntlLocalizations l10n,
+  ) {
     return Container(
       color: theme.colorScheme.surface,
       child: Column(
@@ -247,7 +297,7 @@ class AuthLayout extends StatelessWidget {
   /// Creates TiDash-themed gradient with orange accent
   LinearGradient _buildTiDashGradient(ThemeData theme) {
     final isDark = theme.brightness == Brightness.dark;
-    
+
     if (isDark) {
       return const LinearGradient(
         begin: Alignment.topLeft,
