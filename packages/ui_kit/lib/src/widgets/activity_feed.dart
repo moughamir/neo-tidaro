@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shared/shared.dart';
+import 'package:shared/redux/state/dashboard_state.dart';
 import 'package:languist/languist.dart';
-import 'package:ui_kit/src/widgets/glassy_card.dart';
+
+import 'glassy_card.dart';
 
 class ActivityFeed extends StatelessWidget {
   const ActivityFeed({super.key, required this.activities});
