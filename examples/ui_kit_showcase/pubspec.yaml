@@ -16,6 +16,11 @@ dependencies:
   # Workspace Dependencies - excluding core/shared to avoid flutter_secure_storage Linux issues
   ui_kit:
     path: ../../packages/ui_kit
+  shared:
+    path: ../../packages/shared
 
 flutter:
   uses-material-design: true
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

@@ -12,7 +12,126 @@ class IntlLocalizationsFr extends IntlLocalizations {
   String get appTitle => 'TiDaro';
 
   @override
+  String get hello => 'Bonjour';
+
+  @override
+  String helloUser(Object userName) {
+    return 'Bonjour $userName';
+  }
+
+  @override
+  String get welcome => 'Bienvenue';
+
+  @override
+  String get welcomeBack => 'Bon retour';
+
+  @override
+  String get goodbye => 'Au revoir';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get cancel => 'Annuler';
+
+  @override
+  String get save => 'Enregistrer';
+
+  @override
+  String get delete => 'Supprimer';
+
+  @override
+  String get edit => 'Modifier';
+
+  @override
+  String get add => 'Ajouter';
+
+  @override
+  String get create => 'Créer';
+
+  @override
+  String get update => 'Mettre à jour';
+
+  @override
+  String get remove => 'Retirer';
+
+  @override
+  String get close => 'Fermer';
+
+  @override
+  String get open => 'Ouvrir';
+
+  @override
+  String get submit => 'Soumettre';
+
+  @override
+  String get confirm => 'Confirmer';
+
+  @override
+  String get yes => 'Oui';
+
+  @override
+  String get no => 'Non';
+
+  @override
+  String get retry => 'Réessayer';
+
+  @override
+  String get refresh => 'Actualiser';
+
+  @override
+  String get back => 'Retour';
+
+  @override
+  String get next => 'Suivant';
+
+  @override
+  String get previous => 'Précédent';
+
+  @override
+  String get continueAction => 'Continuer';
+
+  @override
+  String get skip => 'Ignorer';
+
+  @override
+  String get done => 'Terminé';
+
+  @override
+  String get finish => 'Finir';
+
+  @override
+  String get home => 'Accueil';
+
+  @override
+  String get profile => 'Profil';
+
+  @override
   String get settings => 'Paramètres';
+
+  @override
+  String get about => 'À propos';
+
+  @override
+  String get help => 'Aide';
+
+  @override
+  String get contact => 'Contact';
+
+  @override
+  String get dashboard => 'Tableau de bord';
+
+  @override
+  String get notifications => 'Notifications';
+
+  @override
+  String get search => 'Rechercher';
+
+  @override
+  String get filter => 'Filtrer';
+
+  @override
+  String get sort => 'Trier';
 
   @override
   String get themeSettings => 'Paramètres du thème';
@@ -21,15 +140,154 @@ class IntlLocalizationsFr extends IntlLocalizations {
   String get languageSettings => 'Paramètres de langue';
 
   @override
-  String get ok => 'OK';
+  String get darkMode => 'Mode sombre';
 
   @override
-  String get hello => 'Bonjour';
+  String get lightMode => 'Mode clair';
 
   @override
-  String helloUser(Object userName) {
-    return 'Bonjour $userName';
-  }
+  String get systemMode => 'Mode système';
+
+  @override
+  String get privacy => 'Confidentialité';
+
+  @override
+  String get security => 'Sécurité';
+
+  @override
+  String get account => 'Compte';
+
+  @override
+  String get preferences => 'Préférences';
+
+  @override
+  String get login => 'Se connecter';
+
+  @override
+  String get logout => 'Se déconnecter';
+
+  @override
+  String get register => 'S\'inscrire';
+
+  @override
+  String get signUp => 'Créer un compte';
+
+  @override
+  String get signIn => 'Se connecter';
+
+  @override
+  String get forgotPassword => 'Mot de passe oublié';
+
+  @override
+  String get resetPassword => 'Réinitialiser le mot de passe';
+
+  @override
+  String get changePassword => 'Changer le mot de passe';
+
+  @override
+  String get email => 'E-mail';
+
+  @override
+  String get password => 'Mot de passe';
+
+  @override
+  String get username => 'Nom d\'utilisateur';
+
+  @override
+  String get name => 'Nom';
+
+  @override
+  String get firstName => 'Prénom';
+
+  @override
+  String get lastName => 'Nom de famille';
+
+  @override
+  String get phone => 'Téléphone';
+
+  @override
+  String get address => 'Adresse';
+
+  @override
+  String get city => 'Ville';
+
+  @override
+  String get country => 'Pays';
+
+  @override
+  String get dateOfBirth => 'Date de naissance';
+
+  @override
+  String get loading => 'Chargement...';
+
+  @override
+  String get saving => 'Enregistrement...';
+
+  @override
+  String get processing => 'Traitement...';
+
+  @override
+  String get uploading => 'Téléchargement...';
+
+  @override
+  String get downloading => 'Téléchargement...';
+
+  @override
+  String get connecting => 'Connexion...';
+
+  @override
+  String get syncing => 'Synchronisation...';
+
+  @override
+  String get success => 'Succès';
+
+  @override
+  String get error => 'Erreur';
+
+  @override
+  String get warning => 'Avertissement';
+
+  @override
+  String get info => 'Information';
+
+  @override
+  String get noData => 'Aucune donnée disponible';
+
+  @override
+  String get noResults => 'Aucun résultat trouvé';
+
+  @override
+  String get networkError => 'Erreur réseau';
+
+  @override
+  String get connectionError => 'Erreur de connexion';
+
+  @override
+  String get serverError => 'Erreur serveur';
+
+  @override
+  String get unknownError => 'Erreur inconnue';
+
+  @override
+  String get tryAgain => 'Réessayer';
+
+  @override
+  String get required => 'Requis';
+
+  @override
+  String get invalidEmail => 'E-mail invalide';
+
+  @override
+  String get passwordTooShort => 'Mot de passe trop court';
+
+  @override
+  String get passwordsDoNotMatch => 'Les mots de passe ne correspondent pas';
+
+  @override
+  String get invalidPhoneNumber => 'Numéro de téléphone invalide';
+
+  @override
+  String get fieldRequired => 'Ce champ est requis';
 
   @override
   String fromNow(Object time) {
@@ -61,5 +319,131 @@ class IntlLocalizationsFr extends IntlLocalizations {
   @override
   String daysAgo(Object days) {
     return 'il y a $days jours';
+  }
+
+  @override
+  String get aWeekAgo => 'il y a une semaine';
+
+  @override
+  String weeksAgo(Object weeks) {
+    return 'il y a $weeks semaines';
+  }
+
+  @override
+  String get aMonthAgo => 'il y a un mois';
+
+  @override
+  String monthsAgo(Object months) {
+    return 'il y a $months mois';
+  }
+
+  @override
+  String get aYearAgo => 'il y a un an';
+
+  @override
+  String yearsAgo(Object years) {
+    return 'il y a $years ans';
+  }
+
+  @override
+  String get today => 'Aujourd\'hui';
+
+  @override
+  String get yesterday => 'Hier';
+
+  @override
+  String get tomorrow => 'Demain';
+
+  @override
+  String get thisWeek => 'Cette semaine';
+
+  @override
+  String get lastWeek => 'La semaine dernière';
+
+  @override
+  String get nextWeek => 'La semaine prochaine';
+
+  @override
+  String get thisMonth => 'Ce mois-ci';
+
+  @override
+  String get lastMonth => 'Le mois dernier';
+
+  @override
+  String get nextMonth => 'Le mois prochain';
+
+  @override
+  String get online => 'En ligne';
+
+  @override
+  String get offline => 'Hors ligne';
+
+  @override
+  String get available => 'Disponible';
+
+  @override
+  String get busy => 'Occupé';
+
+  @override
+  String get away => 'Absent';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get buildNumber => 'Numéro de build';
+
+  @override
+  String get copyright => 'Droits d\'auteur';
+
+  @override
+  String get termsOfService => 'Conditions d\'utilisation';
+
+  @override
+  String get privacyPolicy => 'Politique de confidentialité';
+
+  @override
+  String get licenses => 'Licences';
+
+  @override
+  String get share => 'Partager';
+
+  @override
+  String get copy => 'Copier';
+
+  @override
+  String get paste => 'Coller';
+
+  @override
+  String get cut => 'Couper';
+
+  @override
+  String get selectAll => 'Tout sélectionner';
+
+  @override
+  String get undo => 'Annuler';
+
+  @override
+  String get redo => 'Refaire';
+
+  @override
+  String get incrementAction => 'Increment';
+
+  @override
+  String get decrementAction => 'Decrement';
+
+  @override
+  String itemCount(Object count) {
+    return '$count éléments';
+  }
+
+  @override
+  String selectedCount(Object count) {
+    return '$count sélectionnés';
+  }
+
+  @override
+  String totalCount(Object count) {
+    return 'Total : $count';
   }
 }

@@ -1,25 +1,9 @@
 {
   "@@locale": "en",
-  "@@last_modified": "2025-09-04T17:12:12+00:00",
+  "@@last_modified": "2025-09-06T15:20:53+01:00",
   "appTitle": "TiDaro",
   "@appTitle": {
     "description": "Application Title"
-  },
-  "settings": "Settings",
-  "@settings": {
-    "description": "Settings"
-  },
-  "themeSettings": "Theme Settings",
-  "@themeSettings": {
-    "description": "Theme Settings"
-  },
-  "languageSettings": "Language Settings",
-  "@languageSettings": {
-    "description": "Language Settings"
-  },
-  "ok": "OK",
-  "@ok": {
-    "description": "OK button"
   },
   "hello": "Hello",
   "@hello": {
@@ -31,6 +15,366 @@
     "placeholders": {
       "userName": {}
     }
+  },
+  "welcome": "Welcome",
+  "@welcome": {
+    "description": "Welcome message"
+  },
+  "welcomeBack": "Welcome back",
+  "@welcomeBack": {
+    "description": "Welcome back message"
+  },
+  "goodbye": "Goodbye",
+  "@goodbye": {
+    "description": "Farewell message"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button"
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Add button"
+  },
+  "create": "Create",
+  "@create": {
+    "description": "Create button"
+  },
+  "update": "Update",
+  "@update": {
+    "description": "Update button"
+  },
+  "remove": "Remove",
+  "@remove": {
+    "description": "Remove button"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button"
+  },
+  "open": "Open",
+  "@open": {
+    "description": "Open button"
+  },
+  "submit": "Submit",
+  "@submit": {
+    "description": "Submit button"
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Confirm button"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Yes button"
+  },
+  "no": "No",
+  "@no": {
+    "description": "No button"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button"
+  },
+  "refresh": "Refresh",
+  "@refresh": {
+    "description": "Refresh button"
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Back button"
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Next button"
+  },
+  "previous": "Previous",
+  "@previous": {
+    "description": "Previous button"
+  },
+  "continueAction": "Continue",
+  "@continueAction": {
+    "description": "Continue button"
+  },
+  "skip": "Skip",
+  "@skip": {
+    "description": "Skip button"
+  },
+  "done": "Done",
+  "@done": {
+    "description": "Done button"
+  },
+  "finish": "Finish",
+  "@finish": {
+    "description": "Finish button"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home navigation"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile navigation"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings navigation"
+  },
+  "about": "About",
+  "@about": {
+    "description": "About navigation"
+  },
+  "help": "Help",
+  "@help": {
+    "description": "Help navigation"
+  },
+  "contact": "Contact",
+  "@contact": {
+    "description": "Contact navigation"
+  },
+  "dashboard": "Dashboard",
+  "@dashboard": {
+    "description": "Dashboard navigation"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Notifications navigation"
+  },
+  "search": "Search",
+  "@search": {
+    "description": "Search functionality"
+  },
+  "filter": "Filter",
+  "@filter": {
+    "description": "Filter functionality"
+  },
+  "sort": "Sort",
+  "@sort": {
+    "description": "Sort functionality"
+  },
+  "themeSettings": "Theme Settings",
+  "@themeSettings": {
+    "description": "Theme Settings"
+  },
+  "languageSettings": "Language Settings",
+  "@languageSettings": {
+    "description": "Language Settings"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode setting"
+  },
+  "lightMode": "Light Mode",
+  "@lightMode": {
+    "description": "Light mode setting"
+  },
+  "systemMode": "System Mode",
+  "@systemMode": {
+    "description": "System mode setting"
+  },
+  "privacy": "Privacy",
+  "@privacy": {
+    "description": "Privacy settings"
+  },
+  "security": "Security",
+  "@security": {
+    "description": "Security settings"
+  },
+  "account": "Account",
+  "@account": {
+    "description": "Account settings"
+  },
+  "preferences": "Preferences",
+  "@preferences": {
+    "description": "User preferences"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login action"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout action"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register action"
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Sign up action"
+  },
+  "signIn": "Sign In",
+  "@signIn": {
+    "description": "Sign in action"
+  },
+  "forgotPassword": "Forgot Password",
+  "@forgotPassword": {
+    "description": "Forgot password action"
+  },
+  "resetPassword": "Reset Password",
+  "@resetPassword": {
+    "description": "Reset password action"
+  },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "description": "Change password action"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email field"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password field"
+  },
+  "username": "Username",
+  "@username": {
+    "description": "Username field"
+  },
+  "name": "Name",
+  "@name": {
+    "description": "Name field"
+  },
+  "firstName": "First Name",
+  "@firstName": {
+    "description": "First name field"
+  },
+  "lastName": "Last Name",
+  "@lastName": {
+    "description": "Last name field"
+  },
+  "phone": "Phone",
+  "@phone": {
+    "description": "Phone field"
+  },
+  "address": "Address",
+  "@address": {
+    "description": "Address field"
+  },
+  "city": "City",
+  "@city": {
+    "description": "City field"
+  },
+  "country": "Country",
+  "@country": {
+    "description": "Country field"
+  },
+  "dateOfBirth": "Date of Birth",
+  "@dateOfBirth": {
+    "description": "Date of birth field"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading state"
+  },
+  "saving": "Saving...",
+  "@saving": {
+    "description": "Saving state"
+  },
+  "processing": "Processing...",
+  "@processing": {
+    "description": "Processing state"
+  },
+  "uploading": "Uploading...",
+  "@uploading": {
+    "description": "Uploading state"
+  },
+  "downloading": "Downloading...",
+  "@downloading": {
+    "description": "Downloading state"
+  },
+  "connecting": "Connecting...",
+  "@connecting": {
+    "description": "Connecting state"
+  },
+  "syncing": "Syncing...",
+  "@syncing": {
+    "description": "Syncing state"
+  },
+  "success": "Success",
+  "@success": {
+    "description": "Success message"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error message"
+  },
+  "warning": "Warning",
+  "@warning": {
+    "description": "Warning message"
+  },
+  "info": "Information",
+  "@info": {
+    "description": "Information message"
+  },
+  "noData": "No data available",
+  "@noData": {
+    "description": "No data message"
+  },
+  "noResults": "No results found",
+  "@noResults": {
+    "description": "No results message"
+  },
+  "networkError": "Network error",
+  "@networkError": {
+    "description": "Network error message"
+  },
+  "connectionError": "Connection error",
+  "@connectionError": {
+    "description": "Connection error message"
+  },
+  "serverError": "Server error",
+  "@serverError": {
+    "description": "Server error message"
+  },
+  "unknownError": "Unknown error",
+  "@unknownError": {
+    "description": "Unknown error message"
+  },
+  "tryAgain": "Try again",
+  "@tryAgain": {
+    "description": "Try again message"
+  },
+  "required": "Required",
+  "@required": {
+    "description": "Required field validation"
+  },
+  "invalidEmail": "Invalid email",
+  "@invalidEmail": {
+    "description": "Invalid email validation"
+  },
+  "passwordTooShort": "Password too short",
+  "@passwordTooShort": {
+    "description": "Password too short validation"
+  },
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {
+    "description": "Passwords do not match validation"
+  },
+  "invalidPhoneNumber": "Invalid phone number",
+  "@invalidPhoneNumber": {
+    "description": "Invalid phone number validation"
+  },
+  "fieldRequired": "This field is required",
+  "@fieldRequired": {
+    "description": "Field required validation"
   },
   "fromNow": "{time} ago",
   "@fromNow": {
@@ -70,6 +414,173 @@
   "@daysAgo": {
     "placeholders": {
       "days": {}
+    }
+  },
+  "aWeekAgo": "a week ago",
+  "@aWeekAgo": {
+    "description": "One week in the past"
+  },
+  "weeksAgo": "{weeks} weeks ago",
+  "@weeksAgo": {
+    "placeholders": {
+      "weeks": {}
+    }
+  },
+  "aMonthAgo": "a month ago",
+  "@aMonthAgo": {
+    "description": "One month in the past"
+  },
+  "monthsAgo": "{months} months ago",
+  "@monthsAgo": {
+    "placeholders": {
+      "months": {}
+    }
+  },
+  "aYearAgo": "a year ago",
+  "@aYearAgo": {
+    "description": "One year in the past"
+  },
+  "yearsAgo": "{years} years ago",
+  "@yearsAgo": {
+    "placeholders": {
+      "years": {}
+    }
+  },
+  "today": "Today",
+  "@today": {
+    "description": "Today"
+  },
+  "yesterday": "Yesterday",
+  "@yesterday": {
+    "description": "Yesterday"
+  },
+  "tomorrow": "Tomorrow",
+  "@tomorrow": {
+    "description": "Tomorrow"
+  },
+  "thisWeek": "This week",
+  "@thisWeek": {
+    "description": "This week"
+  },
+  "lastWeek": "Last week",
+  "@lastWeek": {
+    "description": "Last week"
+  },
+  "nextWeek": "Next week",
+  "@nextWeek": {
+    "description": "Next week"
+  },
+  "thisMonth": "This month",
+  "@thisMonth": {
+    "description": "This month"
+  },
+  "lastMonth": "Last month",
+  "@lastMonth": {
+    "description": "Last month"
+  },
+  "nextMonth": "Next month",
+  "@nextMonth": {
+    "description": "Next month"
+  },
+  "online": "Online",
+  "@online": {
+    "description": "Online status"
+  },
+  "offline": "Offline",
+  "@offline": {
+    "description": "Offline status"
+  },
+  "available": "Available",
+  "@available": {
+    "description": "Available status"
+  },
+  "busy": "Busy",
+  "@busy": {
+    "description": "Busy status"
+  },
+  "away": "Away",
+  "@away": {
+    "description": "Away status"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "Version label"
+  },
+  "buildNumber": "Build Number",
+  "@buildNumber": {
+    "description": "Build number label"
+  },
+  "copyright": "Copyright",
+  "@copyright": {
+    "description": "Copyright label"
+  },
+  "termsOfService": "Terms of Service",
+  "@termsOfService": {
+    "description": "Terms of service"
+  },
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Privacy policy"
+  },
+  "licenses": "Licenses",
+  "@licenses": {
+    "description": "Licenses"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "Share action"
+  },
+  "copy": "Copy",
+  "@copy": {
+    "description": "Copy action"
+  },
+  "paste": "Paste",
+  "@paste": {
+    "description": "Paste action"
+  },
+  "cut": "Cut",
+  "@cut": {
+    "description": "Cut action"
+  },
+  "selectAll": "Select All",
+  "@selectAll": {
+    "description": "Select all action"
+  },
+  "undo": "Undo",
+  "@undo": {
+    "description": "Undo action"
+  },
+  "redo": "Redo",
+  "@redo": {
+    "description": "Redo action"
+  },
+  "incrementAction": "Increment",
+  "@incrementAction": {
+    "description": "Increment action"
+  },
+  "decrementAction": "Decrement",
+  "@decrementAction": {
+    "description": "Decrement action"
+  },
+  "itemCount": "{count} items",
+  "@itemCount": {
+    "description": "Item count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "selectedCount": "{count} selected",
+  "@selectedCount": {
+    "description": "Selected count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "totalCount": "Total: {count}",
+  "@totalCount": {
+    "description": "Total count",
+    "placeholders": {
+      "count": {}
     }
   }
 }

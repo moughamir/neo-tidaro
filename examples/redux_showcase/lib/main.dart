@@ -11,7 +11,7 @@ class ReduxShowcaseApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Redux Showcase',
+      title: 'Redux App Showcase',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,

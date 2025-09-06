@@ -7,9 +7,9 @@ class NeomorphicButton extends StatefulWidget {
   final double borderRadius;
   final double blurRadius;
   final double distance;
-  final Color backgroundColor;
-  final Color shadowColor;
-  final Color lightShadowColor;
+  final Color? backgroundColor;
+  final Color? shadowColor;
+  final Color? lightShadowColor;
   final String? tooltip;
 
   const NeomorphicButton({
@@ -19,9 +19,9 @@ class NeomorphicButton extends StatefulWidget {
     this.borderRadius = 12.0,
     this.blurRadius = 10.0,
     this.distance = 5.0,
-    this.backgroundColor = const Color(0xFFF9FAFB), // Matches background
-    this.shadowColor = const Color(0xFFA7A7A7), // Darker shadow
-    this.lightShadowColor = Colors.white, // Lighter shadow
+    this.backgroundColor,
+    this.shadowColor,
+    this.lightShadowColor,
     this.tooltip,
   });
 
@@ -34,7 +34,16 @@ class _NeomorphicButtonState extends State<NeomorphicButton> {
 
   @override
   Widget build(BuildContext context) {
-    final color = widget.backgroundColor;
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final isDark = theme.brightness == Brightness.dark;
+    
+    final effectiveBackgroundColor = widget.backgroundColor ?? colorScheme.surface;
+    final effectiveShadowColor = widget.shadowColor ?? 
+        (isDark ? Colors.black.withValues(alpha: 0.6) : colorScheme.shadow);
+    final effectiveLightShadowColor = widget.lightShadowColor ?? 
+        (isDark ? colorScheme.surface.withValues(alpha: 0.1) : 
+         colorScheme.surface.withValues(alpha: 0.9));
 
     return Listener(
       onPointerDown: (_) => setState(() => _isPressed = true),
@@ -50,11 +59,11 @@ class _NeomorphicButtonState extends State<NeomorphicButton> {
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(widget.borderRadius),
-              color: color,
+              color: effectiveBackgroundColor,
               boxShadow: _isPressed
                   ? [
                       BoxShadow(
-                        color: widget.shadowColor.withValues(alpha: 0.3),
+                        color: effectiveShadowColor.withValues(alpha: 0.3),
                         offset: Offset(
                           widget.distance / 2,
                           widget.distance / 2,
@@ -62,7 +71,7 @@ class _NeomorphicButtonState extends State<NeomorphicButton> {
                         blurRadius: widget.blurRadius / 2,
                       ),
                       BoxShadow(
-                        color: widget.lightShadowColor.withValues(alpha: 0.8),
+                        color: effectiveLightShadowColor.withValues(alpha: 0.8),
                         offset: Offset(
                           -widget.distance / 2,
                           -widget.distance / 2,
@@ -72,12 +81,12 @@ class _NeomorphicButtonState extends State<NeomorphicButton> {
                     ]
                   : [
                       BoxShadow(
-                        color: widget.shadowColor.withValues(alpha: 0.5),
+                        color: effectiveShadowColor.withValues(alpha: 0.5),
                         offset: Offset(widget.distance, widget.distance),
                         blurRadius: widget.blurRadius,
                       ),
                       BoxShadow(
-                        color: widget.lightShadowColor.withValues(alpha: 0.8),
+                        color: effectiveLightShadowColor.withValues(alpha: 0.8),
                         offset: Offset(-widget.distance, -widget.distance),
                         blurRadius: widget.blurRadius,
                       ),

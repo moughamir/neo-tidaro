@@ -21,6 +21,7 @@ dependencies:
     path: ../languist
   clay_containers: ^0.3.4
   google_fonts: ^6.1.0
+  flutter_markdown: ^0.7.4+1
   
   # Redux State Management
   flutter_redux: ^0.10.0

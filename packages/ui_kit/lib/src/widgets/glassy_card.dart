@@ -1,15 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:ui_kit/src/localization/app_localizations.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 class GlassyCard extends StatelessWidget {
   final Widget child;
   final double borderRadius;
   final double blurAmount;
-  final Color backgroundColor;
+  final Color? borderColor;
   final double borderWidth;
-  final Color borderColor;
+  final Color? backgroundColor;
   final String? title;
   final String? subtitle;
 
@@ -17,26 +17,33 @@ class GlassyCard extends StatelessWidget {
     super.key,
     required this.child,
     this.borderRadius = 12.0,
-    this.blurAmount = 5.0,
-    this.backgroundColor = Colors.white,
+    this.blurAmount = 10.0,
+    this.borderColor,
     this.borderWidth = 1.0,
-    this.borderColor = Colors.white,
+    this.backgroundColor,
     this.title,
     this.subtitle,
   });
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    
+    final effectiveBorderColor = borderColor ?? colorScheme.outline;
+    final effectiveBackgroundColor = backgroundColor ?? 
+        colorScheme.surface.withValues(alpha: 0.1);
+    
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: blurAmount, sigmaY: blurAmount),
         child: Container(
           decoration: BoxDecoration(
-            color: backgroundColor.withValues(alpha: 0.2),
+            color: effectiveBackgroundColor,
             borderRadius: BorderRadius.circular(borderRadius),
             border: Border.all(
-              color: borderColor.withValues(alpha: 0.3),
+              color: effectiveBorderColor.withValues(alpha: 0.2),
               width: borderWidth,
             ),
           ),

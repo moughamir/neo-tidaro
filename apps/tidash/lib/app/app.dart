@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+import 'package:languist/languist.dart';
+import 'package:shared/shared.dart';
+import 'package:tidash/pages/dashboard/dashboard_page.dart';
+
+class TiDashboard extends StatelessWidget {
+  const TiDashboard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final Store<AppState> store = createStore(enableLogging: true);
+
+    return StoreProvider<AppState>(
+      store: store,
+      child: MaterialApp(
+        title: 'TiDaro Dashboard',
+        localizationsDelegates: Languist.localizationsDelegates,
+        supportedLocales: Languist.supportedLocales,
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFF6366F1), // Modern indigo
+            brightness: Brightness.light,
+          ),
+          useMaterial3: true,
+          cardTheme: const CardThemeData(
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+          ),
+        ),
+        darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFF6366F1),
+            brightness: Brightness.dark,
+          ),
+          useMaterial3: true,
+          cardTheme: const CardThemeData(
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+          ),
+        ),
+        home: const DashboardPage(),
+      ),
+    );
+  }
+}

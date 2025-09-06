@@ -12,7 +12,126 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get appTitle => 'تيدارو';
 
   @override
+  String get hello => 'مرحبًا';
+
+  @override
+  String helloUser(Object userName) {
+    return 'مرحبًا $userName';
+  }
+
+  @override
+  String get welcome => 'أهلاً وسهلاً';
+
+  @override
+  String get welcomeBack => 'مرحبًا بعودتك';
+
+  @override
+  String get goodbye => 'وداعًا';
+
+  @override
+  String get ok => 'موافق';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get delete => 'حذف';
+
+  @override
+  String get edit => 'تعديل';
+
+  @override
+  String get add => 'إضافة';
+
+  @override
+  String get create => 'إنشاء';
+
+  @override
+  String get update => 'تحديث';
+
+  @override
+  String get remove => 'إزالة';
+
+  @override
+  String get close => 'إغلاق';
+
+  @override
+  String get open => 'فتح';
+
+  @override
+  String get submit => 'إرسال';
+
+  @override
+  String get confirm => 'تأكيد';
+
+  @override
+  String get yes => 'نعم';
+
+  @override
+  String get no => 'لا';
+
+  @override
+  String get retry => 'إعادة المحاولة';
+
+  @override
+  String get refresh => 'تحديث';
+
+  @override
+  String get back => 'رجوع';
+
+  @override
+  String get next => 'التالي';
+
+  @override
+  String get previous => 'السابق';
+
+  @override
+  String get continueAction => 'متابعة';
+
+  @override
+  String get skip => 'تخطي';
+
+  @override
+  String get done => 'تم';
+
+  @override
+  String get finish => 'إنهاء';
+
+  @override
+  String get home => 'الرئيسية';
+
+  @override
+  String get profile => 'الملف الشخصي';
+
+  @override
   String get settings => 'إعدادات';
+
+  @override
+  String get about => 'حول';
+
+  @override
+  String get help => 'مساعدة';
+
+  @override
+  String get contact => 'اتصال';
+
+  @override
+  String get dashboard => 'لوحة التحكم';
+
+  @override
+  String get notifications => 'الإشعارات';
+
+  @override
+  String get search => 'بحث';
+
+  @override
+  String get filter => 'تصفية';
+
+  @override
+  String get sort => 'ترتيب';
 
   @override
   String get themeSettings => 'إعدادات السمة';
@@ -21,15 +140,154 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get languageSettings => 'إعدادات اللغة';
 
   @override
-  String get ok => 'OK';
+  String get darkMode => 'الوضع المظلم';
 
   @override
-  String get hello => 'مرحبًا';
+  String get lightMode => 'الوضع المضيء';
 
   @override
-  String helloUser(Object userName) {
-    return 'مرحبًا $userName';
-  }
+  String get systemMode => 'وضع النظام';
+
+  @override
+  String get privacy => 'الخصوصية';
+
+  @override
+  String get security => 'الأمان';
+
+  @override
+  String get account => 'الحساب';
+
+  @override
+  String get preferences => 'التفضيلات';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get logout => 'تسجيل الخروج';
+
+  @override
+  String get register => 'تسجيل';
+
+  @override
+  String get signUp => 'إنشاء حساب';
+
+  @override
+  String get signIn => 'تسجيل الدخول';
+
+  @override
+  String get forgotPassword => 'نسيت كلمة المرور';
+
+  @override
+  String get resetPassword => 'إعادة تعيين كلمة المرور';
+
+  @override
+  String get changePassword => 'تغيير كلمة المرور';
+
+  @override
+  String get email => 'البريد الإلكتروني';
+
+  @override
+  String get password => 'كلمة المرور';
+
+  @override
+  String get username => 'اسم المستخدم';
+
+  @override
+  String get name => 'الاسم';
+
+  @override
+  String get firstName => 'الاسم الأول';
+
+  @override
+  String get lastName => 'اسم العائلة';
+
+  @override
+  String get phone => 'الهاتف';
+
+  @override
+  String get address => 'العنوان';
+
+  @override
+  String get city => 'المدينة';
+
+  @override
+  String get country => 'البلد';
+
+  @override
+  String get dateOfBirth => 'تاريخ الميلاد';
+
+  @override
+  String get loading => 'جاري التحميل...';
+
+  @override
+  String get saving => 'جاري الحفظ...';
+
+  @override
+  String get processing => 'جاري المعالجة...';
+
+  @override
+  String get uploading => 'جاري الرفع...';
+
+  @override
+  String get downloading => 'جاري التحميل...';
+
+  @override
+  String get connecting => 'جاري الاتصال...';
+
+  @override
+  String get syncing => 'جاري المزامنة...';
+
+  @override
+  String get success => 'نجح';
+
+  @override
+  String get error => 'خطأ';
+
+  @override
+  String get warning => 'تحذير';
+
+  @override
+  String get info => 'معلومات';
+
+  @override
+  String get noData => 'لا توجد بيانات متاحة';
+
+  @override
+  String get noResults => 'لم يتم العثور على نتائج';
+
+  @override
+  String get networkError => 'خطأ في الشبكة';
+
+  @override
+  String get connectionError => 'خطأ في الاتصال';
+
+  @override
+  String get serverError => 'خطأ في الخادم';
+
+  @override
+  String get unknownError => 'خطأ غير معروف';
+
+  @override
+  String get tryAgain => 'حاول مرة أخرى';
+
+  @override
+  String get required => 'مطلوب';
+
+  @override
+  String get invalidEmail => 'بريد إلكتروني غير صحيح';
+
+  @override
+  String get passwordTooShort => 'كلمة المرور قصيرة جداً';
+
+  @override
+  String get passwordsDoNotMatch => 'كلمات المرور غير متطابقة';
+
+  @override
+  String get invalidPhoneNumber => 'رقم هاتف غير صحيح';
+
+  @override
+  String get fieldRequired => 'هذا الحقل مطلوب';
 
   @override
   String fromNow(Object time) {
@@ -61,5 +319,131 @@ class IntlLocalizationsAr extends IntlLocalizations {
   @override
   String daysAgo(Object days) {
     return 'منذ $days أيام';
+  }
+
+  @override
+  String get aWeekAgo => 'منذ أسبوع';
+
+  @override
+  String weeksAgo(Object weeks) {
+    return 'منذ $weeks أسابيع';
+  }
+
+  @override
+  String get aMonthAgo => 'منذ شهر';
+
+  @override
+  String monthsAgo(Object months) {
+    return 'منذ $months أشهر';
+  }
+
+  @override
+  String get aYearAgo => 'منذ سنة';
+
+  @override
+  String yearsAgo(Object years) {
+    return 'منذ $years سنوات';
+  }
+
+  @override
+  String get today => 'اليوم';
+
+  @override
+  String get yesterday => 'أمس';
+
+  @override
+  String get tomorrow => 'غداً';
+
+  @override
+  String get thisWeek => 'هذا الأسبوع';
+
+  @override
+  String get lastWeek => 'الأسبوع الماضي';
+
+  @override
+  String get nextWeek => 'الأسبوع القادم';
+
+  @override
+  String get thisMonth => 'هذا الشهر';
+
+  @override
+  String get lastMonth => 'الشهر الماضي';
+
+  @override
+  String get nextMonth => 'الشهر القادم';
+
+  @override
+  String get online => 'متصل';
+
+  @override
+  String get offline => 'غير متصل';
+
+  @override
+  String get available => 'متاح';
+
+  @override
+  String get busy => 'مشغول';
+
+  @override
+  String get away => 'غائب';
+
+  @override
+  String get version => 'الإصدار';
+
+  @override
+  String get buildNumber => 'رقم البناء';
+
+  @override
+  String get copyright => 'حقوق الطبع والنشر';
+
+  @override
+  String get termsOfService => 'شروط الخدمة';
+
+  @override
+  String get privacyPolicy => 'سياسة الخصوصية';
+
+  @override
+  String get licenses => 'التراخيص';
+
+  @override
+  String get share => 'مشاركة';
+
+  @override
+  String get copy => 'نسخ';
+
+  @override
+  String get paste => 'لصق';
+
+  @override
+  String get cut => 'قص';
+
+  @override
+  String get selectAll => 'تحديد الكل';
+
+  @override
+  String get undo => 'تراجع';
+
+  @override
+  String get redo => 'إعادة';
+
+  @override
+  String get incrementAction => 'Increment';
+
+  @override
+  String get decrementAction => 'Decrement';
+
+  @override
+  String itemCount(Object count) {
+    return '$count عناصر';
+  }
+
+  @override
+  String selectedCount(Object count) {
+    return '$count محدد';
+  }
+
+  @override
+  String totalCount(Object count) {
+    return 'المجموع: $count';
   }
 }
