@@ -1,4 +1,3 @@
-import 'package:fpdart/fpdart.dart';
 import '../core/core.dart';
 import '../states/auth_state.dart';
 import '../actions/auth_actions.dart';

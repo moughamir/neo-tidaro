@@ -1,10 +1,9 @@
-import '../../core/base_selector.dart';
 import 'counter_state.dart';
 
-class CounterSelectors extends BaseSelector<CounterState> {
-  const CounterSelectors();
+class CounterSelectors {
+  const CounterSelectors._();
 
-  int getValue(CounterState state) => state.value;
-  bool isLoading(CounterState state) => state.isLoading;
-  String? getError(CounterState state) => state.error;
+  static int getValue(CounterState state) => state.value;
+  static bool isLoading(CounterState state) => state.isLoading;
+  static String? getError(CounterState state) => state.error;
 }

@@ -1,3 +1,0 @@
-class CheckAuthStatusAction {}
-
-class ClearAuthErrorAction {}

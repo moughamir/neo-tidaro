@@ -4,7 +4,7 @@ This document provides an overview of the Neo-Tidaro workspace structure and org
 
 ## Directory Structure
 
-```
+```shell
 neo-tidaro/
 ├── apps/                    # Flutter applications
 │   ├── tidaro/             # Main Tidaro application

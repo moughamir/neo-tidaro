@@ -1,7 +1,8 @@
 import 'package:redux/redux.dart';
 import '../app_state.dart';
 import '../actions/dashboard_actions.dart';
-import '../dashboard/dashboard_state.dart';
+import '../core/core.dart';
+import '../../domain/models/models.dart';
 
 List<Middleware<AppState>> createDashboardMiddleware() {
   return [
@@ -27,43 +28,46 @@ void _loadDashboard(
         title: 'New user registered',
         description: 'John Doe joined the platform',
         timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
-        type: ActivityType.user,
+        type: 'user',
       ),
       ActivityItem(
         id: '2',
-        title: 'Order completed',
-        description: 'Order #1234 was successfully processed',
+        title: 'Booking completed',
+        description: 'Booking #1234 was successfully processed',
         timestamp: DateTime.now().subtract(const Duration(minutes: 15)),
-        type: ActivityType.order,
+        type: 'booking',
       ),
       ActivityItem(
         id: '3',
         title: 'System update',
         description: 'Database backup completed successfully',
         timestamp: DateTime.now().subtract(const Duration(hours: 1)),
-        type: ActivityType.system,
+        type: 'system',
       ),
       ActivityItem(
         id: '4',
         title: 'Revenue milestone',
         description: 'Monthly revenue target achieved',
         timestamp: DateTime.now().subtract(const Duration(hours: 2)),
-        type: ActivityType.revenue,
+        type: 'revenue',
       ),
     ];
 
     final metrics = DashboardMetrics(
-      totalUsers: 1234,
-      activeUsers: 856,
-      revenue: 45678.90,
-      orders: 234,
-      growthRate: 12.5,
+      totalBookings: 234,
+      pendingBookings: 45,
+      completedBookings: 189,
+      totalRevenue: 45678.90,
+      monthlyRevenue: 12500.00,
+      activeCleaners: 25,
+      totalCustomers: 856,
+      averageRating: 4.7,
       recentActivities: sampleActivities,
     );
 
-    store.dispatch(LoadDashboardSuccessAction(metrics));
+    store.dispatch(ActionCreators.success(DashboardActionTypes.loadDashboard, metrics));
   } catch (error) {
-    store.dispatch(LoadDashboardFailureAction(error.toString()));
+    store.dispatch(ActionCreators.failure(DashboardActionTypes.loadDashboard, Exception(error.toString())));
   }
 }
 
@@ -77,22 +81,23 @@ void _refreshDashboard(
   try {
     await Future.delayed(const Duration(milliseconds: 800));
 
-    final currentMetrics = store.state.dashboardState.metrics;
-    if (currentMetrics != null) {
+    final currentMetrics = store.state.dashboardState.data;
+    if (currentMetrics.isSome()) {
+      final metrics = currentMetrics.fold(() => throw Exception('No metrics'), (data) => data);
       // Simulate updated metrics
-      final updatedMetrics = currentMetrics.copyWith(
-        totalUsers: currentMetrics.totalUsers + 5,
-        activeUsers: currentMetrics.activeUsers + 2,
-        revenue: currentMetrics.revenue + 150.0,
-        orders: currentMetrics.orders + 1,
+      final updatedMetrics = metrics.copyWith(
+        totalBookings: metrics.totalBookings + 1,
+        totalCustomers: metrics.totalCustomers + 2,
+        totalRevenue: metrics.totalRevenue + 150.0,
+        monthlyRevenue: metrics.monthlyRevenue + 150.0,
       );
 
-      store.dispatch(RefreshDashboardSuccessAction(updatedMetrics));
+      store.dispatch(ActionCreators.success(DashboardActionTypes.refreshDashboard, updatedMetrics));
     } else {
       // If no metrics exist, load them
       store.dispatch(const LoadDashboardAction());
     }
   } catch (error) {
-    store.dispatch(RefreshDashboardFailureAction(error.toString()));
+    store.dispatch(ActionCreators.failure(DashboardActionTypes.refreshDashboard, Exception(error.toString())));
   }
 }

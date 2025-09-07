@@ -1,8 +1,9 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:shared/redux/redux.dart';
 
-/// Authentication action types
+/// Authentication action types - consolidated from duplicate files
 class AuthActionTypes {
+  // Primary actions
   static const String signIn = 'AUTH_SIGN_IN';
   static const String signUp = 'AUTH_SIGN_UP';
   static const String signOut = 'AUTH_SIGN_OUT';
@@ -11,6 +12,21 @@ class AuthActionTypes {
   static const String clearError = 'AUTH_CLEAR_ERROR';
   static const String socialSignIn = 'AUTH_SOCIAL_SIGN_IN';
   static const String phoneSignIn = 'AUTH_PHONE_SIGN_IN';
+  
+  // Async action states
+  static const String signInRequest = 'AUTH_SIGN_IN_REQUEST';
+  static const String signInSuccess = 'AUTH_SIGN_IN_SUCCESS';
+  static const String signInFailure = 'AUTH_SIGN_IN_FAILURE';
+  static const String signUpRequest = 'AUTH_SIGN_UP_REQUEST';
+  static const String signUpSuccess = 'AUTH_SIGN_UP_SUCCESS';
+  static const String signUpFailure = 'AUTH_SIGN_UP_FAILURE';
+  static const String signOutRequest = 'AUTH_SIGN_OUT_REQUEST';
+  static const String signOutSuccess = 'AUTH_SIGN_OUT_SUCCESS';
+  static const String signOutFailure = 'AUTH_SIGN_OUT_FAILURE';
+  static const String resetPasswordRequest = 'AUTH_RESET_PASSWORD_REQUEST';
+  static const String resetPasswordSuccess = 'AUTH_RESET_PASSWORD_SUCCESS';
+  static const String resetPasswordFailure = 'AUTH_RESET_PASSWORD_FAILURE';
+  static const String userChanged = 'AUTH_USER_CHANGED';
 }
 
 /// Sign in action

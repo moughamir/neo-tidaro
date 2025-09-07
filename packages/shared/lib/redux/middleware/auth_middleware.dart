@@ -1,7 +1,8 @@
 import 'package:redux/redux.dart';
 import 'package:core/core.dart';
 import '../app_state.dart';
-import '../actions/auth/auth.dart';
+import '../actions/auth_actions.dart';
+import '../core/core.dart';
 
 /// Auth middleware for handling async authentication operations
 class AuthMiddleware extends MiddlewareClass<AppState> {
@@ -11,13 +12,13 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
 
   @override
   void call(Store<AppState> store, dynamic action, NextDispatcher next) {
-    if (action is LogInRequestAction) {
+    if (action is SignInAction) {
       _handleSignIn(store, action);
-    } else if (action is RegisterUserRequestAction) {
+    } else if (action is SignUpAction) {
       _handleSignUp(store, action);
-    } else if (action is SignOutRequestAction) {
+    } else if (action is SignOutAction) {
       _handleSignOut(store);
-    } else if (action is ResetPasswordRequestAction) {
+    } else if (action is ResetPasswordAction) {
       _handleResetPassword(store, action);
     } else if (action is CheckAuthStatusAction) {
       _handleCheckAuthStatus(store);
@@ -28,7 +29,7 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
 
   Future<void> _handleSignIn(
     Store<AppState> store,
-    LogInRequestAction action,
+    SignInAction action,
   ) async {
     try {
       final result = await supabaseService.signInWithPassword(
@@ -37,20 +38,19 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
       );
 
       result.fold(
-        (failure) => store.dispatch(LoginFailureAction(failure.message)),
-        (user) => store.dispatch(LogInSuccessAction(user)),
+        (failure) => store.dispatch(ActionCreators.failure(AuthActionTypes.signIn, Exception(failure.toString()))),
+        (user) => store.dispatch(ActionCreators.success(AuthActionTypes.signIn, user)),
       );
     } catch (e) {
-      store.dispatch(LoginFailureAction(e.toString()));
+      store.dispatch(ActionCreators.failure(AuthActionTypes.signIn, Exception(e.toString())));
     }
   }
 
   Future<void> _handleSignUp(
     Store<AppState> store,
-    RegisterUserRequestAction action,
+    SignUpAction action,
   ) async {
-    final Map<String, dynamic>? metadata =
-        action.fullName != null ? {'full_name': action.fullName} : null;
+    final Map<String, dynamic>? metadata = action.userMetadata;
 
     try {
       final result = await supabaseService.signUpWithPassword(
@@ -60,11 +60,11 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
       );
 
       result.fold(
-        (failure) => store.dispatch(SignUpFailureAction(failure.message)),
-        (user) => store.dispatch(SignUpSuccessAction(user)),
+        (failure) => store.dispatch(ActionCreators.failure(AuthActionTypes.signUp, Exception(failure.toString()))),
+        (user) => store.dispatch(ActionCreators.success(AuthActionTypes.signUp, user)),
       );
     } catch (e) {
-      store.dispatch(SignUpFailureAction(e.toString()));
+      store.dispatch(ActionCreators.failure(AuthActionTypes.signUp, Exception(e.toString())));
     }
   }
 
@@ -73,28 +73,28 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
       final result = await supabaseService.signOut();
 
       result.fold(
-        (failure) => store.dispatch(SignOutFailureAction(failure.message)),
-        (_) => store.dispatch(SignOutSuccessAction()),
+        (failure) => store.dispatch(ActionCreators.failure(AuthActionTypes.signOut, Exception(failure.toString()))),
+        (_) => store.dispatch(ActionCreators.success(AuthActionTypes.signOut, null)),
       );
     } catch (e) {
-      store.dispatch(SignOutFailureAction(e.toString()));
+      store.dispatch(ActionCreators.failure(AuthActionTypes.signOut, Exception(e.toString())));
     }
   }
 
   Future<void> _handleResetPassword(
     Store<AppState> store,
-    ResetPasswordRequestAction action,
+    ResetPasswordAction action,
   ) async {
     try {
       final result = await supabaseService.resetPassword(action.email);
 
       result.fold(
         (failure) =>
-            store.dispatch(ResetPasswordFailureAction(failure.message)),
-        (_) => store.dispatch(ResetPasswordSuccessAction()),
+            store.dispatch(ActionCreators.failure(AuthActionTypes.resetPassword, Exception(failure.toString()))),
+        (_) => store.dispatch(ActionCreators.success(AuthActionTypes.resetPassword, null)),
       );
     } catch (e) {
-      store.dispatch(ResetPasswordFailureAction(e.toString()));
+      store.dispatch(ActionCreators.failure(AuthActionTypes.resetPassword, Exception(e.toString())));
     }
   }
 
@@ -104,13 +104,13 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
       final user = supabaseService.currentUser;
 
       if (isAuthed && user != null) {
-        store.dispatch(UserChangedAction(user));
+        store.dispatch(ActionCreators.success(AuthActionTypes.userChanged, user));
       } else {
-        store.dispatch(UserChangedAction(null));
+        store.dispatch(ActionCreators.success(AuthActionTypes.userChanged, null));
       }
     } catch (e) {
       // On any unexpected error, default to logged-out state
-      store.dispatch(UserChangedAction(null));
+      store.dispatch(ActionCreators.success(AuthActionTypes.userChanged, null));
     }
   }
 }

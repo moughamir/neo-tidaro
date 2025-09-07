@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'core/core.dart';
 import 'states/states.dart';
 

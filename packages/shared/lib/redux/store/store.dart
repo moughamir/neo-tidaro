@@ -4,7 +4,7 @@ import 'package:redux/redux.dart';
 import '../app_state.dart';
 import '../middleware/logging_middleware.dart';
 import '../middleware/dashboard_middleware.dart';
-import '../middleware/housekeeping_middleware.dart';
+// housekeeping_middleware.dart removed due to domain model conflicts
 import '../reducers/app_reducer.dart';
 import '../core/base_action.dart';
 
@@ -20,8 +20,7 @@ Store<AppState> createStore({
   // Add dashboard middleware
   middleware.addAll(createDashboardMiddleware());
 
-  // Add housekeeping middleware
-  middleware.addAll(createHousekeepingMiddleware());
+  // housekeeping middleware removed due to domain model conflicts
 
   // Error handling (first to wrap downstream middleware)
   middleware.add((Store<AppState> store, dynamic action, NextDispatcher next) {

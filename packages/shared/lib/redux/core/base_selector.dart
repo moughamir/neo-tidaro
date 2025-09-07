@@ -9,9 +9,9 @@ abstract class BaseSelector<S extends BaseState, T> {
   /// Select data from state
   T select(S state);
 
-  /// Compose with another selector
-  BaseSelector<S, R> compose<R>(BaseSelector<T, R> other) {
-    return _ComposedSelector(this, other);
+  /// Map the selected value to another selector result
+  BaseSelector<S, R> compose<R>(R Function(T) mapper) {
+    return _MappedSelector(this, mapper);
   }
 
   /// Map the selected value
@@ -130,15 +130,7 @@ class _FunctionMemoizedSelector<S extends BaseState, T> extends MemoizedSelector
   T compute(S state) => selector(state);
 }
 
-class _ComposedSelector<S extends BaseState, T, R> extends BaseSelector<S, R> {
-  const _ComposedSelector(this.first, this.second);
-
-  final BaseSelector<S, T> first;
-  final BaseSelector<T, R> second;
-
-  @override
-  R select(S state) => second.select(first.select(state));
-}
+// Removed _ComposedSelector due to type constraint issues
 
 class _MappedSelector<S extends BaseState, T, R> extends BaseSelector<S, R> {
   const _MappedSelector(this.selector, this.mapper);

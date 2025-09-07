@@ -7,6 +7,21 @@ import '../../domain/models/models.dart';
 /// Dashboard reducer following Clean Architecture and functional programming principles
 class DashboardReducer extends BaseAsyncReducer<DashboardState, DashboardMetrics> {
   @override
+  DashboardState createLoadingState() {
+    return DashboardState.loading();
+  }
+
+  @override
+  DashboardState createSuccessState(DashboardMetrics data) {
+    return DashboardState.success(data);
+  }
+
+  @override
+  DashboardState createErrorState(Exception error) {
+    return DashboardState.error(error);
+  }
+
+  @override
   DashboardState reduce(DashboardState state, BaseAction action) {
     return switch (action.type) {
       DashboardActionTypes.loadDashboard => handleAsync(state, action, DashboardActionTypes.loadDashboard),

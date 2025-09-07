@@ -51,13 +51,21 @@ class LoggingMiddleware<S extends BaseState> extends BaseMiddleware<S> {
   @override
   void call(Store<S> store, BaseAction action, NextDispatcher next) {
     final message = 'Action: ${action.type}, Payload: ${action.payload}';
-    logger?.call(message) ?? print(message);
+    if (logger != null) {
+      logger!(message);
+    } else {
+      print(message);
+    }
 
     next(action);
 
     final newState = store.state;
     final stateMessage = 'New State: ${newState.stateType}';
-    logger?.call(stateMessage) ?? print(stateMessage);
+    if (logger != null) {
+      logger!(stateMessage);
+    } else {
+      print(stateMessage);
+    }
   }
 }
 

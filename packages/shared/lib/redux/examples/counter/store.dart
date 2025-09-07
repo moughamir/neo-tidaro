@@ -1,8 +1,4 @@
-import 'package:redux/redux.dart';
 import '../../redux.dart';
-import 'counter_middleware.dart';
-import 'counter_reducer.dart';
-import 'counter_state.dart';
 
 Store<CounterState> createCounterStore({bool withLogging = true}) {
   final reducer = const CounterReducer();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../app_state.dart';
-import 'ui_state.dart';
+import '../states/ui_state.dart';
 
 /// Selectors for UI state
 class UiSelectors {

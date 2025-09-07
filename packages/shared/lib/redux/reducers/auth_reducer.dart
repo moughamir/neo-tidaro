@@ -46,11 +46,6 @@ class AuthReducer extends BaseAsyncReducer<AuthState, AuthUser> {
 
   @override
   AuthState createSuccessState(AuthUser data) {
-    // For sign out, we don't have user data
-    if (data == null) {
-      return AuthState.initial();
-    }
-    
     // For successful authentication, we need a token
     // This should be handled by middleware to provide the token
     return AuthState.authenticated(data, 'token_from_middleware');
