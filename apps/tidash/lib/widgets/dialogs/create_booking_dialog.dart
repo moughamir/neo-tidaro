@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 /// Dialog for creating a new booking
 class CreateBookingDialog extends StatefulWidget {
@@ -25,7 +26,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
 
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
-  ServiceCategory _selectedService = ServiceCategory.regularCleaning;
+  ServiceCategory _selectedService = ServiceCategory.standardCleaning;
   double _estimatedPrice = 120.0;
 
   @override
@@ -89,7 +90,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       // Customer Information Section
-                      _buildSectionHeader('Customer Information', Icons.person),
+                      const SectionHeader(title: 'Customer Information', icon: Icons.person),
                       const SizedBox(height: 16),
 
                       TextFormField(
@@ -148,10 +149,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                       const SizedBox(height: 24),
 
                       // Service Information Section
-                      _buildSectionHeader(
-                        'Service Details',
-                        Icons.cleaning_services,
-                      ),
+                      const SectionHeader(title: 'Service Details', icon: Icons.cleaning_services),
                       const SizedBox(height: 16),
 
                       DropdownButtonFormField<ServiceCategory>(
@@ -223,7 +221,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                       const SizedBox(height: 24),
 
                       // Address Section
-                      _buildSectionHeader('Service Address', Icons.location_on),
+                      const SectionHeader(title: 'Service Address', icon: Icons.location_on),
                       const SizedBox(height: 16),
 
                       TextFormField(
@@ -372,27 +370,12 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
     );
   }
 
-  Widget _buildSectionHeader(String title, IconData icon) {
-    final ThemeData theme = Theme.of(context);
-    return Row(
-      children: <Widget>[
-        Icon(icon, size: 20, color: theme.colorScheme.primary),
-        const SizedBox(width: 8),
-        Text(
-          title,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: theme.colorScheme.primary,
-          ),
-        ),
-      ],
-    );
-  }
+  
 
   String _getServiceCategoryName(ServiceCategory category) {
     switch (category) {
-      case ServiceCategory.regularCleaning:
-        return 'Regular Cleaning';
+      case ServiceCategory.standardCleaning:
+        return 'Standard Cleaning';
       case ServiceCategory.deepCleaning:
         return 'Deep Cleaning';
       case ServiceCategory.moveInOut:
@@ -401,14 +384,14 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
         return 'Post Construction';
       case ServiceCategory.commercial:
         return 'Commercial';
-      case ServiceCategory.specialized:
-        return 'Specialized';
+      case ServiceCategory.residential:
+        return 'Residential';
     }
   }
 
   double _calculatePrice(ServiceCategory category) {
     switch (category) {
-      case ServiceCategory.regularCleaning:
+      case ServiceCategory.standardCleaning:
         return 120.0;
       case ServiceCategory.deepCleaning:
         return 200.0;
@@ -418,7 +401,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
         return 300.0;
       case ServiceCategory.commercial:
         return 180.0;
-      case ServiceCategory.specialized:
+      case ServiceCategory.residential:
         return 220.0;
     }
   }
@@ -479,15 +462,16 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
       final Booking booking = Booking(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
         customerId: DateTime.now().millisecondsSinceEpoch.toString(),
-        serviceId: _selectedService.toString(),
+        serviceCategory: _selectedService,
+        address: address,
         scheduledDate: scheduledDateTime,
         status: BookingStatus.pending,
-        address: address,
-        totalPrice: _estimatedPrice,
-        createdAt: DateTime.now(),
+        price: _estimatedPrice,
         notes: _notesController.text.trim().isEmpty
             ? null
             : _notesController.text.trim(),
+        createdAt: DateTime.now(),
+        updatedAt: null,
       );
 
       // Dispatch action to create booking

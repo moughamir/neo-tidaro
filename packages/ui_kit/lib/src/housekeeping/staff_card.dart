@@ -59,7 +59,7 @@ class StaffCard extends StatelessWidget {
 
               // Name and phone
               Text(
-                cleaner.fullName,
+                cleaner.name,
                 style: theme.textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),
@@ -89,7 +89,7 @@ class StaffCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    '${cleaner.totalJobs} jobs',
+                    '${cleaner.totalBookings ?? 0} jobs',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                     ),
@@ -99,11 +99,11 @@ class StaffCard extends StatelessWidget {
               const SizedBox(height: 8),
 
               // Specializations
-              if (cleaner.specialties.isNotEmpty) ...[
+              if (cleaner.serviceCategories.isNotEmpty) ...[
                 Wrap(
                   spacing: 4,
                   runSpacing: 4,
-                  children: cleaner.specialties.take(2).map((spec) {
+                  children: cleaner.serviceCategories.take(2).map((spec) {
                     return Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,
@@ -167,40 +167,16 @@ class StaffCard extends StatelessWidget {
 
   Widget _buildActionButton(BuildContext context, CleanerStatus status) {
     switch (status) {
-      case CleanerStatus.active:
+      case CleanerStatus.available:
         return OutlinedButton(
-          onPressed: () => onStatusChanged(CleanerStatus.inactive),
+          onPressed: () => onStatusChanged(CleanerStatus.onJob),
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.grey,
             side: const BorderSide(color: Colors.grey),
           ),
-          child: const Text('Set Inactive'),
+          child: const Text('Set On Job'),
         );
-      case CleanerStatus.inactive:
-        return ElevatedButton(
-          onPressed: () => onStatusChanged(CleanerStatus.active),
-          child: const Text('Set Active'),
-        );
-      case CleanerStatus.pending:
-        return ElevatedButton(
-          onPressed: () => onStatusChanged(CleanerStatus.active),
-          child: const Text('Approve'),
-        );
-      case CleanerStatus.suspended:
-        return ElevatedButton(
-          onPressed: () => onStatusChanged(CleanerStatus.active),
-          child: const Text('Reactivate'),
-        );
-      case CleanerStatus.available:
-        return OutlinedButton(
-          onPressed: () => onStatusChanged(CleanerStatus.busy),
-          style: OutlinedButton.styleFrom(
-            foregroundColor: Colors.orange,
-            side: const BorderSide(color: Colors.orange),
-          ),
-          child: const Text('Set Busy'),
-        );
-      case CleanerStatus.busy:
+      case CleanerStatus.onJob:
         return ElevatedButton(
           onPressed: () => onStatusChanged(CleanerStatus.available),
           child: const Text('Set Available'),
@@ -220,17 +196,9 @@ class StaffCard extends StatelessWidget {
 
   ({String label, Color color}) _getStatusInfo(BuildContext context, CleanerStatus status) {
     switch (status) {
-      case CleanerStatus.active:
-        return (label: 'Active', color: Colors.green);
-      case CleanerStatus.inactive:
-        return (label: 'Inactive', color: Colors.grey);
-      case CleanerStatus.pending:
-        return (label: 'Pending', color: Colors.orange);
-      case CleanerStatus.suspended:
-        return (label: 'Suspended', color: Colors.red);
       case CleanerStatus.available:
         return (label: AppLocalizations.of(context).available, color: Colors.green);
-      case CleanerStatus.busy:
+      case CleanerStatus.onJob:
         return (label: AppLocalizations.of(context).busy, color: Colors.orange);
       case CleanerStatus.offline:
         return (label: AppLocalizations.of(context).offline, color: Colors.grey);
@@ -243,6 +211,8 @@ class StaffCard extends StatelessWidget {
     switch (category) {
       case ServiceCategory.regularCleaning:
         return 'Regular';
+      case ServiceCategory.standardCleaning:
+        return 'Standard';
       case ServiceCategory.deepCleaning:
         return 'Deep Clean';
       case ServiceCategory.moveInOut:
@@ -251,22 +221,16 @@ class StaffCard extends StatelessWidget {
         return 'Post Construction';
       case ServiceCategory.commercial:
         return 'Commercial';
-      case ServiceCategory.specialized:
-        return 'Specialized';
-      case ServiceCategory.standardCleaning:
-        return 'Standard';
       case ServiceCategory.residential:
         return 'Residential';
+      case ServiceCategory.specialized:
+        return 'Specialized';
     }
   }
 
   bool _shouldShowActionButtons(CleanerStatus status) {
-    return status == CleanerStatus.active ||
-        status == CleanerStatus.inactive ||
-        status == CleanerStatus.pending ||
-        status == CleanerStatus.suspended ||
-        status == CleanerStatus.available ||
-        status == CleanerStatus.busy ||
+    return status == CleanerStatus.available ||
+        status == CleanerStatus.onJob ||
         status == CleanerStatus.offline ||
         status == CleanerStatus.onBreak;
   }

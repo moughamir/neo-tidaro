@@ -8,6 +8,7 @@ export 'cleaner_models.dart';
 export 'customer_models.dart';
 export 'housekeeping_models.dart';
 export 'dashboard_models.dart';
+export 'profile_models.dart';
 
 class ProfileModel extends ProfileEntity {
   final List<String> skills;

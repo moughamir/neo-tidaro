@@ -1286,6 +1286,114 @@ abstract class IntlLocalizations {
   /// In en, this message translates to:
   /// **'Total Revenue'**
   String get totalRevenue;
+
+  /// Make available button label
+  ///
+  /// In en, this message translates to:
+  /// **'Make Available'**
+  String get makeAvailableButtonLabel;
+
+  /// Make unavailable button label
+  ///
+  /// In en, this message translates to:
+  /// **'Make Unavailable'**
+  String get makeUnavailableButtonLabel;
+
+  /// Staff filters applied successfully message
+  ///
+  /// In en, this message translates to:
+  /// **'Staff filters applied successfully'**
+  String get staffFiltersAppliedSuccessfully;
+
+  /// Filter by service specialties label
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by service specialties'**
+  String get staffFilterByServiceSpecialties;
+
+  /// Available status
+  ///
+  /// In en, this message translates to:
+  /// **'Available'**
+  String get cleanerStatusAvailable;
+
+  /// On job status
+  ///
+  /// In en, this message translates to:
+  /// **'On Job'**
+  String get cleanerStatusOnJob;
+
+  /// Offline status
+  ///
+  /// In en, this message translates to:
+  /// **'Offline'**
+  String get cleanerStatusOffline;
+
+  /// On break status
+  ///
+  /// In en, this message translates to:
+  /// **'On Break'**
+  String get cleanerStatusOnBreak;
+
+  /// Regular cleaning service category
+  ///
+  /// In en, this message translates to:
+  /// **'Regular Cleaning'**
+  String get serviceCategoryRegularCleaning;
+
+  /// Deep cleaning service category
+  ///
+  /// In en, this message translates to:
+  /// **'Deep Cleaning'**
+  String get serviceCategoryDeepCleaning;
+
+  /// Move in/out service category
+  ///
+  /// In en, this message translates to:
+  /// **'Move In/Out'**
+  String get serviceCategoryMoveInOut;
+
+  /// Post construction service category
+  ///
+  /// In en, this message translates to:
+  /// **'Post Construction'**
+  String get serviceCategoryPostConstruction;
+
+  /// Commercial service category
+  ///
+  /// In en, this message translates to:
+  /// **'Commercial'**
+  String get serviceCategoryCommercial;
+
+  /// Standard cleaning service category
+  ///
+  /// In en, this message translates to:
+  /// **'Standard Cleaning'**
+  String get serviceCategoryStandardCleaning;
+
+  /// Residential service category
+  ///
+  /// In en, this message translates to:
+  /// **'Residential'**
+  String get serviceCategoryResidential;
+
+  /// Rating range filter label
+  ///
+  /// In en, this message translates to:
+  /// **'Rating Range'**
+  String get staffFilterRatingRange;
+
+  /// Rating filter label
+  ///
+  /// In en, this message translates to:
+  /// **'Rating'**
+  String get staffFilterRating;
+
+  /// Star unit for rating filter
+  ///
+  /// In en, this message translates to:
+  /// **'star'**
+  String get staffFilterStar;
 }
 
 class _IntlLocalizationsDelegate extends LocalizationsDelegate<IntlLocalizations> {

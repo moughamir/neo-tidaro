@@ -6,8 +6,7 @@ import 'package:tidash/initialize_platform.dart';
 import 'package:tidash/initialize_services.dart';
 
 import 'app/app.dart';
-import 'app/widgets/error_app.dart';
-import 'app/widgets/loading_app.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

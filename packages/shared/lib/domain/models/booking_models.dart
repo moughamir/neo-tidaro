@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 enum BookingStatus {
   pending,
   confirmed,
+  assigned,
   inProgress,
   completed,
   cancelled,
@@ -14,11 +15,13 @@ enum BookingStatus {
 /// Service category enumeration
 enum ServiceCategory {
   standardCleaning,
+  regularCleaning,
   deepCleaning,
   moveInOut,
   postConstruction,
   commercial,
   residential,
+  specialized,
 }
 
 /// Booking model

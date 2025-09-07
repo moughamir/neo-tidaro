@@ -61,7 +61,16 @@ class _BookingsPageState extends State<BookingsPage> {
           }
 
           if (viewModel.bookings.isEmpty) {
-            return _buildEmptyState(context, l10n);
+            return EmptyState(
+              icon: Icons.calendar_today_outlined,
+              title: l10n.noBookings,
+              description: l10n.noBookingsDescription,
+              action: ElevatedButton.icon(
+                onPressed: () => _showCreateBookingDialog(context),
+                icon: const Icon(Icons.add),
+                label: Text(l10n.createBooking),
+              ),
+            );
           }
 
           return RefreshIndicator(
@@ -113,41 +122,7 @@ class _BookingsPageState extends State<BookingsPage> {
     );
   }
 
-  Widget _buildEmptyState(BuildContext context, IntlLocalizations l10n) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            Icons.calendar_today_outlined,
-            size: 64,
-            color: Theme.of(context).colorScheme.outline,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            l10n.noBookings,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Theme.of(context).colorScheme.outline,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            l10n.noBookingsDescription,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.outline,
-            ),
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton.icon(
-            onPressed: () => _showCreateBookingDialog(context),
-            icon: const Icon(Icons.add),
-            label: Text(l10n.createBooking),
-          ),
-        ],
-      ),
-    );
-  }
+  
 
   void _showCreateBookingDialog(BuildContext context) {
     showDialog<void>(

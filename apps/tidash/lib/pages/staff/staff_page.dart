@@ -60,7 +60,16 @@ class _StaffPageState extends State<StaffPage> {
           }
 
           if (viewModel.cleaners.isEmpty) {
-            return _buildEmptyState(context, l10n);
+            return EmptyState(
+              icon: Icons.people_outline,
+              title: l10n.noStaff,
+              description: l10n.noStaffDescription,
+              action: ElevatedButton.icon(
+                onPressed: () => _showAddStaffDialog(context),
+                icon: const Icon(Icons.person_add),
+                label: Text(l10n.addStaff),
+              ),
+            );
           }
 
           return RefreshIndicator(
@@ -115,41 +124,7 @@ class _StaffPageState extends State<StaffPage> {
     );
   }
 
-  Widget _buildEmptyState(BuildContext context, IntlLocalizations l10n) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            Icons.people_outline,
-            size: 64,
-            color: Theme.of(context).colorScheme.outline,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            l10n.noStaff,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              color: Theme.of(context).colorScheme.outline,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            l10n.noStaffDescription,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.outline,
-            ),
-          ),
-          const SizedBox(height: 24),
-          ElevatedButton.icon(
-            onPressed: () => _showAddStaffDialog(context),
-            icon: const Icon(Icons.person_add),
-            label: Text(l10n.addStaff),
-          ),
-        ],
-      ),
-    );
-  }
+  
 
   void _showAddStaffDialog(BuildContext context) {
     showDialog<void>(

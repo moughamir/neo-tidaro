@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared/shared.dart';
+import 'package:shared/shared.dart' hide DateTimeRange;
 import 'package:languist/languist.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 /// Dialog for filtering bookings
 class BookingFilterDialog extends StatefulWidget {
@@ -75,7 +76,7 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     // Status Filter
-                    _buildSectionHeader('Booking Status', Icons.assignment),
+                    const SectionHeader(title: 'Booking Status', icon: Icons.assignment),
                     const SizedBox(height: 16),
 
                     Wrap(
@@ -92,7 +93,7 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
                     const SizedBox(height: 24),
 
                     // Date Range Filter
-                    _buildSectionHeader('Date Range', Icons.date_range),
+                    const SectionHeader(title: 'Date Range', icon: Icons.date_range),
                     const SizedBox(height: 16),
 
                     InkWell(
@@ -132,7 +133,7 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
                     const SizedBox(height: 24),
 
                     // Price Range Filter
-                    _buildSectionHeader('Price Range', Icons.attach_money),
+                    const SectionHeader(title: 'Price Range', icon: Icons.attach_money),
                     const SizedBox(height: 16),
 
                     Text(
@@ -188,22 +189,7 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
     );
   }
 
-  Widget _buildSectionHeader(String title, IconData icon) {
-    final ThemeData theme = Theme.of(context);
-    return Row(
-      children: <Widget>[
-        Icon(icon, size: 20, color: theme.colorScheme.primary),
-        const SizedBox(width: 8),
-        Text(
-          title,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: theme.colorScheme.primary,
-          ),
-        ),
-      ],
-    );
-  }
+  
 
   Widget _buildStatusChip(BookingStatus? status, String label) {
     final ThemeData theme = Theme.of(context);
@@ -239,6 +225,8 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
         return 'Cancelled';
       case BookingStatus.rescheduled:
         return 'Rescheduled';
+      case BookingStatus.noShow:
+        return 'No Show';
     }
   }
 

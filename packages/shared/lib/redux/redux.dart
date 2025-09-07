@@ -21,3 +21,6 @@ export 'middleware/middleware.dart';
 
 // Store configuration
 export 'store/store.dart';
+
+// Example scaffolds
+export 'examples/examples.dart';

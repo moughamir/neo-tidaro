@@ -818,5 +818,77 @@
   "totalRevenue": "Total Revenue",
   "@totalRevenue": {
     "description": "Total revenue metric title"
+  },
+  "makeAvailableButtonLabel": "Make Available",
+  "@makeAvailableButtonLabel": {
+    "description": "Make available button label"
+  },
+  "makeUnavailableButtonLabel": "Make Unavailable",
+  "@makeUnavailableButtonLabel": {
+    "description": "Make unavailable button label"
+  },
+  "staffFiltersAppliedSuccessfully": "Staff filters applied successfully",
+  "@staffFiltersAppliedSuccessfully": {
+    "description": "Staff filters applied successfully message"
+  },
+  "staffFilterByServiceSpecialties": "Filter by service specialties",
+  "@staffFilterByServiceSpecialties": {
+    "description": "Filter by service specialties label"
+  },
+  "cleanerStatusAvailable": "Available",
+  "@cleanerStatusAvailable": {
+    "description": "Available status"
+  },
+  "cleanerStatusOnJob": "On Job",
+  "@cleanerStatusOnJob": {
+    "description": "On job status"
+  },
+  "cleanerStatusOffline": "Offline",
+  "@cleanerStatusOffline": {
+    "description": "Offline status"
+  },
+  "cleanerStatusOnBreak": "On Break",
+  "@cleanerStatusOnBreak": {
+    "description": "On break status"
+  },
+  "serviceCategoryRegularCleaning": "Regular Cleaning",
+  "@serviceCategoryRegularCleaning": {
+    "description": "Regular cleaning service category"
+  },
+  "serviceCategoryDeepCleaning": "Deep Cleaning",
+  "@serviceCategoryDeepCleaning": {
+    "description": "Deep cleaning service category"
+  },
+  "serviceCategoryMoveInOut": "Move In/Out",
+  "@serviceCategoryMoveInOut": {
+    "description": "Move in/out service category"
+  },
+  "serviceCategoryPostConstruction": "Post Construction",
+  "@serviceCategoryPostConstruction": {
+    "description": "Post construction service category"
+  },
+  "serviceCategoryCommercial": "Commercial",
+  "@serviceCategoryCommercial": {
+    "description": "Commercial service category"
+  },
+  "serviceCategoryStandardCleaning": "Standard Cleaning",
+  "@serviceCategoryStandardCleaning": {
+    "description": "Standard cleaning service category"
+  },
+  "serviceCategoryResidential": "Residential",
+  "@serviceCategoryResidential": {
+    "description": "Residential service category"
+  },
+  "staffFilterRatingRange": "Rating Range",
+  "@staffFilterRatingRange": {
+    "description": "Rating range filter label"
+  },
+  "staffFilterRating": "Rating",
+  "@staffFilterRating": {
+    "description": "Rating filter label"
+  },
+  "staffFilterStar": "star",
+  "@staffFilterStar": {
+    "description": "Star unit for rating filter"
   }
 }

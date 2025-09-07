@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
+import '../l10n/localization_extensions.dart';
 
 /// Card component for displaying booking information
 class BookingCard extends StatelessWidget {
@@ -80,7 +81,8 @@ class BookingCard extends StatelessWidget {
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      'Service #${booking.serviceId.substring(0, 8)}',
+                      // Display service category label instead of service id
+                      booking.serviceCategory.label(context),
                       style: theme.textTheme.bodyMedium,
                     ),
                   ),
@@ -103,7 +105,7 @@ class BookingCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    '\$${booking.totalPrice.toStringAsFixed(2)}',
+                    '\$${booking.price.toStringAsFixed(2)}',
                     style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                       color: theme.colorScheme.primary,
@@ -211,21 +213,26 @@ class BookingCard extends StatelessWidget {
   }
 
   ({String label, Color color}) _getStatusInfo(BookingStatus status) {
+    // Use humanized, localized labels via extensions to avoid hardcoded strings
+    final ctx = WidgetsBinding.instance.focusManager.primaryFocus?.context;
+    final label = ctx != null ? status.label(ctx) : status.name;
     switch (status) {
       case BookingStatus.pending:
-        return (label: 'Pending', color: Colors.orange);
+        return (label: label, color: Colors.orange);
       case BookingStatus.confirmed:
-        return (label: 'Confirmed', color: Colors.blue);
+        return (label: label, color: Colors.blue);
       case BookingStatus.assigned:
-        return (label: 'Assigned', color: Colors.teal);
+        return (label: label, color: Colors.teal);
       case BookingStatus.inProgress:
-        return (label: 'In Progress', color: Colors.purple);
+        return (label: label, color: Colors.purple);
       case BookingStatus.completed:
-        return (label: 'Completed', color: Colors.green);
+        return (label: label, color: Colors.green);
       case BookingStatus.cancelled:
-        return (label: 'Cancelled', color: Colors.red);
+        return (label: label, color: Colors.red);
       case BookingStatus.rescheduled:
-        return (label: 'Rescheduled', color: Colors.amber);
+        return (label: label, color: Colors.amber);
+      case BookingStatus.noShow:
+        return (label: label, color: Colors.grey);
     }
   }
 

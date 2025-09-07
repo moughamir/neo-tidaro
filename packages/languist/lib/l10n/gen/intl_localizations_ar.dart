@@ -623,4 +623,58 @@ class IntlLocalizationsAr extends IntlLocalizations {
 
   @override
   String get totalRevenue => 'Total Revenue';
+
+  @override
+  String get makeAvailableButtonLabel => 'Make Available';
+
+  @override
+  String get makeUnavailableButtonLabel => 'Make Unavailable';
+
+  @override
+  String get staffFiltersAppliedSuccessfully => 'Staff filters applied successfully';
+
+  @override
+  String get staffFilterByServiceSpecialties => 'Filter by service specialties';
+
+  @override
+  String get cleanerStatusAvailable => 'Available';
+
+  @override
+  String get cleanerStatusOnJob => 'On Job';
+
+  @override
+  String get cleanerStatusOffline => 'Offline';
+
+  @override
+  String get cleanerStatusOnBreak => 'On Break';
+
+  @override
+  String get serviceCategoryRegularCleaning => 'Regular Cleaning';
+
+  @override
+  String get serviceCategoryDeepCleaning => 'Deep Cleaning';
+
+  @override
+  String get serviceCategoryMoveInOut => 'Move In/Out';
+
+  @override
+  String get serviceCategoryPostConstruction => 'Post Construction';
+
+  @override
+  String get serviceCategoryCommercial => 'Commercial';
+
+  @override
+  String get serviceCategoryStandardCleaning => 'Standard Cleaning';
+
+  @override
+  String get serviceCategoryResidential => 'Residential';
+
+  @override
+  String get staffFilterRatingRange => 'Rating Range';
+
+  @override
+  String get staffFilterRating => 'Rating';
+
+  @override
+  String get staffFilterStar => 'star';
 }

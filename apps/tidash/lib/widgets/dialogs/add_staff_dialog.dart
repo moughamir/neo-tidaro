@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 /// Dialog for adding a new staff member
 class AddStaffDialog extends StatefulWidget {
@@ -20,11 +21,8 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _stateController = TextEditingController();
   final TextEditingController _zipCodeController = TextEditingController();
-  final TextEditingController _hourlyRateController = TextEditingController();
-
-  CleanerStatus _selectedStatus = CleanerStatus.pending;
-  final List<ServiceCategory> _selectedSpecialties = <ServiceCategory>[];
-  bool _isAvailable = true;
+  CleanerStatus _selectedStatus = CleanerStatus.offline;
+  final List<ServiceCategory> _selectedCategories = <ServiceCategory>[];
 
   @override
   void dispose() {
@@ -36,7 +34,6 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
     _cityController.dispose();
     _stateController.dispose();
     _zipCodeController.dispose();
-    _hourlyRateController.dispose();
     super.dispose();
   }
 
@@ -88,7 +85,7 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       // Personal Information Section
-                      _buildSectionHeader('Personal Information', Icons.person),
+                      const SectionHeader(title: 'Personal Information', icon: Icons.person),
                       const SizedBox(height: 16),
 
                       Row(
@@ -170,7 +167,7 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       const SizedBox(height: 24),
 
                       // Employment Information Section
-                      _buildSectionHeader('Employment Details', Icons.work),
+                      const SectionHeader(title: 'Employment Details', icon: Icons.work),
                       const SizedBox(height: 16),
 
                       Row(
@@ -183,9 +180,7 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                                 prefixIcon: Icon(Icons.assignment_ind),
                                 border: OutlineInputBorder(),
                               ),
-                              items: CleanerStatus.values.map((
-                                CleanerStatus status,
-                              ) {
+                              items: CleanerStatus.values.map((CleanerStatus status) {
                                 return DropdownMenuItem<CleanerStatus>(
                                   value: status,
                                   child: Text(_getStatusName(status)),
@@ -200,52 +195,16 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                               },
                             ),
                           ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: TextFormField(
-                              controller: _hourlyRateController,
-                              decoration: const InputDecoration(
-                                labelText: 'Hourly Rate (\$)',
-                                prefixIcon: Icon(Icons.attach_money),
-                                border: OutlineInputBorder(),
-                              ),
-                              keyboardType: TextInputType.number,
-                              validator: (String? value) {
-                                if (value != null && value.isNotEmpty) {
-                                  final double? rate = double.tryParse(value);
-                                  if (rate == null || rate < 0) {
-                                    return 'Invalid rate';
-                                  }
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
                         ],
                       ),
                       const SizedBox(height: 16),
 
-                      // Availability Switch
-                      SwitchListTile(
-                        title: const Text('Available for assignments'),
-                        subtitle: const Text(
-                          'Toggle staff member availability',
-                        ),
-                        value: _isAvailable,
-                        onChanged: (bool value) {
-                          setState(() {
-                            _isAvailable = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 16),
-
                       // Specialties Section
-                      _buildSectionHeader('Specialties', Icons.star),
+                      const SectionHeader(title: 'Specialties', icon: Icons.star),
                       const SizedBox(height: 16),
 
                       Text(
-                        'Select service specialties:',
+                        'Select service categories:',
                         style: theme.textTheme.bodyMedium,
                       ),
                       const SizedBox(height: 8),
@@ -253,21 +212,17 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       Wrap(
                         spacing: 8,
                         runSpacing: 8,
-                        children: ServiceCategory.values.map((
-                          ServiceCategory category,
-                        ) {
-                          final bool isSelected = _selectedSpecialties.contains(
-                            category,
-                          );
+                        children: ServiceCategory.values.map((ServiceCategory category) {
+                          final bool isSelected = _selectedCategories.contains(category);
                           return FilterChip(
                             label: Text(_getServiceCategoryName(category)),
                             selected: isSelected,
                             onSelected: (bool selected) {
                               setState(() {
                                 if (selected) {
-                                  _selectedSpecialties.add(category);
+                                  _selectedCategories.add(category);
                                 } else {
-                                  _selectedSpecialties.remove(category);
+                                  _selectedCategories.remove(category);
                                 }
                               });
                             },
@@ -280,10 +235,7 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       const SizedBox(height: 24),
 
                       // Address Section
-                      _buildSectionHeader(
-                        'Address (Optional)',
-                        Icons.location_on,
-                      ),
+                      const SectionHeader(title: 'Address (Optional)', icon: Icons.location_on),
                       const SizedBox(height: 16),
 
                       TextFormField(
@@ -362,40 +314,25 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
     );
   }
 
-  Widget _buildSectionHeader(String title, IconData icon) {
-    final ThemeData theme = Theme.of(context);
-    return Row(
-      children: <Widget>[
-        Icon(icon, size: 20, color: theme.colorScheme.primary),
-        const SizedBox(width: 8),
-        Text(
-          title,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: theme.colorScheme.primary,
-          ),
-        ),
-      ],
-    );
-  }
+  
 
   String _getStatusName(CleanerStatus status) {
     switch (status) {
-      case CleanerStatus.active:
-        return 'Active';
-      case CleanerStatus.inactive:
-        return 'Inactive';
-      case CleanerStatus.suspended:
-        return 'Suspended';
-      case CleanerStatus.pending:
-        return 'Pending';
+      case CleanerStatus.available:
+        return 'Available';
+      case CleanerStatus.busy:
+        return 'Busy';
+      case CleanerStatus.offline:
+        return 'Offline';
+      case CleanerStatus.onBreak:
+        return 'On Break';
     }
   }
 
   String _getServiceCategoryName(ServiceCategory category) {
     switch (category) {
-      case ServiceCategory.regularCleaning:
-        return 'Regular Cleaning';
+      case ServiceCategory.standardCleaning:
+        return 'Standard Cleaning';
       case ServiceCategory.deepCleaning:
         return 'Deep Cleaning';
       case ServiceCategory.moveInOut:
@@ -404,37 +341,23 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
         return 'Post Construction';
       case ServiceCategory.commercial:
         return 'Commercial';
-      case ServiceCategory.specialized:
-        return 'Specialized';
+      case ServiceCategory.residential:
+        return 'Residential';
     }
   }
 
   void _addStaff(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      Address? address;
-      if (_streetController.text.trim().isNotEmpty) {
-        address = Address(
-          street: _streetController.text.trim(),
-          city: _cityController.text.trim(),
-          state: _stateController.text.trim(),
-          zipCode: _zipCodeController.text.trim(),
-        );
-      }
+      final String name = '${_firstNameController.text.trim()} ${_lastNameController.text.trim()}'.trim();
 
       final Cleaner cleaner = Cleaner(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
-        firstName: _firstNameController.text.trim(),
-        lastName: _lastNameController.text.trim(),
+        name: name,
         email: _emailController.text.trim(),
         phone: _phoneController.text.trim(),
         status: _selectedStatus,
-        joinedAt: DateTime.now(),
-        address: address,
-        specialties: _selectedSpecialties,
-        isAvailable: _isAvailable,
-        hourlyRate: _hourlyRateController.text.trim().isNotEmpty
-            ? double.tryParse(_hourlyRateController.text.trim())
-            : null,
+        serviceCategories: _selectedCategories,
+        joinedDate: DateTime.now(),
       );
 
       // Dispatch action to create cleaner

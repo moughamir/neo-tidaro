@@ -2,9 +2,25 @@
 
 This document outlines tasks and improvements for the project, categorized by area and prioritized by urgency.
 
+## 📚 Workspace Rules & Workflow
+
+These items align the repo with our workspace-wide rules and development workflow.
+
+- [x] Centralize i18n via `packages/languist` using `languist.yaml` and `melos run gen:l10n` (see `packages/languist/`)
+- [x] Provide platform run/build scripts via Melos for all apps (see `.github/workflows`, workspace `pubspec.yaml` scripts)
+- [ ] Document and enforce Git Flow: branches `main`, `develop`, `feature/*`, `release/*`, `hotfix/*` (add branch protections and docs)
+- [ ] Add PR templates, issue templates, and CODEOWNERS for review rules
+- [ ] Standardize state management on Redux for new features; ensure consistency across modules
+- [ ] Provide Redux scaffolds and examples in `packages/shared` (or a dedicated `packages/state/`)
+- [ ] Add Docker Compose for local backend services (Supabase) and document usage in `documentation/`
+- [ ] Define environment management strategy: `.env`, `supabase/config.toml`, secrets via CI
+- [ ] Expand CI: `flutter analyze`, `flutter test`, and build matrix for platforms
+- [ ] Keep Clean Architecture docs updated in `documentation/` and ensure packages follow roles (core/shared/languist/device_sensors)
+
 ## 🚀 High Priority
 
 ### Build/Configuration
+
 - [x] Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html). (apps/tidash/android/app/build.gradle.kts:23)
 - [x] Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html). (apps/tidaro_mini/android/app/build.gradle.kts:23)
 - [x] Add your own signing config for the release build. (apps/tidaro/android/app/build.gradle.kts:34)
@@ -12,17 +28,21 @@ This document outlines tasks and improvements for the project, categorized by ar
 - [x] Add your own signing config for the release build. (apps/tidaro_mini/android/app/build.gradle.kts:35)
 
 ### Dependency Management
+
 - [x] Update outdated dependencies across all packages
 
 ## ✨ Medium Priority
 
 ### Documentation
+
 - [x] Create comprehensive documentations
 
 ### Licensing
+
 - [x] Add your license here. (packages/ui_kit/LICENSE:1)
 
 ### Package Development/Readiness
+
 - [x] Describe initial release. (packages/ui_kit/CHANGELOG.md:3)
 - [x] Put a short description of the package here that helps potential users (packages/ui_kit/README.md:14)
 - [x] List what your package can do. Maybe include images, gifs, or videos. (packages/ui_kit/README.md:19)
@@ -33,6 +53,7 @@ This document outlines tasks and improvements for the project, categorized by ar
 ## 🧹 Low Priority
 
 ### Build/Configuration
+
 - [x] Move the rest of this into files in ephemeral. See (examples/ui_kit_showcase/linux/flutter/CMakeLists.txt:9)
 - [x] Move the rest of this into files in ephemeral. See (examples/auth_flow/linux/flutter/CMakeLists.txt:9)
 - [x] Move the rest of this into files in files in ephemeral. See (examples/basic_app/linux/flutter/CMakeLists.txt:9)
@@ -45,7 +66,18 @@ This document outlines tasks and improvements for the project, categorized by ar
 
 ## 🛠️ UI Kit Refactoring - Common Widgets
 
+## 🎨 Design System Implementation
+
 ### High Priority
+
+- [ ] Replace `Card` widgets with `NeumorphicCard` throughout the application.
+- [ ] Replace `ElevatedButton` widgets with `NeumorphicElevatedButton` throughout the application.
+- [ ] Replace `OutlinedButton` widgets with `NeumorphicOutlinedButton` throughout the application.
+- [ ] Replace `TextFormField` or `TextField` widgets with `NeumorphicInputField` throughout the application.
+- [ ] Integrate `GlassContainer` into relevant UI components for glass-morphic effects (e.g., dialogs, sidebars, specific cards).
+
+### High Priority
+
 - [ ] Create a responsive DashboardGrid/MetricGrid widget in `ui_kit` to abstract `StaggeredGrid` usage. (apps/tidash/lib/pages/dashboard/dashboard_page.dart) (Consider generalizing to `ResponsiveGrid` or `CardGrid` for `StaffPage`'s `SliverGrid` usage.)
 - [ ] Move `_formatNumber` and `_formatCurrency` utility functions to `packages/shared` or `packages/ui_kit/utils`. (apps/tidash/lib/pages/dashboard/dashboard_page.dart)
 - [ ] Refactor `LoginPage` to use `AuthInputField` for email and password. (apps/tidash/lib/pages/home_page.dart)
@@ -82,6 +114,7 @@ This document outlines tasks and improvements for the project, categorized by ar
 - [ ] Generalize `GridView.builder` usage in `ui_kit_showcase` into a `ResponsiveGrid` or `CardGrid` widget. (examples/ui_kit_showcase/lib/main.dart)
 
 ### Medium Priority
+
 - [ ] Create a generic `LoadingIndicator` widget in `ui_kit` for consistent loading states. (apps/tidash/lib/pages/dashboard/dashboard_page.dart) (apps/tidash/lib/pages/bookings/bookings_page.dart) (apps/tidash/lib/pages/staff/staff_page.dart) (apps/tidash/lib/app/widgets/error_app.dart) (apps/tidash/lib/app/widgets/loading_app.dart) (apps/tidash/lib/app/widgets/loading_screen.dart)
 - [ ] Create a reusable `ErrorDisplay` or `MessageCard` widget in `ui_kit` for consistent error message presentation. (apps/tidash/lib/pages/home_page.dart) (apps/tidash/lib/pages/auth/signup_page.dart)
 - [ ] Consider creating a `MultiSelectChipGroup` or `CategoryFilterChips` widget in `ui_kit` if the `FilterChip` pattern is repeated. (apps/tidash/lib/widgets/dialogs/add_staff_dialog.dart)

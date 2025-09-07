@@ -5,49 +5,91 @@ This document provides essential context for AI models and contributors working 
 ## 1. Project Overview & Purpose
 
 - **Primary Goal:**
-  This repository is a **multi-package Flutter/Dart monorepo** managed with **Melos**. It enables modular development where apps, features, and core libraries coexist in a unified workspace.
+  This repository is a **multi-package Flutter/Dart monorepo** managed with **Melos**, whose configuration is integrated directly into **pubspec.yaml**. It enables modular development where apps, features, and core libraries coexist in a unified workspace.
 
 The primary target is **Tidaro** — a housekeeping and service mediation platform designed for Morocco and scalable to global markets. The app is **mobile-first**, with emphasis on **multi-language accessibility** (Arabic, Tifinagh, Berber Latin, English, French).
+
+### Real-World Goal
+
+Tidaro connects households and businesses with vetted housekeeping professionals in Morocco.
+
+- Customers can discover services, get transparent pricing, book and manage appointments, pay securely, and rate experiences.
+- Providers (cleaners/agencies) can manage availability, assignments, routes, and performance, and receive payouts.
+- Operators use the dashboard (TiDash) to oversee supply/demand, staff, bookings, service quality, and support.
+
+Scope across apps:
+
+- `apps/tidaro/`: customer-facing booking experience.
+- `apps/tidash/`: operational dashboard for staff, bookings, metrics.
+- `apps/tidaro_mini/`: lightweight companion app variant for rapid testing or limited deployments.
+
+Success indicators:
+
+- Reduced booking friction (time-to-book, cancellation rate).
+- High fulfillment rate and on-time completion.
+- Provider retention and utilization.
+- CSAT/NPS and low support load via reliable flows.
+- Secure, compliant data handling using Supabase (Auth, Storage, Realtime, Functions).
+
+See [[#Business KPIs]] for formal tracking metrics.
 
 ## 2. Core Technologies & Stack
 
 - **Languages:** Dart (latest stable supported by Flutter).
-- **Frameworks & Runtimes:** Flutter for cross-platform (iOS, Android, Web).
-- **Backend & Database:** Supabase/PostgreSQL (auth, realtime, data sync).
+- **Frameworks & Platforms:** Flutter (Android, iOS, Web, Linux, macOS, Windows).
+- **Backend & Database:** Supabase/PostgreSQL (Auth, Storage, Functions, Realtime).
+- **State Management:** Redux (standard across workspace). Existing Redux integrations are the reference; new features should use Redux.
+- **Internationalization:** `packages/languist` with `languist.yaml` and Flutter gen-l10n.
+- **Containerization:** Docker Compose for local services where applicable.
 - **Monorepo Tooling:**
 
-  - [`melos`](https://melos.invertase.dev) → workspace manager
+  - [`melos`](https://melos.invertase.dev) → workspace manager (configured in `pubspec.yaml`)
   - `dart pub` → package dependencies
+  - `pnpm` → JavaScript package manager for root-level scripts (e.g., seeding)
 
 ## 3. Workspace Structure
 
-This project follows a **Melos workspace** layout.
+This project follows a **Melos workspace** layout, with configuration embedded in `pubspec.yaml`.
 
-```
+```shell
 .
-├── apps/                 # App entrypoints
-│   ├── tidaro/           # Main Tidaro mobile app
-│   └── ...               # Future apps (admin, web, etc.)
+├── apps/                     # App entrypoints
+│   ├── tidaro/               # Main app
+│   ├── tidaro_mini/          # Lightweight app variant
+│   └── tidash/               # Admin/dashboard app
 │
-├── packages/             # Shared and feature packages
-│   ├── authentication/   # Auth flows (login, signup, magic links)
-│   ├── chat/             # Messaging & chat features (Supabase realtime)
-│   ├── gamification/     # Points, badges, rewards system
-│   ├── onboarding/       # Onboarding flows and screens
-│   ├── theme/            # Design tokens, theming system
-│   ├── ui_components/    # Reusable Flutter widgets
-│   └── utils/            # Core helpers, constants, and extensions
+├── packages/                 # Reusable and shared packages
+│   ├── core/                 # Core utilities and base functionality
+│   ├── shared/               # State mgmt, utilities, shared functions
+│   ├── languist/             # Localization (ARB, gen:l10n, config)
+│   └── device_sensors/       # Sensors and device integrations
 │
-├── melos.yaml            # Melos workspace configuration
-├── pubspec.yaml          # Root dependencies
-└── scripts/              # Project automation & CI/CD helpers
+├── examples/                 # Minimal runnable examples
+│   ├── auth_flow/
+│   ├── basic_app/
+│   └── ui_kit_showcase/
+│
+├── supabase/                 # DB schema, seeds, config
+│   ├── migrations/
+│   └── seeds/
+│
+├── documentation/            # Architecture, workflow, guides
+│   ├── 01-workspace-structure.md
+│   ├── 02-coding-conventions.md
+│   ├── 03-development-workflow.md
+│   ├── 04-packages-overview.md
+│   └── 05-platform-support.md
+│
+├── pubspec.yaml              # Workspace-level dependencies, scripts, and Melos configuration
+├── pubspec.yaml              # Workspace-level dependencies and scripts
+└── .github/workflows/        # CI pipelines
 ```
 
 **Philosophy:**
 
-- `/apps` → Minimal entrypoints that compose features.
-- `/packages` → Independent, reusable feature modules.
-- No business logic inside `/apps`, only wiring and presentation.
+- `/apps/` → Thin entrypoints that compose features and present UI.
+- `/packages/` → Independent, reusable modules (domain, data, shared UI).
+- Business logic lives in packages; apps wire features and screens.
 
 ## 4. Coding Conventions & Style Guide
 
@@ -62,11 +104,12 @@ This project follows a **Melos workspace** layout.
   - Classes, Widgets: `PascalCase`
   - Files: `snake_case.dart`
 
-- **API & State Management:**
+- **Architecture & State Management:**
 
-  - Supabase for backend interactions.
-  - Keep networking, models, and services in `packages/`.
-  - UI widgets consume these via dependency injection.
+  - Clean Architecture and separation of concerns.
+  - State management: Use Redux for new and existing features. Keep reducers, actions, selectors, and middleware in `packages/shared/` (or domain-specific packages) and compose them at app level.
+  - Networking/services/models live in `packages/core/` or feature packages; UI consumes via abstractions.
+  - Localization via `packages/languist` and generated l10n delegates.
 
 - **Error Handling:**
 
@@ -85,23 +128,49 @@ This project follows a **Melos workspace** layout.
 **Setup:**
 
 1. Install Flutter SDK (latest stable).
-2. Run `melos bootstrap` to link all packages.
-3. Run an app with `flutter run` from `apps/tidaro/`.
+2. Install Melos: `dart pub global activate melos`.
+3. Bootstrap workspace: `melos bootstrap`.
+4. Generate localization: `melos run gen:l10n` (uses `packages/languist/languist.yaml`).
+5. Run apps via Melos platform scripts, for example:
+   - `melos run run:tidaro:linux`
+   - `melos run run:tidaro_mini:web`
+   - `melos run run:tidash:android`
+
+**Builds:**
+
+- Use Melos build scripts, e.g. `melos run build:linux`, `melos run build:web`, `melos run build:android`.
 
 **Testing:**
 
-- Use `flutter test` for unit/widget tests.
-- Each package should maintain its own `/test` directory.
+- `flutter test` at workspace or package level.
+- Each package maintains its own `/test` directory.
+
+**Localization Flow:**
+
+- Edit ARB files in `packages/languist/lib/l10n/`.
+- Update `languist.yaml` as needed.
+- Run `melos run gen:l10n` to regenerate.
+- Apps import generated delegates and use `l10n.*` accessors.
+
+**Seeding Data:**
+
+- **Purpose:** Snaplet is used to generate realistic, synthetic data for development and testing environments. It populates the database based on the defined schema in `seed.ts`.
+- **Schema Synchronization:** After any database schema changes (e.g., new migrations), run `npx snaplet generate` to update Snaplet's type-safe client.
+- **Execution:** To seed the database, ensure your `DATABASE_URL` environment variable is correctly set (e.g., in a `.env` file), then run: `pnpm run seed`
 
 **CI/CD:**
 
-- Pipelines should include:
+- Pipelines should include at minimum:
 
   - `melos bootstrap`
   - `flutter analyze`
   - `flutter test`
+  - Optional: platform build matrix for release workflows
 
-- Future: build/deploy to Android, iOS, Web.
+**Environment & Secrets:**
+
+- Do not commit secrets or Supabase keys. Use `.env`/CI secrets and `supabase/config.toml`.
+- Docker Compose can be used for local services.
 
 ## 7. AI Collaboration Guidelines
 
@@ -110,12 +179,14 @@ This project follows a **Melos workspace** layout.
   - New features → new package under `/packages`.
   - Keep `/apps` lean, import only what’s needed.
 
+- **State Management:**
+
+  - Use Redux. Add actions, reducers, selectors, and middleware consistently. Prefer selectors over direct state access in UI.
+
 - **Security:**
 
   - Do not commit secrets or Supabase keys.
   - Use `.env` and secure injection at runtime.
-
-- **Dependencies:**
 
   - Add via `dart pub add <package>` inside the correct package.
   - Sync with `melos.yaml` if package graph changes.
@@ -128,3 +199,65 @@ This project follows a **Melos workspace** layout.
     - `fix:` → bug fix
     - `chore:` → infra/tooling updates
     - `docs:` → documentation changes
+
+## 8. Business KPIs
+
+This section formalizes success indicators described in [[#Real-World Goal]]. Metrics should be computed regularly (e.g., daily) and visualized in `apps/tidash/`. Data is sourced from Supabase as defined in [[#2. Core Technologies & Stack]].
+
+- Time to Book (TTB)
+
+  - Definition: Median minutes from app open to booking confirmation.
+  - Formula: median(`confirmed_at` - `session_start_at`).
+  - Source: `events.sessions`, `bookings`.
+
+- Cancellation Rate
+
+  - Definition: Share of bookings canceled by customer or provider.
+  - Formula: canceled_bookings / total_bookings over period.
+  - Source: `bookings(status in {canceled_by_customer, canceled_by_provider})`.
+
+- Fulfillment Rate
+
+  - Definition: Share of confirmed bookings that complete successfully.
+  - Formula: completed_bookings / confirmed_bookings.
+  - Source: `bookings(status=completed | confirmed)`.
+
+- On-time Completion Rate
+
+  - Definition: Completions where `completed_at <= scheduled_end_at`.
+  - Formula: on_time_completions / completed_bookings.
+  - Source: `bookings(completed_at, scheduled_end_at)`.
+
+- Provider Utilization
+
+  - Definition: Share of provider available hours that are booked.
+  - Formula: sum(booking_hours) / sum(available_hours).
+  - Source: `providers_availability`, `bookings(duration)`.
+
+- Provider Retention (30/90-day)
+
+  - Definition: Providers active in a cohort who return in 30/90 days.
+  - Formula: returning_providers / cohort_providers.
+  - Source: `providers`, `bookings`.
+
+- Customer Satisfaction (CSAT) and NPS
+
+  - Definition: Average CSAT (1–5) and NPS (promoters − detractors).
+  - Formula: `avg(csat_score)`, `(promoters% - detractors%)`.
+  - Source: `reviews`, `surveys`.
+
+- Support Ticket Rate
+
+  - Definition: Tickets per 100 bookings.
+  - Formula: tickets / bookings \* 100.
+  - Source: `support_tickets`, `bookings`.
+
+- Data Security Incidents
+  - Definition: Verified incidents impacting confidentiality, integrity, availability.
+  - Source: incident registry; see policies in `documentation/`.
+
+Implementation notes:
+
+- Visualize KPIs in [[#3. Workspace Structure]] → `apps/tidash/`.
+- Compute with scheduled jobs or Supabase Functions (see [[#2. Core Technologies & Stack]]).
+- Store aggregates in `analytics_daily` tables for fast dashboards.

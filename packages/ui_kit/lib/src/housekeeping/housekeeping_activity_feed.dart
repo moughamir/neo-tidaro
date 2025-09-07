@@ -204,10 +204,8 @@ class HousekeepingActivityFeed extends StatelessWidget {
         return Colors.green;
       case HousekeepingActivityType.reviewSubmitted:
         return Colors.amber;
-      case HousekeepingActivityType.customerRegistered:
-        return Colors.indigo;
-      case HousekeepingActivityType.cleanerRegistered:
-        return Colors.cyan;
+      default:
+        return Colors.blueGrey;
     }
   }
 
@@ -231,10 +229,8 @@ class HousekeepingActivityFeed extends StatelessWidget {
         return Icons.payment;
       case HousekeepingActivityType.reviewSubmitted:
         return Icons.star_outline;
-      case HousekeepingActivityType.customerRegistered:
-        return Icons.person_outline;
-      case HousekeepingActivityType.cleanerRegistered:
-        return Icons.cleaning_services_outlined;
+      default:
+        return Icons.info_outline;
     }
   }
 

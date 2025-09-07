@@ -7,6 +7,11 @@ library shared;
 // Domain exports
 export 'domain/entities/entity.dart';
 export 'domain/repositories/generic_repository.dart';
+export 'domain/models/models.dart';
+export 'domain/enums/enums.dart' hide UserRole, BookingStatus;
+
+// Data layer exports
+export 'data/mappers/supabase_mappers.dart';
 
 // Utils exports
 export 'utils/extensions/datetime_extensions.dart';

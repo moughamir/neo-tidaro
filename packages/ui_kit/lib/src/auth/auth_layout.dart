@@ -355,7 +355,6 @@ class AuthLayout extends StatelessWidget {
       'ar': 'العربية',
       'es': 'Español',
       'fr': 'Français',
-      'zgh': 'ⵜⴰⵎⴰⵣⵉⵖⵜ',
     };
 
     return Container(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 /// Dialog for filtering staff members
 class StaffFilterDialog extends StatefulWidget {
@@ -76,9 +78,9 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     // Status Filter
-                    _buildSectionHeader(
-                      'Employment Status',
-                      Icons.assignment_ind,
+                    const SectionHeader(
+                      title: 'Employment Status',
+                      icon: Icons.assignment_ind,
                     ),
                     const SizedBox(height: 16),
 
@@ -96,7 +98,10 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                     const SizedBox(height: 24),
 
                     // Availability Filter
-                    _buildSectionHeader('Availability', Icons.schedule),
+                    const SectionHeader(
+                      title: 'Availability',
+                      icon: Icons.schedule,
+                    ),
                     const SizedBox(height: 16),
 
                     Wrap(
@@ -111,11 +116,11 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                     const SizedBox(height: 24),
 
                     // Specialties Filter
-                    _buildSectionHeader('Specialties', Icons.star),
+                    const SectionHeader(title: 'Specialties', icon: Icons.star),
                     const SizedBox(height: 16),
 
                     Text(
-                      'Filter by service specialties:',
+                      l10n.staffFilterByServiceSpecialties,
                       style: theme.textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 8),
@@ -150,11 +155,14 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                     const SizedBox(height: 24),
 
                     // Rating Range Filter
-                    _buildSectionHeader('Rating Range', Icons.star_rate),
+                    SectionHeader(
+                      title: Languist.of(context).staffFilterRatingRange,
+                      icon: Icons.star_rate,
+                    ),
                     const SizedBox(height: 16),
 
                     Text(
-                      'Rating: ${_minRating.toStringAsFixed(1)} - ${_maxRating.toStringAsFixed(1)} stars',
+                      '${Languist.of(context).staffFilterRating}: ${_minRating.toStringAsFixed(1)} - ${_maxRating.toStringAsFixed(1)} ${Languist.of(context).staffFilterStar}',
                       style: theme.textTheme.titleMedium,
                     ),
                     const SizedBox(height: 8),
@@ -188,14 +196,14 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () => _clearFilters(),
-                    child: Text(l10n.clear),
+                    child: Text(Languist.of(context).clear),
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () => _applyFilters(),
-                    child: Text(l10n.apply),
+                    child: Text(Languist.of(context).apply),
                   ),
                 ),
               ],
@@ -203,23 +211,6 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget _buildSectionHeader(String title, IconData icon) {
-    final ThemeData theme = Theme.of(context);
-    return Row(
-      children: <Widget>[
-        Icon(icon, size: 20, color: theme.colorScheme.primary),
-        const SizedBox(width: 8),
-        Text(
-          title,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: theme.colorScheme.primary,
-          ),
-        ),
-      ],
     );
   }
 
@@ -260,32 +251,40 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
   }
 
   String _getStatusName(CleanerStatus status) {
+    final IntlLocalizations l10n = Languist.of(context);
     switch (status) {
-      case CleanerStatus.active:
-        return 'Active';
-      case CleanerStatus.inactive:
-        return 'Inactive';
-      case CleanerStatus.suspended:
-        return 'Suspended';
-      case CleanerStatus.pending:
-        return 'Pending';
+      case CleanerStatus.available:
+        return l10n.cleanerStatusAvailable;
+      case CleanerStatus.onJob:
+        return l10n.cleanerStatusOnJob;
+      case CleanerStatus.offline:
+        return l10n.cleanerStatusOffline;
+      case CleanerStatus.onBreak:
+        return l10n.cleanerStatusOnBreak;
     }
   }
 
   String _getServiceCategoryName(ServiceCategory category) {
+    final IntlLocalizations l10n = Languist.of(context);
     switch (category) {
       case ServiceCategory.regularCleaning:
-        return 'Regular Cleaning';
+        return l10n.serviceCategoryRegularCleaning;
       case ServiceCategory.deepCleaning:
-        return 'Deep Cleaning';
+        return l10n.serviceCategoryDeepCleaning;
       case ServiceCategory.moveInOut:
-        return 'Move In/Out';
+        return l10n.serviceCategoryMoveInOut;
       case ServiceCategory.postConstruction:
-        return 'Post Construction';
+        return l10n.serviceCategoryPostConstruction;
       case ServiceCategory.commercial:
-        return 'Commercial';
+        return l10n.serviceCategoryCommercial;
       case ServiceCategory.specialized:
+        // Fallback: Languist currently has no `serviceCategorySpecialized` key.
+        // Consider adding it to Languist ARB files. Using a safe English fallback meanwhile.
         return 'Specialized';
+      case ServiceCategory.standardCleaning:
+        return l10n.serviceCategoryStandardCleaning;
+      case ServiceCategory.residential:
+        return l10n.serviceCategoryResidential;
     }
   }
 
@@ -306,7 +305,7 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
     // Show confirmation
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: const Text('Staff filters applied successfully'),
+        content: Text(Languist.of(context).staffFiltersAppliedSuccessfully),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
     );

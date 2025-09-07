@@ -16,16 +16,29 @@ abstract class BaseReducer<S extends BaseState> {
     String actionType,
     S Function() onRequest,
     S Function(T data) onSuccess,
-    S Function(Exception error) onFailure,
-  ) {
-    return switch (action.type) {
-      '${actionType}_REQUEST' => onRequest(),
-      '${actionType}_SUCCESS' =>
-        action is SuccessAction<T> ? onSuccess(action.data) : state,
-      '${actionType}_FAILURE' =>
-        action is FailureAction ? onFailure(action.error) : state,
-      _ => state,
-    };
+    S Function(Exception error) onFailure, {
+    void Function(String reason, BaseAction action)? onMismatch,
+  }) {
+    switch (action.type) {
+      case '${actionType}_REQUEST':
+        return onRequest();
+      case '${actionType}_SUCCESS':
+        if (action is SuccessAction<T>) {
+          return onSuccess(action.data);
+        } else {
+          onMismatch?.call('SUCCESS_TYPE_MISMATCH', action);
+          return state;
+        }
+      case '${actionType}_FAILURE':
+        if (action is FailureAction) {
+          return onFailure(action.error);
+        } else {
+          onMismatch?.call('FAILURE_TYPE_MISMATCH', action);
+          return state;
+        }
+      default:
+        return state;
+    }
   }
 }
 

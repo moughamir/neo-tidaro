@@ -4,7 +4,7 @@ import 'booking_models.dart';
 /// Cleaner status enumeration
 enum CleanerStatus {
   available,
-  busy,
+  onJob,
   offline,
   onBreak,
 }

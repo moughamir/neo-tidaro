@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
+import 'package:ui_kit/ui_kit.dart' as ui;
 
 /// Dialog for viewing booking details
 class BookingDetailsDialog extends StatelessWidget {
@@ -54,95 +55,67 @@ class BookingDetailsDialog extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     // Booking ID and Status
-                    _buildInfoCard(
-                      theme,
-                      'Booking Information',
-                      Icons.info_outline,
-                      <Widget>[
-                        _buildInfoRow('Booking ID', booking.id),
-                        _buildInfoRow('Status', _getStatusName(booking.status)),
-                        _buildInfoRow(
-                          'Created',
-                          _formatDateTime(booking.createdAt),
-                        ),
-                        _buildInfoRow(
-                          'Scheduled',
-                          _formatDateTime(booking.scheduledDate),
-                        ),
+                    ui.InfoCard(
+                      title: 'Booking Information',
+                      icon: Icons.info_outline,
+                      children: <Widget>[
+                        ui.InfoRow(label: 'Booking ID', value: booking.id),
+                        ui.InfoRow(label: 'Status', value: _getStatusName(booking.status)),
+                        ui.InfoRow(label: 'Created', value: _formatDateTime(booking.createdAt)),
+                        ui.InfoRow(label: 'Scheduled', value: _formatDateTime(booking.scheduledDate)),
                         if (booking.completedAt != null)
-                          _buildInfoRow(
-                            'Completed',
-                            _formatDateTime(booking.completedAt!),
-                          ),
+                          ui.InfoRow(label: 'Completed', value: _formatDateTime(booking.completedAt!)),
                       ],
                     ),
                     const SizedBox(height: 16),
 
                     // Service Information
-                    _buildInfoCard(
-                      theme,
-                      'Service Details',
-                      Icons.cleaning_services,
-                      <Widget>[
-                        _buildInfoRow('Service ID', booking.serviceId),
-                        _buildInfoRow(
-                          'Total Price',
-                          '\$${booking.totalPrice.toStringAsFixed(2)}',
-                        ),
-                        _buildInfoRow(
-                          'Payment Status',
-                          _getPaymentStatusName(booking.paymentStatus),
-                        ),
-                        if (booking.notes != null)
-                          _buildInfoRow('Notes', booking.notes!),
+                    ui.InfoCard(
+                      title: 'Service Details',
+                      icon: Icons.cleaning_services,
+                      children: <Widget>[
+                        ui.InfoRow(label: 'Service ID', value: booking.serviceId),
+                        ui.InfoRow(label: 'Total Price', value: '\$${booking.totalPrice.toStringAsFixed(2)}'),
+                        ui.InfoRow(label: 'Payment Status', value: _getPaymentStatusName(booking.paymentStatus)),
+                        if (booking.notes != null) ui.InfoRow(label: 'Notes', value: booking.notes!),
                       ],
                     ),
                     const SizedBox(height: 16),
 
                     // Customer Information
-                    _buildInfoCard(
-                      theme,
-                      'Customer Information',
-                      Icons.person,
-                      <Widget>[
-                        _buildInfoRow('Customer ID', booking.customerId),
+                    ui.InfoCard(
+                      title: 'Customer Information',
+                      icon: Icons.person,
+                      children: <Widget>[
+                        ui.InfoRow(label: 'Customer ID', value: booking.customerId),
                         if (booking.cleanerId != null)
-                          _buildInfoRow('Assigned Cleaner', booking.cleanerId!),
+                          ui.InfoRow(label: 'Assigned Cleaner', value: booking.cleanerId!),
                       ],
                     ),
                     const SizedBox(height: 16),
 
                     // Address Information
-                    _buildInfoCard(
-                      theme,
-                      'Service Address',
-                      Icons.location_on,
-                      <Widget>[
-                        _buildInfoRow('Street', booking.address.street),
+                    ui.InfoCard(
+                      title: 'Service Address',
+                      icon: Icons.location_on,
+                      children: <Widget>[
+                        ui.InfoRow(label: 'Street', value: booking.address.street),
                         if (booking.address.apartment != null)
-                          _buildInfoRow(
-                            'Apartment',
-                            booking.address.apartment!,
-                          ),
-                        _buildInfoRow('City', booking.address.city),
-                        _buildInfoRow('State', booking.address.state),
-                        _buildInfoRow('ZIP Code', booking.address.zipCode),
+                          ui.InfoRow(label: 'Apartment', value: booking.address.apartment!),
+                        ui.InfoRow(label: 'City', value: booking.address.city),
+                        ui.InfoRow(label: 'State', value: booking.address.state),
+                        ui.InfoRow(label: 'ZIP Code', value: booking.address.zipCode),
                         if (booking.address.instructions != null)
-                          _buildInfoRow(
-                            'Instructions',
-                            booking.address.instructions!,
-                          ),
+                          ui.InfoRow(label: 'Instructions', value: booking.address.instructions!),
                       ],
                     ),
                     const SizedBox(height: 16),
 
                     // Rating and Review (if completed)
                     if (booking.status == BookingStatus.completed)
-                      _buildInfoCard(theme, 'Feedback', Icons.star, <Widget>[
-                        if (booking.rating != null)
-                          _buildRatingRow(booking.rating!),
-                        if (booking.review != null)
-                          _buildInfoRow('Review', booking.review!),
+                      ui.InfoCard(title: 'Feedback', icon: Icons.star, children: <Widget>[
+                        if (booking.rating != null) _buildRatingRow(booking.rating!),
+                        if (booking.review != null) ui.InfoRow(label: 'Review', value: booking.review!),
                       ]),
                   ],
                 ),
@@ -190,58 +163,7 @@ class BookingDetailsDialog extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoCard(
-    ThemeData theme,
-    String title,
-    IconData icon,
-    List<Widget> children,
-  ) {
-    return Card(
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                Icon(icon, size: 20, color: theme.colorScheme.primary),
-                const SizedBox(width: 8),
-                Text(
-                  title,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            ...children,
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildInfoRow(String label, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          SizedBox(
-            width: 120,
-            child: Text(
-              '$label:',
-              style: const TextStyle(fontWeight: FontWeight.w500),
-            ),
-          ),
-          Expanded(child: Text(value)),
-        ],
-      ),
-    );
-  }
+  
 
   Widget _buildRatingRow(int rating) {
     return Padding(
@@ -287,6 +209,8 @@ class BookingDetailsDialog extends StatelessWidget {
         return 'Cancelled';
       case BookingStatus.rescheduled:
         return 'Rescheduled';
+      case BookingStatus.noShow:
+        return 'No Show';
     }
   }
 
@@ -294,7 +218,9 @@ class BookingDetailsDialog extends StatelessWidget {
     switch (status) {
       case PaymentStatus.pending:
         return 'Pending';
-      case PaymentStatus.paid:
+      case PaymentStatus.processing:
+        return 'Processing';
+      case PaymentStatus.completed:
         return 'Paid';
       case PaymentStatus.failed:
         return 'Failed';
@@ -332,6 +258,8 @@ class BookingDetailsDialog extends StatelessWidget {
         return Icons.play_arrow;
       case BookingStatus.inProgress:
         return Icons.done_all;
+      case BookingStatus.noShow:
+        return Icons.report_gmailerrorred;
       default:
         return Icons.info;
     }
@@ -353,6 +281,8 @@ class BookingDetailsDialog extends StatelessWidget {
         return 'Cancelled';
       case BookingStatus.rescheduled:
         return 'Rescheduled';
+      case BookingStatus.noShow:
+        return 'No Show';
     }
   }
 

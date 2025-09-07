@@ -1,10 +1,10 @@
 # Languist - Comprehensive Localization Package
 
-Languist is a comprehensive Flutter localization package designed to serve as the main l10n source for multiple projects. It provides extensive translations across 5 languages with over 140 common UI strings, making it perfect for rapid application development.
+Languist is a comprehensive Flutter localization package designed to serve as the main l10n source for multiple projects. It provides extensive translations across 4 languages with over 140 common UI strings, making it perfect for rapid application development.
 
 ## Features
 
-- **Multi-language Support**: English (en), Arabic (ar), Spanish (es), French (fr), and Tamazight (zgh)
+- **Multi-language Support**: English (en), Arabic (ar), Spanish (es), French (fr)
 - **Comprehensive String Coverage**: 140+ UI strings covering all common use cases
 - **Configuration-driven**: Uses `languist.yaml` for flexible configuration
 - **Easy Integration**: Simple API for accessing localized strings
@@ -18,7 +18,6 @@ Languist is a comprehensive Flutter localization package designed to serve as th
 | Arabic | `ar` | ✅ Complete | 100% |
 | Spanish | `es` | ✅ Complete | 100% |
 | French | `fr` | ✅ Complete | 100% |
-| Tamazight | `zgh` | ✅ Complete | 100% |
 
 ## String Categories
 

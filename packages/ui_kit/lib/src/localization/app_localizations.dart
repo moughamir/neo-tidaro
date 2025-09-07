@@ -58,6 +58,13 @@ class AppLocalizations {
   /// Get the "X days ago" text
   String daysAgo(int days) => _localizations.daysAgo(days);
 
+  // --- Status/availability strings used by housekeeping UI ---
+  String get available => _localizations.available;
+  String get busy => _localizations.busy;
+  String get offline => _localizations.offline;
+  // We map onBreak to "away" in Languist to keep wording short in chips
+  String get away => _localizations.away;
+
   /// Simplified way to access AppLocalizations from a BuildContext
   static AppLocalizations of(BuildContext context) {
     return AppLocalizations(context);

@@ -63,10 +63,15 @@ class LoggingMiddleware<S extends BaseState> extends BaseMiddleware<S> {
 
 /// Error handling middleware
 class ErrorHandlingMiddleware<S extends BaseState> extends BaseMiddleware<S> {
-  const ErrorHandlingMiddleware({this.onError, this.shouldCatch = true});
+  const ErrorHandlingMiddleware({
+    this.onError,
+    this.shouldCatch = true,
+    this.rethrowAfterDispatch = false,
+  });
 
   final void Function(Exception error, BaseAction action)? onError;
   final bool shouldCatch;
+  final bool rethrowAfterDispatch;
 
   @override
   void call(Store<S> store, BaseAction action, NextDispatcher next) {
@@ -85,6 +90,12 @@ class ErrorHandlingMiddleware<S extends BaseState> extends BaseMiddleware<S> {
 
       // Dispatch error action
       store.dispatch(ActionCreators.failure(action.type, exception));
+
+      if (rethrowAfterDispatch) {
+        // Rethrow to allow upper layers or devtools to capture
+        // ignore: only_throw_errors
+        throw exception;
+      }
     }
   }
 }

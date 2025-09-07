@@ -220,7 +220,7 @@ class SupabaseService
         await _client
             .from('profiles')
             .update(data)
-            .eq('user_id', userId)
+            .eq('id', userId)
             .select()
             .single();
         // This doesn't return a User object, so we return the current user.
