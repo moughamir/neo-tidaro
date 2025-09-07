@@ -1,5 +1,6 @@
 // Dashboard Actions
-import 'package:shared/redux/dashboard/dashboard_state.dart';
+
+import 'package:shared/domain/models/dashboard_models.dart';
 
 class LoadDashboardAction {
   const LoadDashboardAction();

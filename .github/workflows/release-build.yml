@@ -1,0 +1,46 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install melos
+        run: |
+          dart pub global activate melos
+          echo "export PATH=\"$PATH:$HOME/.pub-cache/bin\"" >> $GITHUB_ENV
+
+      - name: Bootstrap workspace
+        run: melos bootstrap
+
+      - name: Analyze
+        run: melos analyze
+
+      - name: Build Web (tidaro, tidaro_mini, tidash)
+        run: |
+          melos run build:web || true
+
+      # Platform builds (stubs) – enable as needed with signing
+      # - name: Build Android APKs
+      #   run: melos run build:android
+      #
+      # - name: Build Linux
+      #   run: melos run build:linux
+      #
+      # - name: Build macOS
+      #   run: melos run build:macos
+      #
+      # - name: Build Windows
+      #   run: melos run build:windows

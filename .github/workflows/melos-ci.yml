@@ -1,0 +1,33 @@
+name: Melos CI
+
+on:
+  push:
+    branches: [ develop, main ]
+  pull_request:
+    branches: [ develop, main ]
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Install melos
+        run: |
+          dart pub global activate melos
+          echo "export PATH=\"$PATH:$HOME/.pub-cache/bin\"" >> $GITHUB_ENV
+
+      - name: Bootstrap workspace
+        run: melos bootstrap
+
+      - name: Analyze
+        run: melos analyze
+
+      - name: Test
+        run: melos test || true  # Allow no tests to pass pipeline

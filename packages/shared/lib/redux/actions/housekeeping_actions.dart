@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../housekeeping/housekeeping_models.dart';
-import '../housekeeping/housekeeping_state.dart';
+import 'package:shared/domain/models/models.dart';
 
 /// Base class for all housekeeping actions
 abstract class HousekeepingAction extends Equatable {

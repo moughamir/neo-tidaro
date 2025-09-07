@@ -1,0 +1,20 @@
+name: device_sensors
+description: Device sensors and permissions helpers for Neo-Tidaro.
+publish_to: 'none'
+resolution: workspace
+version: 0.1.0-pre-alpha.2
+
+environment:
+  sdk: '3.9.0'
+  flutter: '>=3.35.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  sensors_plus: ^4.0.2
+  permission_handler: ^12.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0

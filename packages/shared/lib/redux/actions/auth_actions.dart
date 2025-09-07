@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import '../core/core.dart';
+import 'package:shared/redux/redux.dart';
 
 /// Authentication action types
 class AuthActionTypes {
@@ -15,10 +15,7 @@ class AuthActionTypes {
 
 /// Sign in action
 class SignInAction extends BaseAsyncAction<AuthUser> {
-  const SignInAction({
-    required this.email,
-    required this.password,
-  });
+  const SignInAction({required this.email, required this.password});
 
   final String email;
   final String password;
@@ -27,10 +24,7 @@ class SignInAction extends BaseAsyncAction<AuthUser> {
   String get type => AuthActionTypes.signIn;
 
   @override
-  Map<String, String> get payload => {
-    'email': email,
-    'password': password,
-  };
+  Map<String, String> get payload => {'email': email, 'password': password};
 
   @override
   Future<Either<Exception, AuthUser>> execute() async {
@@ -48,13 +42,13 @@ class SignUpAction extends BaseAsyncAction<AuthUser> {
     required this.email,
     required this.password,
     required this.confirmPassword,
-    this.metadata,
+    this.userMetadata,
   });
 
   final String email;
   final String password;
   final String confirmPassword;
-  final Map<String, dynamic>? metadata;
+  final Map<String, dynamic>? userMetadata;
 
   @override
   String get type => AuthActionTypes.signUp;
@@ -64,7 +58,7 @@ class SignUpAction extends BaseAsyncAction<AuthUser> {
     'email': email,
     'password': password,
     'confirmPassword': confirmPassword,
-    if (metadata != null) 'metadata': metadata!,
+    if (userMetadata != null) 'metadata': userMetadata!,
   };
 
   @override
@@ -73,7 +67,7 @@ class SignUpAction extends BaseAsyncAction<AuthUser> {
   }
 
   @override
-  List<Object?> get props => [email, password, confirmPassword, metadata];
+  List<Object?> get props => [email, password, confirmPassword, userMetadata];
 }
 
 /// Sign out action
@@ -137,10 +131,7 @@ class ClearErrorAction extends BaseAction {
 
 /// Social sign in action
 class SocialSignInAction extends BaseAsyncAction<AuthUser> {
-  const SocialSignInAction({
-    required this.provider,
-    this.redirectUrl,
-  });
+  const SocialSignInAction({required this.provider, this.redirectUrl});
 
   final SocialProvider provider;
   final String? redirectUrl;
@@ -205,9 +196,4 @@ class AuthUser {
   final bool phoneVerified;
 }
 
-enum SocialProvider {
-  google,
-  facebook,
-  apple,
-  github,
-}
+enum SocialProvider { google, facebook, apple, github }

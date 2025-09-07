@@ -46,7 +46,7 @@ This document outlines tasks and improvements for the project, categorized by ar
 ## 🛠️ UI Kit Refactoring - Common Widgets
 
 ### High Priority
-- [ ] Create a responsive DashboardGrid/MetricGrid widget in `ui_kit` to abstract `StaggeredGrid` usage. (apps/tidash/lib/pages/dashboard/dashboard_page.dart)
+- [ ] Create a responsive DashboardGrid/MetricGrid widget in `ui_kit` to abstract `StaggeredGrid` usage. (apps/tidash/lib/pages/dashboard/dashboard_page.dart) (Consider generalizing to `ResponsiveGrid` or `CardGrid` for `StaffPage`'s `SliverGrid` usage.)
 - [ ] Move `_formatNumber` and `_formatCurrency` utility functions to `packages/shared` or `packages/ui_kit/utils`. (apps/tidash/lib/pages/dashboard/dashboard_page.dart)
 - [ ] Refactor `LoginPage` to use `AuthInputField` for email and password. (apps/tidash/lib/pages/home_page.dart)
 - [ ] Refactor `LoginPage` to use `AuthButton` for the Sign In button. (apps/tidash/lib/pages/home_page.dart)
@@ -67,10 +67,23 @@ This document outlines tasks and improvements for the project, categorized by ar
 - [ ] Refactor `StaffDetailsDialog` action buttons to use `AuthButton`. (apps/tidash/lib/widgets/dialogs/staff_details_dialog.dart)
 - [ ] Refactor `StaffFilterDialog` to use `SectionHeader` for filter sections. (apps/tidash/lib/widgets/dialogs/staff_filter_dialog.dart)
 - [ ] Refactor `StaffFilterDialog` action buttons to use `AuthButton`. (apps/tidash/lib/widgets/dialogs/staff_filter_dialog.dart)
+- [ ] Create a reusable `EmptyState` widget in `ui_kit` from `_buildEmptyState`. (apps/tidash/lib/pages/bookings/bookings_page.dart) (apps/tidash/lib/pages/staff/staff_page.dart)
+- [ ] Refactor `BookingsPage` empty state button to use `AuthButton`. (apps/tidash/lib/pages/bookings/bookings_page.dart) (apps/tidash/lib/pages/staff/staff_page.dart)
+- [ ] Replace `ErrorApp` and `ErrorScreen` in `apps/tidash` with `ErrorApp` from `ui_kit`. (apps/tidash/lib/app/widgets/error_app.dart)
+- [ ] Replace `LoadingApp` and `LoadingScreen` in `apps/tidash` with `LoadingApp` from `ui_kit`. (apps/tidash/lib/app/widgets/loading_app.dart) (apps/tidash/lib/app/widgets/loading_screen.dart)
+- [ ] Replace `MaterialApp` and `ThemeData` in `apps/tidaro` with `AppShell` from `ui_kit`. (apps/tidaro/lib/app/app.dart)
+- [ ] Consider using `MasterLayout` from `ui_kit` for `HomePage` in `apps/tidaro` if its layout grows in complexity. (apps/tidaro/lib/pages/home/page.dart)
+- [ ] Replace `MaterialApp` and `ThemeData` in `apps/tidaro_mini` with `AppShell` from `ui_kit`. (apps/tidaro_mini/lib/main.dart)
+- [ ] Replace `MaterialApp` and `ThemeData` in `examples/auth_flow` with `AppShell` from `ui_kit`. (examples/auth_flow/lib/main.dart)
+- [ ] Replace `MaterialApp` and `ThemeData` in `examples/basic_app` with `AppShell` from `ui_kit`. (examples/basic_app/lib/main.dart)
+- [ ] Replace `MaterialApp` and `ThemeData` in `examples/ui_kit_showcase` with `AppShell` from `ui_kit`. (examples/ui_kit_showcase/lib/main.dart)
+- [ ] Create a reusable `SectionCard` or `ExampleCard` widget in `ui_kit` from `_SectionCard`. (examples/ui_kit_showcase/lib/main.dart)
+- [ ] Refactor `ui_kit_showcase` counter example buttons to use `AuthButton` or a more generic `ThemedButton`. (examples/ui_kit_showcase/lib/main.dart)
+- [ ] Generalize `GridView.builder` usage in `ui_kit_showcase` into a `ResponsiveGrid` or `CardGrid` widget. (examples/ui_kit_showcase/lib/main.dart)
 
 ### Medium Priority
-- [ ] Create a generic `LoadingIndicator` widget in `ui_kit` for consistent loading states. (apps/tidash/lib/pages/dashboard/dashboard_page.dart)
-- [ ] Create a reusable `ErrorDisplay` or `MessageCard` widget in `ui_kit` for consistent error message presentation. (apps/tidash/lib/pages/home_page.dart)
+- [ ] Create a generic `LoadingIndicator` widget in `ui_kit` for consistent loading states. (apps/tidash/lib/pages/dashboard/dashboard_page.dart) (apps/tidash/lib/pages/bookings/bookings_page.dart) (apps/tidash/lib/pages/staff/staff_page.dart) (apps/tidash/lib/app/widgets/error_app.dart) (apps/tidash/lib/app/widgets/loading_app.dart) (apps/tidash/lib/app/widgets/loading_screen.dart)
+- [ ] Create a reusable `ErrorDisplay` or `MessageCard` widget in `ui_kit` for consistent error message presentation. (apps/tidash/lib/pages/home_page.dart) (apps/tidash/lib/pages/auth/signup_page.dart)
 - [ ] Consider creating a `MultiSelectChipGroup` or `CategoryFilterChips` widget in `ui_kit` if the `FilterChip` pattern is repeated. (apps/tidash/lib/widgets/dialogs/add_staff_dialog.dart)
 - [ ] Create a reusable `RatingDisplay` widget in `ui_kit` from `_buildRatingRow`. (apps/tidash/lib/widgets/dialogs/booking_details_dialog.dart)
 - [ ] Move date/time formatting functions (`_formatDateTime`) to a utility in `packages/shared` or `packages/ui_kit/utils`. (apps/tidash/lib/widgets/dialogs/booking_details_dialog.dart)
@@ -81,3 +94,8 @@ This document outlines tasks and improvements for the project, categorized by ar
 - [ ] Move date formatting functions (`_formatDate`) to a utility in `packages/shared` or `packages/ui_kit/utils`. (apps/tidash/lib/widgets/dialogs/staff_details_dialog.dart)
 - [ ] Create a `SingleSelectChipGroup` or `StatusFilterChips` widget in `ui_kit` from `StaffFilterDialog`'s status and availability filters. (apps/tidash/lib/widgets/dialogs/staff_filter_dialog.dart)
 - [ ] Consider creating a `RatingRangeSlider` widget in `ui_kit` from `StaffFilterDialog`'s rating range filter. (apps/tidash/lib/widgets/dialogs/staff_filter_dialog.dart)
+- [ ] Consider creating a generic `ThemedAlertDialog` or `InputAlertDialog` in `ui_kit` for consistent dialog presentation. (apps/tidash/lib/pages/auth/login_page.dart)
+- [ ] Consider creating a `CollapsibleSection` or `ExpandableContent` widget in `ui_kit` for collapsible UI elements. (apps/tidash/lib/app/widgets/error_app.dart)
+- [ ] Refactor `ErrorScreen` action buttons to use `AuthButton` or a more generic `ThemedButton`. (apps/tidash/lib/app/widgets/error_app.dart)
+- [ ] Consider creating a `SupportInfoCard` or `HelpSection` widget in `ui_kit` for consistent support information display. (apps/tidash/lib/app/widgets/error_app.dart)
+- [ ] Consider enhancing `ui_kit`'s `LoadingScreen` or creating a new `AnimatedLoadingIndicator` to encapsulate custom animations (pulse, rotation, pulsing dots). (apps/tidash/lib/app/widgets/loading_screen.dart)
