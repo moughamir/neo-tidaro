@@ -60,11 +60,27 @@ class BookingDetailsDialog extends StatelessWidget {
                       icon: Icons.info_outline,
                       children: <Widget>[
                         ui.InfoRow(label: 'Booking ID', value: booking.id),
-                        ui.InfoRow(label: 'Status', value: _getStatusName(booking.status)),
-                        ui.InfoRow(label: 'Created', value: _formatDateTime(booking.createdAt)),
-                        ui.InfoRow(label: 'Scheduled', value: _formatDateTime(booking.scheduledDate)),
+                        ui.InfoRow(
+                          label: 'Status',
+                          value: _getStatusName(booking.status),
+                        ),
+                        ui.InfoRow(
+                          label: 'Created',
+                          value: booking.createdAt != null
+                              ? _formatDateTime(booking.createdAt!)
+                              : 'N/A',
+                        ),
+                        ui.InfoRow(
+                          label: 'Scheduled',
+                          value: _formatDateTime(booking.scheduledDate),
+                        ),
                         if (booking.completedAt != null)
-                          ui.InfoRow(label: 'Completed', value: _formatDateTime(booking.completedAt!)),
+                          ui.InfoRow(
+                            label: 'Completed',
+                            value: booking.completedAt != null
+                                ? _formatDateTime(booking.completedAt!)
+                                : 'N/A',
+                          ),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -74,10 +90,22 @@ class BookingDetailsDialog extends StatelessWidget {
                       title: 'Service Details',
                       icon: Icons.cleaning_services,
                       children: <Widget>[
-                        ui.InfoRow(label: 'Service ID', value: booking.serviceId),
-                        ui.InfoRow(label: 'Total Price', value: '\$${booking.totalPrice.toStringAsFixed(2)}'),
-                        ui.InfoRow(label: 'Payment Status', value: _getPaymentStatusName(booking.paymentStatus)),
-                        if (booking.notes != null) ui.InfoRow(label: 'Notes', value: booking.notes!),
+                        ui.InfoRow(
+                          label: 'Service ID',
+                          value: booking.serviceId ?? 'N/A',
+                        ),
+                        ui.InfoRow(
+                          label: 'Total Price',
+                          value: booking.totalPrice != null
+                              ? '\$${booking.totalPrice!.toStringAsFixed(2)}'
+                              : 'N/A',
+                        ),
+                        ui.InfoRow(
+                          label: 'Payment Status',
+                          value: _getPaymentStatusName(booking.paymentStatus),
+                        ),
+                        if (booking.notes != null)
+                          ui.InfoRow(label: 'Notes', value: booking.notes!),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -87,9 +115,15 @@ class BookingDetailsDialog extends StatelessWidget {
                       title: 'Customer Information',
                       icon: Icons.person,
                       children: <Widget>[
-                        ui.InfoRow(label: 'Customer ID', value: booking.customerId),
+                        ui.InfoRow(
+                          label: 'Customer ID',
+                          value: booking.customerId,
+                        ),
                         if (booking.cleanerId != null)
-                          ui.InfoRow(label: 'Assigned Cleaner', value: booking.cleanerId!),
+                          ui.InfoRow(
+                            label: 'Assigned Cleaner',
+                            value: booking.cleanerId!,
+                          ),
                       ],
                     ),
                     const SizedBox(height: 16),
@@ -99,24 +133,45 @@ class BookingDetailsDialog extends StatelessWidget {
                       title: 'Service Address',
                       icon: Icons.location_on,
                       children: <Widget>[
-                        ui.InfoRow(label: 'Street', value: booking.address.street),
+                        ui.InfoRow(
+                          label: 'Street',
+                          value: booking.address.street,
+                        ),
                         if (booking.address.apartment != null)
-                          ui.InfoRow(label: 'Apartment', value: booking.address.apartment!),
+                          ui.InfoRow(
+                            label: 'Apartment',
+                            value: booking.address.apartment!,
+                          ),
                         ui.InfoRow(label: 'City', value: booking.address.city),
-                        ui.InfoRow(label: 'State', value: booking.address.state),
-                        ui.InfoRow(label: 'ZIP Code', value: booking.address.zipCode),
+                        ui.InfoRow(
+                          label: 'State',
+                          value: booking.address.state,
+                        ),
+                        ui.InfoRow(
+                          label: 'ZIP Code',
+                          value: booking.address.zipCode,
+                        ),
                         if (booking.address.instructions != null)
-                          ui.InfoRow(label: 'Instructions', value: booking.address.instructions!),
+                          ui.InfoRow(
+                            label: 'Instructions',
+                            value: booking.address.instructions!,
+                          ),
                       ],
                     ),
                     const SizedBox(height: 16),
 
                     // Rating and Review (if completed)
                     if (booking.status == BookingStatus.completed)
-                      ui.InfoCard(title: 'Feedback', icon: Icons.star, children: <Widget>[
-                        if (booking.rating != null) _buildRatingRow(booking.rating!),
-                        if (booking.review != null) ui.InfoRow(label: 'Review', value: booking.review!),
-                      ]),
+                      ui.InfoCard(
+                        title: 'Feedback',
+                        icon: Icons.star,
+                        children: <Widget>[
+                          if (booking.rating != null)
+                            _buildRatingRow(booking.rating!.toInt()),
+                          if (booking.review != null)
+                            ui.InfoRow(label: 'Review', value: booking.review!),
+                        ],
+                      ),
                   ],
                 ),
               ),
@@ -162,8 +217,6 @@ class BookingDetailsDialog extends StatelessWidget {
       ),
     );
   }
-
-  
 
   Widget _buildRatingRow(int rating) {
     return Padding(
@@ -214,18 +267,22 @@ class BookingDetailsDialog extends StatelessWidget {
     }
   }
 
-  String _getPaymentStatusName(PaymentStatus status) {
-    switch (status) {
-      case PaymentStatus.pending:
+  String _getPaymentStatusName(String? status) {
+    if (status == null) return 'N/A';
+
+    switch (status.toLowerCase()) {
+      case 'pending':
         return 'Pending';
-      case PaymentStatus.processing:
+      case 'processing':
         return 'Processing';
-      case PaymentStatus.completed:
-        return 'Paid';
-      case PaymentStatus.failed:
+      case 'completed':
+        return 'Completed';
+      case 'failed':
         return 'Failed';
-      case PaymentStatus.refunded:
+      case 'refunded':
         return 'Refunded';
+      default:
+        return status; // Return original string if no match
     }
   }
 

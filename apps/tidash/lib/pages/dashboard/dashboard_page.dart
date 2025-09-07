@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:languist/languist.dart';
 
 class DashboardPage extends StatefulWidget {
@@ -15,11 +14,10 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
-    // Load dashboard and housekeeping data on init
+    // Load dashboard data on init
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final Store<AppState> store = StoreProvider.of<AppState>(context);
       store.dispatch(const LoadDashboardAction());
-      store.dispatch(const LoadHousekeepingMetricsAction());
     });
   }
 
@@ -29,11 +27,11 @@ class _DashboardPageState extends State<DashboardPage> {
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
-      body: StoreConnector<AppState, HousekeepingDashboardViewModel>(
+      body: StoreConnector<AppState, DashboardViewModel>(
         converter: (Store<AppState> store) =>
-            HousekeepingDashboardViewModel.fromStore(store),
-        builder: (BuildContext context, HousekeepingDashboardViewModel viewModel) {
-          if (viewModel.isLoading && viewModel.housekeepingMetrics == null) {
+            DashboardViewModel.fromStore(store),
+        builder: (BuildContext context, DashboardViewModel viewModel) {
+          if (viewModel.isLoading && viewModel.dashboardMetrics == null) {
             return const Center(child: CircularProgressIndicator());
           }
 
@@ -43,134 +41,46 @@ class _DashboardPageState extends State<DashboardPage> {
             slivers: <Widget>[
               // Header
               SliverToBoxAdapter(
-                child: HousekeepingDashboardHeader(
+                child: DashboardHeader(
                   onRefresh: viewModel.onRefresh,
                   isRefreshing: viewModel.isRefreshing,
                   lastUpdated: viewModel.lastUpdated,
                 ),
               ),
 
-              // Housekeeping Metrics Grid
-              if (viewModel.housekeepingMetrics != null)
+              // Metrics Grid
+              if (viewModel.dashboardMetrics != null)
                 SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  sliver: SliverToBoxAdapter(
-                    child: StaggeredGrid.count(
-                      crossAxisCount: 4,
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 16,
-                      children: <Widget>[
-                        StaggeredGridTile.count(
-                          crossAxisCellCount: 1,
-                          mainAxisCellCount: 1,
-                          child: MetricCard(
-                            title: l10n.totalBookings,
-                            value: _formatNumber(
-                              viewModel.housekeepingMetrics!.totalBookings,
-                            ),
-                            icon: Icons.calendar_today_outlined,
-                            color: Colors.blue,
-                            trend: TrendDirection.up,
-                            trendValue:
-                                '+${viewModel.housekeepingMetrics!.bookingGrowthRate.toStringAsFixed(1)}%',
-                            subtitle: 'from last month',
-                          ),
-                        ),
-                        StaggeredGridTile.count(
-                          crossAxisCellCount: 1,
-                          mainAxisCellCount: 1,
-                          child: MetricCard(
-                            title: l10n.activeBookings,
-                            value: _formatNumber(
-                              viewModel.housekeepingMetrics!.activeBookings,
-                            ),
-                            icon: Icons.pending_actions_outlined,
-                            color: Colors.orange,
-                            trend: TrendDirection.up,
-                            trendValue:
-                                '+${((viewModel.housekeepingMetrics!.activeBookings / viewModel.housekeepingMetrics!.totalBookings) * 100).toStringAsFixed(1)}%',
-                            subtitle: 'currently active',
-                          ),
-                        ),
-                        StaggeredGridTile.count(
-                          crossAxisCellCount: 1,
-                          mainAxisCellCount: 1,
-                          child: MetricCard(
-                            title: l10n.monthlyRevenue,
-                            value:
-                                '\$${_formatCurrency(viewModel.housekeepingMetrics!.monthlyRevenue)}',
-                            icon: Icons.attach_money,
-                            color: Colors.green,
-                            trend: TrendDirection.up,
-                            trendValue:
-                                '+${viewModel.housekeepingMetrics!.revenueGrowthRate.toStringAsFixed(1)}%',
-                            subtitle: 'this month',
-                          ),
-                        ),
-                        StaggeredGridTile.count(
-                          crossAxisCellCount: 1,
-                          mainAxisCellCount: 1,
-                          child: MetricCard(
-                            title: l10n.activeCleaners,
-                            value: _formatNumber(
-                              viewModel.housekeepingMetrics!.activeCleaners,
-                            ),
-                            icon: Icons.cleaning_services_outlined,
-                            color: Colors.purple,
-                            trend: TrendDirection.up,
-                            trendValue:
-                                '${viewModel.housekeepingMetrics!.averageRating.toStringAsFixed(1)}★',
-                            subtitle: 'avg rating',
-                          ),
-                        ),
-                        StaggeredGridTile.count(
-                          crossAxisCellCount: 2,
-                          mainAxisCellCount: 1,
-                          child: MetricCard(
-                            title: l10n.totalCustomers,
-                            value: _formatNumber(
-                              viewModel.housekeepingMetrics!.totalCustomers,
-                            ),
-                            icon: Icons.people_outline,
-                            color: Colors.indigo,
-                            trend: TrendDirection.up,
-                            trendValue:
-                                '${viewModel.housekeepingMetrics!.completedBookings} completed',
-                            subtitle: 'total services',
-                          ),
-                        ),
-                        StaggeredGridTile.count(
-                          crossAxisCellCount: 2,
-                          mainAxisCellCount: 1,
-                          child: MetricCard(
-                            title: l10n.totalRevenue,
-                            value:
-                                '\$${_formatCurrency(viewModel.housekeepingMetrics!.totalRevenue)}',
-                            icon: Icons.trending_up,
-                            color: Colors.teal,
-                            trend: TrendDirection.up,
-                            trendValue: 'All time',
-                            subtitle: 'lifetime earnings',
-                          ),
-                        ),
-                      ],
+                  padding: const EdgeInsets.all(16.0),
+                  sliver: SliverGrid(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 16.0,
+                      crossAxisSpacing: 16.0,
+                      childAspectRatio: 1.5,
+                    ),
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        final metrics = viewModel.dashboardMetrics!;
+                        return _buildMetricCard(context, index, metrics, l10n);
+                      },
+                      childCount: 4,
                     ),
                   ),
                 ),
 
               const SliverToBoxAdapter(child: SizedBox(height: 24)),
 
-              // Housekeeping Activity Feed
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                sliver: SliverToBoxAdapter(
-                  child: HousekeepingActivityFeed(
-                    activities:
-                        viewModel.housekeepingMetrics?.recentActivities ??
-                        <HousekeepingActivity>[],
+              // Activity Feed
+              if (viewModel.dashboardMetrics != null)
+                SliverPadding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  sliver: SliverToBoxAdapter(
+                    child: ActivityFeed(
+                      activities: viewModel.dashboardMetrics!.recentActivities,
+                    ),
                   ),
                 ),
-              ),
 
               const SliverToBoxAdapter(child: SizedBox(height: 24)),
             ],
@@ -180,30 +90,49 @@ class _DashboardPageState extends State<DashboardPage> {
     );
   }
 
-  String _formatNumber(int number) {
-    if (number >= 1000000) {
-      return '${(number / 1000000).toStringAsFixed(1)}M';
-    } else if (number >= 1000) {
-      return '${(number / 1000).toStringAsFixed(1)}K';
+  Widget _buildMetricCard(
+    BuildContext context,
+    int index,
+    DashboardMetrics metrics,
+    IntlLocalizations l10n,
+  ) {
+    switch (index) {
+      case 0:
+        return MetricCard(
+          title: 'Total Customers',
+          value: metrics.totalCustomers.toString(),
+          icon: Icons.people,
+        );
+      case 1:
+        return MetricCard(
+          title: 'Active Cleaners',
+          value: metrics.activeCleaners.toString(),
+          icon: Icons.assignment,
+        );
+      case 2:
+        return MetricCard(
+          title: 'Monthly Revenue',
+          value: '\$${metrics.monthlyRevenue.toStringAsFixed(0)}',
+          icon: Icons.attach_money,
+        );
+      case 3:
+        return MetricCard(
+          title: 'Total Bookings',
+          value: metrics.totalBookings.toString(),
+          icon: Icons.shopping_cart,
+        );
+      default:
+        return const SizedBox.shrink();
     }
-    return number.toString();
   }
 
-  String _formatCurrency(double amount) {
-    if (amount >= 1000000) {
-      return '${(amount / 1000000).toStringAsFixed(1)}M';
-    } else if (amount >= 1000) {
-      return '${(amount / 1000).toStringAsFixed(1)}K';
-    }
-    return amount.toStringAsFixed(2);
-  }
 }
 
-class HousekeepingDashboardViewModel {
-  const HousekeepingDashboardViewModel({
+class DashboardViewModel {
+  const DashboardViewModel({
     required this.isLoading,
     required this.isRefreshing,
-    required this.housekeepingMetrics,
+    required this.dashboardMetrics,
     required this.error,
     required this.lastUpdated,
     required this.onRefresh,
@@ -211,19 +140,19 @@ class HousekeepingDashboardViewModel {
 
   final bool isLoading;
   final bool isRefreshing;
-  final HousekeepingMetrics? housekeepingMetrics;
+  final DashboardMetrics? dashboardMetrics;
   final String? error;
   final DateTime? lastUpdated;
   final VoidCallback onRefresh;
 
-  factory HousekeepingDashboardViewModel.fromStore(Store<AppState> store) {
-    return HousekeepingDashboardViewModel(
-      isLoading: HousekeepingSelectors.isLoading(store.state),
-      isRefreshing: HousekeepingSelectors.isRefreshing(store.state),
-      housekeepingMetrics: HousekeepingSelectors.getMetrics(store.state),
-      error: HousekeepingSelectors.getError(store.state),
-      lastUpdated: HousekeepingSelectors.getLastUpdated(store.state),
-      onRefresh: () => store.dispatch(const RefreshHousekeepingMetricsAction()),
+  factory DashboardViewModel.fromStore(Store<AppState> store) {
+    return DashboardViewModel(
+      isLoading: DashboardSelectors.isLoading(store.state),
+      isRefreshing: false, // TODO: Add isRefreshing to selectors
+      dashboardMetrics: DashboardSelectors.getMetrics(store.state),
+      error: DashboardSelectors.getError(store.state),
+      lastUpdated: DashboardSelectors.getLastRefresh(store.state),
+      onRefresh: () => store.dispatch(const LoadDashboardAction()),
     );
   }
 }

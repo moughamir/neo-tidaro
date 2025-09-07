@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'package:core/core.dart';
 import 'package:tidash/get_app_config.dart';
 import 'package:tidash/initialize_platform.dart';

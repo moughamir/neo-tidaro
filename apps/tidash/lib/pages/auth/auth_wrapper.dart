@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../main/main_layout.dart';
 import 'login_page.dart';
@@ -33,12 +32,12 @@ class AuthWrapperViewModel {
   });
 
   final bool isAuthenticated;
-  final User? user;
+  final AuthUser? user;
 
   factory AuthWrapperViewModel.fromStore(Store<AppState> store) {
     return AuthWrapperViewModel(
       isAuthenticated: store.state.authState.isAuthenticated,
-      user: store.state.authState.user,
+      user: store.state.authState.data.fold(() => null, (user) => user),
     );
   }
 }

@@ -376,6 +376,8 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
     switch (category) {
       case ServiceCategory.standardCleaning:
         return 'Standard Cleaning';
+      case ServiceCategory.regularCleaning:
+        return 'Regular Cleaning';
       case ServiceCategory.deepCleaning:
         return 'Deep Cleaning';
       case ServiceCategory.moveInOut:
@@ -386,6 +388,8 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
         return 'Commercial';
       case ServiceCategory.residential:
         return 'Residential';
+      case ServiceCategory.specialized:
+        return 'Specialized';
     }
   }
 
@@ -393,6 +397,8 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
     switch (category) {
       case ServiceCategory.standardCleaning:
         return 120.0;
+      case ServiceCategory.regularCleaning:
+        return 100.0;
       case ServiceCategory.deepCleaning:
         return 200.0;
       case ServiceCategory.moveInOut:
@@ -403,6 +409,8 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
         return 180.0;
       case ServiceCategory.residential:
         return 220.0;
+      case ServiceCategory.specialized:
+        return 350.0;
     }
   }
 

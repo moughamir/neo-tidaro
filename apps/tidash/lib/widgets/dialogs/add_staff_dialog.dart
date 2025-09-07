@@ -85,7 +85,10 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       // Personal Information Section
-                      const SectionHeader(title: 'Personal Information', icon: Icons.person),
+                      const SectionHeader(
+                        title: 'Personal Information',
+                        icon: Icons.person,
+                      ),
                       const SizedBox(height: 16),
 
                       Row(
@@ -167,7 +170,10 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       const SizedBox(height: 24),
 
                       // Employment Information Section
-                      const SectionHeader(title: 'Employment Details', icon: Icons.work),
+                      const SectionHeader(
+                        title: 'Employment Details',
+                        icon: Icons.work,
+                      ),
                       const SizedBox(height: 16),
 
                       Row(
@@ -180,7 +186,9 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                                 prefixIcon: Icon(Icons.assignment_ind),
                                 border: OutlineInputBorder(),
                               ),
-                              items: CleanerStatus.values.map((CleanerStatus status) {
+                              items: CleanerStatus.values.map((
+                                CleanerStatus status,
+                              ) {
                                 return DropdownMenuItem<CleanerStatus>(
                                   value: status,
                                   child: Text(_getStatusName(status)),
@@ -200,7 +208,10 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       const SizedBox(height: 16),
 
                       // Specialties Section
-                      const SectionHeader(title: 'Specialties', icon: Icons.star),
+                      const SectionHeader(
+                        title: 'Specialties',
+                        icon: Icons.star,
+                      ),
                       const SizedBox(height: 16),
 
                       Text(
@@ -212,8 +223,12 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       Wrap(
                         spacing: 8,
                         runSpacing: 8,
-                        children: ServiceCategory.values.map((ServiceCategory category) {
-                          final bool isSelected = _selectedCategories.contains(category);
+                        children: ServiceCategory.values.map((
+                          ServiceCategory category,
+                        ) {
+                          final bool isSelected = _selectedCategories.contains(
+                            category,
+                          );
                           return FilterChip(
                             label: Text(_getServiceCategoryName(category)),
                             selected: isSelected,
@@ -235,7 +250,10 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       const SizedBox(height: 24),
 
                       // Address Section
-                      const SectionHeader(title: 'Address (Optional)', icon: Icons.location_on),
+                      const SectionHeader(
+                        title: 'Address (Optional)',
+                        icon: Icons.location_on,
+                      ),
                       const SizedBox(height: 16),
 
                       TextFormField(
@@ -314,13 +332,11 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
     );
   }
 
-  
-
   String _getStatusName(CleanerStatus status) {
     switch (status) {
       case CleanerStatus.available:
         return 'Available';
-      case CleanerStatus.busy:
+      case CleanerStatus.onJob:
         return 'Busy';
       case CleanerStatus.offline:
         return 'Offline';
@@ -343,12 +359,18 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
         return 'Commercial';
       case ServiceCategory.residential:
         return 'Residential';
+      case ServiceCategory.regularCleaning:
+        return 'Regular Cleaning';
+      case ServiceCategory.specialized:
+        return 'Specialized';
     }
   }
 
   void _addStaff(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      final String name = '${_firstNameController.text.trim()} ${_lastNameController.text.trim()}'.trim();
+      final String name =
+          '${_firstNameController.text.trim()} ${_lastNameController.text.trim()}'
+              .trim();
 
       final Cleaner cleaner = Cleaner(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -364,7 +386,7 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
       StoreProvider.of<AppState>(
         context,
         listen: false,
-      ).dispatch(CreateCleanerAction(cleaner));
+      ).dispatch(CreateCleanerAction(cleaner: cleaner));
 
       Navigator.of(context).pop();
 

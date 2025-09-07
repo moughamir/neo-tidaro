@@ -33,98 +33,146 @@ class _StaffPageState extends State<StaffPage> {
     final ThemeData theme = Theme.of(context);
     final IntlLocalizations l10n = Languist.of(context);
 
-    return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
-      appBar: AppBar(
-        title: Text(l10n.staff),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.person_add),
-            onPressed: () => _showAddStaffDialog(context),
-            tooltip: l10n.add,
-          ),
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: () => _showFilterDialog(context),
-            tooltip: l10n.filter,
-          ),
-        ],
-      ),
-      body: StoreConnector<AppState, StaffViewModel>(
-        converter: (Store<AppState> store) => StaffViewModel.fromStore(store),
-        builder: (BuildContext context, StaffViewModel viewModel) {
-          if (viewModel.isLoading && viewModel.cleaners.isEmpty) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          if (viewModel.cleaners.isEmpty) {
-            return EmptyState(
-              icon: Icons.people_outline,
-              title: l10n.noStaff,
-              description: l10n.noStaffDescription,
-              action: ElevatedButton.icon(
-                onPressed: () => _showAddStaffDialog(context),
+    return StoreConnector<AppState, CleanerState>(
+      converter: (Store<AppState> store) => store.state.cleanerState,
+      builder: (BuildContext context, CleanerState cleanerState) {
+        return Scaffold(
+          backgroundColor: theme.colorScheme.surface,
+          appBar: AppBar(
+            title: Text(l10n.staff),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            actions: <Widget>[
+              IconButton(
                 icon: const Icon(Icons.person_add),
-                label: Text(l10n.addStaff),
+                onPressed: () => _showAddStaffDialog(context),
+                tooltip: l10n.add,
               ),
-            );
-          }
-
-          return RefreshIndicator(
-            onRefresh: () async {
-              viewModel.onRefresh();
-            },
-            child: CustomScrollView(
-              slivers: <Widget>[
-                // Staff stats header
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: StaffHeader(
-                      totalStaff: viewModel.cleaners.length,
-                      availableStaff: viewModel.availableStaff,
-                      busyStaff: viewModel.busyStaff,
-                      onFilterChanged: viewModel.onFilterChanged,
-                      currentFilter: viewModel.currentFilter,
-                    ),
-                  ),
-                ),
-                // Staff grid
-                SliverPadding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  sliver: SliverGrid(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.8,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
+              IconButton(
+                icon: const Icon(Icons.filter_list),
+                onPressed: () => _showFilterDialog(context),
+                tooltip: l10n.filter,
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: <Widget>[
+                // Search and filter bar
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: l10n.search,
+                          prefixIcon: const Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
                         ),
-                    delegate: SliverChildBuilderDelegate((
-                      BuildContext context,
-                      int index,
-                    ) {
-                      final Cleaner cleaner = viewModel.cleaners[index];
-                      return StaffCard(
-                        cleaner: cleaner,
-                        onTap: () => _navigateToStaffDetails(context, cleaner),
-                        onStatusChanged: (CleanerStatus status) =>
-                            viewModel.onUpdateCleanerStatus(cleaner.id, status),
-                      );
-                    }, childCount: viewModel.cleaners.length),
-                  ),
+                        onChanged: (String value) {
+                          // Update search filter
+                          final CleanerFilters updatedFilters = cleanerState
+                              .filters
+                              .copyWith(
+                                searchQuery: value.isEmpty ? null : value,
+                              );
+                          StoreProvider.of<AppState>(
+                            context,
+                            listen: false,
+                          ).dispatch(
+                            UpdateCleanerFiltersAction(filters: updatedFilters),
+                          );
+                        },
+                      ),
+                    ),
+                    const SizedBox(width: 16),
+                    FilterChip(
+                      label: Text(_getFilterLabel(cleanerState.filters, l10n)),
+                      selected: _hasActiveFilters(cleanerState.filters),
+                      onSelected: (bool selected) {
+                        if (!selected) {
+                          StoreProvider.of<AppState>(
+                            context,
+                            listen: false,
+                          ).dispatch(const ClearCleanerFiltersAction());
+                        }
+                      },
+                    ),
+                  ],
                 ),
+                const SizedBox(height: 16),
+                // Staff grid
+                Expanded(child: _buildStaffGrid(context, cleanerState)),
               ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 
-  
+  Widget _buildStaffGrid(BuildContext context, CleanerState cleanerState) {
+    return StoreConnector<AppState, StaffViewModel>(
+      converter: (Store<AppState> store) => StaffViewModel.fromStore(store),
+      builder: (BuildContext context, StaffViewModel viewModel) {
+        if (viewModel.isLoading && viewModel.cleaners.isEmpty) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (viewModel.cleaners.isEmpty) {
+          final IntlLocalizations l10n = Languist.of(context);
+          return EmptyState(
+            icon: Icons.people_outline,
+            title: l10n.noStaff,
+            description: l10n.noStaffDescription,
+            action: ElevatedButton.icon(
+              onPressed: () => _showAddStaffDialog(context),
+              icon: const Icon(Icons.person_add),
+              label: Text(l10n.addStaff),
+            ),
+          );
+        }
+
+        return RefreshIndicator(
+          onRefresh: () async {
+            viewModel.onRefresh();
+          },
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.8,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+            ),
+            itemCount: viewModel.cleaners.length,
+            itemBuilder: (BuildContext context, int index) {
+              final Cleaner cleaner = viewModel.cleaners[index];
+              return StaffCard(
+                cleaner: cleaner,
+                onTap: () => _navigateToStaffDetails(context, cleaner),
+                onStatusChanged: (CleanerStatus status) =>
+                    viewModel.onUpdateCleanerStatus(cleaner.id, status),
+              );
+            },
+          ),
+        );
+      },
+    );
+  }
+
+  String _getFilterLabel(CleanerFilters filters, IntlLocalizations l10n) {
+    if (filters.status != null) {
+      return filters.status!.name;
+    }
+    return 'All';
+  }
+
+  bool _hasActiveFilters(CleanerFilters filters) {
+    return filters.status != null ||
+        (filters.searchQuery != null && filters.searchQuery!.isNotEmpty);
+  }
 
   void _showAddStaffDialog(BuildContext context) {
     showDialog<void>(
@@ -139,14 +187,14 @@ class _StaffPageState extends State<StaffPage> {
       builder: (BuildContext context) =>
           StoreConnector<AppState, CleanerStatus?>(
             converter: (Store<AppState> store) =>
-                HousekeepingSelectors.getCleanerFilters(store.state).status,
+                null, // TODO: Implement cleaner filters
             builder: (BuildContext context, CleanerStatus? currentFilter) =>
                 StaffFilterDialog(
                   currentFilter: currentFilter,
                   onFilterChanged: (CleanerStatus? filter) {
                     StoreProvider.of<AppState>(context, listen: false).dispatch(
                       UpdateCleanerFiltersAction(
-                        CleanerFilters(status: filter),
+                        filters: CleanerFilters(status: filter),
                       ),
                     );
                   },
@@ -184,22 +232,20 @@ class StaffViewModel {
   final Function(String cleanerId, CleanerStatus status) onUpdateCleanerStatus;
 
   int get availableStaff =>
-      cleaners.where((Cleaner c) => c.status == CleanerStatus.active).length;
+      cleaners.where((Cleaner c) => c.status == CleanerStatus.available).length;
 
   int get busyStaff =>
-      cleaners.where((Cleaner c) => c.status == CleanerStatus.inactive).length;
+      cleaners.where((Cleaner c) => c.status == CleanerStatus.offline).length;
 
   static StaffViewModel fromStore(Store<AppState> store) {
     return StaffViewModel(
-      cleaners: HousekeepingSelectors.getFilteredCleaners(store.state),
-      isLoading: store.state.housekeepingState.isLoading,
-      error: store.state.housekeepingState.error,
-      currentFilter: HousekeepingSelectors.getCleanerFilters(
-        store.state,
-      ).status,
-      onRefresh: () => store.dispatch(const LoadCleanersAction()),
+      cleaners: const <Cleaner>[], // TODO: Implement cleaners data source
+      isLoading: false, // TODO: Connect to appropriate state
+      error: null, // TODO: Connect to appropriate error handling
+      currentFilter: null, // TODO: Implement cleaner filters
+      onRefresh: () {}, // TODO: Implement refresh action
       onFilterChanged: (CleanerStatus? filter) => store.dispatch(
-        UpdateCleanerFiltersAction(CleanerFilters(status: filter)),
+        UpdateCleanerFiltersAction(filters: CleanerFilters(status: filter)),
       ),
       onUpdateCleanerStatus: (String cleanerId, CleanerStatus status) =>
           store.dispatch(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fpdart/fpdart.dart' hide State;
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 import 'package:languist/languist.dart';
@@ -136,8 +137,7 @@ class _BookingsPageState extends State<BookingsPage> {
       context: context,
       builder: (BuildContext context) =>
           StoreConnector<AppState, BookingStatus?>(
-            converter: (Store<AppState> store) =>
-                HousekeepingSelectors.getBookingFilters(store.state).status,
+            converter: (Store<AppState> store) => BookingSelectors.getBookingFilters(store.state).status,
             builder: (BuildContext context, BookingStatus? currentFilter) =>
                 BookingFilterDialog(
                   currentFilter: currentFilter,
@@ -175,7 +175,7 @@ class BookingsViewModel {
 
   final List<Booking> bookings;
   final bool isLoading;
-  final String? error;
+  final Option<Exception> error;
   final BookingStatus? currentFilter;
   final VoidCallback onRefresh;
   final Function(BookingStatus?) onFilterChanged;
@@ -194,20 +194,24 @@ class BookingsViewModel {
 
   static BookingsViewModel fromStore(Store<AppState> store) {
     return BookingsViewModel(
-      bookings: HousekeepingSelectors.getFilteredBookings(store.state),
-      isLoading: store.state.housekeepingState.isLoading,
-      error: store.state.housekeepingState.error,
-      currentFilter: HousekeepingSelectors.getBookingFilters(
-        store.state,
-      ).status,
-      onRefresh: () => store.dispatch(const LoadBookingsAction()),
-      onFilterChanged: (BookingStatus? filter) => store.dispatch(
-        UpdateBookingFiltersAction(BookingFilters(status: filter)),
-      ),
-      onUpdateBookingStatus: (String bookingId, BookingStatus status) =>
-          store.dispatch(
-            UpdateBookingStatusAction(bookingId: bookingId, status: status),
-          ),
+      bookings: BookingSelectors.getFilteredBookings(store.state),
+      isLoading: BookingSelectors.isBookingsLoading(store.state),
+      error: BookingSelectors.getBookingError(store.state),
+      currentFilter: BookingSelectors.getBookingFilters(store.state).status,
+      onRefresh: () {
+        store.dispatch(const LoadBookingsAction());
+      },
+      onFilterChanged: (BookingStatus? filter) {
+        store.dispatch(UpdateBookingFiltersAction(
+          BookingFilters(status: filter),
+        ));
+      },
+      onUpdateBookingStatus: (String bookingId, BookingStatus status) {
+        store.dispatch(UpdateBookingAction(
+          bookingId: bookingId,
+          updates: {'status': status.name},
+        ));
+      },
     );
   }
 }

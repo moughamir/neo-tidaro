@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   void _handleLogin(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       StoreProvider.of<AppState>(context, listen: false).dispatch(
-        DashboardLoginAction(
+        SignInAction(
           email: _emailController.text.trim(),
           password: _passwordController.text,
         ),
@@ -35,7 +35,12 @@ class _LoginPageState extends State<LoginPage> {
 
   void _handleSocialLogin(BuildContext context, String provider) {
     StoreProvider.of<AppState>(context, listen: false).dispatch(
-      DashboardLoginWithProviderAction(provider: provider),
+      SocialSignInAction(
+        provider: SocialProvider.values.firstWhere(
+          (SocialProvider p) => p.name == provider.toLowerCase(),
+          orElse: () => SocialProvider.google,
+        ),
+      ),
     );
   }
 
@@ -51,10 +56,7 @@ class _LoginPageState extends State<LoginPage> {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text(
-              l10n.resetPasswordMessage,
-              style: theme.textTheme.bodyMedium,
-            ),
+            Text(l10n.resetPasswordMessage, style: theme.textTheme.bodyMedium),
             const SizedBox(height: 16),
             AuthInputField(
               label: l10n.email,
@@ -73,7 +75,9 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () {
               if (emailController.text.isNotEmpty) {
                 StoreProvider.of<AppState>(context, listen: false).dispatch(
-                  DashboardForgotPasswordAction(email: emailController.text.trim()),
+                  ResetPasswordAction(
+                    email: emailController.text.trim(),
+                  ),
                 );
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -99,186 +103,197 @@ class _LoginPageState extends State<LoginPage> {
       builder: (BuildContext context, UiState uiState) {
         return AuthLayout(
           backgroundImage: 'assets/images/orange.jpg',
-          isDarkMode: uiState.themeMode == ThemeMode.dark,
+          isDarkMode:
+              uiState.themeMode == ThemeMode.dark ||
+              (uiState.themeMode == ThemeMode.system &&
+                  theme.brightness == Brightness.dark),
           currentLanguage: uiState.locale.languageCode,
           onThemeToggle: () {
-            StoreProvider.of<AppState>(context, listen: false)
-                .dispatch(const ToggleThemeModeAction());
+            StoreProvider.of<AppState>(
+              context,
+              listen: false,
+            ).dispatch(const ToggleThemeModeAction());
           },
           onLanguageChanged: (String language) {
-            StoreProvider.of<AppState>(context, listen: false)
-                .dispatch(ChangeLanguageAction(language));
+            StoreProvider.of<AppState>(
+              context,
+              listen: false,
+            ).dispatch(ChangeLanguageAction(language));
           },
           child: StoreConnector<AppState, AuthState>(
             converter: (Store<AppState> store) => store.state.authState,
             builder: (BuildContext context, AuthState authState) {
               return SingleChildScrollView(
-            child: AuthCard(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    // Header
-                    Text(
-                      l10n.login,
-                      style: theme.textTheme.headlineMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: theme.colorScheme.onSurface,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      l10n.welcomeBackMessage,
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                        color: theme.colorScheme.onSurface.withValues(
-                          alpha: 0.7,
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 32),
-
-                    // Email field
-                    AuthInputField(
-                      label: l10n.email,
-                      hint: l10n.emailHint,
-                      controller: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      prefixIcon: const Icon(Icons.email_outlined),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return l10n.fieldRequired;
-                        }
-                        if (!RegExp(
-                          r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                        ).hasMatch(value)) {
-                          return l10n.invalidEmail;
-                        }
-                        return null;
-                      },
-                    ),
-
-                    const SizedBox(height: 20),
-
-                    // Password field
-                    AuthInputField(
-                      label: l10n.password,
-                      hint: l10n.passwordHint,
-                      controller: _passwordController,
-                      obscureText: true,
-                      prefixIcon: const Icon(Icons.lock_outlined),
-                      validator: (String? value) {
-                        if (value == null || value.isEmpty) {
-                          return l10n.fieldRequired;
-                        }
-                        return null;
-                      },
-                    ),
-
-                    const SizedBox(height: 12),
-
-                    // Forgot password link
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: AuthButton(
-                        onPressed: () => _showForgotPasswordDialog(context),
-                        text: l10n.forgotPasswordQuestion,
-                        variant: AuthButtonVariant.ghost,
-                        width: 120,
-                      ),
-                    ),
-
-                    const SizedBox(height: 24),
-
-                    // Error message
-                    if (authState.error != null) ...<Widget>[
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(12),
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.error.withValues(
-                            alpha: 0.1,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(
-                            color: theme.colorScheme.error.withValues(
-                              alpha: 0.3,
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.error_outline,
-                              color: theme.colorScheme.error,
-                              size: 20,
-                            ),
-                            const SizedBox(width: 8),
-                            Expanded(
-                              child: Text(
-                                authState.error!,
-                                style: theme.textTheme.bodySmall?.copyWith(
-                                  color: theme.colorScheme.error,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                    ],
-
-                    // Login button
-                    AuthButton(
-                      onPressed: () => _handleLogin(context),
-                      text: l10n.login,
-                      isLoading: authState.isLoading,
-                    ),
-
-                    const SizedBox(height: 24),
-
-                    // Divider
-                    const AuthDivider(),
-
-                    const SizedBox(height: 24),
-
-                    // Social login buttons
-                    SocialAuthButton(
-                      onPressed: () => _handleSocialLogin(context, 'github'),
-                      provider: SocialAuthProvider.github,
-                      isLoading: authState.isLoading,
-                    ),
-
-                    const SizedBox(height: 32),
-
-                    // Sign up link
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                child: AuthCard(
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: <Widget>[
+                        // Header
                         Text(
-                          l10n.noAccountQuestion,
+                          l10n.login,
+                          style: theme.textTheme.headlineMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                            color: theme.colorScheme.onSurface,
+                          ),
+                        ),
+                        const SizedBox(height: 8),
+                        Text(
+                          l10n.welcomeBackMessage,
                           style: theme.textTheme.bodyMedium?.copyWith(
                             color: theme.colorScheme.onSurface.withValues(
                               alpha: 0.7,
                             ),
                           ),
                         ),
-                        AuthButton(
-                          onPressed: () => Navigator.pushReplacementNamed(
-                            context,
-                            '/signup',
+
+                        const SizedBox(height: 32),
+
+                        // Email field
+                        AuthInputField(
+                          label: l10n.email,
+                          hint: l10n.emailHint,
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          prefixIcon: const Icon(Icons.email_outlined),
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return l10n.fieldRequired;
+                            }
+                            if (!RegExp(
+                              r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                            ).hasMatch(value)) {
+                              return l10n.invalidEmail;
+                            }
+                            return null;
+                          },
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        // Password field
+                        AuthInputField(
+                          label: l10n.password,
+                          hint: l10n.passwordHint,
+                          controller: _passwordController,
+                          obscureText: true,
+                          prefixIcon: const Icon(Icons.lock_outlined),
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return l10n.fieldRequired;
+                            }
+                            return null;
+                          },
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        // Forgot password link
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: AuthButton(
+                            onPressed: () => _showForgotPasswordDialog(context),
+                            text: l10n.forgotPasswordQuestion,
+                            variant: AuthButtonVariant.ghost,
+                            width: 120,
                           ),
-                          text: l10n.signUp,
-                          variant: AuthButtonVariant.ghost,
-                          width: 120,
+                        ),
+
+                        const SizedBox(height: 24),
+
+                        // Error message
+                        if (authState.error.isSome()) ...<Widget>[
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.all(12),
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.error.withValues(
+                                alpha: 0.1,
+                              ),
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                color: theme.colorScheme.error.withValues(
+                                  alpha: 0.3,
+                                ),
+                              ),
+                            ),
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.error_outline,
+                                  color: theme.colorScheme.error,
+                                  size: 20,
+                                ),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    authState.error.fold(
+                                      () => '',
+                                      (Exception error) => error.toString(),
+                                    ),
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: theme.colorScheme.error,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                        ],
+
+                        // Login button
+                        AuthButton(
+                          onPressed: () => _handleLogin(context),
+                          text: l10n.login,
+                          isLoading: authState.isLoading,
+                        ),
+
+                        const SizedBox(height: 24),
+
+                        // Divider
+                        const AuthDivider(),
+
+                        const SizedBox(height: 24),
+
+                        // Social login buttons
+                        SocialAuthButton(
+                          onPressed: () =>
+                              _handleSocialLogin(context, 'github'),
+                          provider: SocialAuthProvider.github,
+                          isLoading: authState.isLoading,
+                        ),
+
+                        const SizedBox(height: 32),
+
+                        // Sign up link
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              l10n.noAccountQuestion,
+                              style: theme.textTheme.bodyMedium?.copyWith(
+                                color: theme.colorScheme.onSurface.withValues(
+                                  alpha: 0.7,
+                                ),
+                              ),
+                            ),
+                            AuthButton(
+                              onPressed: () => Navigator.pushReplacementNamed(
+                                context,
+                                '/signup',
+                              ),
+                              text: l10n.signUp,
+                              variant: AuthButtonVariant.ghost,
+                              width: 120,
+                            ),
+                          ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
               );
             },
           ),

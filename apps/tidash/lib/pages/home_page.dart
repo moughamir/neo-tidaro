@@ -11,7 +11,7 @@ class TiDashHome extends StatelessWidget {
       converter: (Store<AppState> store) => store.state.authState,
       onInit: (Store<AppState> store) {
         // Check authentication status on app start
-        store.dispatch(CheckAuthStatusAction());
+        store.dispatch(const CheckAuthStatusAction());
       },
       builder: (BuildContext context, AuthState authState) {
         if (authState.isLoading) {
@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
 
                     // Error Message
-                    if (authState.error != null) ...<Widget>[
+                    if (authState.error.isSome()) ...<Widget>[
                       const SizedBox(height: 16),
                       Container(
                         padding: const EdgeInsets.all(12),
@@ -170,7 +170,10 @@ class _LoginPageState extends State<LoginPage> {
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
-                                authState.error!,
+                                authState.error.fold(
+                                  () => '',
+                                  (Exception error) => error.toString(),
+                                ),
                                 style: TextStyle(color: Colors.red[600]),
                               ),
                             ),
@@ -192,9 +195,9 @@ class _LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       final Store<AppState> store = StoreProvider.of<AppState>(context);
       store.dispatch(
-        SignInRequestAction(
-          _emailController.text.trim(),
-          _passwordController.text,
+        SignInAction(
+          email: _emailController.text.trim(),
+          password: _passwordController.text,
         ),
       );
     }
@@ -216,18 +219,23 @@ class DashboardPage extends StatelessWidget {
           StoreConnector<AppState, AuthState>(
             converter: (Store<AppState> store) => store.state.authState,
             builder: (BuildContext context, AuthState authState) {
-              return PopupMenuButton(
+              return PopupMenuButton<Widget>(
                 icon: const Icon(Icons.account_circle),
-                itemBuilder: (BuildContext context) => [
-                  PopupMenuItem(
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<Widget>>[
+                  PopupMenuItem<Widget>(
                     child: ListTile(
                       leading: const Icon(Icons.person),
-                      title: Text(authState.user?['email'] ?? 'User'),
+                      title: Text(
+                        authState.data.fold(
+                          () => 'User',
+                          (AuthUser user) => user.email,
+                        ),
+                      ),
                       contentPadding: EdgeInsets.zero,
                     ),
                   ),
                   const PopupMenuDivider(),
-                  PopupMenuItem(
+                  PopupMenuItem<Widget>(
                     onTap: () => _signOut(context),
                     child: const ListTile(
                       leading: Icon(Icons.logout),
@@ -264,6 +272,6 @@ class DashboardPage extends StatelessWidget {
 
   void _signOut(BuildContext context) {
     final Store<AppState> store = StoreProvider.of<AppState>(context);
-    store.dispatch(SignOutRequestAction());
+    store.dispatch(const SignOutAction());
   }
 }

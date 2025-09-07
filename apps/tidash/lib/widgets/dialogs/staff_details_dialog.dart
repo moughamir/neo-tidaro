@@ -259,6 +259,10 @@ class StaffDetailsDialog extends StatelessWidget {
         return 'Commercial';
       case ServiceCategory.specialized:
         return 'Specialized';
+      case ServiceCategory.standardCleaning:
+        return 'Standard Cleaning';
+      case ServiceCategory.residential:
+        return 'Residential';
     }
   }
 
@@ -267,8 +271,10 @@ class StaffDetailsDialog extends StatelessWidget {
   }
 
   void _toggleAvailability(BuildContext context) {
-    final nextStatus = cleaner.status == CleanerStatus.available
+    final CleanerStatus nextStatus = cleaner.status == CleanerStatus.available
         ? CleanerStatus.offline
+        : cleaner.status == CleanerStatus.onJob
+        ? CleanerStatus.onBreak
         : CleanerStatus.available;
 
     StoreProvider.of<AppState>(context, listen: false).dispatch(
