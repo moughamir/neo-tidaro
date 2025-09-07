@@ -1,0 +1,622 @@
+{
+  "@@locale": "ar",
+  "@@last_modified": "2025-09-06T15:20:53+01:00",
+  "appTitle": "تيدارو",
+  "@appTitle": {
+    "description": "Application Title"
+  },
+  "hello": "مرحبًا",
+  "@hello": {
+    "description": "A simple greeting"
+  },
+  "helloUser": "مرحبًا {userName}",
+  "@helloUser": {
+    "description": "A greeting to the user.",
+    "placeholders": {
+      "userName": {}
+    }
+  },
+  "welcome": "أهلاً وسهلاً",
+  "@welcome": {
+    "description": "Welcome message"
+  },
+  "welcomeBack": "مرحبًا بعودتك",
+  "@welcomeBack": {
+    "description": "Welcome back message"
+  },
+  "goodbye": "وداعًا",
+  "@goodbye": {
+    "description": "Farewell message"
+  },
+  "ok": "موافق",
+  "@ok": {
+    "description": "OK button"
+  },
+  "cancel": "إلغاء",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  "save": "حفظ",
+  "@save": {
+    "description": "Save button"
+  },
+  "delete": "حذف",
+  "@delete": {
+    "description": "Delete button"
+  },
+  "edit": "تعديل",
+  "@edit": {
+    "description": "Edit button"
+  },
+  "add": "إضافة",
+  "@add": {
+    "description": "Add button"
+  },
+  "create": "إنشاء",
+  "@create": {
+    "description": "Create button"
+  },
+  "update": "تحديث",
+  "@update": {
+    "description": "Update button"
+  },
+  "remove": "إزالة",
+  "@remove": {
+    "description": "Remove button"
+  },
+  "close": "إغلاق",
+  "@close": {
+    "description": "Close button"
+  },
+  "open": "فتح",
+  "@open": {
+    "description": "Open button"
+  },
+  "submit": "إرسال",
+  "@submit": {
+    "description": "Submit button"
+  },
+  "confirm": "تأكيد",
+  "@confirm": {
+    "description": "Confirm button"
+  },
+  "yes": "نعم",
+  "@yes": {
+    "description": "Yes button"
+  },
+  "no": "لا",
+  "@no": {
+    "description": "No button"
+  },
+  "retry": "إعادة المحاولة",
+  "@retry": {
+    "description": "Retry button"
+  },
+  "refresh": "تحديث",
+  "@refresh": {
+    "description": "Refresh button"
+  },
+  "back": "رجوع",
+  "@back": {
+    "description": "Back button"
+  },
+  "next": "التالي",
+  "@next": {
+    "description": "Next button"
+  },
+  "previous": "السابق",
+  "@previous": {
+    "description": "Previous button"
+  },
+  "continueAction": "متابعة",
+  "@continueAction": {
+    "description": "Continue button"
+  },
+  "skip": "تخطي",
+  "@skip": {
+    "description": "Skip button"
+  },
+  "done": "تم",
+  "@done": {
+    "description": "Done button"
+  },
+  "finish": "إنهاء",
+  "@finish": {
+    "description": "Finish button"
+  },
+  "home": "الرئيسية",
+  "@home": {
+    "description": "Home navigation"
+  },
+  "profile": "الملف الشخصي",
+  "@profile": {
+    "description": "Profile navigation"
+  },
+  "settings": "إعدادات",
+  "@settings": {
+    "description": "Settings navigation"
+  },
+  "about": "حول",
+  "@about": {
+    "description": "About navigation"
+  },
+  "help": "مساعدة",
+  "@help": {
+    "description": "Help navigation"
+  },
+  "contact": "اتصال",
+  "@contact": {
+    "description": "Contact navigation"
+  },
+  "dashboard": "لوحة التحكم",
+  "@dashboard": {
+    "description": "Dashboard navigation"
+  },
+  "notifications": "الإشعارات",
+  "@notifications": {
+    "description": "Notifications navigation"
+  },
+  "search": "بحث",
+  "@search": {
+    "description": "Search functionality"
+  },
+  "filter": "تصفية",
+  "@filter": {
+    "description": "Filter functionality"
+  },
+  "sort": "ترتيب",
+  "@sort": {
+    "description": "Sort functionality"
+  },
+  "themeSettings": "إعدادات السمة",
+  "@themeSettings": {
+    "description": "Theme Settings"
+  },
+  "languageSettings": "إعدادات اللغة",
+  "@languageSettings": {
+    "description": "Language Settings"
+  },
+  "darkMode": "الوضع المظلم",
+  "@darkMode": {
+    "description": "Dark mode setting"
+  },
+  "lightMode": "الوضع المضيء",
+  "@lightMode": {
+    "description": "Light mode setting"
+  },
+  "systemMode": "وضع النظام",
+  "@systemMode": {
+    "description": "System mode setting"
+  },
+  "privacy": "الخصوصية",
+  "@privacy": {
+    "description": "Privacy settings"
+  },
+  "security": "الأمان",
+  "@security": {
+    "description": "Security settings"
+  },
+  "account": "الحساب",
+  "@account": {
+    "description": "Account settings"
+  },
+  "preferences": "التفضيلات",
+  "@preferences": {
+    "description": "User preferences"
+  },
+  "login": "تسجيل الدخول",
+  "@login": {
+    "description": "Login action"
+  },
+  "logout": "تسجيل الخروج",
+  "@logout": {
+    "description": "Logout action"
+  },
+  "register": "تسجيل",
+  "@register": {
+    "description": "Register action"
+  },
+  "signUp": "إنشاء حساب",
+  "@signUp": {
+    "description": "Sign up action"
+  },
+  "signIn": "تسجيل الدخول",
+  "@signIn": {
+    "description": "Sign in action"
+  },
+  "forgotPassword": "نسيت كلمة المرور",
+  "@forgotPassword": {
+    "description": "Forgot password action"
+  },
+  "resetPassword": "إعادة تعيين كلمة المرور",
+  "@resetPassword": {
+    "description": "Reset password action"
+  },
+  "changePassword": "تغيير كلمة المرور",
+  "@changePassword": {
+    "description": "Change password action"
+  },
+  "email": "البريد الإلكتروني",
+  "@email": {
+    "description": "Email field"
+  },
+  "password": "كلمة المرور",
+  "@password": {
+    "description": "Password field"
+  },
+  "username": "اسم المستخدم",
+  "@username": {
+    "description": "Username field"
+  },
+  "name": "الاسم",
+  "@name": {
+    "description": "Name field"
+  },
+  "firstName": "الاسم الأول",
+  "@firstName": {
+    "description": "First name field"
+  },
+  "lastName": "اسم العائلة",
+  "@lastName": {
+    "description": "Last name field"
+  },
+  "phone": "الهاتف",
+  "@phone": {
+    "description": "Phone field"
+  },
+  "address": "العنوان",
+  "@address": {
+    "description": "Address field"
+  },
+  "city": "المدينة",
+  "@city": {
+    "description": "City field"
+  },
+  "country": "البلد",
+  "@country": {
+    "description": "Country field"
+  },
+  "dateOfBirth": "تاريخ الميلاد",
+  "@dateOfBirth": {
+    "description": "Date of birth field"
+  },
+  "loading": "جاري التحميل...",
+  "@loading": {
+    "description": "Loading state"
+  },
+  "saving": "جاري الحفظ...",
+  "@saving": {
+    "description": "Saving state"
+  },
+  "processing": "جاري المعالجة...",
+  "@processing": {
+    "description": "Processing state"
+  },
+  "uploading": "جاري الرفع...",
+  "@uploading": {
+    "description": "Uploading state"
+  },
+  "downloading": "جاري التحميل...",
+  "@downloading": {
+    "description": "Downloading state"
+  },
+  "connecting": "جاري الاتصال...",
+  "@connecting": {
+    "description": "Connecting state"
+  },
+  "syncing": "جاري المزامنة...",
+  "@syncing": {
+    "description": "Syncing state"
+  },
+  "success": "نجح",
+  "@success": {
+    "description": "Success message"
+  },
+  "error": "خطأ",
+  "@error": {
+    "description": "Error message"
+  },
+  "warning": "تحذير",
+  "@warning": {
+    "description": "Warning message"
+  },
+  "info": "معلومات",
+  "@info": {
+    "description": "Information message"
+  },
+  "noData": "لا توجد بيانات متاحة",
+  "@noData": {
+    "description": "No data message"
+  },
+  "noResults": "لم يتم العثور على نتائج",
+  "@noResults": {
+    "description": "No results message"
+  },
+  "networkError": "خطأ في الشبكة",
+  "@networkError": {
+    "description": "Network error message"
+  },
+  "connectionError": "خطأ في الاتصال",
+  "@connectionError": {
+    "description": "Connection error message"
+  },
+  "serverError": "خطأ في الخادم",
+  "@serverError": {
+    "description": "Server error message"
+  },
+  "unknownError": "خطأ غير معروف",
+  "@unknownError": {
+    "description": "Unknown error message"
+  },
+  "tryAgain": "حاول مرة أخرى",
+  "@tryAgain": {
+    "description": "Try again message"
+  },
+  "required": "مطلوب",
+  "@required": {
+    "description": "Required field validation"
+  },
+  "invalidPhoneNumber": "رقم هاتف غير صحيح",
+  "@invalidPhoneNumber": {
+    "description": "Invalid phone number validation"
+  },
+  "fieldRequired": "هذا الحقل مطلوب",
+  "@fieldRequired": {
+    "description": "Field required validation"
+  },
+  "fromNow": "منذ {time}",
+  "@fromNow": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "justNow": "الآن",
+  "@justNow": {
+    "description": "Used for something that just happened"
+  },
+  "aMinuteAgo": "منذ دقيقة",
+  "@aMinuteAgo": {
+    "description": "One minute in the past"
+  },
+  "minutesAgo": "منذ {minutes} دقائق",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "anHourAgo": "منذ ساعة",
+  "@anHourAgo": {
+    "description": "One hour in the past"
+  },
+  "hoursAgo": "منذ {hours} ساعات",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "aDayAgo": "منذ يوم",
+  "@aDayAgo": {
+    "description": "One day in the past"
+  },
+  "daysAgo": "منذ {days} أيام",
+  "@daysAgo": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "aWeekAgo": "منذ أسبوع",
+  "@aWeekAgo": {
+    "description": "One week in the past"
+  },
+  "weeksAgo": "منذ {weeks} أسابيع",
+  "@weeksAgo": {
+    "placeholders": {
+      "weeks": {}
+    }
+  },
+  "aMonthAgo": "منذ شهر",
+  "@aMonthAgo": {
+    "description": "One month in the past"
+  },
+  "monthsAgo": "منذ {months} أشهر",
+  "@monthsAgo": {
+    "placeholders": {
+      "months": {}
+    }
+  },
+  "aYearAgo": "منذ سنة",
+  "@aYearAgo": {
+    "description": "One year in the past"
+  },
+  "yearsAgo": "منذ {years} سنوات",
+  "@yearsAgo": {
+    "placeholders": {
+      "years": {}
+    }
+  },
+  "today": "اليوم",
+  "@today": {
+    "description": "Today"
+  },
+  "yesterday": "أمس",
+  "@yesterday": {
+    "description": "Yesterday"
+  },
+  "tomorrow": "غداً",
+  "@tomorrow": {
+    "description": "Tomorrow"
+  },
+  "thisWeek": "هذا الأسبوع",
+  "@thisWeek": {
+    "description": "This week"
+  },
+  "lastWeek": "الأسبوع الماضي",
+  "@lastWeek": {
+    "description": "Last week"
+  },
+  "nextWeek": "الأسبوع القادم",
+  "@nextWeek": {
+    "description": "Next week"
+  },
+  "thisMonth": "هذا الشهر",
+  "@thisMonth": {
+    "description": "This month"
+  },
+  "lastMonth": "الشهر الماضي",
+  "@lastMonth": {
+    "description": "Last month"
+  },
+  "nextMonth": "الشهر القادم",
+  "@nextMonth": {
+    "description": "Next month"
+  },
+  "online": "متصل",
+  "@online": {
+    "description": "Online status"
+  },
+  "offline": "غير متصل",
+  "@offline": {
+    "description": "Offline status"
+  },
+  "available": "متاح",
+  "@available": {
+    "description": "Available status"
+  },
+  "busy": "مشغول",
+  "@busy": {
+    "description": "Busy status"
+  },
+  "away": "غائب",
+  "@away": {
+    "description": "Away status"
+  },
+  "version": "الإصدار",
+  "@version": {
+    "description": "Version label"
+  },
+  "buildNumber": "رقم البناء",
+  "@buildNumber": {
+    "description": "Build number label"
+  },
+  "copyright": "حقوق الطبع والنشر",
+  "@copyright": {
+    "description": "Copyright label"
+  },
+  "termsOfService": "شروط الخدمة",
+  "@termsOfService": {
+    "description": "Terms of service"
+  },
+  "privacyPolicy": "سياسة الخصوصية",
+  "@privacyPolicy": {
+    "description": "Privacy policy"
+  },
+  "licenses": "التراخيص",
+  "@licenses": {
+    "description": "Licenses"
+  },
+  "share": "مشاركة",
+  "@share": {
+    "description": "Share action"
+  },
+  "copy": "نسخ",
+  "@copy": {
+    "description": "Copy action"
+  },
+  "paste": "لصق",
+  "@paste": {
+    "description": "Paste action"
+  },
+  "cut": "قص",
+  "@cut": {
+    "description": "Cut action"
+  },
+  "selectAll": "تحديد الكل",
+  "@selectAll": {
+    "description": "Select all action"
+  },
+  "undo": "تراجع",
+  "@undo": {
+    "description": "Undo action"
+  },
+  "redo": "إعادة",
+  "@redo": {
+    "description": "Redo action"
+  },
+  "incrementAction": "Increment",
+  "@incrementAction": {
+    "description": "Increment action"
+  },
+  "decrementAction": "Decrement",
+  "@decrementAction": {
+    "description": "Decrement action"
+  },
+  "itemCount": "{count} عناصر",
+  "@itemCount": {
+    "description": "Item count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "selectedCount": "{count} محدد",
+  "@selectedCount": {
+    "description": "Selected count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "totalCount": "الإجمالي: {count}",
+  "@totalCount": {
+    "description": "Total count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "appBranding": "إدارة تيدارو",
+  "@appBranding": {},
+  "welcomeBackMessage": "مرحباً بعودتك! يرجى تسجيل الدخول للمتابعة.",
+  "@welcomeBackMessage": {},
+  "createAccount": "إنشاء حساب",
+  "@createAccount": {},
+  "createAccountSubtitle": "أدخل تفاصيلك أدناه لإنشاء حسابك",
+  "@createAccountSubtitle": {},
+  "emailHint": "name@example.com",
+  "@emailHint": {},
+  "passwordHint": "أدخل كلمة المرور",
+  "@passwordHint": {},
+  "nameHint": "أدخل اسمك الكامل",
+  "@nameHint": {},
+  "createPasswordHint": "إنشاء كلمة مرور",
+  "@createPasswordHint": {},
+  "confirmPasswordHint": "تأكيد كلمة المرور",
+  "@confirmPasswordHint": {},
+  "confirmPasswordLabel": "تأكيد كلمة المرور",
+  "@confirmPasswordLabel": {},
+  "forgotPasswordQuestion": "نسيت كلمة المرور؟",
+  "@forgotPasswordQuestion": {},
+  "noAccountQuestion": "ليس لديك حساب؟",
+  "@noAccountQuestion": {},
+  "haveAccountQuestion": "لديك حساب بالفعل؟",
+  "@haveAccountQuestion": {},
+  "resetPasswordTitle": "إعادة تعيين كلمة المرور",
+  "@resetPasswordTitle": {},
+  "resetPasswordMessage": "أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.",
+  "@resetPasswordMessage": {},
+  "sendResetLink": "إرسال رابط الإعادة",
+  "@sendResetLink": {},
+  "passwordResetEmailSent": "تم إرسال بريد إعادة تعيين كلمة المرور!",
+  "@passwordResetEmailSent": {},
+  "termsAgreement": "بالنقر على متابعة، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا.",
+  "@termsAgreement": {},
+  "passwordsDontMatch": "كلمات المرور غير متطابقة",
+  "@passwordsDontMatch": {
+    "description": "Passwords don't match validation message"
+  },
+  "invalidEmail": "يرجى إدخال عنوان بريد إلكتروني صحيح",
+  "@invalidEmail": {
+    "description": "Invalid email validation message"
+  },
+  "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+  "@passwordTooShort": {
+    "description": "Password too short validation message"
+  }
+}

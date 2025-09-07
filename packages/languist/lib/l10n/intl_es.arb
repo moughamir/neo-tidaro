@@ -1,0 +1,586 @@
+{
+  "@@locale": "es",
+  "@@last_modified": "2025-09-06T15:20:53+01:00",
+  "appTitle": "TiDaro",
+  "@appTitle": {
+    "description": "Application Title"
+  },
+  "hello": "Hola",
+  "@hello": {
+    "description": "A simple greeting"
+  },
+  "helloUser": "Hola {userName}",
+  "@helloUser": {
+    "description": "A greeting to the user.",
+    "placeholders": {
+      "userName": {}
+    }
+  },
+  "welcome": "Bienvenido",
+  "@welcome": {
+    "description": "Welcome message"
+  },
+  "welcomeBack": "Bienvenido de vuelta",
+  "@welcomeBack": {
+    "description": "Welcome back message"
+  },
+  "goodbye": "Adiós",
+  "@goodbye": {
+    "description": "Farewell message"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "cancel": "Cancelar",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  "save": "Guardar",
+  "@save": {
+    "description": "Save button"
+  },
+  "delete": "Eliminar",
+  "@delete": {
+    "description": "Delete button"
+  },
+  "edit": "Editar",
+  "@edit": {
+    "description": "Edit button"
+  },
+  "add": "Añadir",
+  "@add": {
+    "description": "Add button"
+  },
+  "create": "Crear",
+  "@create": {
+    "description": "Create button"
+  },
+  "update": "Actualizar",
+  "@update": {
+    "description": "Update button"
+  },
+  "remove": "Quitar",
+  "@remove": {
+    "description": "Remove button"
+  },
+  "close": "Cerrar",
+  "@close": {
+    "description": "Close button"
+  },
+  "open": "Abrir",
+  "@open": {
+    "description": "Open button"
+  },
+  "submit": "Enviar",
+  "@submit": {
+    "description": "Submit button"
+  },
+  "confirm": "Confirmar",
+  "@confirm": {
+    "description": "Confirm button"
+  },
+  "yes": "Sí",
+  "@yes": {
+    "description": "Yes button"
+  },
+  "no": "No",
+  "@no": {
+    "description": "No button"
+  },
+  "retry": "Reintentar",
+  "@retry": {
+    "description": "Retry button"
+  },
+  "refresh": "Actualizar",
+  "@refresh": {
+    "description": "Refresh button"
+  },
+  "back": "Atrás",
+  "@back": {
+    "description": "Back button"
+  },
+  "next": "Siguiente",
+  "@next": {
+    "description": "Next button"
+  },
+  "previous": "Anterior",
+  "@previous": {
+    "description": "Previous button"
+  },
+  "continueAction": "Continuar",
+  "@continueAction": {
+    "description": "Continue button"
+  },
+  "skip": "Omitir",
+  "@skip": {
+    "description": "Skip button"
+  },
+  "done": "Hecho",
+  "@done": {
+    "description": "Done button"
+  },
+  "finish": "Finalizar",
+  "@finish": {
+    "description": "Finish button"
+  },
+  "home": "Inicio",
+  "@home": {
+    "description": "Home navigation"
+  },
+  "profile": "Perfil",
+  "@profile": {
+    "description": "Profile navigation"
+  },
+  "settings": "Ajustes",
+  "@settings": {
+    "description": "Settings navigation"
+  },
+  "about": "Acerca de",
+  "@about": {
+    "description": "About navigation"
+  },
+  "help": "Ayuda",
+  "@help": {
+    "description": "Help navigation"
+  },
+  "contact": "Contacto",
+  "@contact": {
+    "description": "Contact navigation"
+  },
+  "dashboard": "Panel de control",
+  "@dashboard": {
+    "description": "Dashboard navigation"
+  },
+  "notifications": "Notificaciones",
+  "@notifications": {
+    "description": "Notifications navigation"
+  },
+  "search": "Buscar",
+  "@search": {
+    "description": "Search functionality"
+  },
+  "filter": "Filtrar",
+  "@filter": {
+    "description": "Filter functionality"
+  },
+  "sort": "Ordenar",
+  "@sort": {
+    "description": "Sort functionality"
+  },
+  "themeSettings": "Ajustes de tema",
+  "@themeSettings": {
+    "description": "Theme Settings"
+  },
+  "languageSettings": "Ajustes de idioma",
+  "@languageSettings": {
+    "description": "Language Settings"
+  },
+  "darkMode": "Modo oscuro",
+  "@darkMode": {
+    "description": "Dark mode setting"
+  },
+  "lightMode": "Modo claro",
+  "@lightMode": {
+    "description": "Light mode setting"
+  },
+  "systemMode": "Modo del sistema",
+  "@systemMode": {
+    "description": "System mode setting"
+  },
+  "privacy": "Privacidad",
+  "@privacy": {
+    "description": "Privacy settings"
+  },
+  "security": "Seguridad",
+  "@security": {
+    "description": "Security settings"
+  },
+  "account": "Cuenta",
+  "@account": {
+    "description": "Account settings"
+  },
+  "preferences": "Preferencias",
+  "@preferences": {
+    "description": "User preferences"
+  },
+  "login": "Iniciar sesión",
+  "@login": {
+    "description": "Login action"
+  },
+  "logout": "Cerrar sesión",
+  "@logout": {
+    "description": "Logout action"
+  },
+  "register": "Registrarse",
+  "@register": {
+    "description": "Register action"
+  },
+  "signUp": "Crear cuenta",
+  "@signUp": {
+    "description": "Sign up action"
+  },
+  "signIn": "Iniciar sesión",
+  "@signIn": {
+    "description": "Sign in action"
+  },
+  "forgotPassword": "Olvidé mi contraseña",
+  "@forgotPassword": {
+    "description": "Forgot password action"
+  },
+  "resetPassword": "Restablecer contraseña",
+  "@resetPassword": {
+    "description": "Reset password action"
+  },
+  "changePassword": "Cambiar contraseña",
+  "@changePassword": {
+    "description": "Change password action"
+  },
+  "email": "Correo electrónico",
+  "@email": {
+    "description": "Email field"
+  },
+  "password": "Contraseña",
+  "@password": {
+    "description": "Password field"
+  },
+  "username": "Nombre de usuario",
+  "@username": {
+    "description": "Username field"
+  },
+  "name": "Nombre",
+  "@name": {
+    "description": "Name field"
+  },
+  "firstName": "Nombre",
+  "@firstName": {
+    "description": "First name field"
+  },
+  "lastName": "Apellido",
+  "@lastName": {
+    "description": "Last name field"
+  },
+  "phone": "Teléfono",
+  "@phone": {
+    "description": "Phone field"
+  },
+  "address": "Dirección",
+  "@address": {
+    "description": "Address field"
+  },
+  "city": "Ciudad",
+  "@city": {
+    "description": "City field"
+  },
+  "country": "País",
+  "@country": {
+    "description": "Country field"
+  },
+  "dateOfBirth": "Fecha de nacimiento",
+  "@dateOfBirth": {
+    "description": "Date of birth field"
+  },
+  "loading": "Cargando...",
+  "@loading": {
+    "description": "Loading state"
+  },
+  "saving": "Guardando...",
+  "@saving": {
+    "description": "Saving state"
+  },
+  "processing": "Procesando...",
+  "@processing": {
+    "description": "Processing state"
+  },
+  "uploading": "Subiendo...",
+  "@uploading": {
+    "description": "Uploading state"
+  },
+  "downloading": "Descargando...",
+  "@downloading": {
+    "description": "Downloading state"
+  },
+  "connecting": "Conectando...",
+  "@connecting": {
+    "description": "Connecting state"
+  },
+  "syncing": "Sincronizando...",
+  "@syncing": {
+    "description": "Syncing state"
+  },
+  "success": "Éxito",
+  "@success": {
+    "description": "Success message"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error message"
+  },
+  "warning": "Advertencia",
+  "@warning": {
+    "description": "Warning message"
+  },
+  "info": "Información",
+  "@info": {
+    "description": "Information message"
+  },
+  "noData": "No hay datos disponibles",
+  "@noData": {
+    "description": "No data message"
+  },
+  "noResults": "No se encontraron resultados",
+  "@noResults": {
+    "description": "No results message"
+  },
+  "networkError": "Error de red",
+  "@networkError": {
+    "description": "Network error message"
+  },
+  "connectionError": "Error de conexión",
+  "@connectionError": {
+    "description": "Connection error message"
+  },
+  "serverError": "Error del servidor",
+  "@serverError": {
+    "description": "Server error message"
+  },
+  "unknownError": "Error desconocido",
+  "@unknownError": {
+    "description": "Unknown error message"
+  },
+  "tryAgain": "Intentar de nuevo",
+  "@tryAgain": {
+    "description": "Try again message"
+  },
+  "required": "Requerido",
+  "@required": {
+    "description": "Required field validation"
+  },
+  "invalidEmail": "Correo electrónico inválido",
+  "@invalidEmail": {
+    "description": "Invalid email validation"
+  },
+  "passwordTooShort": "Contraseña muy corta",
+  "@passwordTooShort": {
+    "description": "Password too short validation"
+  },
+  "passwordsDoNotMatch": "Las contraseñas no coinciden",
+  "@passwordsDoNotMatch": {
+    "description": "Passwords do not match validation"
+  },
+  "invalidPhoneNumber": "Número de teléfono inválido",
+  "@invalidPhoneNumber": {
+    "description": "Invalid phone number validation"
+  },
+  "fieldRequired": "Este campo es requerido",
+  "@fieldRequired": {
+    "description": "Field required validation"
+  },
+  "fromNow": "hace {time}",
+  "@fromNow": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "justNow": "ahora mismo",
+  "@justNow": {
+    "description": "Used for something that just happened"
+  },
+  "aMinuteAgo": "hace un minuto",
+  "@aMinuteAgo": {
+    "description": "One minute in the past"
+  },
+  "minutesAgo": "hace {minutes} minutos",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "anHourAgo": "hace una hora",
+  "@anHourAgo": {
+    "description": "One hour in the past"
+  },
+  "hoursAgo": "hace {hours} horas",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "aDayAgo": "hace un día",
+  "@aDayAgo": {
+    "description": "One day in the past"
+  },
+  "daysAgo": "hace {days} días",
+  "@daysAgo": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "aWeekAgo": "hace una semana",
+  "@aWeekAgo": {
+    "description": "One week in the past"
+  },
+  "weeksAgo": "hace {weeks} semanas",
+  "@weeksAgo": {
+    "placeholders": {
+      "weeks": {}
+    }
+  },
+  "aMonthAgo": "hace un mes",
+  "@aMonthAgo": {
+    "description": "One month in the past"
+  },
+  "monthsAgo": "hace {months} meses",
+  "@monthsAgo": {
+    "placeholders": {
+      "months": {}
+    }
+  },
+  "aYearAgo": "hace un año",
+  "@aYearAgo": {
+    "description": "One year in the past"
+  },
+  "yearsAgo": "hace {years} años",
+  "@yearsAgo": {
+    "placeholders": {
+      "years": {}
+    }
+  },
+  "today": "Hoy",
+  "@today": {
+    "description": "Today"
+  },
+  "yesterday": "Ayer",
+  "@yesterday": {
+    "description": "Yesterday"
+  },
+  "tomorrow": "Mañana",
+  "@tomorrow": {
+    "description": "Tomorrow"
+  },
+  "thisWeek": "Esta semana",
+  "@thisWeek": {
+    "description": "This week"
+  },
+  "lastWeek": "La semana pasada",
+  "@lastWeek": {
+    "description": "Last week"
+  },
+  "nextWeek": "La próxima semana",
+  "@nextWeek": {
+    "description": "Next week"
+  },
+  "thisMonth": "Este mes",
+  "@thisMonth": {
+    "description": "This month"
+  },
+  "lastMonth": "El mes pasado",
+  "@lastMonth": {
+    "description": "Last month"
+  },
+  "nextMonth": "El próximo mes",
+  "@nextMonth": {
+    "description": "Next month"
+  },
+  "online": "En línea",
+  "@online": {
+    "description": "Online status"
+  },
+  "offline": "Desconectado",
+  "@offline": {
+    "description": "Offline status"
+  },
+  "available": "Disponible",
+  "@available": {
+    "description": "Available status"
+  },
+  "busy": "Ocupado",
+  "@busy": {
+    "description": "Busy status"
+  },
+  "away": "Ausente",
+  "@away": {
+    "description": "Away status"
+  },
+  "version": "Versión",
+  "@version": {
+    "description": "Version label"
+  },
+  "buildNumber": "Número de compilación",
+  "@buildNumber": {
+    "description": "Build number label"
+  },
+  "copyright": "Derechos de autor",
+  "@copyright": {
+    "description": "Copyright label"
+  },
+  "termsOfService": "Términos de servicio",
+  "@termsOfService": {
+    "description": "Terms of service"
+  },
+  "privacyPolicy": "Política de privacidad",
+  "@privacyPolicy": {
+    "description": "Privacy policy"
+  },
+  "licenses": "Licencias",
+  "@licenses": {
+    "description": "Licenses"
+  },
+  "share": "Compartir",
+  "@share": {
+    "description": "Share action"
+  },
+  "copy": "Copiar",
+  "@copy": {
+    "description": "Copy action"
+  },
+  "paste": "Pegar",
+  "@paste": {
+    "description": "Paste action"
+  },
+  "cut": "Cortar",
+  "@cut": {
+    "description": "Cut action"
+  },
+  "selectAll": "Seleccionar todo",
+  "@selectAll": {
+    "description": "Select all action"
+  },
+  "undo": "Deshacer",
+  "@undo": {
+    "description": "Undo action"
+  },
+  "redo": "Rehacer",
+  "@redo": {
+    "description": "Redo action"
+  },
+  "incrementAction": "Increment",
+  "@incrementAction": {
+    "description": "Increment action"
+  },
+  "decrementAction": "Decrement",
+  "@decrementAction": {
+    "description": "Decrement action"
+  },
+  "itemCount": "{count} elementos",
+  "@itemCount": {
+    "description": "Item count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "selectedCount": "{count} seleccionados",
+  "@selectedCount": {
+    "description": "Selected count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "totalCount": "Total: {count}",
+  "@totalCount": {
+    "description": "Total count",
+    "placeholders": {
+      "count": {}
+    }
+  }
+}

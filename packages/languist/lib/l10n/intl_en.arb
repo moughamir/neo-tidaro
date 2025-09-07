@@ -1,0 +1,822 @@
+{
+  "@@locale": "en",
+  "@@last_modified": "2025-09-06T15:20:53+01:00",
+  "appTitle": "TiDaro",
+  "@appTitle": {
+    "description": "Application Title"
+  },
+  "hello": "Hello",
+  "@hello": {
+    "description": "A simple greeting"
+  },
+  "helloUser": "Hello {userName}",
+  "@helloUser": {
+    "description": "A greeting to the user.",
+    "placeholders": {
+      "userName": {}
+    }
+  },
+  "welcome": "Welcome",
+  "@welcome": {
+    "description": "Welcome message"
+  },
+  "welcomeBack": "Welcome back",
+  "@welcomeBack": {
+    "description": "Welcome back message"
+  },
+  "goodbye": "Goodbye",
+  "@goodbye": {
+    "description": "Farewell message"
+  },
+  "ok": "OK",
+  "@ok": {
+    "description": "OK button"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button"
+  },
+  "save": "Save",
+  "@save": {
+    "description": "Save button"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button"
+  },
+  "edit": "Edit",
+  "@edit": {
+    "description": "Edit button"
+  },
+  "add": "Add",
+  "@add": {
+    "description": "Add button"
+  },
+  "create": "Create",
+  "@create": {
+    "description": "Create button"
+  },
+  "update": "Update",
+  "@update": {
+    "description": "Update button"
+  },
+  "remove": "Remove",
+  "@remove": {
+    "description": "Remove button"
+  },
+  "close": "Close",
+  "@close": {
+    "description": "Close button"
+  },
+  "open": "Open",
+  "@open": {
+    "description": "Open button"
+  },
+  "submit": "Submit",
+  "@submit": {
+    "description": "Submit button"
+  },
+  "confirm": "Confirm",
+  "@confirm": {
+    "description": "Confirm button"
+  },
+  "yes": "Yes",
+  "@yes": {
+    "description": "Yes button"
+  },
+  "no": "No",
+  "@no": {
+    "description": "No button"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button"
+  },
+  "refresh": "Refresh",
+  "@refresh": {
+    "description": "Refresh button"
+  },
+  "back": "Back",
+  "@back": {
+    "description": "Back button"
+  },
+  "next": "Next",
+  "@next": {
+    "description": "Next button"
+  },
+  "previous": "Previous",
+  "@previous": {
+    "description": "Previous button"
+  },
+  "continueAction": "Continue",
+  "@continueAction": {
+    "description": "Continue button"
+  },
+  "skip": "Skip",
+  "@skip": {
+    "description": "Skip button"
+  },
+  "done": "Done",
+  "@done": {
+    "description": "Done button"
+  },
+  "finish": "Finish",
+  "@finish": {
+    "description": "Finish button"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Home navigation"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Profile navigation"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings navigation"
+  },
+  "about": "About",
+  "@about": {
+    "description": "About navigation"
+  },
+  "help": "Help",
+  "@help": {
+    "description": "Help navigation"
+  },
+  "contact": "Contact",
+  "@contact": {
+    "description": "Contact navigation"
+  },
+  "dashboard": "Dashboard",
+  "@dashboard": {
+    "description": "Dashboard navigation"
+  },
+  "notifications": "Notifications",
+  "@notifications": {
+    "description": "Notifications navigation"
+  },
+  "search": "Search",
+  "@search": {
+    "description": "Search functionality"
+  },
+  "filter": "Filter",
+  "@filter": {
+    "description": "Filter functionality"
+  },
+  "sort": "Sort",
+  "@sort": {
+    "description": "Sort functionality"
+  },
+  "themeSettings": "Theme Settings",
+  "@themeSettings": {
+    "description": "Theme Settings"
+  },
+  "languageSettings": "Language Settings",
+  "@languageSettings": {
+    "description": "Language Settings"
+  },
+  "darkMode": "Dark Mode",
+  "@darkMode": {
+    "description": "Dark mode setting"
+  },
+  "lightMode": "Light Mode",
+  "@lightMode": {
+    "description": "Light mode setting"
+  },
+  "systemMode": "System Mode",
+  "@systemMode": {
+    "description": "System mode setting"
+  },
+  "privacy": "Privacy",
+  "@privacy": {
+    "description": "Privacy settings"
+  },
+  "security": "Security",
+  "@security": {
+    "description": "Security settings"
+  },
+  "account": "Account",
+  "@account": {
+    "description": "Account settings"
+  },
+  "preferences": "Preferences",
+  "@preferences": {
+    "description": "User preferences"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login action"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Logout action"
+  },
+  "register": "Register",
+  "@register": {
+    "description": "Register action"
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Sign up action"
+  },
+  "signIn": "Sign In",
+  "@signIn": {
+    "description": "Sign in action"
+  },
+  "forgotPassword": "Forgot Password",
+  "@forgotPassword": {
+    "description": "Forgot password action"
+  },
+  "resetPassword": "Reset Password",
+  "@resetPassword": {
+    "description": "Reset password action"
+  },
+  "changePassword": "Change Password",
+  "@changePassword": {
+    "description": "Change password action"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email field"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password field"
+  },
+  "username": "Username",
+  "@username": {
+    "description": "Username field"
+  },
+  "name": "Name",
+  "@name": {
+    "description": "Name field"
+  },
+  "firstName": "First Name",
+  "@firstName": {
+    "description": "First name field"
+  },
+  "lastName": "Last Name",
+  "@lastName": {
+    "description": "Last name field"
+  },
+  "phone": "Phone",
+  "@phone": {
+    "description": "Phone field"
+  },
+  "address": "Address",
+  "@address": {
+    "description": "Address field"
+  },
+  "city": "City",
+  "@city": {
+    "description": "City field"
+  },
+  "country": "Country",
+  "@country": {
+    "description": "Country field"
+  },
+  "dateOfBirth": "Date of Birth",
+  "@dateOfBirth": {
+    "description": "Date of birth field"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading state"
+  },
+  "saving": "Saving...",
+  "@saving": {
+    "description": "Saving state"
+  },
+  "processing": "Processing...",
+  "@processing": {
+    "description": "Processing state"
+  },
+  "uploading": "Uploading...",
+  "@uploading": {
+    "description": "Uploading state"
+  },
+  "downloading": "Downloading...",
+  "@downloading": {
+    "description": "Downloading state"
+  },
+  "connecting": "Connecting...",
+  "@connecting": {
+    "description": "Connecting state"
+  },
+  "syncing": "Syncing...",
+  "@syncing": {
+    "description": "Syncing state"
+  },
+  "success": "Success",
+  "@success": {
+    "description": "Success message"
+  },
+  "error": "Error",
+  "@error": {
+    "description": "Error message"
+  },
+  "warning": "Warning",
+  "@warning": {
+    "description": "Warning message"
+  },
+  "info": "Information",
+  "@info": {
+    "description": "Information message"
+  },
+  "noData": "No data available",
+  "@noData": {
+    "description": "No data message"
+  },
+  "noResults": "No results found",
+  "@noResults": {
+    "description": "No results message"
+  },
+  "networkError": "Network error",
+  "@networkError": {
+    "description": "Network error message"
+  },
+  "connectionError": "Connection error",
+  "@connectionError": {
+    "description": "Connection error message"
+  },
+  "serverError": "Server error",
+  "@serverError": {
+    "description": "Server error message"
+  },
+  "unknownError": "Unknown error",
+  "@unknownError": {
+    "description": "Unknown error message"
+  },
+  "tryAgain": "Try again",
+  "@tryAgain": {
+    "description": "Try again message"
+  },
+  "required": "Required",
+  "@required": {
+    "description": "Required field indicator"
+  },
+  "invalidPhoneNumber": "Invalid phone number",
+  "@invalidPhoneNumber": {
+    "description": "Invalid phone number validation"
+  },
+  "fieldRequired": "This field is required",
+  "@fieldRequired": {
+    "description": "Field required validation"
+  },
+  "fromNow": "{time} ago",
+  "@fromNow": {
+    "placeholders": {
+      "time": {}
+    }
+  },
+  "justNow": "just now",
+  "@justNow": {
+    "description": "Used for something that just happened"
+  },
+  "aMinuteAgo": "a minute ago",
+  "@aMinuteAgo": {
+    "description": "One minute in the past"
+  },
+  "minutesAgo": "{minutes} minutes ago",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
+  "anHourAgo": "an hour ago",
+  "@anHourAgo": {
+    "description": "One hour in the past"
+  },
+  "hoursAgo": "{hours} hours ago",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
+  "aDayAgo": "a day ago",
+  "@aDayAgo": {
+    "description": "One day in the past"
+  },
+  "daysAgo": "{days} days ago",
+  "@daysAgo": {
+    "placeholders": {
+      "days": {}
+    }
+  },
+  "aWeekAgo": "a week ago",
+  "@aWeekAgo": {
+    "description": "One week in the past"
+  },
+  "weeksAgo": "{weeks} weeks ago",
+  "@weeksAgo": {
+    "placeholders": {
+      "weeks": {}
+    }
+  },
+  "aMonthAgo": "a month ago",
+  "@aMonthAgo": {
+    "description": "One month in the past"
+  },
+  "monthsAgo": "{months} months ago",
+  "@monthsAgo": {
+    "placeholders": {
+      "months": {}
+    }
+  },
+  "aYearAgo": "a year ago",
+  "@aYearAgo": {
+    "description": "One year in the past"
+  },
+  "yearsAgo": "{years} years ago",
+  "@yearsAgo": {
+    "placeholders": {
+      "years": {}
+    }
+  },
+  "today": "Today",
+  "@today": {
+    "description": "Today"
+  },
+  "yesterday": "Yesterday",
+  "@yesterday": {
+    "description": "Yesterday"
+  },
+  "tomorrow": "Tomorrow",
+  "@tomorrow": {
+    "description": "Tomorrow"
+  },
+  "thisWeek": "This week",
+  "@thisWeek": {
+    "description": "This week"
+  },
+  "lastWeek": "Last week",
+  "@lastWeek": {
+    "description": "Last week"
+  },
+  "nextWeek": "Next week",
+  "@nextWeek": {
+    "description": "Next week"
+  },
+  "thisMonth": "This month",
+  "@thisMonth": {
+    "description": "This month"
+  },
+  "lastMonth": "Last month",
+  "@lastMonth": {
+    "description": "Last month"
+  },
+  "nextMonth": "Next month",
+  "@nextMonth": {
+    "description": "Next month"
+  },
+  "online": "Online",
+  "@online": {
+    "description": "Online status"
+  },
+  "offline": "Offline",
+  "@offline": {
+    "description": "Offline status"
+  },
+  "available": "Available",
+  "@available": {
+    "description": "Available status"
+  },
+  "busy": "Busy",
+  "@busy": {
+    "description": "Busy status"
+  },
+  "away": "Away",
+  "@away": {
+    "description": "Away status"
+  },
+  "version": "Version",
+  "@version": {
+    "description": "Version label"
+  },
+  "buildNumber": "Build Number",
+  "@buildNumber": {
+    "description": "Build number system metadata"
+  },
+  "copyright": "Copyright",
+  "@copyright": {
+    "description": "Copyright system metadata"
+  },
+  "termsOfService": "Terms of Service",
+  "@termsOfService": {
+    "description": "Terms of service system metadata"
+  },
+  "privacyPolicy": "Privacy Policy",
+  "@privacyPolicy": {
+    "description": "Privacy policy system metadata"
+  },
+  "licenses": "Licenses",
+  "@licenses": {
+    "description": "Licenses system metadata"
+  },
+  "apply": "Apply",
+  "@apply": {
+    "description": "Apply action button"
+  },
+  "clear": "Clear",
+  "@clear": {
+    "description": "Clear action button"
+  },
+  "customerInfo": "Customer Information",
+  "@customerInfo": {
+    "description": "Customer information section header"
+  },
+  "createBooking": "Create Booking",
+  "@createBooking": {
+    "description": "Create booking action"
+  },
+  "addStaff": "Add Staff",
+  "@addStaff": {
+    "description": "Add staff member action"
+  },
+  "staff": "Staff",
+  "@staff": {
+    "description": "Staff navigation and page title"
+  },
+  "activityLog": "Activity Log",
+  "@activityLog": {
+    "description": "Activity log page title"
+  },
+  "searchActivities": "Search activities...",
+  "@searchActivities": {
+    "description": "Search placeholder for activity log"
+  },
+  "noActivitiesFound": "No Activities Found",
+  "@noActivitiesFound": {
+    "description": "Empty state title for activity log"
+  },
+  "noActivitiesFoundDescription": "Try adjusting your search or filter criteria to find activities.",
+  "@noActivitiesFoundDescription": {
+    "description": "Empty state description for activity log"
+  },
+  "filterActivities": "Filter Activities",
+  "@filterActivities": {
+    "description": "Filter dialog title for activities"
+  },
+  "allActivities": "All Activities",
+  "@allActivities": {
+    "description": "Show all activities filter option"
+  },
+  "bookingCreated": "Booking Created",
+  "@bookingCreated": {
+    "description": "Booking created activity type"
+  },
+  "bookingConfirmed": "Booking Confirmed",
+  "@bookingConfirmed": {
+    "description": "Booking confirmed activity type"
+  },
+  "bookingCompleted": "Booking Completed",
+  "@bookingCompleted": {
+    "description": "Booking completed activity type"
+  },
+  "bookingCancelled": "Booking Cancelled",
+  "@bookingCancelled": {
+    "description": "Booking cancelled activity type"
+  },
+  "bookingRescheduled": "Booking Rescheduled",
+  "@bookingRescheduled": {
+    "description": "Booking rescheduled activity type"
+  },
+  "cleanerAssigned": "Cleaner Assigned",
+  "@cleanerAssigned": {
+    "description": "Cleaner assigned activity type"
+  },
+  "cleanerUnassigned": "Cleaner Unassigned",
+  "@cleanerUnassigned": {
+    "description": "Cleaner unassigned activity type"
+  },
+  "paymentReceived": "Payment Received",
+  "@paymentReceived": {
+    "description": "Payment received activity type"
+  },
+  "reviewSubmitted": "Review Submitted",
+  "@reviewSubmitted": {
+    "description": "Review submitted activity type"
+  },
+  "customerRegistered": "Customer Registered",
+  "@customerRegistered": {
+    "description": "Customer registered activity type"
+  },
+  "cleanerRegistered": "Cleaner Registered",
+  "@cleanerRegistered": {
+    "description": "Cleaner registered activity type"
+  },
+  "personalInformation": "Personal Information",
+  "@personalInformation": {
+    "description": "Personal information section header"
+  },
+  "userfullName": "Full Name",
+  "@userfullName": {
+    "description": "User full name field"
+  },
+  "userEmail": "Email",
+  "@userEmail": {
+    "description": "User email field"
+  },
+  "userPhone": "Phone",
+  "@userPhone": {
+    "description": "User phone field"
+  },
+  "userJoined": "Joined",
+  "@userJoined": {
+    "description": "User joined date field"
+  },
+  "share": "Share",
+  "@share": {
+    "description": "Share action"
+  },
+  "copy": "Copy",
+  "@copy": {
+    "description": "Copy action"
+  },
+  "paste": "Paste",
+  "@paste": {
+    "description": "Paste action"
+  },
+  "cut": "Cut",
+  "@cut": {
+    "description": "Cut action"
+  },
+  "selectAll": "Select All",
+  "@selectAll": {
+    "description": "Select all action"
+  },
+  "undo": "Undo",
+  "@undo": {
+    "description": "Undo action"
+  },
+  "redo": "Redo",
+  "@redo": {
+    "description": "Redo action"
+  },
+  "incrementAction": "Increment",
+  "@incrementAction": {
+    "description": "Increment action"
+  },
+  "decrementAction": "Decrement",
+  "@decrementAction": {
+    "description": "Decrement action"
+  },
+  "itemCount": "{count} items",
+  "@itemCount": {
+    "description": "Item count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "selectedCount": "{count} selected",
+  "@selectedCount": {
+    "description": "Selected count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "totalCount": "Total: {count}",
+  "@totalCount": {
+    "description": "Total count",
+    "placeholders": {
+      "count": {}
+    }
+  },
+  "appBranding": "TiDaro Admin",
+  "@appBranding": {
+    "description": "Application branding name"
+  },
+  "welcomeBackMessage": "Welcome back! Please sign in to continue.",
+  "@welcomeBackMessage": {
+    "description": "Welcome back message for login"
+  },
+  "createAccount": "Create an account",
+  "@createAccount": {
+    "description": "Create account heading"
+  },
+  "createAccountSubtitle": "Enter your details below to create your account",
+  "@createAccountSubtitle": {
+    "description": "Create account subtitle"
+  },
+  "emailHint": "name@example.com",
+  "@emailHint": {
+    "description": "Email input hint"
+  },
+  "passwordHint": "Enter your password",
+  "@passwordHint": {
+    "description": "Password input hint"
+  },
+  "nameHint": "Enter your full name",
+  "@nameHint": {
+    "description": "Name input hint"
+  },
+  "createPasswordHint": "Create a password",
+  "@createPasswordHint": {
+    "description": "Create password input hint"
+  },
+  "confirmPasswordHint": "Confirm your password",
+  "@confirmPasswordHint": {
+    "description": "Confirm password input hint"
+  },
+  "confirmPasswordLabel": "Confirm Password",
+  "@confirmPasswordLabel": {
+    "description": "Confirm password field label"
+  },
+  "forgotPasswordQuestion": "Forgot password?",
+  "@forgotPasswordQuestion": {
+    "description": "Forgot password link text"
+  },
+  "noAccountQuestion": "Don't have an account?",
+  "@noAccountQuestion": {
+    "description": "No account question text"
+  },
+  "haveAccountQuestion": "Already have an account?",
+  "@haveAccountQuestion": {
+    "description": "Have account question text"
+  },
+  "resetPasswordTitle": "Reset Password",
+  "@resetPasswordTitle": {
+    "description": "Reset password dialog title"
+  },
+  "resetPasswordMessage": "Enter your email address and we'll send you a link to reset your password.",
+  "@resetPasswordMessage": {
+    "description": "Reset password dialog message"
+  },
+  "sendResetLink": "Send Reset Link",
+  "@sendResetLink": {
+    "description": "Send reset link button"
+  },
+  "passwordResetEmailSent": "Password reset email sent!",
+  "@passwordResetEmailSent": {
+    "description": "Password reset email sent message"
+  },
+  "termsAgreement": "By clicking continue, you agree to our Terms of Service and Privacy Policy.",
+  "@termsAgreement": {
+    "description": "Terms agreement text"
+  },
+  "passwordsDontMatch": "Passwords don't match",
+  "@passwordsDontMatch": {
+    "description": "Passwords don't match validation message"
+  },
+  "invalidEmail": "Please enter a valid email address",
+  "@invalidEmail": {
+    "description": "Invalid email validation message"
+  },
+  "passwordTooShort": "Password must be at least 8 characters",
+  "@passwordTooShort": {
+    "description": "Password too short validation message"
+  },
+  "bookings": "Bookings",
+  "@bookings": {
+    "description": "Bookings navigation and page title"
+  },
+  "noBookings": "No Bookings Found",
+  "@noBookings": {
+    "description": "Empty state title for bookings list"
+  },
+  "noBookingsDescription": "You haven't created any bookings yet. Create your first booking to get started.",
+  "@noBookingsDescription": {
+    "description": "Empty state description for bookings list"
+  },
+  "comingSoon": "Coming Soon",
+  "@comingSoon": {
+    "description": "Placeholder text for features not yet implemented"
+  },
+  "viewDetails": "View Details",
+  "@viewDetails": {
+    "description": "Button text to view item details"
+  },
+  "noStaff": "No Staff Found",
+  "@noStaff": {
+    "description": "Empty state title for staff list"
+  },
+  "noStaffDescription": "You haven't added any staff members yet. Add your first staff member to get started.",
+  "@noStaffDescription": {
+    "description": "Empty state description for staff list"
+  },
+  "totalBookings": "Total Bookings",
+  "@totalBookings": {
+    "description": "Total bookings metric title"
+  },
+  "activeBookings": "Active Bookings",
+  "@activeBookings": {
+    "description": "Active bookings metric title"
+  },
+  "monthlyRevenue": "Monthly Revenue",
+  "@monthlyRevenue": {
+    "description": "Monthly revenue metric title"
+  },
+  "activeCleaners": "Active Cleaners",
+  "@activeCleaners": {
+    "description": "Active cleaners metric title"
+  },
+  "totalCustomers": "Total Customers",
+  "@totalCustomers": {
+    "description": "Total customers metric title"
+  },
+  "totalRevenue": "Total Revenue",
+  "@totalRevenue": {
+    "description": "Total revenue metric title"
+  }
+}
