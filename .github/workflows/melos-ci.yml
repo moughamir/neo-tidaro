@@ -8,7 +8,12 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
+    name: CI (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -18,10 +23,17 @@ jobs:
         with:
           channel: stable
 
+      - name: Setup Dart pub cache path
+        if: runner.os != 'Windows'
+        run: echo "export PATH=\"$PATH:$HOME/.pub-cache/bin\"" >> $GITHUB_ENV
+
+      - name: Setup Dart pub cache path (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: echo "PATH=$env:PATH;$env:USERPROFILE\AppData\Local\Pub\Cache\bin" >> $env:GITHUB_ENV
+
       - name: Install melos
-        run: |
-          dart pub global activate melos
-          echo "export PATH=\"$PATH:$HOME/.pub-cache/bin\"" >> $GITHUB_ENV
+        run: dart pub global activate melos
 
       - name: Bootstrap workspace
         run: melos bootstrap
