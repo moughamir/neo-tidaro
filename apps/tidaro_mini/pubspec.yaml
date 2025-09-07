@@ -2,14 +2,14 @@ name: tidaro_mini
 description: "A new Flutter project."
 publish_to: 'none'
 resolution: workspace
-version: 0.1.0-pre-alpha.1+1
+version: 0.1.0-pre-alpha.2
 environment:
   sdk: '3.9.0'
   flutter: '>=3.35.0'
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
+  
   languist:
     path: ../../packages/languist
 dev_dependencies:
