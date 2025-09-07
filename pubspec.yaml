@@ -42,6 +42,9 @@ platforms:
   web:
   windows:
 
+dependency_overrides:
+  sensors_plus: ^6.1.2
+
 melos:
   scripts:
     analyze:
