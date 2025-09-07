@@ -65,6 +65,8 @@ This document outlines tasks and improvements for the project, categorized by ar
 - [ ] Refactor `StaffDetailsDialog` to use `InfoCard` for information sections. (apps/tidash/lib/widgets/dialogs/staff_details_dialog.dart)
 - [ ] Refactor `StaffDetailsDialog` to use `InfoRow` for detail rows. (apps/tidash/lib/widgets/dialogs/staff_details_dialog.dart)
 - [ ] Refactor `StaffDetailsDialog` action buttons to use `AuthButton`. (apps/tidash/lib/widgets/dialogs/staff_details_dialog.dart)
+- [ ] Refactor `StaffFilterDialog` to use `SectionHeader` for filter sections. (apps/tidash/lib/widgets/dialogs/staff_filter_dialog.dart)
+- [ ] Refactor `StaffFilterDialog` action buttons to use `AuthButton`. (apps/tidash/lib/widgets/dialogs/staff_filter_dialog.dart)
 
 ### Medium Priority
 - [ ] Create a generic `LoadingIndicator` widget in `ui_kit` for consistent loading states. (apps/tidash/lib/pages/dashboard/dashboard_page.dart)
@@ -77,3 +79,5 @@ This document outlines tasks and improvements for the project, categorized by ar
 - [ ] Consider creating a `PriceRangeSlider` widget in `ui_kit` if the price range selection pattern is repeated. (apps/tidash/lib/widgets/dialogs/booking_filter_dialog.dart)
 - [ ] Create a reusable `PriceDisplay` or `SummaryCard` widget in `ui_kit` from `CreateBookingDialog`'s price display. (apps/tidash/lib/widgets/dialogs/create_booking_dialog.dart)
 - [ ] Move date formatting functions (`_formatDate`) to a utility in `packages/shared` or `packages/ui_kit/utils`. (apps/tidash/lib/widgets/dialogs/staff_details_dialog.dart)
+- [ ] Create a `SingleSelectChipGroup` or `StatusFilterChips` widget in `ui_kit` from `StaffFilterDialog`'s status and availability filters. (apps/tidash/lib/widgets/dialogs/staff_filter_dialog.dart)
+- [ ] Consider creating a `RatingRangeSlider` widget in `ui_kit` from `StaffFilterDialog`'s rating range filter. (apps/tidash/lib/widgets/dialogs/staff_filter_dialog.dart)
