@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'palette.dart';
-import 'neumorphic_styles.dart';
 import 'typography.dart';
 
 /// A comprehensive theme system with DRY principles,

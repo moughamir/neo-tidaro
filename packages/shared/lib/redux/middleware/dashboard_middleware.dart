@@ -1,8 +1,9 @@
 import 'package:redux/redux.dart';
-import '../app_state.dart';
-import '../actions/dashboard_actions.dart';
 import '../core/core.dart';
+import '../actions/dashboard_actions.dart';
+import '../app_state.dart';
 import '../../domain/models/models.dart';
+import '../../domain/enums/enums.dart';
 
 List<Middleware<AppState>> createDashboardMiddleware() {
   return [
@@ -28,28 +29,28 @@ void _loadDashboard(
         title: 'New user registered',
         description: 'John Doe joined the platform',
         timestamp: DateTime.now().subtract(const Duration(minutes: 5)),
-        type: 'user',
+        type: ActivityType.user,
       ),
       ActivityItem(
         id: '2',
         title: 'Booking completed',
         description: 'Booking #1234 was successfully processed',
         timestamp: DateTime.now().subtract(const Duration(minutes: 15)),
-        type: 'booking',
+        type: ActivityType.order,
       ),
       ActivityItem(
         id: '3',
         title: 'System update',
         description: 'Database backup completed successfully',
         timestamp: DateTime.now().subtract(const Duration(hours: 1)),
-        type: 'system',
+        type: ActivityType.system,
       ),
       ActivityItem(
         id: '4',
         title: 'Revenue milestone',
         description: 'Monthly revenue target achieved',
         timestamp: DateTime.now().subtract(const Duration(hours: 2)),
-        type: 'revenue',
+        type: ActivityType.revenue,
       ),
     ];
 

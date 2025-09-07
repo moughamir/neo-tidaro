@@ -80,27 +80,31 @@ class CleanerFilters extends Equatable {
     this.serviceCategories,
     this.minRating,
     this.isVerified,
+    this.searchQuery,
   });
 
   final CleanerStatus? status;
   final List<ServiceCategory>? serviceCategories;
   final double? minRating;
   final bool? isVerified;
+  final String? searchQuery;
 
   CleanerFilters copyWith({
     CleanerStatus? status,
     List<ServiceCategory>? serviceCategories,
     double? minRating,
     bool? isVerified,
+    String? searchQuery,
   }) {
     return CleanerFilters(
       status: status ?? this.status,
       serviceCategories: serviceCategories ?? this.serviceCategories,
       minRating: minRating ?? this.minRating,
       isVerified: isVerified ?? this.isVerified,
+      searchQuery: searchQuery ?? this.searchQuery,
     );
   }
 
   @override
-  List<Object?> get props => [status, serviceCategories, minRating, isVerified];
+  List<Object?> get props => [status, serviceCategories, minRating, isVerified, searchQuery];
 }

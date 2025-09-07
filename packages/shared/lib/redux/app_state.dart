@@ -6,33 +6,43 @@ import 'states/states.dart';
 class AppState extends BaseState {
   const AppState({
     required this.authState,
-    required this.uiState,
     required this.dashboardState,
+    required this.bookingState,
+    required this.cleanerState,
+    required this.uiState,
   });
 
   final AuthState authState;
-  final UiState uiState;
   final DashboardState dashboardState;
+  final BookingState bookingState;
+  final CleanerState cleanerState;
+  final UiState uiState;
 
   /// Initial state factory
   factory AppState.initial() {
     return AppState(
       authState: AuthState.initial(),
-      uiState: UiState.initial(),
       dashboardState: DashboardState.initial(),
+      bookingState: BookingState.initial(),
+      cleanerState: CleanerState.initial(),
+      uiState: UiState.initial(),
     );
   }
 
   /// Copy with method for immutable updates
   AppState copyWith({
     AuthState? authState,
-    UiState? uiState,
     DashboardState? dashboardState,
+    BookingState? bookingState,
+    CleanerState? cleanerState,
+    UiState? uiState,
   }) {
     return AppState(
       authState: authState ?? this.authState,
-      uiState: uiState ?? this.uiState,
       dashboardState: dashboardState ?? this.dashboardState,
+      bookingState: bookingState ?? this.bookingState,
+      cleanerState: cleanerState ?? this.cleanerState,
+      uiState: uiState ?? this.uiState,
     );
   }
 
@@ -42,14 +52,18 @@ class AppState extends BaseState {
   @override
   List<Object?> get props => [
     authState,
-    uiState,
     dashboardState,
+    bookingState,
+    cleanerState,
+    uiState,
   ];
 
   @override
   String toString() => 'AppState('
       'authState: ${authState.stateType}, '
-      'uiState: ${uiState.stateType}, '
-      'dashboardState: ${dashboardState.stateType}'
+      'dashboardState: ${dashboardState.stateType}, '
+      'bookingState: ${bookingState.stateType}, '
+      'cleanerState: ${cleanerState.stateType}, '
+      'uiState: ${uiState.stateType}'
       ')';
 }

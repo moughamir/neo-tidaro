@@ -312,8 +312,10 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
         return Colors.blue;
       case HousekeepingActivityType.bookingConfirmed:
         return Colors.green;
+      case HousekeepingActivityType.bookingStarted:
+        return Colors.lightGreen;
       case HousekeepingActivityType.bookingCompleted:
-        return Colors.teal;
+        return Colors.lightGreen;
       case HousekeepingActivityType.bookingCancelled:
         return Colors.red;
       case HousekeepingActivityType.bookingRescheduled:
@@ -339,6 +341,8 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
         return Icons.add_circle_outline;
       case HousekeepingActivityType.bookingConfirmed:
         return Icons.check_circle_outline;
+      case HousekeepingActivityType.bookingStarted:
+        return Icons.play_circle_outline;
       case HousekeepingActivityType.bookingCompleted:
         return Icons.task_alt;
       case HousekeepingActivityType.bookingCancelled:
@@ -367,6 +371,8 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
         return l10n.bookingCreated;
       case HousekeepingActivityType.bookingConfirmed:
         return l10n.bookingConfirmed;
+      case HousekeepingActivityType.bookingStarted:
+        return 'Booking Started'; // TODO: Add to languist
       case HousekeepingActivityType.bookingCompleted:
         return l10n.bookingCompleted;
       case HousekeepingActivityType.bookingCancelled:
@@ -490,6 +496,8 @@ class _FilterDialog extends StatelessWidget {
         return Icons.add_circle_outline;
       case HousekeepingActivityType.bookingConfirmed:
         return Icons.check_circle_outline;
+      case HousekeepingActivityType.bookingStarted:
+        return Icons.play_circle_outline;
       case HousekeepingActivityType.bookingCompleted:
         return Icons.task_alt;
       case HousekeepingActivityType.bookingCancelled:
@@ -521,6 +529,8 @@ class _FilterDialog extends StatelessWidget {
         return l10n.bookingCreated;
       case HousekeepingActivityType.bookingConfirmed:
         return l10n.bookingConfirmed;
+      case HousekeepingActivityType.bookingStarted:
+        return 'Booking Started'; // TODO: Add to languist
       case HousekeepingActivityType.bookingCompleted:
         return l10n.bookingCompleted;
       case HousekeepingActivityType.bookingCancelled:

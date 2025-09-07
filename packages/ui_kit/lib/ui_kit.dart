@@ -33,4 +33,4 @@ export 'src/app/app_shell.dart';
 export 'src/app/loading_app.dart';
 export 'src/app/error_app.dart';
 export 'src/app/loading_screen.dart';
-
+export 'src/auth/auth_layout.dart';

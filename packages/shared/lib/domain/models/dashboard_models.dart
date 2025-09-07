@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import '../enums/enums.dart';
 
 /// Dashboard metrics model
 class DashboardMetrics extends Equatable {
@@ -87,7 +88,7 @@ class ActivityItem extends Equatable {
   final String title;
   final String description;
   final DateTime timestamp;
-  final String? type;
+  final ActivityType? type;
   final String? icon;
 
   ActivityItem copyWith({
@@ -95,7 +96,7 @@ class ActivityItem extends Equatable {
     String? title,
     String? description,
     DateTime? timestamp,
-    String? type,
+    ActivityType? type,
     String? icon,
   }) {
     return ActivityItem(

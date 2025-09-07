@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared/redux/state/dashboard_state.dart';
+import 'package:shared/domain/models/models.dart';
+import 'package:shared/domain/enums/enums.dart';
 import 'package:languist/languist.dart';
 
 import 'glassy_card.dart';
@@ -33,19 +34,21 @@ class ActivityFeed extends StatelessWidget {
                   padding: const EdgeInsets.all(32),
                   child: Column(
                     children: <Widget>[
-                      Icon(
-                        Icons.inbox_outlined,
-                        size: 48,
-                        color: theme.colorScheme.onSurface.withValues(
-                          alpha: 0.3,
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          child: Icon(
+                            Icons.info_outline,
+                            color: Colors.white,
+                            size: 16,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        l10n.noData,
-                        style: theme.textTheme.bodyLarge?.copyWith(
-                          color: theme.colorScheme.onSurface.withValues(
-                            alpha: 0.6,
+                        title: Text(
+                          l10n.noData,
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            color: theme.colorScheme.onSurface.withValues(
+                              alpha: 0.6,
+                            ),
                           ),
                         ),
                       ),
@@ -89,13 +92,13 @@ class _ActivityTile extends StatelessWidget {
             width: 40,
             height: 40,
             decoration: BoxDecoration(
-              color: _getActivityColor(activity.type).withValues(alpha: 0.1),
+              color: (activity.type != null ? _getActivityColor(activity.type!) : Colors.grey).withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Icon(
-              _getActivityIcon(activity.type),
+              activity.type != null ? _getActivityIcon(activity.type!) : Icons.info_outline,
               size: 20,
-              color: _getActivityColor(activity.type),
+              color: activity.type != null ? _getActivityColor(activity.type!) : Colors.grey,
             ),
           ),
           const SizedBox(width: 12),

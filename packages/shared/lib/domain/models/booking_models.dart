@@ -16,6 +16,12 @@ class Booking extends Equatable {
     this.estimatedDuration,
     this.createdAt,
     this.updatedAt,
+    this.completedAt,
+    this.serviceId,
+    this.totalPrice,
+    this.paymentStatus,
+    this.rating,
+    this.review,
   });
 
   final String id;
@@ -30,6 +36,12 @@ class Booking extends Equatable {
   final Duration? estimatedDuration;
   final DateTime? createdAt;
   final DateTime? updatedAt;
+  final DateTime? completedAt;
+  final String? serviceId;
+  final double? totalPrice;
+  final String? paymentStatus;
+  final double? rating;
+  final String? review;
 
   Booking copyWith({
     String? id,
@@ -44,6 +56,12 @@ class Booking extends Equatable {
     Duration? estimatedDuration,
     DateTime? createdAt,
     DateTime? updatedAt,
+    DateTime? completedAt,
+    String? serviceId,
+    double? totalPrice,
+    String? paymentStatus,
+    double? rating,
+    String? review,
   }) {
     return Booking(
       id: id ?? this.id,
@@ -58,6 +76,12 @@ class Booking extends Equatable {
       estimatedDuration: estimatedDuration ?? this.estimatedDuration,
       createdAt: createdAt ?? this.createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      completedAt: completedAt ?? this.completedAt,
+      serviceId: serviceId ?? this.serviceId,
+      totalPrice: totalPrice ?? this.totalPrice,
+      paymentStatus: paymentStatus ?? this.paymentStatus,
+      rating: rating ?? this.rating,
+      review: review ?? this.review,
     );
   }
 
@@ -75,6 +99,12 @@ class Booking extends Equatable {
     estimatedDuration,
     createdAt,
     updatedAt,
+    completedAt,
+    serviceId,
+    totalPrice,
+    paymentStatus,
+    rating,
+    review,
   ];
 }
 

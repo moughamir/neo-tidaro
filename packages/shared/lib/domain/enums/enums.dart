@@ -24,6 +24,8 @@ enum HousekeepingActivityType {
   cleanerUnassigned,
   paymentReceived,
   reviewSubmitted,
+  customerRegistered,
+  cleanerRegistered,
 }
 
 /// Booking status enumeration
@@ -52,3 +54,6 @@ enum ServiceCategory {
 
 /// Cleaner status enumeration
 enum CleanerStatus { available, onJob, offline, onBreak }
+
+/// Activity type enumeration for dashboard activities
+enum ActivityType { user, order, system, revenue }
