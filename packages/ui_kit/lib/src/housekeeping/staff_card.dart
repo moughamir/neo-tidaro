@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:shared/shared.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 /// Card component for displaying staff/cleaner information
 class StaffCard extends StatelessWidget {
@@ -80,7 +82,7 @@ class StaffCard extends StatelessWidget {
                   Icon(Icons.star, size: 16, color: Colors.amber),
                   const SizedBox(width: 4),
                   Text(
-                    cleaner.rating.toStringAsFixed(1),
+                    cleaner.rating?.toStringAsFixed(1) ?? 'N/A',
                     style: theme.textTheme.bodySmall?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -114,7 +116,7 @@ class StaffCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        _getSpecializationName(spec),
+                        _getSpecializationName(spec as ServiceCategory),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.secondary,
                           fontSize: 10,
@@ -143,7 +145,7 @@ class StaffCard extends StatelessWidget {
 
   Widget _buildStatusChip(BuildContext context, CleanerStatus status) {
     final theme = Theme.of(context);
-    final statusInfo = _getStatusInfo(status);
+    final statusInfo = _getStatusInfo(context, status);
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -189,10 +191,34 @@ class StaffCard extends StatelessWidget {
           onPressed: () => onStatusChanged(CleanerStatus.active),
           child: const Text('Reactivate'),
         );
+      case CleanerStatus.available:
+        return OutlinedButton(
+          onPressed: () => onStatusChanged(CleanerStatus.busy),
+          style: OutlinedButton.styleFrom(
+            foregroundColor: Colors.orange,
+            side: const BorderSide(color: Colors.orange),
+          ),
+          child: const Text('Set Busy'),
+        );
+      case CleanerStatus.busy:
+        return ElevatedButton(
+          onPressed: () => onStatusChanged(CleanerStatus.available),
+          child: const Text('Set Available'),
+        );
+      case CleanerStatus.offline:
+        return ElevatedButton(
+          onPressed: () => onStatusChanged(CleanerStatus.available),
+          child: const Text('Go Online'),
+        );
+      case CleanerStatus.onBreak:
+        return ElevatedButton(
+          onPressed: () => onStatusChanged(CleanerStatus.available),
+          child: const Text('End Break'),
+        );
     }
   }
 
-  ({String label, Color color}) _getStatusInfo(CleanerStatus status) {
+  ({String label, Color color}) _getStatusInfo(BuildContext context, CleanerStatus status) {
     switch (status) {
       case CleanerStatus.active:
         return (label: 'Active', color: Colors.green);
@@ -202,6 +228,14 @@ class StaffCard extends StatelessWidget {
         return (label: 'Pending', color: Colors.orange);
       case CleanerStatus.suspended:
         return (label: 'Suspended', color: Colors.red);
+      case CleanerStatus.available:
+        return (label: AppLocalizations.of(context).available, color: Colors.green);
+      case CleanerStatus.busy:
+        return (label: AppLocalizations.of(context).busy, color: Colors.orange);
+      case CleanerStatus.offline:
+        return (label: AppLocalizations.of(context).offline, color: Colors.grey);
+      case CleanerStatus.onBreak:
+        return (label: AppLocalizations.of(context).away, color: Colors.blue);
     }
   }
 
@@ -219,6 +253,10 @@ class StaffCard extends StatelessWidget {
         return 'Commercial';
       case ServiceCategory.specialized:
         return 'Specialized';
+      case ServiceCategory.standardCleaning:
+        return 'Standard';
+      case ServiceCategory.residential:
+        return 'Residential';
     }
   }
 
@@ -226,6 +264,10 @@ class StaffCard extends StatelessWidget {
     return status == CleanerStatus.active ||
         status == CleanerStatus.inactive ||
         status == CleanerStatus.pending ||
-        status == CleanerStatus.suspended;
+        status == CleanerStatus.suspended ||
+        status == CleanerStatus.available ||
+        status == CleanerStatus.busy ||
+        status == CleanerStatus.offline ||
+        status == CleanerStatus.onBreak;
   }
 }

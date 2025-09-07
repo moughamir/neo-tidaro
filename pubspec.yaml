@@ -1,5 +1,5 @@
 name: neo_tidaro
-version: 0.1.0-pre-alpha.1+1
+version: 0.1.0-pre-alpha.2
 publish_to: 'none'
 environment:
   sdk: '^3.9.0'
@@ -9,6 +9,7 @@ workspace:
   - packages/shared # Shared and Utils
   - packages/core # Core Packages
   - packages/languist # Internationalization and localization
+  - packages/device_sensors # Device Sensors and Permissions
   - apps/tidash # Admin Dashboard
   - apps/tidaro_mini # Mini TiDaro App for Quick retention
   - apps/tidaro # Full TiDaro App
@@ -19,9 +20,15 @@ workspace:
 dependencies:
   flutter:
     sdk: flutter
+  cupertino_icons: ^1.0.8
   fpdart: ^1.1.1
   equatable: ^2.0.5
-  intl: ^0.20.1
+  intl: ^0.20.2
+  google_fonts: ^6.2.1
+  supabase_flutter: ^2.10.0
+  clay_containers: ^0.3.4
+  permission_handler: ^12.0.1
+  sensors_plus: ^6.1.2
 
 # Platform support configuration
 flutter:
@@ -38,11 +45,11 @@ platforms:
 melos:
   scripts:
     analyze:
-      run: melos exec -- flutter analyze
+      run: melos exec -c 1  -- flutter analyze
       description: Run `flutter analyze` in all packages.
 
     test:
-      run: melos exec -- flutter test
+      run: melos exec -c 1 -- flutter test
       description: Run `flutter test` in all packages.
 
     run:app:

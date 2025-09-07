@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:core/core.dart';
 import 'package:shared/shared.dart';
 import '../pages/home_page.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 class TiDashApp extends StatelessWidget {
   const TiDashApp({super.key});
@@ -10,36 +10,10 @@ class TiDashApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return StoreProvider<AppState>(
       store: createStore(),
-      child: MaterialApp(
+      child: const AppShell(
         title: 'TiDash',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF6366F1), // Indigo
-            brightness: Brightness.light,
-          ),
-          useMaterial3: true,
-          cardTheme: const CardThemeData(
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-            ),
-          ),
-        ),
-        darkTheme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF6366F1), // Indigo
-            brightness: Brightness.dark,
-          ),
-          useMaterial3: true,
-          cardTheme: const CardThemeData(
-            elevation: 2,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-            ),
-          ),
-        ),
+        home: TiDashHome(),
         themeMode: ThemeMode.system,
-        home: const TiDashHome(),
       ),
     );
   }

@@ -1,39 +1,139 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Neo‑Tidaro UI Kit
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A reusable, Material-first Flutter UI component library for Neo‑Tidaro apps, featuring a clean, modern design with subtle glassmorphism/neumorphism accents. Built for Clean Architecture with DRY, SOLID, KISS, and YAGNI principles. Fully localized via the Languist package.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+![Showcase](./docs/images/showcase-hero.png)
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## Design philosophy
 
-## Features
+- Material 3 as the baseline for accessibility and consistency
+- Opinionated but minimal styling (glassmorphic cards, soft shadows, rounded corners)
+- Clean Architecture separation: UI here, state/business elsewhere
+- DRY and composable widgets with sensible defaults
+- First‑class internationalization via Languist (centralized ARB strings)
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## What’s inside
 
-## Getting started
+- App scaffolding
+  - `AppShell`: DRY wrapper around `MaterialApp` wiring theme and localization
+  - `MasterLayout`: responsive scaffold builder
+- Theming & localization
+  - `AppTheme` with `TidaroColorPalette` and typography
+  - `AppLocalizations` wrapper around Languist
+  - Mixins: `ThemeMixin`, `L10nMixin`, `ResponsiveMixin`
+- Auth UI
+  - `AuthLayout`, `AuthCard`, `AuthInputField`, `AuthButton`, `SocialAuthButton`, `AuthDivider`
+- Housekeeping widgets
+  - `MetricCard`, `ActivityFeed`, `DashboardHeader`
+  - `BookingsHeader`, `BookingCard`
+  - `StaffHeader`, `StaffCard`
+- Utilities
+  - `LoadingApp`, `ErrorApp`, `LoadingScreen`
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+![Dashboard](./docs/images/dashboard.png)
+![Auth](./docs/images/auth.png)
 
-## Usage
+## Quick start
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+1. Add dependency (in a Melos workspace this is already wired):
 
-```dart
-const like = 'sample';
+```yaml
+dependencies:
+  ui_kit:
+    path: ../packages/ui_kit
+  languist:
+    path: ../packages/languist
 ```
 
-## Additional information
+2. Use the DRY `AppShell` and a UI Kit page:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```dart
+import 'package:flutter/material.dart';
+import 'package:ui_kit/ui_kit.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return const AppShell(
+      title: 'My App',
+      home: Scaffold(
+        body: Center(child: Text('Hello UI Kit')),
+      ),
+    );
+  }
+}
+```
+
+## Localization
+
+UI Kit uses the centralized Languist configuration. Access strings via the wrapper:
+
+```dart
+// From a StatefulWidget using L10nMixin
+final l10n = this.l10n; // AppLocalizations
+Text(l10n.login);
+
+// Or directly
+Text(AppLocalizations.of(context).login);
+```
+
+Ensure your app’s `MaterialApp` (or `AppShell`) has:
+
+```dart
+localizationsDelegates: AppLocalizations.localizationsDelegates,
+supportedLocales: AppLocalizations.supportedLocales,
+```
+
+## Theming
+
+`AppTheme` exposes light/dark `ThemeData` based on `TidaroColorPalette`:
+
+```dart
+theme: AppTheme.lightTheme,
+darkTheme: AppTheme.darkTheme,
+themeMode: ThemeMode.system,
+```
+
+Access semantic colors anywhere with:
+
+```dart
+final colors = Theme.of(context).colorScheme; // primary, secondary, surface, etc.
+```
+
+## Responsive helpers
+
+Use `ResponsiveMixin` for simple breakpoints:
+
+```dart
+class MyPage extends StatefulWidget { /* ... */ }
+class _MyPageState extends State<MyPage>
+    with ThemeMixin<MyPage>, L10nMixin<MyPage>, ResponsiveMixin<MyPage> {
+  @override
+  Widget build(BuildContext context) {
+    return withConstraints((c) {
+      if (isMobile) return const Text('Mobile');
+      if (isTablet) return const Text('Tablet');
+      return const Text('Desktop');
+    });
+  }
+}
+```
+
+## Example apps
+
+Check `examples/ui_kit_showcase/` for a themed parallax card example and `apps/tidash/` for a full production dashboard using UI Kit components.
+
+## Contributing
+
+- Keep UI components stateless where possible
+- Prefer `package:ui_kit/ui_kit.dart` barrel imports; avoid implementation paths
+- Follow DRY, SOLID, KISS, YAGNI
+- Add localization keys to Languist when introducing user-facing text
+- Include screenshots (PNG) under `packages/ui_kit/docs/images/`
+
+## License
+
+See `LICENSE` in the package root.
