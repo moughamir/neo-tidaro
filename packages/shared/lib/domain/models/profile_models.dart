@@ -1,9 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-import 'cleaner_models.dart';
-
-/// Supabase user roles (user_role_enum)
-enum UserRole { admin, moderator, clientConsumer, clientProvider }
+import 'package:shared/domain/domain.dart';
 
 /// General user profile mapped to Supabase public.profiles
 class Profile extends Equatable {
@@ -59,5 +55,36 @@ class Profile extends Equatable {
     cleanerStatus,
     createdAt,
     updatedAt,
+  ];
+}
+
+class ProfileModel extends ProfileEntity {
+  final List<String> skills;
+  final List<ServiceModel> offeredServices;
+  final List<AvailabilitySlotModel> availabilitySlots;
+
+  const ProfileModel({
+    required super.id,
+    required super.createdAt,
+    required super.updatedAt,
+    required super.email,
+    required super.firstName,
+    required super.lastName,
+    super.phoneNumber,
+    super.dateOfBirth,
+    super.avatarUrl,
+    super.role,
+    super.isAvailable,
+    this.skills = const [],
+    this.offeredServices = const [],
+    this.availabilitySlots = const [],
+  });
+
+  @override
+  List<Object?> get props => [
+    ...super.props,
+    skills,
+    offeredServices,
+    availabilitySlots,
   ];
 }

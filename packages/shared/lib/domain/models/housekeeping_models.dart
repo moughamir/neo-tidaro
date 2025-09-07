@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'booking_models.dart';
-import 'cleaner_models.dart';
-import 'customer_models.dart';
+import 'package:shared/domain/domain.dart';
 
 /// Housekeeping service model
 class HousekeepingService extends Equatable {
@@ -45,14 +43,14 @@ class HousekeepingService extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        name,
-        category,
-        basePrice,
-        estimatedDuration,
-        description,
-        isActive,
-      ];
+    id,
+    name,
+    category,
+    basePrice,
+    estimatedDuration,
+    description,
+    isActive,
+  ];
 }
 
 /// Housekeeping metrics model
@@ -107,28 +105,14 @@ class HousekeepingMetrics extends Equatable {
 
   @override
   List<Object?> get props => [
-        totalBookings,
-        completedBookings,
-        cancelledBookings,
-        totalRevenue,
-        activeCleaners,
-        averageRating,
-        period,
-      ];
-}
-
-/// Housekeeping activity type enumeration
-enum HousekeepingActivityType {
-  bookingCreated,
-  bookingConfirmed,
-  bookingStarted,
-  bookingCompleted,
-  bookingCancelled,
-  bookingRescheduled,
-  cleanerAssigned,
-  cleanerUnassigned,
-  paymentReceived,
-  reviewSubmitted,
+    totalBookings,
+    completedBookings,
+    cancelledBookings,
+    totalRevenue,
+    activeCleaners,
+    averageRating,
+    period,
+  ];
 }
 
 /// Housekeeping activity model
@@ -181,14 +165,14 @@ class HousekeepingActivity extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        type,
-        title,
-        description,
-        timestamp,
-        bookingId,
-        cleanerId,
-        customerId,
-        metadata,
-      ];
+    id,
+    type,
+    title,
+    description,
+    timestamp,
+    bookingId,
+    cleanerId,
+    customerId,
+    metadata,
+  ];
 }

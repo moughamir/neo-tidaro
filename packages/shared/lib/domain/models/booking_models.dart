@@ -1,28 +1,5 @@
 import 'package:equatable/equatable.dart';
-
-/// Booking status enumeration
-enum BookingStatus {
-  pending,
-  confirmed,
-  assigned,
-  inProgress,
-  completed,
-  cancelled,
-  rescheduled,
-  noShow,
-}
-
-/// Service category enumeration
-enum ServiceCategory {
-  standardCleaning,
-  regularCleaning,
-  deepCleaning,
-  moveInOut,
-  postConstruction,
-  commercial,
-  residential,
-  specialized,
-}
+import 'package:shared/domain/domain.dart';
 
 /// Booking model
 class Booking extends Equatable {
@@ -86,19 +63,19 @@ class Booking extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        customerId,
-        cleanerId,
-        serviceCategory,
-        address,
-        scheduledDate,
-        status,
-        price,
-        notes,
-        estimatedDuration,
-        createdAt,
-        updatedAt,
-      ];
+    id,
+    customerId,
+    cleanerId,
+    serviceCategory,
+    address,
+    scheduledDate,
+    status,
+    price,
+    notes,
+    estimatedDuration,
+    createdAt,
+    updatedAt,
+  ];
 }
 
 /// Address model
@@ -152,14 +129,14 @@ class Address extends Equatable {
 
   @override
   List<Object?> get props => [
-        street,
-        apartment,
-        city,
-        state,
-        zipCode,
-        country,
-        instructions,
-      ];
+    street,
+    apartment,
+    city,
+    state,
+    zipCode,
+    country,
+    instructions,
+  ];
 }
 
 /// Booking filters model
@@ -196,20 +173,17 @@ class BookingFilters extends Equatable {
 
   @override
   List<Object?> get props => [
-        status,
-        serviceCategory,
-        dateRange,
-        customerId,
-        cleanerId,
-      ];
+    status,
+    serviceCategory,
+    dateRange,
+    customerId,
+    cleanerId,
+  ];
 }
 
 /// Date time range model
 class DateTimeRange extends Equatable {
-  const DateTimeRange({
-    required this.start,
-    required this.end,
-  });
+  const DateTimeRange({required this.start, required this.end});
 
   final DateTime start;
   final DateTime end;

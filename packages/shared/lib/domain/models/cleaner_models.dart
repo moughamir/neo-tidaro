@@ -1,13 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'booking_models.dart';
-
-/// Cleaner status enumeration
-enum CleanerStatus {
-  available,
-  onJob,
-  offline,
-  onBreak,
-}
+import 'package:shared/domain/domain.dart';
 
 /// Cleaner model
 class Cleaner extends Equatable {
@@ -67,18 +59,18 @@ class Cleaner extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        name,
-        email,
-        phone,
-        status,
-        serviceCategories,
-        profileImageUrl,
-        rating,
-        totalBookings,
-        joinedDate,
-        isVerified,
-      ];
+    id,
+    name,
+    email,
+    phone,
+    status,
+    serviceCategories,
+    profileImageUrl,
+    rating,
+    totalBookings,
+    joinedDate,
+    isVerified,
+  ];
 }
 
 /// Cleaner filters model
@@ -110,10 +102,5 @@ class CleanerFilters extends Equatable {
   }
 
   @override
-  List<Object?> get props => [
-        status,
-        serviceCategories,
-        minRating,
-        isVerified,
-      ];
+  List<Object?> get props => [status, serviceCategories, minRating, isVerified];
 }

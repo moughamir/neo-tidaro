@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'booking_models.dart';
+import 'package:shared/domain/domain.dart';
 
 /// Customer model
 class Customer extends Equatable {
@@ -51,25 +51,21 @@ class Customer extends Equatable {
 
   @override
   List<Object?> get props => [
-        id,
-        name,
-        email,
-        phone,
-        addresses,
-        profileImageUrl,
-        totalBookings,
-        joinedDate,
-        isActive,
-      ];
+    id,
+    name,
+    email,
+    phone,
+    addresses,
+    profileImageUrl,
+    totalBookings,
+    joinedDate,
+    isActive,
+  ];
 }
 
 /// Customer filters model
 class CustomerFilters extends Equatable {
-  const CustomerFilters({
-    this.isActive,
-    this.minBookings,
-    this.joinedAfter,
-  });
+  const CustomerFilters({this.isActive, this.minBookings, this.joinedAfter});
 
   final bool? isActive;
   final int? minBookings;
@@ -88,9 +84,5 @@ class CustomerFilters extends Equatable {
   }
 
   @override
-  List<Object?> get props => [
-        isActive,
-        minBookings,
-        joinedAfter,
-      ];
+  List<Object?> get props => [isActive, minBookings, joinedAfter];
 }

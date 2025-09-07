@@ -1,9 +1,7 @@
 library shared.repositories;
 
-import '../../utils/type_defs.dart';
-import '../entities/entity.dart';
-import '../models/models.dart';
-import '../enums/enums.dart';
+import 'package:shared/domain/domain.dart';
+import 'package:shared/utils/type_defs.dart';
 
 /// Generic repository interface for CRUD operations
 ///
