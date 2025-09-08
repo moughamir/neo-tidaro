@@ -372,7 +372,7 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
       case HousekeepingActivityType.bookingConfirmed:
         return l10n.bookingConfirmed;
       case HousekeepingActivityType.bookingStarted:
-        return 'Booking Started'; // TODO: Add to languist
+        return l10n.bookingStarted;
       case HousekeepingActivityType.bookingCompleted:
         return l10n.bookingCompleted;
       case HousekeepingActivityType.bookingCancelled:
@@ -530,7 +530,7 @@ class _FilterDialog extends StatelessWidget {
       case HousekeepingActivityType.bookingConfirmed:
         return l10n.bookingConfirmed;
       case HousekeepingActivityType.bookingStarted:
-        return 'Booking Started'; // TODO: Add to languist
+        return l10n.bookingStarted;
       case HousekeepingActivityType.bookingCompleted:
         return l10n.bookingCompleted;
       case HousekeepingActivityType.bookingCancelled:

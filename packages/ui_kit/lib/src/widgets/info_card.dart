@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../theme/neumorphic_theme.dart';
+import 'package:ui_kit/src/theme/neumorphic_theme.dart';
 
 /// A standardized info card component using Neumorphic styling
 ///
 /// Provides consistent styling for information display cards throughout the app
-class InfoCard extends StatelessWidget {
+class InfoCardDope extends StatelessWidget {
   /// The card title
   final String title;
 
@@ -26,7 +26,7 @@ class InfoCard extends StatelessWidget {
   /// Callback when the card is tapped
   final VoidCallback? onTap;
 
-  const InfoCard({
+  const InfoCardDope({
     super.key,
     required this.title,
     this.subtitle,
@@ -41,7 +41,7 @@ class InfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    
+
     return GestureDetector(
       onTap: onTap,
       child: Container(

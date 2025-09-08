@@ -209,7 +209,7 @@ class BookingsViewModel {
       onUpdateBookingStatus: (String bookingId, BookingStatus status) {
         store.dispatch(UpdateBookingAction(
           bookingId: bookingId,
-          updates: {'status': status.name},
+          updates: <String, dynamic>{'status': status.name},
         ));
       },
     );

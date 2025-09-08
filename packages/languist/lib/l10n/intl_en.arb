@@ -890,5 +890,25 @@
   "staffFilterStar": "star",
   "@staffFilterStar": {
     "description": "Star unit for rating filter"
+  },
+  "parallaxExampleTitle": "Parallax Example",
+  "@parallaxExampleTitle": {
+    "description": "Title for parallax example page"
+  },
+  "parallaxBackgroundText": "Background",
+  "@parallaxBackgroundText": {
+    "description": "Background text for parallax example"
+  },
+  "parallaxMiddleText": "Middle",
+  "@parallaxMiddleText": {
+    "description": "Middle text for parallax example"
+  },
+  "parallaxForegroundText": "Foreground",
+  "@parallaxForegroundText": {
+    "description": "Foreground text for parallax example"
+  },
+  "bookingStarted": "Booking Started",
+  "@bookingStarted": {
+    "description": "Booking started activity type"
   }
 }

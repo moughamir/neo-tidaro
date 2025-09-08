@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../theme/neumorphic_theme.dart';
+import 'package:ui_kit/src/theme/neumorphic_theme.dart';
 
 /// A standardized dialog component using Material UI with Neumorphic styling
 ///
@@ -70,7 +70,7 @@ class GenericDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
-    
+
     return Container(
       decoration: NeumorphicTheme.neumorphicBoxDecoration(
         isDark: isDark,
@@ -87,29 +87,30 @@ class GenericDialog extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
-          Flexible(
-            child: SingleChildScrollView(
-              child: content,
-            ),
-          ),
+          Flexible(child: SingleChildScrollView(child: content)),
           const SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              if (secondaryButtonText != null) ...[                
+              if (secondaryButtonText != null) ...[
                 TextButton(
-                  onPressed: onSecondaryButtonPressed ?? () => Navigator.of(context).pop(),
+                  onPressed:
+                      onSecondaryButtonPressed ??
+                      () => Navigator.of(context).pop(),
                   child: Text(secondaryButtonText!),
                 ),
                 const SizedBox(width: 16),
               ],
               ElevatedButton(
-                onPressed: onPrimaryButtonPressed ?? () => Navigator.of(context).pop(),
+                onPressed:
+                    onPrimaryButtonPressed ?? () => Navigator.of(context).pop(),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: theme.colorScheme.primary,
                   foregroundColor: theme.colorScheme.onPrimary,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(NeumorphicTheme.borderRadius),
+                    borderRadius: BorderRadius.circular(
+                      NeumorphicTheme.borderRadius,
+                    ),
                   ),
                 ),
                 child: Text(primaryButtonText),

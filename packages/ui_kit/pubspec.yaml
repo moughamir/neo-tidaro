@@ -6,14 +6,15 @@ homepage: https://github.com/neo-tidaro/ui_kit
 repository: https://github.com/neo-tidaro/ui_kit
 resolution: workspace
 environment:
-  sdk: '3.9.0'
-  flutter: '>=3.35.0'
+  sdk: "3.9.0"
+  flutter: ">=3.35.0"
 dependencies:
   flutter:
     sdk: flutter
   material_color_utilities: ^0.11.1
+  flutter_markdown: ^0.7.4+1
   google_fonts: ^6.2.1
-  
+
   languist:
     path: ../languist
   shared:

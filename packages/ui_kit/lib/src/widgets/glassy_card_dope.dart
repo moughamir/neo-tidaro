@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 ///
 /// This component creates a translucent card with a blur effect
 /// to create a modern "glassy" appearance combined with neumorphic shadows
-class GlassyCard extends StatelessWidget {
+class GlassyCardDope extends StatelessWidget {
   /// Title text for the card
   final String? title;
 
@@ -31,7 +31,7 @@ class GlassyCard extends StatelessWidget {
   /// Optional callback when card is tapped
   final VoidCallback? onTap;
 
-  const GlassyCard({
+  const GlassyCardDope({
     super.key,
     this.title,
     this.subtitle,

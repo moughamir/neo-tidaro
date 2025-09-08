@@ -15,7 +15,7 @@ class SocialAuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    
+
     return SizedBox(
       width: double.infinity,
       height: 48,
@@ -26,9 +26,7 @@ class SocialAuthButton extends StatelessWidget {
           side: BorderSide(
             color: theme.colorScheme.outline.withValues(alpha: 0.3),
           ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         child: isLoading
             ? SizedBox(
@@ -81,8 +79,4 @@ class SocialAuthButton extends StatelessWidget {
   }
 }
 
-enum SocialAuthProvider {
-  github,
-  google,
-  apple,
-}
+enum SocialAuthProvider { github, google, apple }

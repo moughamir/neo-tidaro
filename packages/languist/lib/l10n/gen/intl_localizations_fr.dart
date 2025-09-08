@@ -677,4 +677,19 @@ class IntlLocalizationsFr extends IntlLocalizations {
 
   @override
   String get staffFilterStar => 'star';
+
+  @override
+  String get parallaxExampleTitle => 'Parallax Example';
+
+  @override
+  String get parallaxBackgroundText => 'Background';
+
+  @override
+  String get parallaxMiddleText => 'Middle';
+
+  @override
+  String get parallaxForegroundText => 'Foreground';
+
+  @override
+  String get bookingStarted => 'Booking Started';
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../theme/neumorphic_theme.dart';
-import '../../utils/failures/failure.dart';
+import 'package:ui_kit/src/theme/neumorphic_theme.dart';
+
+import 'package:shared/utils/failures/failure.dart' show Failure;
 
 /// A standardized error display component using Material UI
 /// with Neumorphic styling error messages

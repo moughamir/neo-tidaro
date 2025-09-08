@@ -7,8 +7,12 @@ class NeumorphicStyles {
     required double blurRadius,
     bool isPressed = false,
   }) {
-    final lightShadowColor = baseColor.withOpacity(0.7); // Lighter shadow for highlight
-    final darkShadowColor = baseColor.withOpacity(0.3); // Darker shadow for depth
+    final lightShadowColor = baseColor.withValues(
+      alpha: 0.7,
+    ); // Lighter shadow for highlight
+    final darkShadowColor = baseColor.withValues(
+      alpha: 0.3,
+    ); // Darker shadow for depth
 
     if (isPressed) {
       return [

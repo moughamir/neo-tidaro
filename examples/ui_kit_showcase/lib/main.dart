@@ -27,7 +27,7 @@ class _UiKitShowcaseAppState extends State<UiKitShowcaseApp> {
     return MaterialApp(
       title: 'UI Kit Showcase',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         useMaterial3: true,
         brightness: Brightness.light,
       ),

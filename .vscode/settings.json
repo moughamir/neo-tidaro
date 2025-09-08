@@ -1,0 +1,6 @@
+{
+    "dart.promptToGetPackages": false,
+    "dart.pubAdditionalArgs": [
+        "--no-pub"
+    ]
+}

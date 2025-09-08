@@ -61,11 +61,14 @@ class _NeumorphicInputFieldState extends State<NeumorphicInputField> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final palette = TidaroColorPalette.forMode(theme.brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light);
-    
+    final palette = TidaroColorPalette.forMode(
+      theme.brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
+    );
+
     final effectiveBackgroundColor = widget.backgroundColor ?? palette.surface;
     final effectiveTextColor = widget.textColor ?? palette.onSurface;
-    final effectiveHintColor = widget.hintColor ?? palette.onSurface.withOpacity(0.6);
+    final effectiveHintColor =
+        widget.hintColor ?? palette.onSurface.withValues(alpha: 0.6);
 
     return Container(
       decoration: BoxDecoration(
@@ -92,7 +95,10 @@ class _NeumorphicInputFieldState extends State<NeumorphicInputField> {
           hintStyle: TextStyle(color: effectiveHintColor),
           labelStyle: TextStyle(color: effectiveHintColor),
           border: InputBorder.none, // Remove default border
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16,
+            vertical: 12,
+          ),
         ),
       ),
     );

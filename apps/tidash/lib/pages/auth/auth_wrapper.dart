@@ -37,7 +37,7 @@ class AuthWrapperViewModel {
   factory AuthWrapperViewModel.fromStore(Store<AppState> store) {
     return AuthWrapperViewModel(
       isAuthenticated: store.state.authState.isAuthenticated,
-      user: store.state.authState.data.fold(() => null, (user) => user),
+      user: store.state.authState.data.fold(() => null, (AuthUser user) => user),
     );
   }
 }

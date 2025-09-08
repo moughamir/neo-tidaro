@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:shared/shared.dart';
-import 'package:ui_kit/ui_kit.dart';
+import 'package:ui_kit/src/localization/app_localizations.dart';
 
 /// Card component for displaying staff/cleaner information
 class StaffCard extends StatelessWidget {
@@ -116,7 +116,7 @@ class StaffCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        _getSpecializationName(spec as ServiceCategory),
+                        _getSpecializationName(spec),
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: theme.colorScheme.secondary,
                           fontSize: 10,
@@ -194,14 +194,23 @@ class StaffCard extends StatelessWidget {
     }
   }
 
-  ({String label, Color color}) _getStatusInfo(BuildContext context, CleanerStatus status) {
+  ({String label, Color color}) _getStatusInfo(
+    BuildContext context,
+    CleanerStatus status,
+  ) {
     switch (status) {
       case CleanerStatus.available:
-        return (label: AppLocalizations.of(context).available, color: Colors.green);
+        return (
+          label: AppLocalizations.of(context).available,
+          color: Colors.green,
+        );
       case CleanerStatus.onJob:
         return (label: AppLocalizations.of(context).busy, color: Colors.orange);
       case CleanerStatus.offline:
-        return (label: AppLocalizations.of(context).offline, color: Colors.grey);
+        return (
+          label: AppLocalizations.of(context).offline,
+          color: Colors.grey,
+        );
       case CleanerStatus.onBreak:
         return (label: AppLocalizations.of(context).away, color: Colors.blue);
     }

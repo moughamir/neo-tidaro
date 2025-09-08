@@ -1,7 +1,7 @@
 // lib/widgets/buttons/primary_button.dart
 
 import 'package:flutter/material.dart';
-import '../../theme/neumorphic_theme.dart';
+import 'package:ui_kit/src/theme/neumorphic_theme.dart';
 
 /// A standardized neumorphic button with Material UI styling.
 ///

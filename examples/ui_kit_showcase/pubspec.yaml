@@ -18,6 +18,10 @@ dependencies:
     path: ../../packages/ui_kit
   shared:
     path: ../../packages/shared
+  device_sensors:
+    path: ../../packages/device_sensors
+  languist:
+    path: ../../packages/languist
 
 flutter:
   uses-material-design: true

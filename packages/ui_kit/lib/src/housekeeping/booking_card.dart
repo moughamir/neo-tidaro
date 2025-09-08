@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
-import '../l10n/localization_extensions.dart';
+import 'package:ui_kit/src/localization/localization_extensions.dart';
 
 /// Card component for displaying booking information
 class BookingCard extends StatelessWidget {

@@ -43,7 +43,7 @@ class _NeumorphicOutlinedButtonState extends State<NeumorphicOutlinedButton> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final palette = TidaroColorPalette.forMode(theme.brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light);
-    final colorScheme = theme.colorScheme;
+
     
     final effectiveBackgroundColor = widget.backgroundColor ?? palette.surface;
     final effectiveBorderColor = widget.borderColor ?? palette.outline;

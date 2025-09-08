@@ -1394,6 +1394,36 @@ abstract class IntlLocalizations {
   /// In en, this message translates to:
   /// **'star'**
   String get staffFilterStar;
+
+  /// Title for parallax example page
+  ///
+  /// In en, this message translates to:
+  /// **'Parallax Example'**
+  String get parallaxExampleTitle;
+
+  /// Background text for parallax example
+  ///
+  /// In en, this message translates to:
+  /// **'Background'**
+  String get parallaxBackgroundText;
+
+  /// Middle text for parallax example
+  ///
+  /// In en, this message translates to:
+  /// **'Middle'**
+  String get parallaxMiddleText;
+
+  /// Foreground text for parallax example
+  ///
+  /// In en, this message translates to:
+  /// **'Foreground'**
+  String get parallaxForegroundText;
+
+  /// Booking started activity type
+  ///
+  /// In en, this message translates to:
+  /// **'Booking Started'**
+  String get bookingStarted;
 }
 
 class _IntlLocalizationsDelegate extends LocalizationsDelegate<IntlLocalizations> {

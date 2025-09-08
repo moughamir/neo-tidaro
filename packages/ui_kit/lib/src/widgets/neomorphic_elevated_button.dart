@@ -29,7 +29,8 @@ class NeumorphicElevatedButton extends StatefulWidget {
   });
 
   @override
-  State<NeumorphicElevatedButton> createState() => _NeumorphicElevatedButtonState();
+  State<NeumorphicElevatedButton> createState() =>
+      _NeumorphicElevatedButtonState();
 }
 
 class _NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
@@ -38,9 +39,10 @@ class _NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final palette = TidaroColorPalette.forMode(theme.brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light);
-    final colorScheme = theme.colorScheme;
-    
+    final palette = TidaroColorPalette.forMode(
+      theme.brightness == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
+    );
+
     final effectiveBackgroundColor = widget.backgroundColor ?? palette.primary;
 
     return Listener(
@@ -52,7 +54,9 @@ class _NeumorphicElevatedButtonState extends State<NeumorphicElevatedButton> {
           onTap: widget.onPressed,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 150),
-            padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding:
+                widget.padding ??
+                const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(widget.borderRadius),
               color: effectiveBackgroundColor,

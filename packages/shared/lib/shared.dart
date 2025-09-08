@@ -13,8 +13,5 @@ export 'data/data.dart';
 // Utils exports
 export 'utils/utils.dart';
 
-// Widget exports
-export 'widgets/widgets.dart';
-
 // Redux exports
 export 'redux/redux.dart';

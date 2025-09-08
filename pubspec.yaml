@@ -20,7 +20,6 @@ workspace:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
   fpdart: ^1.1.1
   equatable: ^2.0.5
   intl: ^0.20.2
@@ -51,8 +50,15 @@ melos:
       run: melos exec -c 1  -- flutter analyze
       description: Run `flutter analyze` in all packages.
 
+    fix:apply:
+      run: melos exec --depends-on build_runner -- dart fix --apply
+      description: Run `dart fix --apply` in all packages.
+    fix:dry:
+      run: melos exec --depends-on build_runner -- dart fix -n
+      description: Run `dart fix` in all packages with a dry run.
+
     test:
-      run: melos exec -c 1 -- flutter test
+      run: melos exec -c 4 -- flutter test
       description: Run `flutter test` in all packages.
 
     run:app:
@@ -64,127 +70,104 @@ melos:
       description: Run `flutter pub upgrade` in all packages.
 
     generate:
-      run: melos exec -c 1 --depends-on build_runner -- dart run build_runner build
+      run: melos exec -c 8 --depends-on build_runner -- dart run build_runner build
       description: Run build_runner in all packages.
       
     gen:l10n:
-      run: melos exec --scope="languist" -- dart run bin/generate_l10n.dart
+      run: melos exec -c 8 --scope="languist" -- dart run bin/generate_l10n.dart
       description: Generate localization files for the languist package using configuration from languist.yaml.
 
     clean:
-      run: melos exec -- flutter clean && melos exec -- flutter pub get
+      run: melos exec -c 8  -- flutter clean && melos exec -c 8  -- flutter pub get --no-pub
       description: Clean build directories and get dependencies in all packages.
 
     # Platform-specific runners for main apps
     run:tidaro:android:
-      run: melos exec --scope="tidaro" -- flutter run -d android
+      run: melos exec -c 8 --scope="tidaro" -- flutter run -d android --no-pub
       description: Run Tidaro on Android.
 
-    run:tidaro:ios:
-      run: melos exec --scope="tidaro" -- flutter run -d ios
-      description: Run Tidaro on iOS.
-
     run:tidaro:linux:
-      run: melos exec --scope="tidaro" -- flutter run -d linux
+      run: melos exec -c 8 --scope="tidaro" -- flutter run -d linux
       description: Run Tidaro on Linux desktop.
 
-    run:tidaro:macos:
-      run: melos exec --scope="tidaro" -- flutter run -d macos
-      description: Run Tidaro on macOS desktop.
 
     run:tidaro:web:
-      run: melos exec --scope="tidaro" -- flutter run -d web-server --web-port=8080
+      run: melos exec -c 8 --scope="tidaro" -- flutter run -d web-server --web-port=8080
       description: Run Tidaro on web browser.
 
     run:tidaro:windows:
-      run: melos exec --scope="tidaro" -- flutter run -d windows
+      run: melos exec -c 8 --scope="tidaro" -- flutter run -d windows
       description: Run Tidaro on Windows desktop.
 
     run:tidaro_mini:android:
-      run: melos exec --scope="tidaro_mini" -- flutter run -d android
+      run: melos exec -c 8 --scope="tidaro_mini" -- flutter run -d android
       description: Run Tidaro Mini on Android.
 
-    run:tidaro_mini:ios:
-      run: melos exec --scope="tidaro_mini" -- flutter run -d ios
-      description: Run Tidaro Mini on iOS.
+
 
     run:tidaro_mini:linux:
-      run: melos exec --scope="tidaro_mini" -- flutter run -d linux
+      run: melos exec -c 8 --scope="tidaro_mini" -- flutter run -d linux
       description: Run Tidaro Mini on Linux desktop.
 
-    run:tidaro_mini:macos:
-      run: melos exec --scope="tidaro_mini" -- flutter run -d macos
-      description: Run Tidaro Mini on macOS desktop.
-
     run:tidaro_mini:web:
-      run: melos exec --scope="tidaro_mini" -- flutter run -d web-server --web-port=8081
+      run: melos exec -c 8 --scope="tidaro_mini" -- flutter run -d web-server --web-port=8081
       description: Run Tidaro Mini on web browser.
 
     run:tidaro_mini:windows:
-      run: melos exec --scope="tidaro_mini" -- flutter run -d windows
+      run: melos exec -c 8 --scope="tidaro_mini" -- flutter run -d windows
       description: Run Tidaro Mini on Windows desktop.
 
     run:tidash:android:
-      run: melos exec --scope="tidash" -- flutter run -d android
+      run: melos exec -c 8 --scope="tidash" -- flutter run -d android
       description: Run Tidash admin dashboard on Android.
 
-    run:tidash:ios:
-      run: melos exec --scope="tidash" -- flutter run -d ios
-      description: Run Tidash admin dashboard on iOS.
 
     run:tidash:linux:
-      run: melos exec --scope="tidash" -- flutter run -d linux
+      run: melos exec -c 8 --scope="tidash" -- flutter run -d linux
       description: Run Tidash admin dashboard on Linux desktop.
 
-    run:tidash:macos:
-      run: melos exec --scope="tidash" -- flutter run -d macos
-      description: Run Tidash admin dashboard on macOS desktop.
+
 
     run:tidash:web:
-      run: melos exec --scope="tidash" -- flutter run -d web-server --web-port=8082
+      run: melos exec -c 8 --scope="tidash" -- flutter run -d web-server --web-port=8082
       description: Run Tidash admin dashboard on web browser.
 
     run:tidash:windows:
-      run: melos exec --scope="tidash" -- flutter run -d windows
+      run: melos exec -c 8 --scope="tidash" -- flutter run -d windows
       description: Run Tidash admin dashboard on Windows desktop.
 
     # Example runners - Linux only for development
     run:basic_app:
-      run: melos exec --scope="basic_app_example" -- flutter run -d linux
+      run: melos exec -c 8 --scope="basic_app_example" -- flutter run -d linux
       description: Run the basic app example on Linux desktop.
 
     run:auth_flow:
-      run: melos exec --scope="auth_flow_example" -- flutter run -d linux
+      run: melos exec -c 8 --scope="auth_flow_example" -- flutter run -d linux
       description: Run the authentication flow example on Linux desktop.
 
 
     run:ui_kit_showcase:
-      run: melos exec --scope="ui_kit_showcase" -- flutter run -d linux
+      run: melos exec -c 8 --scope="ui_kit_showcase" -- flutter run -d linux
       description: Run the UI Kit showcase example on Linux desktop.
 
     # Build commands for all platforms
     build:android:
-      run: melos exec --scope="tidaro*" -- flutter build apk --release
+      run: melos exec -c 8 --scope="tidaro*" -- flutter build apk --release
       description: Build Android APK for all Tidaro apps.
 
-    build:ios:
-      run: melos exec --scope="tidaro*" -- flutter build ios --release
-      description: Build iOS app for all Tidaro apps.
 
     build:web:
-      run: melos exec --scope="tidaro*" -- flutter build web --release
+      run: melos exec -c 8 --scope="tidaro*" -- flutter build web --release
       description: Build web app for all Tidaro apps.
 
     build:linux:
-      run: melos exec --scope="tidaro*" -- flutter build linux --release
+      run: melos exec -c 8 --scope="tidaro*" -- flutter build linux --release
       description: Build Linux desktop app for all Tidaro apps.
 
-    build:macos:
-      run: melos exec --scope="tidaro*" -- flutter build macos --release
-      description: Build macOS desktop app for all Tidaro apps.
+
 
     build:windows:
-      run: melos exec --scope="tidaro*" -- flutter build windows --release
+      run: melos exec -c 8 --scope="tidaro*" -- flutter build windows --release
       description: Build Windows desktop app for all Tidaro apps.
 
 dev_dependencies:

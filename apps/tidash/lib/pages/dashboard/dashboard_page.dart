@@ -60,8 +60,8 @@ class _DashboardPageState extends State<DashboardPage> {
                       childAspectRatio: 1.5,
                     ),
                     delegate: SliverChildBuilderDelegate(
-                      (context, index) {
-                        final metrics = viewModel.dashboardMetrics!;
+                      (BuildContext context, int index) {
+                        final DashboardMetrics metrics = viewModel.dashboardMetrics!;
                         return _buildMetricCard(context, index, metrics, l10n);
                       },
                       childCount: 4,

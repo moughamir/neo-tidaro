@@ -1,5 +1,6 @@
+// ignore_for_file: always_specify_types
+
 import 'package:core/core.dart';
-import 'package:shared/shared.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -60,7 +61,7 @@ class TiDashAuthService {
     return result.fold(
       (Failure failure) {
         CoreLogger.auth('Sign up failed', details: failure.message);
-        return Left(failure);
+        return Left<Failure, User>(failure);
       },
       (User user) {
         CoreLogger.auth('Sign up successful', details: user.email);

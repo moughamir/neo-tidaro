@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:ui_kit/ui_kit.dart';
+import 'package:ui_kit/src/localization/app_localizations.dart';
 
 class GlassyCard extends StatelessWidget {
   final Widget child;
@@ -29,11 +29,11 @@ class GlassyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
+
     final effectiveBorderColor = borderColor ?? colorScheme.outline;
-    final effectiveBackgroundColor = backgroundColor ?? 
-        colorScheme.surface.withValues(alpha: 0.1);
-    
+    final effectiveBackgroundColor =
+        backgroundColor ?? colorScheme.surface.withValues(alpha: 0.1);
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(borderRadius),
       child: BackdropFilter(
