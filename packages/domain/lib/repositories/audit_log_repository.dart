@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart';
+import '../entities/entities.dart';
 
 abstract class AuditLogRepository {
   Future<List<ActivityLog>> findAll();

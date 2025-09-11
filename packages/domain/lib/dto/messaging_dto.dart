@@ -1,6 +1,6 @@
 // ============= MESSAGE DTOs =============
 
-import 'package:domain/enums/messaging.dart';
+import '../enums/messaging.dart';
 
 class SendMessageDto {
   final String chatRoomId;

@@ -1,6 +1,5 @@
-import 'package:domain/mappers/mappers.dart';
-
-import 'package:domain/enums/enums.dart';
+import '../mappers/mappers.dart';
+import '../enums/enums.dart';
 
 class SupabaseProfileDto {
   final String id;

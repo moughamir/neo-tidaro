@@ -1,4 +1,4 @@
-import 'package:domain/enums/service_category.dart';
+import '../enums/service_category.dart';
 
 String serviceCategoryToSql(ServiceCategory value) {
   switch (value) {

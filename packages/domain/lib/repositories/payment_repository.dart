@@ -1,5 +1,5 @@
-import 'package:domain/entities/payment.dart';
-import 'package:domain/enums/payment.dart';
+import '../entities/entities.dart';
+import '../enums/enums.dart';
 
 abstract class PaymentRepository {
   Future<Payment> findByBookingId(String bookingId);

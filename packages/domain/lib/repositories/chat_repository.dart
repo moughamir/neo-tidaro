@@ -1,5 +1,5 @@
-import 'package:domain/domain.dart'
-    show Chat, CreateChatRoomDto, Message, PaginationDto, SendMessageDto;
+import '../dto/dto.dart';
+import '../entities/entities.dart';
 
 abstract class ChatRepository {
   Future<Chat> createChatRoom(CreateChatRoomDto dto);

@@ -1,5 +1,5 @@
-import 'package:domain/enums/service_category.dart';
-import 'package:domain/enums/user_role.dart';
+import '../enums/service_category.dart';
+import '../enums/user_role.dart';
 
 import '../enums/auth_provider.dart';
 import 'geo_location_dto.dart';

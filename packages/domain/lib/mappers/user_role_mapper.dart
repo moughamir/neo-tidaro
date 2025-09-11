@@ -1,4 +1,4 @@
-import 'package:domain/enums/user_role.dart';
+import '../enums/user_role.dart';
 
 /// Enum mappers between Supabase (snake_case strings) and Domain (camelCase enums)
 
@@ -14,7 +14,7 @@ UserRole userRoleFromSql(String value) {
     case 'client_consumer':
       return UserRole.clientConsumer;
     case 'client_provider':
-      return UserRole.clientProvider;
+      return UserRole.clientProfessional;
     default:
       return UserRole.clientConsumer;
   }
@@ -28,7 +28,7 @@ String userRoleToSql(UserRole value) {
       return 'moderator';
     case UserRole.clientConsumer:
       return 'client_consumer';
-    case UserRole.clientProvider:
+    case UserRole.clientProfessional:
       return 'client_provider';
     case UserRole.superAdmin:
       return 'super_admin';

@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart';
+import '../enums/enums.dart';
 
 String verificationStatusToSql(VerificationStatus value) {
   switch (value) {

@@ -1,7 +1,7 @@
-import 'package:domain/dto/auth_dto.dart';
-import 'package:domain/entities/authentication.dart';
-import 'package:domain/entities/user.dart';
-import 'package:domain/enums/enums.dart';
+import '../dto/auth_dto.dart';
+import '../entities/entities.dart';
+import '../enums/enums.dart';
+import 'base_repository.dart';
 
 /// Domain-pure authentication repository interface
 abstract class AuthRepository {
@@ -10,12 +10,12 @@ abstract class AuthRepository {
   User? get currentUser;
   AuthSession? get currentSession;
 
-  Future<AuthResult<User>> signUp(SignUpDto dto);
-  Future<AuthResult<User>> signIn(SignInDto dto);
-  Future<AuthResult<User>> signInWithOAuth(OAuthSignInDto dto);
+  Future<RepositoryResult<User>> signUp(SignUpDto dto);
+  Future<RepositoryResult<User>> signIn(SignInDto dto);
+  Future<RepositoryResult<User>> signInWithOAuth(OAuthSignInDto dto);
   Future<void> signOut();
-  Future<AuthResult<AuthSession>> refreshSession();
-  Future<AuthResult<User>> updateUser(Map<String, dynamic> attributes);
+  Future<RepositoryResult<AuthSession>> refreshSession();
+  Future<RepositoryResult<User>> updateUser(Map<String, dynamic> attributes);
   Future<void> resetPassword(String email);
   Future<void> verifyOtp({
     required String token,

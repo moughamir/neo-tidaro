@@ -3,6 +3,6 @@ enum UserRole {
   admin,
   moderator,
   clientConsumer,
-  clientProvider,
+  clientProfessional,
   superAdmin,
 }

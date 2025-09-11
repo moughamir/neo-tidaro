@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart';
+import '../entities/entities.dart';
 
 abstract class BlockedPeriodRepository {
   Future<List<Availability>> findByProfileId(String profileId);

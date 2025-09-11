@@ -1,19 +1,33 @@
 /// Domain entities for the Neo-Tidaro business logic
+/// Organized by business domain for better maintainability
 library entities;
 
-export 'authentication.dart';
-export 'availability.dart';
+// Core base classes
 export 'base_entity.dart';
-export 'booking.dart';
-export 'comment.dart';
-export 'communication.dart';
-export 'location.dart';
-export 'payment.dart';
-export 'review.dart';
-export 'service.dart';
-export 'system.dart';
-export 'ticket.dart';
-export 'ticket_option.dart';
-export 'user.dart';
-export 'user_profile.dart';
-export 'verification.dart';
+
+// User domain
+export 'user/user.dart';
+export 'user/user_profile.dart';
+
+// Professional domain
+export 'professional/professional_profile.dart';
+export 'professional/service.dart';
+export 'professional/availability.dart';
+
+// Booking domain
+export 'booking/booking.dart';
+export 'booking/payment.dart';
+export 'booking/review.dart';
+
+// Communication domain
+export 'communication/communication.dart';
+
+// System domain
+export 'system/system.dart';
+
+// Support domain
+export 'support/ticket.dart';
+
+// Shared domain
+export 'shared/location.dart';
+export 'shared/verification.dart';

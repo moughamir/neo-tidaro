@@ -1,4 +1,4 @@
-import 'package:domain/enums/enums.dart';
+import '../enums/enums.dart';
 
 CleanerStatus cleanerStatusFromSql(String value) {
   switch (value) {

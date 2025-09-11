@@ -1,17 +1,7 @@
-import 'package:domain/domain.dart'
-    show
-        Availability,
-        BaseRepository,
-        CreateServiceDto,
-        GeoLocation,
-        ProfessionalProfile,
-        ProfessionalRegistrationDto,
-        ProfessionalSearchDto,
-        RepositoryResult,
-        Review,
-        Service,
-        ServiceCategory,
-        SetAvailabilityDto;
+import '../dto/dto.dart';
+import '../entities/entities.dart';
+import '../enums/enums.dart';
+import 'base_repository.dart';
 
 /// Professional-specific repository extending generic base
 abstract class ProfessionalRepository

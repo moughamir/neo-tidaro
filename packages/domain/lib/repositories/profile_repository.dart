@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart';
+import '../entities/entities.dart';
 
 /// Business-specific repository interfaces using domain entities
 

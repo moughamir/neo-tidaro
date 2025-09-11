@@ -1,7 +1,7 @@
-import 'package:domain/enums/booking_status.dart';
-import 'package:domain/enums/day_of_week.dart';
-import 'package:domain/enums/payment.dart';
-import 'package:domain/enums/rate_type.dart';
+import '../enums/booking_status.dart';
+import '../enums/day_of_week.dart';
+import '../enums/payment.dart';
+import '../enums/rate_type.dart';
 
 import 'time_slot_dto.dart';
 
