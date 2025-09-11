@@ -1,0 +1,85 @@
+import 'package:domain/domain.dart'
+    show
+        Availability,
+        BaseRepository,
+        CreateServiceDto,
+        GeoLocation,
+        ProfessionalProfile,
+        ProfessionalRegistrationDto,
+        ProfessionalSearchDto,
+        RepositoryResult,
+        Review,
+        Service,
+        ServiceCategory,
+        SetAvailabilityDto;
+
+/// Professional-specific repository extending generic base
+abstract class ProfessionalRepository
+    extends BaseRepository<ProfessionalProfile> {
+  // Professional-specific operations
+  Future<RepositoryResult<ProfessionalProfile>> getByUserId(String userId);
+  Future<RepositoryResult<ProfessionalProfile>> register(
+    ProfessionalRegistrationDto dto,
+  );
+
+  // Override search with professional-specific DTO support
+  Future<RepositoryResult<List<ProfessionalProfile>>> searchProfessionals(
+    ProfessionalSearchDto dto,
+  );
+
+  Future<RepositoryResult<List<ProfessionalProfile>>> getNearby({
+    required GeoLocation location,
+    required double radius,
+    ServiceCategory? category,
+  });
+
+  Future<RepositoryResult<List<ProfessionalProfile>>> getTopRated({
+    ServiceCategory? category,
+    int limit = 10,
+  });
+
+  // Availability management
+  Future<RepositoryResult<bool>> updateAvailability(SetAvailabilityDto dto);
+  Future<RepositoryResult<List<Availability>>> getAvailability(
+    String professionalId,
+  );
+
+  // Service management
+  Future<RepositoryResult<List<Service>>> getServices(String professionalId);
+  Future<RepositoryResult<Service>> addService(CreateServiceDto dto);
+  Future<RepositoryResult<bool>> updateService(Service service);
+  Future<RepositoryResult<bool>> toggleServiceStatus(
+    String serviceId,
+    bool isActive,
+  );
+
+  // Reviews and statistics
+  Future<RepositoryResult<List<Review>>> getReviews(String professionalId);
+  Future<RepositoryResult<ProfessionalStatistics>> getStatistics(
+    String professionalId,
+  );
+
+  // Reactive streams
+  Stream<ProfessionalProfile> watchProfessional(String professionalId);
+}
+
+/// Professional statistics domain object
+class ProfessionalStatistics {
+  final double averageRating;
+  final int totalReviews;
+  final int completedJobs;
+  final double responseRate;
+  final Duration averageResponseTime;
+  final int totalEarnings;
+  final Map<ServiceCategory, int> jobsByCategory;
+
+  const ProfessionalStatistics({
+    required this.averageRating,
+    required this.totalReviews,
+    required this.completedJobs,
+    required this.responseRate,
+    required this.averageResponseTime,
+    required this.totalEarnings,
+    required this.jobsByCategory,
+  });
+}

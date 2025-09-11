@@ -1,0 +1,21 @@
+name: domain
+description: "Domain layer for Neo-Tidaro workspace containing business models and entities"
+version: 0.1.0-pre-alpha.3
+homepage: https://github.com/neo-tidaro/neo-tidaro
+repository: https://github.com/neo-tidaro/neo-tidaro
+publish_to: none
+
+resolution: workspace
+
+environment:
+  sdk: "3.9.0"
+  flutter: ">=3.35.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
