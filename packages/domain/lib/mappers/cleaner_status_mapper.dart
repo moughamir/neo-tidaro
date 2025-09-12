@@ -1,29 +1,29 @@
 import '../enums/enums.dart';
 
-CleanerStatus cleanerStatusFromSql(String value) {
+ProfessionalActivityStatus professionalActivityStatusFromSql(String value) {
   switch (value) {
     case 'available':
-      return CleanerStatus.available;
+      return ProfessionalActivityStatus.available;
     case 'on_job':
-      return CleanerStatus.onJob;
+      return ProfessionalActivityStatus.onJob;
     case 'offline':
-      return CleanerStatus.offline;
+      return ProfessionalActivityStatus.offline;
     case 'on_break':
-      return CleanerStatus.onBreak;
+      return ProfessionalActivityStatus.onBreak;
     default:
-      return CleanerStatus.offline;
+      return ProfessionalActivityStatus.offline;
   }
 }
 
-String cleanerStatusToSql(CleanerStatus value) {
+String professionalActivityStatusToSql(ProfessionalActivityStatus value) {
   switch (value) {
-    case CleanerStatus.available:
+    case ProfessionalActivityStatus.available:
       return 'available';
-    case CleanerStatus.onJob:
+    case ProfessionalActivityStatus.onJob:
       return 'on_job';
-    case CleanerStatus.offline:
+    case ProfessionalActivityStatus.offline:
       return 'offline';
-    case CleanerStatus.onBreak:
+    case ProfessionalActivityStatus.onBreak:
       return 'on_break';
   }
 }

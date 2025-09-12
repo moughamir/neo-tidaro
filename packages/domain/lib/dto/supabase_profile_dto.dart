@@ -7,7 +7,7 @@ class SupabaseProfileDto {
   final String? avatarUrl;
   final String? phoneNumber;
   final UserRole role;
-  final CleanerStatus? cleanerStatus;
+  final ProfessionalActivityStatus? professionalActivityStatus;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -17,7 +17,7 @@ class SupabaseProfileDto {
     this.avatarUrl,
     this.phoneNumber,
     required this.role,
-    this.cleanerStatus,
+    this.professionalActivityStatus,
     this.createdAt,
     this.updatedAt,
   });
@@ -29,8 +29,8 @@ class SupabaseProfileDto {
       avatarUrl: map['avatar_url'] as String?,
       phoneNumber: map['phone_number'] as String?,
       role: userRoleFromSql(map['role'] as String),
-      cleanerStatus: map['status'] != null
-          ? cleanerStatusFromSql(map['status'] as String)
+      professionalActivityStatus: map['status'] != null
+          ? professionalActivityStatusFromSql(map['status'] as String)
           : null,
       createdAt: map['created_at'] != null
           ? DateTime.parse(map['created_at'] as String)
@@ -48,8 +48,8 @@ class SupabaseProfileDto {
       'avatar_url': avatarUrl,
       'phone_number': phoneNumber,
       'role': userRoleToSql(role),
-      'status': cleanerStatus != null
-          ? cleanerStatusToSql(cleanerStatus!)
+      'status': professionalActivityStatus != null
+          ? professionalActivityStatusToSql(professionalActivityStatus!)
           : null,
       'created_at': createdAt?.toIso8601String(),
       'updated_at': updatedAt?.toIso8601String(),

@@ -1,9 +1,7 @@
-import 'package:redux/redux.dart';
-import '../core/core.dart';
-import '../actions/dashboard_actions.dart';
-import '../app_state.dart';
-import '../../domain/models/models.dart';
-import '../../domain/enums/enums.dart';
+import 'package:domain/entities/system/system.dart';
+import 'package:domain/enums/activity_type.dart';
+import 'package:domain/states/app_state.dart';
+import 'package:shared/redux/redux.dart';
 
 List<Middleware<AppState>> createDashboardMiddleware() {
   return [
@@ -64,11 +62,19 @@ void _loadDashboard(
       totalCustomers: 856,
       averageRating: 4.7,
       recentActivities: sampleActivities,
+      id: '',
     );
 
-    store.dispatch(ActionCreators.success(DashboardActionTypes.loadDashboard, metrics));
+    store.dispatch(
+      ActionCreators.success(DashboardActionTypes.loadDashboard, metrics),
+    );
   } catch (error) {
-    store.dispatch(ActionCreators.failure(DashboardActionTypes.loadDashboard, Exception(error.toString())));
+    store.dispatch(
+      ActionCreators.failure(
+        DashboardActionTypes.loadDashboard,
+        Exception(error.toString()),
+      ),
+    );
   }
 }
 
@@ -84,7 +90,10 @@ void _refreshDashboard(
 
     final currentMetrics = store.state.dashboardState.data;
     if (currentMetrics.isSome()) {
-      final metrics = currentMetrics.fold(() => throw Exception('No metrics'), (data) => data);
+      final metrics = currentMetrics.fold(
+        () => throw Exception('No metrics'),
+        (data) => data,
+      );
       // Simulate updated metrics
       final updatedMetrics = metrics.copyWith(
         totalBookings: metrics.totalBookings + 1,
@@ -93,12 +102,22 @@ void _refreshDashboard(
         monthlyRevenue: metrics.monthlyRevenue + 150.0,
       );
 
-      store.dispatch(ActionCreators.success(DashboardActionTypes.refreshDashboard, updatedMetrics));
+      store.dispatch(
+        ActionCreators.success(
+          DashboardActionTypes.refreshDashboard,
+          updatedMetrics,
+        ),
+      );
     } else {
       // If no metrics exist, load them
       store.dispatch(const LoadDashboardAction());
     }
   } catch (error) {
-    store.dispatch(ActionCreators.failure(DashboardActionTypes.refreshDashboard, Exception(error.toString())));
+    store.dispatch(
+      ActionCreators.failure(
+        DashboardActionTypes.refreshDashboard,
+        Exception(error.toString()),
+      ),
+    );
   }
 }

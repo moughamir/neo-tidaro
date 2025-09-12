@@ -1,6 +1,10 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:ui_kit/src/widgets/card.dart';
 
+/// Legacy glass container component - now uses KuiCard.glass internally
+///
+/// This component is maintained for backward compatibility but delegates
+/// to the unified KuiCard to follow DRY principles.
 class GlassContainer extends StatelessWidget {
   final Widget child;
   final double borderRadius;
@@ -21,19 +25,12 @@ class GlassContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(borderRadius),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: blurAmount, sigmaY: blurAmount),
-        child: Container(
-          decoration: BoxDecoration(
-            color: backgroundColor,
-            borderRadius: BorderRadius.circular(borderRadius),
-            border: Border.all(color: borderColor, width: borderWidth),
-          ),
-          child: child,
-        ),
-      ),
+    return KuiCard.glass(
+      borderRadius: borderRadius,
+      backgroundColor: backgroundColor,
+      borderColor: borderColor,
+      padding: EdgeInsets.zero,
+      child: child,
     );
   }
 }

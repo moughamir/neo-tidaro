@@ -20,6 +20,15 @@ class IntlLocalizationsAr extends IntlLocalizations {
   }
 
   @override
+  String get greetGoodMorning => 'Good Morning';
+
+  @override
+  String get greetGoodAfternoon => 'Good Afternoon';
+
+  @override
+  String get greetGoodEvening => 'Good Evening';
+
+  @override
   String get welcome => 'أهلاً وسهلاً';
 
   @override
@@ -424,7 +433,8 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get noActivitiesFound => 'No Activities Found';
 
   @override
-  String get noActivitiesFoundDescription => 'Try adjusting your search or filter criteria to find activities.';
+  String get noActivitiesFoundDescription =>
+      'Try adjusting your search or filter criteria to find activities.';
 
   @override
   String get filterActivities => 'Filter Activities';
@@ -565,7 +575,8 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get resetPasswordTitle => 'إعادة تعيين كلمة المرور';
 
   @override
-  String get resetPasswordMessage => 'أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.';
+  String get resetPasswordMessage =>
+      'أدخل عنوان بريدك الإلكتروني وسنرسل لك رابطاً لإعادة تعيين كلمة المرور.';
 
   @override
   String get sendResetLink => 'إرسال رابط الإعادة';
@@ -574,7 +585,8 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get passwordResetEmailSent => 'تم إرسال بريد إعادة تعيين كلمة المرور!';
 
   @override
-  String get termsAgreement => 'بالنقر على متابعة، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا.';
+  String get termsAgreement =>
+      'بالنقر على متابعة، فإنك توافق على شروط الخدمة وسياسة الخصوصية الخاصة بنا.';
 
   @override
   String get passwordsDontMatch => 'كلمات المرور غير متطابقة';
@@ -592,7 +604,8 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get noBookings => 'No Bookings Found';
 
   @override
-  String get noBookingsDescription => 'You haven\'t created any bookings yet. Create your first booking to get started.';
+  String get noBookingsDescription =>
+      'You haven\'t created any bookings yet. Create your first booking to get started.';
 
   @override
   String get comingSoon => 'Coming Soon';
@@ -604,7 +617,8 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get noStaff => 'No Staff Found';
 
   @override
-  String get noStaffDescription => 'You haven\'t added any staff members yet. Add your first staff member to get started.';
+  String get noStaffDescription =>
+      'You haven\'t added any staff members yet. Add your first staff member to get started.';
 
   @override
   String get totalBookings => 'Total Bookings';
@@ -631,7 +645,8 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get makeUnavailableButtonLabel => 'Make Unavailable';
 
   @override
-  String get staffFiltersAppliedSuccessfully => 'Staff filters applied successfully';
+  String get staffFiltersAppliedSuccessfully =>
+      'Staff filters applied successfully';
 
   @override
   String get staffFilterByServiceSpecialties => 'Filter by service specialties';
@@ -691,5 +706,51 @@ class IntlLocalizationsAr extends IntlLocalizations {
   String get parallaxForegroundText => 'Foreground';
 
   @override
+  String get parallaxMouseMode => 'Mouse Mode';
+
+  @override
+  String get parallaxGyroscopeMode => 'Gyroscope Mode';
+
+  @override
   String get bookingStarted => 'Booking Started';
+
+  @override
+  String durationDays(int count) {
+    return '$count day';
+  }
+
+  @override
+  String durationDaysPlural(int count) {
+    return '$count days';
+  }
+
+  @override
+  String durationHours(int count) {
+    return '$count hour';
+  }
+
+  @override
+  String durationHoursPlural(int count) {
+    return '$count hours';
+  }
+
+  @override
+  String durationMinutes(int count) {
+    return '$count minute';
+  }
+
+  @override
+  String durationMinutesPlural(int count) {
+    return '$count minutes';
+  }
+
+  @override
+  String durationSeconds(int count) {
+    return '$count second';
+  }
+
+  @override
+  String durationSecondsPlural(int count) {
+    return '$count seconds';
+  }
 }

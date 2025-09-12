@@ -5,3 +5,6 @@ library languist;
 
 export 'src/languist_service.dart';
 export 'l10n/gen/intl_localizations.dart';
+export 'package:intl/intl.dart';
+export 'src/time/moment_bridge.dart';
+export 'src/time/time_formatter.dart';

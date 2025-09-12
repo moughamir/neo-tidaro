@@ -27,6 +27,7 @@ neo-tidaro/
 ## Package Dependencies
 
 ### Core Dependencies Flow
+
 ```
 apps → packages/shared → packages/core
 apps → packages/ui_kit → packages/core
@@ -37,26 +38,30 @@ examples → packages/*
 ### Package Purposes
 
 #### `packages/core`
+
 - Base utilities and services
 - Network clients and API interfaces
 - Common data models
 - Platform-specific implementations
 
 #### `packages/languist`
+
 - Internationalization (i18n) support
 - Multi-language content management
 - Localization utilities
 - ARB file generation and management
 
 #### `packages/shared`
+
 - Redux state management
 - Domain entities and repositories
 - Common widgets and components
 - Business logic abstractions
 
 #### `packages/ui_kit`
+
 - Material 3 theming
-- Custom UI components (NeomorphicButton, GlassyCard)
+- Custom UI components (NeomorphicButton, KuiCard.glass)
 - Typography and color schemes
 - Multi-language font support
 
@@ -81,21 +86,25 @@ The workspace uses [Melos](https://melos.invertase.dev/) for monorepo management
 ## Architecture Principles
 
 ### Clean Architecture
+
 - Separation of concerns between layers
 - Dependency inversion principle
 - Domain-driven design patterns
 
 ### State Management
+
 - Redux pattern for predictable state updates
 - Immutable state objects
 - Action-based state mutations
 
 ### Localization
+
 - Multi-language support (French, Arabic, Tifinagh)
 - Dynamic language switching
 - Parameterized translations
 
 ### UI/UX
+
 - Material 3 design system
 - Neumorphic design elements
 - Responsive layouts

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/src/theme/neumorphic_theme.dart';
+import 'package:ui_kit/src/design_system/design_system.dart';
 
 import 'package:shared/utils/failures/failure.dart' show Failure;
 
@@ -31,17 +31,18 @@ class ErrorDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+    final colors = DesignTokens.colorsFor(theme.brightness);
 
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-      decoration: NeumorphicTheme.neumorphicInsetBoxDecoration(
-        isDark: isDark,
-        color: isDark
-            ? Colors.red[900]!.withValues(alpha: 0.2)
-            : Colors.red[50]!,
-        radius: 12.0,
+      decoration: DesignEffects.neumorphicInset(
+        colors: colors,
+        radius: DesignTokens.radiusLg,
+        backgroundColor:
+            theme.brightness == Brightness.dark
+                ? Colors.red[900]!.withValues(alpha: 0.2)
+                : Colors.red[50]!,
       ),
       child: Row(
         children: [
@@ -72,9 +73,7 @@ class ErrorDisplay extends StatelessWidget {
                 backgroundColor: theme.colorScheme.primary,
                 foregroundColor: theme.colorScheme.onPrimary,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                    NeumorphicTheme.borderRadius,
-                  ),
+                  borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
                 ),
               ),
               child: const Text('Retry'),

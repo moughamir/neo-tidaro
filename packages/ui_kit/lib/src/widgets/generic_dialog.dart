@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/src/theme/neumorphic_theme.dart';
+import 'package:ui_kit/src/design_system/design_system.dart';
 
 /// A standardized dialog component using Material UI with Neumorphic styling
 ///
@@ -69,12 +69,13 @@ class GenericDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+    final colors = DesignTokens.colorsFor(theme.brightness);
 
     return Container(
-      decoration: NeumorphicTheme.neumorphicBoxDecoration(
-        isDark: isDark,
-        color: theme.scaffoldBackgroundColor,
+      decoration: DesignEffects.neumorphicElevated(
+        colors: colors,
+        radius: DesignTokens.radius2xl,
+        backgroundColor: theme.scaffoldBackgroundColor,
       ),
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -108,9 +109,7 @@ class GenericDialog extends StatelessWidget {
                   backgroundColor: theme.colorScheme.primary,
                   foregroundColor: theme.colorScheme.onPrimary,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      NeumorphicTheme.borderRadius,
-                    ),
+                    borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
                   ),
                 ),
                 child: Text(primaryButtonText),

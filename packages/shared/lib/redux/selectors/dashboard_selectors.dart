@@ -1,6 +1,6 @@
 import '../app_state.dart';
 import '../states/dashboard_state.dart';
-import '../../domain/models/models.dart';
+import '../../../../domain/lib/models/models.dart';
 
 class DashboardSelectors {
   static DashboardState getDashboardState(AppState state) {
@@ -24,7 +24,10 @@ class DashboardSelectors {
   }
 
   static String? getError(AppState state) {
-    return state.dashboardState.error.fold(() => null, (error) => error.toString());
+    return state.dashboardState.error.fold(
+      () => null,
+      (error) => error.toString(),
+    );
   }
 
   static DateTime? getLastRefresh(AppState state) {

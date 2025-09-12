@@ -69,7 +69,7 @@ class _ExampleHomePageState extends State<ExampleHomePage> {
             const SizedBox(height: 16),
 
             // Glassy Card Example
-            GlassyCard(
+            KuiCard.glass(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(

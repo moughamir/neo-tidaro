@@ -16,6 +16,18 @@
       "userName": {}
     }
   },
+  "greetGoodMorning": "Good Morning",
+  "@greetGoodMorning": {
+    "description": "Good Morning"
+  },
+  "greetGoodAfternoon": "Good Afternoon",
+  "@greetGoodAfternoon": {
+    "description": "Good Afternoon"
+  },
+  "greetGoodEvening": "Good Evening",
+  "@greetGoodEvening": {
+    "description": "Good Evening"
+  },
   "welcome": "Welcome",
   "@welcome": {
     "description": "Welcome message"
@@ -907,8 +919,88 @@
   "@parallaxForegroundText": {
     "description": "Foreground text for parallax example"
   },
+  "parallaxMouseMode": "Mouse Mode",
+  "@parallaxMouseMode": {
+    "description": "Indicates parallax is controlled by mouse movement"
+  },
+  "parallaxGyroscopeMode": "Gyroscope Mode",
+  "@parallaxGyroscopeMode": {
+    "description": "Indicates parallax is controlled by device gyroscope"
+  },
   "bookingStarted": "Booking Started",
   "@bookingStarted": {
     "description": "Booking started activity type"
+  },
+  "durationDays": "{count} day",
+  "@durationDays": {
+    "description": "Duration in days (singular)",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationDaysPlural": "{count} days",
+  "@durationDaysPlural": {
+    "description": "Duration in days (plural)",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationHours": "{count} hour",
+  "@durationHours": {
+    "description": "Duration in hours (singular)",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationHoursPlural": "{count} hours",
+  "@durationHoursPlural": {
+    "description": "Duration in hours (plural)",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationMinutes": "{count} minute",
+  "@durationMinutes": {
+    "description": "Duration in minutes (singular)",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationMinutesPlural": "{count} minutes",
+  "@durationMinutesPlural": {
+    "description": "Duration in minutes (plural)",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationSeconds": "{count} second",
+  "@durationSeconds": {
+    "description": "Duration in seconds (singular)",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationSecondsPlural": "{count} seconds",
+  "@durationSecondsPlural": {
+    "description": "Duration in seconds (plural)",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
   }
 }

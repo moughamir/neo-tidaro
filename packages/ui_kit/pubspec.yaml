@@ -1,7 +1,7 @@
 name: ui_kit
 description: "A Fresh UI Kit for Flutter."
 publish_to: none
-version: 0.0.1
+version: 0.1.0-pre-alpha.3
 homepage: https://github.com/neo-tidaro/ui_kit
 repository: https://github.com/neo-tidaro/ui_kit
 resolution: workspace
@@ -19,6 +19,8 @@ dependencies:
     path: ../languist
   shared:
     path: ../shared
+  domain:
+    path: ../domain
 dev_dependencies:
   flutter_test:
     sdk: flutter

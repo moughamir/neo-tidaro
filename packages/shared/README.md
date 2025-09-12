@@ -9,7 +9,7 @@ A collection of shared widgets, utilities, and domain objects for TiDaro applica
 The package provides a set of reusable, responsive widgets built with Material UI and Neumorphic styling:
 
 - **Buttons**: PrimaryButton (with Neumorphic styling)
-- **Containers**: InfoCard, GlassyCard
+- **Containers**: InfoCard, KuiCard.glass
 - **Dialogs**: GenericDialog
 - **Indicators**: LoadingIndicator, ErrorDisplay
 - **Layout**: PageScaffold, ResponsiveLayout
@@ -21,10 +21,12 @@ The package provides a set of reusable, responsive widgets built with Material U
 Commonly used utilities to simplify development:
 
 - **Extensions**:
+
   - DateTimeExtensions: Format dates, relative time strings
   - StringExtensions: Capitalize, title case, truncation
 
 - **Failures**:
+
   - Standardized failure handling with `Either` monad
   - Predefined failure types: Server, Connection, Validation, Unexpected
 
@@ -86,7 +88,7 @@ PrimaryButton(
 )
 
 // Use Glassy Card with blur effect
-GlassyCard(
+KuiCard.glass(
   title: 'Frosted Glass Card',
   child: SomeContent(),
   blur: 10.0,

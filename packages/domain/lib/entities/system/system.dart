@@ -1,3 +1,5 @@
+import 'package:domain/enums/activity_type.dart';
+
 import '../base_entity.dart';
 
 /// Activity log for tracking system events
@@ -21,6 +23,43 @@ class ActivityLog extends BaseEntity {
     this.metadata,
     this.ipAddress,
     this.userAgent,
+  });
+}
+
+class HousekeepingActivity extends ActivityItem {
+  HousekeepingActivity({required super.id, required super.description, required super.title, required super.timestamp, required super.type});
+}
+
+class ActivityItem extends BaseEntity {
+  var description;
+
+  var timestamp;
+
+  ActivityItem({
+    required super.id,
+    required String description,
+    required String title,
+    required DateTime timestamp,
+    required ActivityType type,
+  });
+
+  get title => null;
+
+  get type => null;
+}
+
+class DashboardMetrics extends BaseEntity {
+  DashboardMetrics({
+    List<ActivityItem>? recentActivities,
+    int pendingBookings = 0,
+    int completedBookings = 0,
+    int totalCustomers = 0,
+    double monthlyRevenue = 0,
+    int activeCleaners = 0,
+    double averageRating = 0,
+    double totalRevenue = 0.0,
+    int totalBookings = 0,
+    required super.id,
   });
 }
 

@@ -1,39 +1,41 @@
 name: core
 description: "A Fresh Core for Flutter."
-version: 0.0.1
+version: 0.1.0-pre-alpha.3
 homepage: https://github.com/neo-tidaro/core
 repository: https://github.com/neo-tidaro/core
-publish_to: 'none'
+publish_to: "none"
 resolution: workspace
 
 environment:
-  sdk: '3.9.0'
-  flutter: '>=3.35.0'
+  sdk: "3.9.0"
+  flutter: ">=3.35.0"
 
 dependencies:
   flutter:
     sdk: flutter
-    
+
   # Workspace Dependencies
   shared:
     path: ../shared
-    
+  domain:
+    path: ../domain
+
   # Supabase Dependencies
   supabase_flutter: ^2.10.0
-  
+
   # Functional Programming
   fpdart: ^1.1.0
-  
+
   # Utilities
   equatable: ^2.0.5
   http: ^1.1.0
   shared_preferences: ^2.2.2
   flutter_secure_storage: ^9.0.0
   connectivity_plus: ^6.1.5
-  
+
   # DI
   get_it: ^8.2.0
-  
+
   # Utils
   uuid: ^4.2.1
   intl: ^0.20.1

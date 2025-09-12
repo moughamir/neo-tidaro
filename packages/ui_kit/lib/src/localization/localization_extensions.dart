@@ -1,5 +1,5 @@
+import 'package:domain/domain.dart';
 import 'package:flutter/widgets.dart';
-import 'package:shared/shared.dart';
 
 /// Localization helpers for domain enums using AppLocalizations (Languist wrapper)
 /// Falls back to humanized names when a specific key is not present.
@@ -42,16 +42,16 @@ extension BookingStatusL10n on BookingStatus {
   }
 }
 
-extension CleanerStatusL10n on CleanerStatus {
+extension CleanerStatusL10n on ProfessionalActivityStatus {
   String label(BuildContext context) {
     switch (this) {
-      case CleanerStatus.available:
+      case ProfessionalActivityStatus.available:
         return 'available'.humanize();
-      case CleanerStatus.onJob:
+      case ProfessionalActivityStatus.onJob:
         return 'on_job'.humanize();
-      case CleanerStatus.offline:
+      case ProfessionalActivityStatus.offline:
         return 'offline'.humanize();
-      case CleanerStatus.onBreak:
+      case ProfessionalActivityStatus.onBreak:
         return 'on_break'.humanize();
     }
   }
@@ -76,6 +76,24 @@ extension ServiceCategoryL10n on ServiceCategory {
         return 'residential'.humanize();
       case ServiceCategory.specialized:
         return 'specialized'.humanize();
+      case ServiceCategory.cleaning:
+        return 'cleaning'.humanize();
+      case ServiceCategory.laundry:
+        return 'laundry'.humanize();
+      case ServiceCategory.cooking:
+        return 'cooking'.humanize();
+      case ServiceCategory.babysitting:
+        return 'babysitting'.humanize();
+      case ServiceCategory.petCare:
+        return 'pet_care'.humanize();
+      case ServiceCategory.gardening:
+        return 'gardening'.humanize();
+      case ServiceCategory.maintenance:
+        return 'maintenance'.humanize();
+      case ServiceCategory.organization:
+        return 'organization'.humanize();
+      case ServiceCategory.other:
+        return 'other'.humanize();
     }
   }
 }

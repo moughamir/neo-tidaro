@@ -4,14 +4,10 @@
 /// different applications in the workspace.
 library shared;
 
-// Domain exports
-export 'domain/domain.dart';
-
-// Data layer exports
-export 'data/data.dart';
-
+export 'repositories/index.dart';
 // Utils exports
 export 'utils/utils.dart';
 
 // Redux exports
 export 'redux/redux.dart';
+export 'package:domain/domain.dart';

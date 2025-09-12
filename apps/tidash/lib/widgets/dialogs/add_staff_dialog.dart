@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -21,7 +20,8 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _stateController = TextEditingController();
   final TextEditingController _zipCodeController = TextEditingController();
-  CleanerStatus _selectedStatus = CleanerStatus.offline;
+  ProfessionalActivityStatus _selectedStatus =
+      ProfessionalActivityStatus.offline;
   final List<ServiceCategory> _selectedCategories = <ServiceCategory>[];
 
   @override
@@ -179,29 +179,35 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child: DropdownButtonFormField<CleanerStatus>(
-                              initialValue: _selectedStatus,
-                              decoration: const InputDecoration(
-                                labelText: 'Status',
-                                prefixIcon: Icon(Icons.assignment_ind),
-                                border: OutlineInputBorder(),
-                              ),
-                              items: CleanerStatus.values.map((
-                                CleanerStatus status,
-                              ) {
-                                return DropdownMenuItem<CleanerStatus>(
-                                  value: status,
-                                  child: Text(_getStatusName(status)),
-                                );
-                              }).toList(),
-                              onChanged: (CleanerStatus? value) {
-                                if (value != null) {
-                                  setState(() {
-                                    _selectedStatus = value;
-                                  });
-                                }
-                              },
-                            ),
+                            child:
+                                DropdownButtonFormField<
+                                  ProfessionalActivityStatus
+                                >(
+                                  initialValue: _selectedStatus,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Status',
+                                    prefixIcon: Icon(Icons.assignment_ind),
+                                    border: OutlineInputBorder(),
+                                  ),
+                                  items: ProfessionalActivityStatus.values.map((
+                                    ProfessionalActivityStatus status,
+                                  ) {
+                                    return DropdownMenuItem<
+                                      ProfessionalActivityStatus
+                                    >(
+                                      value: status,
+                                      child: Text(_getStatusName(status)),
+                                    );
+                                  }).toList(),
+                                  onChanged:
+                                      (ProfessionalActivityStatus? value) {
+                                        if (value != null) {
+                                          setState(() {
+                                            _selectedStatus = value;
+                                          });
+                                        }
+                                      },
+                                ),
                           ),
                         ],
                       ),
@@ -332,61 +338,61 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
     );
   }
 
-  String _getStatusName(CleanerStatus status) {
+  String _getStatusName(ProfessionalActivityStatus status) {
     switch (status) {
-      case CleanerStatus.available:
+      case ProfessionalActivityStatus.available:
         return 'Available';
-      case CleanerStatus.onJob:
+      case ProfessionalActivityStatus.onJob:
         return 'Busy';
-      case CleanerStatus.offline:
+      case ProfessionalActivityStatus.offline:
         return 'Offline';
-      case CleanerStatus.onBreak:
+      case ProfessionalActivityStatus.onBreak:
         return 'On Break';
     }
   }
 
   String _getServiceCategoryName(ServiceCategory category) {
-    switch (category) {
-      case ServiceCategory.standardCleaning:
-        return 'Standard Cleaning';
-      case ServiceCategory.deepCleaning:
-        return 'Deep Cleaning';
-      case ServiceCategory.moveInOut:
-        return 'Move In/Out';
-      case ServiceCategory.postConstruction:
-        return 'Post Construction';
-      case ServiceCategory.commercial:
-        return 'Commercial';
-      case ServiceCategory.residential:
-        return 'Residential';
-      case ServiceCategory.regularCleaning:
-        return 'Regular Cleaning';
-      case ServiceCategory.specialized:
-        return 'Specialized';
-    }
+    return switch (category) {
+      ServiceCategory.cleaning => 'Cleaning',
+      ServiceCategory.standardCleaning => 'Standard Cleaning',
+      ServiceCategory.regularCleaning => 'Regular Cleaning',
+      ServiceCategory.laundry => 'Laundry',
+      ServiceCategory.cooking => 'Cooking',
+      ServiceCategory.babysitting => 'Babysitting',
+      ServiceCategory.petCare => 'Pet Care',
+      ServiceCategory.gardening => 'Gardening',
+      ServiceCategory.maintenance => 'Maintenance',
+      ServiceCategory.organization => 'Organization',
+      ServiceCategory.deepCleaning => 'Deep Cleaning',
+      ServiceCategory.moveInOut => 'Move In-Out',
+      ServiceCategory.postConstruction => 'Post Construction',
+      ServiceCategory.commercial => 'Commercial',
+      ServiceCategory.residential => 'Residential',
+      ServiceCategory.specialized => 'Specialized',
+      ServiceCategory.other => 'Other',
+    };
   }
 
   void _addStaff(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      final String name =
-          '${_firstNameController.text.trim()} ${_lastNameController.text.trim()}'
-              .trim();
+      '${_firstNameController.text.trim()} ${_lastNameController.text.trim()}'
+          .trim();
 
-      final Cleaner cleaner = Cleaner(
+      final ProfessionalProfile professional = ProfessionalProfile(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
-        name: name,
-        email: _emailController.text.trim(),
-        phone: _phoneController.text.trim(),
-        status: _selectedStatus,
-        serviceCategories: _selectedCategories,
-        joinedDate: DateTime.now(),
+
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        hourlyRate: 350,
+        defaultRateType: RateType.perService,
+        email: EmailVO(_emailController.text.trim()),
       );
 
       // Dispatch action to create cleaner
       StoreProvider.of<AppState>(
         context,
         listen: false,
-      ).dispatch(CreateCleanerAction(cleaner: cleaner));
+      ).dispatch(CreateProfessionalAction(professional: professional));
 
       Navigator.of(context).pop();
 

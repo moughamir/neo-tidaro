@@ -20,4 +20,4 @@ enum HousekeepingActivityType {
 }
 
 /// Cleaner status enumeration (shared-specific)
-enum CleanerStatus { available, onJob, offline, onBreak }
+enum ProfessionalActivityStatus { available, onJob, offline, onBreak }

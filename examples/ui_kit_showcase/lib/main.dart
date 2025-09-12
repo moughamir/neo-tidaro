@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'package:ui_kit/ui_kit.dart';
 import 'package:shared/shared.dart';
+import 'package:languist/languist.dart';
+import 'parallax_example_page.dart';
 
 void main() {
   runApp(const UiKitShowcaseApp());
@@ -27,19 +30,21 @@ class _UiKitShowcaseAppState extends State<UiKitShowcaseApp> {
     return MaterialApp(
       title: 'UI Kit Showcase',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         useMaterial3: true,
         brightness: Brightness.light,
       ),
       darkTheme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: Colors.deepOrange,
           brightness: Brightness.dark,
         ),
         useMaterial3: true,
         brightness: Brightness.dark,
       ),
       themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      localizationsDelegates: Languist.localizationsDelegates,
+      supportedLocales: Languist.supportedLocales,
       home: UiKitDashboard(
         onThemeToggle: _toggleTheme,
         isDarkMode: _isDarkMode,
@@ -63,26 +68,6 @@ class UiKitDashboard extends StatefulWidget {
 }
 
 class _UiKitDashboardState extends State<UiKitDashboard> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      _counter--;
-    });
-  }
-
-  void _resetCounter() {
-    setState(() {
-      _counter = 0;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +101,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
               child: Column(
                 children: [
                   const SizedBox(height: 16),
-                  GlassyCard(
+                  KuiCard.glass(
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Column(
@@ -133,13 +118,13 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 16),
-                          Text('Counter: $_counter'),
+                          Text('Welcome to UI Kit Showcase'),
                         ],
                       ),
                     ),
                   ),
                   const SizedBox(height: 12),
-                  GlassyCard(
+                  KuiCard.glass(
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Row(
@@ -172,39 +157,6 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
             ),
             const SizedBox(height: 16),
 
-            // Counter Section
-            _SectionCard(
-              title: 'Interactive Counter',
-              child: Column(
-                children: [
-                  const SizedBox(height: 16),
-                  Text(
-                    'Counter: $_counter',
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: _incrementCounter,
-                        child: const Icon(Icons.add),
-                      ),
-                      ElevatedButton(
-                        onPressed: _decrementCounter,
-                        child: const Icon(Icons.remove),
-                      ),
-                      ElevatedButton(
-                        onPressed: _resetCounter,
-                        child: const Icon(Icons.refresh),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 16),
-
             // Grid Layout Example
             _SectionCard(
               title: 'Grid Layout',
@@ -225,14 +177,9 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                     Icons.code,
                     Icons.design_services,
                   ];
-                  final labels = [
-                    'Components',
-                    'Themes',
-                    'Code',
-                    'Design',
-                  ];
-                  
-                  return GlassyCard(
+                  final labels = ['Components', 'Themes', 'Code', 'Design'];
+
+                  return KuiCard.glass(
                     child: Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -251,7 +198,43 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                 },
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 16),
+
+            // Parallax Example Section
+            _SectionCard(
+              title: 'Parallax Effect',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  Text(
+                    'Interactive parallax effect using device sensors',
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const ParallaxExamplePage(),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.motion_photos_on),
+                    label: const Text('View Parallax Demo'),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Tilt your device to see the parallax layers move',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      fontStyle: FontStyle.italic,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
 
             // Markdown Widget Section
             _SectionCard(
@@ -282,17 +265,19 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                         builder: (context) => widget.isDarkMode
                             ? MarkdownWidget(
                                 data: _getMarkdownExample(),
-                                config: MarkdownConfig.darkConfig(context).copyWith(
-                                  shrinkWrap: false,
-                                  padding: const EdgeInsets.all(8),
-                                ),
+                                config: MarkdownConfig.darkConfig(context)
+                                    .copyWith(
+                                      shrinkWrap: false,
+                                      padding: const EdgeInsets.all(8),
+                                    ),
                               )
                             : MarkdownWidget(
                                 data: _getMarkdownExample(),
-                                config: MarkdownConfig.defaultConfig(context).copyWith(
-                                  shrinkWrap: false,
-                                  padding: const EdgeInsets.all(8),
-                                ),
+                                config: MarkdownConfig.defaultConfig(context)
+                                    .copyWith(
+                                      shrinkWrap: false,
+                                      padding: const EdgeInsets.all(8),
+                                    ),
                               ),
                       ),
                     ),
@@ -325,9 +310,9 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                                   shrinkWrap: false,
                                   padding: const EdgeInsets.all(8),
                                 )
-                              : MarkdownConfig.compactConfig(context).copyWith(
-                                  shrinkWrap: false,
-                                ),
+                              : MarkdownConfig.compactConfig(
+                                  context,
+                                ).copyWith(shrinkWrap: false),
                         ),
                       ),
                     ),
@@ -355,15 +340,15 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                       child: Builder(
                         builder: (context) => MarkdownWidget(
                           data:
-                              '**Counter Value:** `$_counter`\n\n*Updated dynamically with state changes*',
+                              '**Dynamic Content:** `Live Demo`\n\n*Showcasing real-time markdown rendering*',
                           config: widget.isDarkMode
                               ? MarkdownConfig.darkConfig(context).copyWith(
                                   shrinkWrap: false,
                                   padding: const EdgeInsets.all(8),
                                 )
-                              : MarkdownConfig.compactConfig(context).copyWith(
-                                  shrinkWrap: false,
-                                ),
+                              : MarkdownConfig.compactConfig(
+                                  context,
+                                ).copyWith(shrinkWrap: false),
                         ),
                       ),
                     ),
@@ -396,9 +381,9 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                                   shrinkWrap: false,
                                   padding: const EdgeInsets.all(8),
                                 )
-                              : MarkdownConfig.compactConfig(context).copyWith(
-                                  shrinkWrap: false,
-                                ),
+                              : MarkdownConfig.compactConfig(
+                                  context,
+                                ).copyWith(shrinkWrap: false),
                         ),
                       ),
                     ),
@@ -406,6 +391,412 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                 ],
               ),
             ),
+
+            const SizedBox(height: 16),
+
+            // Authentication Components
+            _SectionCard(
+              title: 'Authentication Components',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const AuthButton(
+                    onPressed: null,
+                    text: 'Primary Button',
+                    variant: AuthButtonVariant.primary,
+                  ),
+                  const SizedBox(height: 12),
+                  const AuthButton(
+                    onPressed: null,
+                    text: 'Secondary Button',
+                    variant: AuthButtonVariant.secondary,
+                  ),
+                  const SizedBox(height: 12),
+                  const AuthButton(
+                    onPressed: null,
+                    text: 'Ghost Button',
+                    variant: AuthButtonVariant.ghost,
+                  ),
+                  const SizedBox(height: 12),
+                  const AuthButton(
+                    onPressed: null,
+                    text: 'Loading Button',
+                    variant: AuthButtonVariant.primary,
+                    isLoading: true,
+                  ),
+                  const SizedBox(height: 12),
+                  AuthButton(
+                    onPressed: () {},
+                    text: 'Button with Icon',
+                    variant: AuthButtonVariant.primary,
+                    icon: const Icon(Icons.login, size: 18),
+                  ),
+                  const SizedBox(height: 16),
+                  const SocialAuthButton(
+                    onPressed: null,
+                    provider: SocialAuthProvider.google,
+                  ),
+                  const SizedBox(height: 12),
+                  const SocialAuthButton(
+                    onPressed: null,
+                    provider: SocialAuthProvider.github,
+                  ),
+                  const SizedBox(height: 12),
+                  const SocialAuthButton(
+                    onPressed: null,
+                    provider: SocialAuthProvider.apple,
+                  ),
+                  const SizedBox(height: 12),
+                  const SocialAuthButton(
+                    onPressed: null,
+                    provider: SocialAuthProvider.google,
+                    isLoading: true,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Neomorphic Components
+            _SectionCard(
+              title: 'Neomorphic Components',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  NeomorphicButton(
+                    onPressed: () {},
+                    tooltip: 'Neomorphic Button',
+                    child: const Text('Neomorphic Button'),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Note: Other neomorphic components (NeomorphicCard, NeomorphicElevatedButton, etc.) are available in the UI Kit but may need proper implementation.',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      fontStyle: FontStyle.italic,
+                      color: Colors.grey[600],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Button Components
+            _SectionCard(
+              title: 'Button Components',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  PrimaryButton(
+                    onPressed: () {},
+                    child: const Text('Primary Button'),
+                  ),
+                  const SizedBox(height: 12),
+                  PrimaryButton(
+                    onPressed: () {},
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.add, size: 18),
+                        SizedBox(width: 8),
+                        Text('Button with Icon'),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  const PrimaryButton(
+                    onPressed: null,
+                    child: Text('Disabled Button'),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Cards Components
+            _SectionCard(
+              title: 'Card Components',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const MetricCard(
+                    title: 'Total Users',
+                    value: '12.5K',
+                    icon: Icons.people,
+                    trend: TrendDirection.up,
+                    trendValue: '+12%',
+                  ),
+                  const SizedBox(height: 16),
+                  const InfoCard(
+                    title: 'Information Card',
+                    icon: Icons.info,
+                    children: [
+                      Text('This is an information card with custom content.'),
+                      SizedBox(height: 8),
+                      Text('It can contain multiple widgets.'),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
+                  const InfoCardDope(
+                    title: 'Enhanced Info Card',
+                    icon: Icons.star,
+                    content: Text(
+                      'This card has a structured layout with header, content, and footer.',
+                    ),
+                    footer: Text('Footer content here'),
+                  ),
+                  const SizedBox(height: 16),
+                  const KuiCard.glass(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text('Basic Glassy Card with blur effect'),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const KuiCard.glassDope(
+                    title: 'Enhanced Glassy Card',
+                    child: Text(
+                      'This glassy card has a title and structured content area.',
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const AuthCard(
+                    child: Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Authentication Card',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text('Specialized card for auth flows'),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const BaseGlassCard(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        'Base Glass Card - Foundation for glass effects',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Utility Components
+            _SectionCard(
+              title: 'Utility Components',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const LoadingIndicator(message: 'Loading data...', size: 32),
+                  const SizedBox(height: 24),
+                  ErrorDisplay(
+                    failure: Failure.server('Something went wrong'),
+                    details: 'Please try again later',
+                    icon: Icons.error_outline,
+                  ),
+                  const SizedBox(height: 24),
+                  const EmptyState(
+                    icon: Icons.inbox_outlined,
+                    title: 'No Data Available',
+                    description: 'There is no data to display at the moment.',
+                  ),
+                  const SizedBox(height: 24),
+                  ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => GenericDialog(
+                          title: 'Sample Dialog',
+                          content: const Text(
+                            'This is a generic dialog component.',
+                          ),
+                          primaryButtonText: 'OK',
+                          secondaryButtonText: 'Cancel',
+                          onPrimaryButtonPressed: () =>
+                              Navigator.of(context).pop(),
+                          onSecondaryButtonPressed: () =>
+                              Navigator.of(context).pop(),
+                        ),
+                      );
+                    },
+                    child: const Text('Show Generic Dialog'),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Dashboard Components
+            _SectionCard(
+              title: 'Dashboard Components',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  DashboardHeader(
+                    onRefresh: () {},
+                    lastUpdated: DateTime.now().subtract(
+                      const Duration(minutes: 5),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  const SectionHeader(
+                    title: 'Section Header',
+                    icon: Icons.dashboard,
+                  ),
+                  const SizedBox(height: 16),
+                  ActivityFeed(
+                    activities: [
+                      ActivityItem(
+                        id: '1',
+                        title: 'User Registration',
+                        description: 'New user signed up',
+                        timestamp: DateTime.now().subtract(
+                          const Duration(minutes: 5),
+                        ),
+                        type: ActivityType.user,
+                      ),
+                      ActivityItem(
+                        id: '2',
+                        title: 'System Update',
+                        description: 'System was updated to v2.1.0',
+                        timestamp: DateTime.now().subtract(
+                          const Duration(hours: 2),
+                        ),
+                        type: ActivityType.system,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Layout Components
+            _SectionCard(
+              title: 'Layout Components',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  Text(
+                    'Responsive Layout',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    height: 100,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey[300]!),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ResponsiveLayout(
+                      smallBuilder: (context) =>
+                          const Center(child: Text('Small Screen Layout')),
+                      mediumBuilder: (context) =>
+                          const Center(child: Text('Medium Screen Layout')),
+                      largeBuilder: (context) =>
+                          const Center(child: Text('Large Screen Layout')),
+                      defaultBuilder: (context) =>
+                          const Center(child: Text('Default Layout')),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Responsive Grid View',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    height: 200,
+                    child: ResponsiveGridView(
+                      children: List.generate(
+                        6,
+                        (index) => Card(
+                          child: Center(child: Text('Item ${index + 1}')),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Input Components
+            _SectionCard(
+              title: 'Input Components',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  const AuthInputField(
+                    label: 'Email',
+                    hint: 'Enter your email',
+                    prefixIcon: Icon(Icons.email),
+                  ),
+                  const SizedBox(height: 16),
+                  const AuthInputField(
+                    label: 'Password',
+                    hint: 'Enter your password',
+                    prefixIcon: Icon(Icons.lock),
+                    obscureText: true,
+                  ),
+                  const SizedBox(height: 16),
+                  const AuthDivider(text: 'OR'),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+
+            // Container Components
+            _SectionCard(
+              title: 'Container Components',
+              child: Column(
+                children: [
+                  const SizedBox(height: 16),
+                  GlassContainer(
+                    child: const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text(
+                        'Glass Container with blur and transparency effects',
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Container(
+                    height: 200,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey[300]!),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: const PageScaffold(
+                      title: 'Page Scaffold',
+                      content: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Text(
+                          'This is a page scaffold component for consistent page layouts.',
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 16),
           ],
         ),
       ),

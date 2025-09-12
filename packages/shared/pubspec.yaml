@@ -1,6 +1,6 @@
 name: shared
 description: "Shared utilities and widgets for TiDaro applications."
-version: 0.1.0
+version: 0.1.0-pre-alpha.3
 homepage: https://github.com/neo-tidaro/neo-tidaro
 repository: https://github.com/neo-tidaro/neo-tidaro
 publish_to: none
@@ -8,8 +8,8 @@ publish_to: none
 resolution: workspace
 
 environment:
-  sdk: '3.9.0'
-  flutter: '>=3.35.0'
+  sdk: "3.9.0"
+  flutter: ">=3.35.0"
 
 dependencies:
   flutter:
@@ -19,10 +19,14 @@ dependencies:
   intl: ^0.20.1
   languist:
     path: ../languist
+  core:
+    path: ../core
+  domain:
+    path: ../domain
   clay_containers: ^0.3.4
   google_fonts: ^6.1.0
   flutter_markdown: ^0.7.4+1
-  
+
   # Redux State Management
   flutter_redux: ^0.10.0
   redux: ^5.0.0

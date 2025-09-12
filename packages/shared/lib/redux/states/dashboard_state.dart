@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import '../core/core.dart';
-import '../../domain/models/models.dart';
+import 'package:domain/domain.dart';
 
 /// Dashboard state following functional programming patterns
 class DashboardState extends BaseAsyncState<DashboardMetrics> {
@@ -98,7 +98,8 @@ class DashboardState extends BaseAsyncState<DashboardMetrics> {
   ];
 
   @override
-  String toString() => 'DashboardState('
+  String toString() =>
+      'DashboardState('
       'isLoading: $isLoading, '
       'metricsLoading: $metricsLoading, '
       'activitiesLoading: $activitiesLoading, '

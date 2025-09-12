@@ -24,7 +24,7 @@ class _StaffPageState extends State<StaffPage> {
         context,
         listen: false,
       );
-      store.dispatch(const LoadCleanersAction());
+      store.dispatch(const LoadProfessionalsAction());
     });
   }
 
@@ -82,7 +82,9 @@ class _StaffPageState extends State<StaffPage> {
                             context,
                             listen: false,
                           ).dispatch(
-                            UpdateCleanerFiltersAction(filters: updatedFilters),
+                            UpdateProfessionalsFiltersAction(
+                              filters: updatedFilters,
+                            ),
                           );
                         },
                       ),
@@ -96,7 +98,7 @@ class _StaffPageState extends State<StaffPage> {
                           StoreProvider.of<AppState>(
                             context,
                             listen: false,
-                          ).dispatch(const ClearCleanerFiltersAction());
+                          ).dispatch(const ClearProfessionalsFiltersAction());
                         }
                       },
                     ),
@@ -152,7 +154,7 @@ class _StaffPageState extends State<StaffPage> {
               return StaffCard(
                 cleaner: cleaner,
                 onTap: () => _navigateToStaffDetails(context, cleaner),
-                onStatusChanged: (CleanerStatus status) =>
+                onStatusChanged: (ProfessionalStatus status) =>
                     viewModel.onUpdateCleanerStatus(cleaner.id, status),
               );
             },
@@ -185,20 +187,24 @@ class _StaffPageState extends State<StaffPage> {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) =>
-          StoreConnector<AppState, CleanerStatus?>(
+          StoreConnector<AppState, ProfessionalStatus?>(
             converter: (Store<AppState> store) =>
                 null, // TODO: Implement cleaner filters
-            builder: (BuildContext context, CleanerStatus? currentFilter) =>
-                StaffFilterDialog(
-                  currentFilter: currentFilter,
-                  onFilterChanged: (CleanerStatus? filter) {
-                    StoreProvider.of<AppState>(context, listen: false).dispatch(
-                      UpdateCleanerFiltersAction(
-                        filters: CleanerFilters(status: filter),
-                      ),
-                    );
-                  },
-                ),
+            builder:
+                (BuildContext context, ProfessionalStatus? currentFilter) =>
+                    StaffFilterDialog(
+                      currentFilter: currentFilter,
+                      onFilterChanged: (ProfessionalStatus? filter) {
+                        StoreProvider.of<AppState>(
+                          context,
+                          listen: false,
+                        ).dispatch(
+                          UpdateProfessionalsFiltersAction(
+                            filters: CleanerFilters(status: filter),
+                          ),
+                        );
+                      },
+                    ),
           ),
     );
   }
@@ -206,7 +212,8 @@ class _StaffPageState extends State<StaffPage> {
   void _navigateToStaffDetails(BuildContext context, Cleaner cleaner) {
     showDialog<void>(
       context: context,
-      builder: (BuildContext context) => StaffDetailsDialog(cleaner: cleaner),
+      builder: (BuildContext context) =>
+          StaffDetailsDialog(professional: cleaner),
     );
   }
 }
@@ -226,16 +233,19 @@ class StaffViewModel {
   final List<Cleaner> cleaners;
   final bool isLoading;
   final String? error;
-  final CleanerStatus? currentFilter;
+  final ProfessionalStatus? currentFilter;
   final VoidCallback onRefresh;
-  final Function(CleanerStatus?) onFilterChanged;
-  final Function(String cleanerId, CleanerStatus status) onUpdateCleanerStatus;
+  final Function(ProfessionalStatus?) onFilterChanged;
+  final Function(String cleanerId, ProfessionalStatus status)
+  onUpdateCleanerStatus;
 
-  int get availableStaff =>
-      cleaners.where((Cleaner c) => c.status == CleanerStatus.available).length;
+  int get availableStaff => cleaners
+      .where((Cleaner c) => c.status == ProfessionalStatus.available)
+      .length;
 
-  int get busyStaff =>
-      cleaners.where((Cleaner c) => c.status == CleanerStatus.offline).length;
+  int get busyStaff => cleaners
+      .where((Cleaner c) => c.status == ProfessionalStatus.offline)
+      .length;
 
   static StaffViewModel fromStore(Store<AppState> store) {
     return StaffViewModel(
@@ -244,12 +254,17 @@ class StaffViewModel {
       error: null, // TODO: Connect to appropriate error handling
       currentFilter: null, // TODO: Implement cleaner filters
       onRefresh: () {}, // TODO: Implement refresh action
-      onFilterChanged: (CleanerStatus? filter) => store.dispatch(
-        UpdateCleanerFiltersAction(filters: CleanerFilters(status: filter)),
+      onFilterChanged: (ProfessionalStatus? filter) => store.dispatch(
+        UpdateProfessionalsFiltersAction(
+          filters: CleanerFilters(status: filter),
+        ),
       ),
-      onUpdateCleanerStatus: (String cleanerId, CleanerStatus status) =>
+      onUpdateCleanerStatus: (String cleanerId, ProfessionalStatus status) =>
           store.dispatch(
-            UpdateCleanerStatusAction(cleanerId: cleanerId, status: status),
+            UpdateProfessionalStatusAction(
+              professionalId: cleanerId,
+              status: status,
+            ),
           ),
     );
   }

@@ -5,15 +5,18 @@ This document provides detailed information about each package in the Neo-Tidaro
 ## Core Package (`packages/core`)
 
 ### Purpose
+
 Provides foundational utilities, services, and abstractions used across the entire workspace.
 
 ### Key Components
+
 - **Network Layer**: HTTP clients and API interfaces
 - **Storage Layer**: Local storage abstractions
 - **Platform Services**: Platform-specific implementations
 - **Utilities**: Common helper functions and extensions
 
 ### Usage Example
+
 ```dart
 import 'package:core/core.dart';
 
@@ -27,6 +30,7 @@ await storage.setString('user_token', token);
 ```
 
 ### Dependencies
+
 - `flutter`
 - `http`
 - `shared_preferences`
@@ -37,15 +41,18 @@ await storage.setString('user_token', token);
 ## Languist Package (`packages/languist`)
 
 ### Purpose
+
 Handles internationalization (i18n) and localization (l10n) for the entire workspace.
 
 ### Key Features
+
 - Multi-language support (French, Arabic, Tifinagh)
 - Dynamic language switching
 - Parameterized translations
 - ARB file management
 
 ### Configuration
+
 ```yaml
 # languist.yaml
 arb-dir: lib/l10n
@@ -55,6 +62,7 @@ output-class: AppLocalizations
 ```
 
 ### Usage Example
+
 ```dart
 import 'package:languist/languist.dart';
 
@@ -70,6 +78,7 @@ Text(Languist.of(context).helloUser('John'))
 ```
 
 ### Supported Languages
+
 - English (en)
 - French (fr)
 - Arabic (ar)
@@ -80,11 +89,13 @@ Text(Languist.of(context).helloUser('John'))
 ## Shared Package (`packages/shared`)
 
 ### Purpose
+
 Contains shared business logic, state management, and common widgets used across applications.
 
 ### Key Components
 
 #### State Management (Redux)
+
 ```dart
 // Store creation
 final store = createStore<AppState>(
@@ -117,11 +128,12 @@ class UiSelectors {
 ```
 
 #### Domain Entities
+
 ```dart
 abstract class Entity extends Equatable {
   final String id;
   const Entity({required this.id});
-  
+
   @override
   List<Object?> get props => [id];
 }
@@ -129,7 +141,7 @@ abstract class Entity extends Equatable {
 class User extends Entity {
   final String name;
   final String email;
-  
+
   const User({
     required super.id,
     required this.name,
@@ -139,12 +151,14 @@ class User extends Entity {
 ```
 
 #### Common Widgets
+
 - `InfoCard`: Information display card
 - `ErrorDisplay`: Error state widget
 - `LoadingIndicator`: Loading state widget
 - `GenericDialog`: Reusable dialog component
 
 ### Dependencies
+
 - `flutter`
 - `redux`
 - `flutter_redux`
@@ -155,11 +169,13 @@ class User extends Entity {
 ## UI Kit Package (`packages/ui_kit`)
 
 ### Purpose
+
 Provides custom UI components, theming, and design system implementation.
 
 ### Key Components
 
 #### Custom Widgets
+
 ```dart
 // Neomorphic Button
 NeomorphicButton(
@@ -168,7 +184,7 @@ NeomorphicButton(
 )
 
 // Glassy Card
-GlassyCard(
+KuiCard.glass(
   child: Padding(
     padding: EdgeInsets.all(16),
     child: Text('Content'),
@@ -177,6 +193,7 @@ GlassyCard(
 ```
 
 #### Theming
+
 ```dart
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
@@ -194,17 +211,20 @@ class AppTheme {
 ```
 
 #### Color Scheme
+
 - **Primary**: `#1C2C4C` (Deep blue)
 - **Secondary**: `#3AAFA9` (Teal)
 - **Surface**: `#F9FAFB` (Light gray)
 - **Error**: `#E53E3E` (Red)
 
 #### Typography
+
 - **Base Font**: Noto Sans
 - **Arabic Font**: Noto Sans Arabic
 - **Tifinagh Font**: Noto Sans Tifinagh
 
 ### Dependencies
+
 - `flutter`
 - `google_fonts`
 - `material_color_utilities`
@@ -214,6 +234,7 @@ class AppTheme {
 ## Package Integration
 
 ### Dependency Flow
+
 ```
 Apps/Examples
     ↓
@@ -223,6 +244,7 @@ Core Package ← Languist Package
 ```
 
 ### Import Structure
+
 ```dart
 // In applications
 import 'package:shared/shared.dart';
@@ -238,6 +260,7 @@ import 'package:languist/languist.dart';
 ```
 
 ### Version Management
+
 All packages follow semantic versioning and are managed together using Melos:
 
 ```bash
@@ -251,12 +274,15 @@ melos publish
 ## Testing Strategy
 
 ### Package-Level Testing
+
 Each package includes:
+
 - Unit tests for business logic
 - Widget tests for UI components
 - Integration tests for complex flows
 
 ### Cross-Package Testing
+
 - Integration tests verify package interactions
 - End-to-end tests validate complete workflows
 - Performance tests ensure optimal behavior
@@ -264,18 +290,21 @@ Each package includes:
 ## Best Practices
 
 ### Package Design
+
 - Keep packages focused and cohesive
 - Minimize cross-package dependencies
 - Use dependency injection for flexibility
 - Implement proper error handling
 
 ### API Design
+
 - Use consistent naming conventions
 - Provide comprehensive documentation
 - Include usage examples
 - Support customization options
 
 ### Performance
+
 - Lazy load heavy dependencies
 - Use const constructors where possible
 - Implement proper caching strategies

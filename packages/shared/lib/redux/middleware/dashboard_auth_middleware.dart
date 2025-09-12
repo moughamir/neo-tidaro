@@ -60,9 +60,6 @@ void _handleSocialLogin(
   try {
     OAuthProvider provider;
     switch (action.provider.toLowerCase()) {
-      case 'github':
-        provider = OAuthProvider.github;
-        break;
       case 'google':
         provider = OAuthProvider.google;
         break;

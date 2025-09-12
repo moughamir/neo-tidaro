@@ -1,8 +1,7 @@
+import 'package:domain/entities/booking/booking.dart';
 import 'package:fpdart/fpdart.dart';
 import '../app_state.dart';
 import '../states/booking_state.dart';
-import '../../domain/models/models.dart';
-import '../../domain/enums/enums.dart';
 
 /// Booking selectors
 class BookingSelectors {
@@ -61,14 +60,14 @@ class BookingSelectors {
   ) {
     return getBookings(
       state,
-    ).where((booking) => booking.customerId == customerId).toList();
+    ).where((booking) => booking.clientId == customerId).toList();
   }
 
   /// Get bookings by cleaner ID
   static List<Booking> getBookingsByCleaner(AppState state, String cleanerId) {
     return getBookings(
       state,
-    ).where((booking) => booking.cleanerId == cleanerId).toList();
+    ).where((booking) => booking.professionalId == cleanerId).toList();
   }
 
   /// Get bookings count

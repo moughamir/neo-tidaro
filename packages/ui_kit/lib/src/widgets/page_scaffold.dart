@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/src/theme/neumorphic_theme.dart';
+import 'package:ui_kit/src/design_system/design_system.dart';
 
 /// A standardized page scaffold using Material UI with Neumorphism styling
 ///
@@ -36,7 +36,7 @@ class PageScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+    final colors = DesignTokens.colorsFor(theme.brightness);
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
@@ -45,12 +45,8 @@ class PageScaffold extends StatelessWidget {
         automaticallyImplyLeading: automaticallyImplyLeading,
         actions: actions,
         elevation: 0,
-        backgroundColor: isDark
-            ? NeumorphicTheme.darkBackground
-            : NeumorphicTheme.lightBackground,
-        foregroundColor: isDark
-            ? NeumorphicTheme.darkTextColor
-            : NeumorphicTheme.lightTextColor,
+        backgroundColor: colors.surface,
+        foregroundColor: colors.onSurface,
       ),
       drawer: drawer,
       body: Container(

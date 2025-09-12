@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
 import 'package:ui_kit/ui_kit.dart' as ui;
+import 'package:domain/domain.dart';
+import 'package:domain/mappers/professional_status_mapper.dart';
 
 /// Dialog for viewing staff member details
 class StaffDetailsDialog extends StatelessWidget {
-  const StaffDetailsDialog({super.key, required this.cleaner});
+  const StaffDetailsDialog({super.key, required this.professional});
 
-  final Cleaner cleaner;
+  final ProfessionalProfile professional;
 
   @override
   Widget build(BuildContext context) {
@@ -25,63 +27,7 @@ class StaffDetailsDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             // Header
-            Row(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 24,
-                  backgroundColor: theme.colorScheme.primaryContainer,
-                  child: cleaner.profileImageUrl != null
-                      ? ClipOval(
-                          child: Image.network(
-                            cleaner.profileImageUrl!,
-                            width: 48,
-                            height: 48,
-                            fit: BoxFit.cover,
-                            errorBuilder:
-                                (
-                                  BuildContext context,
-                                  Object error,
-                                  StackTrace? stackTrace,
-                                ) => Icon(
-                                  Icons.person,
-                                  size: 28,
-                                  color: theme.colorScheme.primary,
-                                ),
-                          ),
-                        )
-                      : Icon(
-                          Icons.person,
-                          size: 28,
-                          color: theme.colorScheme.primary,
-                        ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        cleaner.name,
-                        style: theme.textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        _getStatusName(cleaner.status),
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: _getStatusColor(cleaner.status, theme),
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  icon: const Icon(Icons.close),
-                ),
-              ],
-            ),
+            Row(children: createProfile(theme, context)),
             const SizedBox(height: 24),
 
             // Content
@@ -96,14 +42,21 @@ class StaffDetailsDialog extends StatelessWidget {
                       children: <Widget>[
                         ui.InfoRow(
                           label: l10n.userfullName,
-                          value: cleaner.name,
+                          value: professional.fullName!,
                         ),
-                        ui.InfoRow(label: l10n.userEmail, value: cleaner.email),
-                        ui.InfoRow(label: l10n.userPhone, value: cleaner.phone),
-                        if (cleaner.joinedDate != null)
+                        ui.InfoRow(
+                          label: l10n.userEmail,
+                          value: professional.email.toString(),
+                        ),
+                        ui.InfoRow(
+                          label: l10n.userPhone,
+                          value: professional.phone.toString(),
+                        ),
+
+                        if (professional.createdAt != null)
                           ui.InfoRow(
                             label: l10n.userJoined,
-                            value: _formatDate(cleaner.joinedDate!),
+                            value: _formatDate(professional.createdAt!),
                           ),
                       ],
                     ),
@@ -114,22 +67,18 @@ class StaffDetailsDialog extends StatelessWidget {
                       title: 'Employment Details',
                       icon: Icons.work,
                       children: <Widget>[
-                        ui.InfoRow(
-                          label: 'Status',
-                          value: _getStatusName(cleaner.status),
-                        ),
+                        const ui.InfoRow(label: 'Status', value: 'TBD'),
                         ui.InfoRow(
                           label: 'Total Jobs',
-                          value: (cleaner.totalBookings ?? 0).toString(),
+                          value: (professional.completedJobs).toString(),
                         ),
-                        if (cleaner.rating != null)
-                          _buildRatingRow(cleaner.rating!),
+                        _buildRatingRow(professional.rating),
                       ],
                     ),
                     const SizedBox(height: 16),
 
                     // Specialties
-                    if (cleaner.serviceCategories.isNotEmpty)
+                    if (professional.categories.isNotEmpty)
                       ui.InfoCard(
                         title: 'Specialties',
                         icon: Icons.star,
@@ -137,7 +86,7 @@ class StaffDetailsDialog extends StatelessWidget {
                           Wrap(
                             spacing: 8,
                             runSpacing: 8,
-                            children: cleaner.serviceCategories.map((
+                            children: professional.categories.map((
                               ServiceCategory category,
                             ) {
                               return Chip(
@@ -155,7 +104,7 @@ class StaffDetailsDialog extends StatelessWidget {
                           ),
                         ],
                       ),
-                    if (cleaner.serviceCategories.isNotEmpty)
+                    if (professional.categories.isNotEmpty)
                       const SizedBox(height: 16),
                   ],
                 ),
@@ -172,12 +121,16 @@ class StaffDetailsDialog extends StatelessWidget {
                   child: ElevatedButton.icon(
                     onPressed: () => _toggleAvailability(context),
                     icon: Icon(
-                      cleaner.status == CleanerStatus.available
-                          ? Icons.pause
-                          : Icons.play_arrow,
+                      // ignore: lines_longer_than_80_chars, unrelated_type_equality_checks
+                      professional.status !=
+                              ProfessionalActivityStatus.available
+                          ? Icons.play_arrow
+                          : Icons.pause,
                     ),
                     label: Text(
-                      cleaner.status == CleanerStatus.available
+                      // ignore: unrelated_type_equality_checks
+                      professional.status ==
+                              ProfessionalActivityStatus.available
                           ? l10n.makeUnavailableButtonLabel
                           : l10n.makeAvailableButtonLabel,
                     ),
@@ -189,6 +142,63 @@ class StaffDetailsDialog extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> createProfile(ThemeData theme, BuildContext context) {
+    return <Widget>[
+      CircleAvatar(
+        radius: 24,
+        backgroundColor: theme.colorScheme.primaryContainer,
+        child: professional.avatarUrl != null
+            ? ClipOval(
+                child: Image.network(
+                  professional.avatarUrl!,
+                  width: 48,
+                  height: 48,
+                  fit: BoxFit.cover,
+                  errorBuilder:
+                      (
+                        BuildContext context,
+                        Object error,
+                        StackTrace? stackTrace,
+                      ) => Icon(
+                        Icons.person,
+                        size: 28,
+                        color: theme.colorScheme.primary,
+                      ),
+                ),
+              )
+            : Icon(Icons.person, size: 28, color: theme.colorScheme.primary),
+      ),
+      const SizedBox(width: 12),
+      Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              professional.businessName ?? professional.fullName!,
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              _getStatusName(professional as ProfessionalActivityStatus),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: _getStatusColor(
+                  professional.status as ProfessionalActivityStatus,
+                  theme,
+                ),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ),
+      IconButton(
+        onPressed: () => Navigator.of(context).pop(),
+        icon: const Icon(Icons.close),
+      ),
+    ];
   }
 
   Widget _buildRatingRow(double rating) {
@@ -219,28 +229,28 @@ class StaffDetailsDialog extends StatelessWidget {
     );
   }
 
-  String _getStatusName(CleanerStatus status) {
+  String _getStatusName(ProfessionalActivityStatus status) {
     switch (status) {
-      case CleanerStatus.available:
+      case ProfessionalActivityStatus.available:
         return 'Available';
-      case CleanerStatus.onJob:
+      case ProfessionalActivityStatus.onJob:
         return 'On Job';
-      case CleanerStatus.offline:
+      case ProfessionalActivityStatus.offline:
         return 'Offline';
-      case CleanerStatus.onBreak:
+      case ProfessionalActivityStatus.onBreak:
         return 'On Break';
     }
   }
 
-  Color _getStatusColor(CleanerStatus status, ThemeData theme) {
+  Color _getStatusColor(ProfessionalActivityStatus status, ThemeData theme) {
     switch (status) {
-      case CleanerStatus.available:
+      case ProfessionalActivityStatus.available:
         return Colors.green;
-      case CleanerStatus.onJob:
+      case ProfessionalActivityStatus.onJob:
         return Colors.orange;
-      case CleanerStatus.offline:
+      case ProfessionalActivityStatus.offline:
         return Colors.grey;
-      case CleanerStatus.onBreak:
+      case ProfessionalActivityStatus.onBreak:
         return theme.colorScheme.tertiary;
     }
   }
@@ -263,6 +273,33 @@ class StaffDetailsDialog extends StatelessWidget {
         return 'Standard Cleaning';
       case ServiceCategory.residential:
         return 'Residential';
+      case ServiceCategory.cleaning:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.laundry:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.cooking:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.babysitting:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.petCare:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.gardening:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.maintenance:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.organization:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.other:
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 
@@ -271,21 +308,33 @@ class StaffDetailsDialog extends StatelessWidget {
   }
 
   void _toggleAvailability(BuildContext context) {
-    final CleanerStatus nextStatus = cleaner.status == CleanerStatus.available
-        ? CleanerStatus.offline
-        : cleaner.status == CleanerStatus.onJob
-        ? CleanerStatus.onBreak
-        : CleanerStatus.available;
+    // Determine the next activity status
+    final ProfessionalActivityStatus currentActivityStatus = 
+        ProfessionalStatusMapper.toActivityStatus(professional.status);
+        
+    final ProfessionalActivityStatus nextActivityStatus =
+        currentActivityStatus == ProfessionalActivityStatus.available
+        ? ProfessionalActivityStatus.offline
+        : currentActivityStatus == ProfessionalActivityStatus.onJob
+        ? ProfessionalActivityStatus.onBreak
+        : ProfessionalActivityStatus.available;
+    
+    // Map to the appropriate ProfessionalStatus for the Redux action
+    final ProfessionalStatus nextStatus = 
+        ProfessionalStatusMapper.fromActivityStatus(nextActivityStatus);
 
     StoreProvider.of<AppState>(context, listen: false).dispatch(
-      UpdateCleanerStatusAction(cleanerId: cleaner.id, status: nextStatus),
+      UpdateProfessionalStatusAction(
+        professionalId: professional.id,
+        status: nextStatus,
+      ),
     );
 
     Navigator.of(context).pop();
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Staff status updated to ${_getStatusName(nextStatus)}'),
+        content: Text('Staff status updated to ${_getStatusName(nextActivityStatus)}'),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
     );

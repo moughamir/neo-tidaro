@@ -103,7 +103,7 @@ class _AuthFlowPageState extends State<AuthFlowPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              GlassyCard(
+              KuiCard.glass(
                 child: Padding(
                   padding: const EdgeInsets.all(24.0),
                   child: Column(
@@ -148,7 +148,7 @@ class _AuthFlowPageState extends State<AuthFlowPage> {
         child: Column(
           children: [
             const SizedBox(height: 32),
-            GlassyCard(
+            KuiCard.glass(
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Form(

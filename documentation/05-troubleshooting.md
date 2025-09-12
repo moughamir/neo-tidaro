@@ -7,6 +7,7 @@ This document provides solutions to common issues encountered when working with 
 ### Build and Compilation Errors
 
 #### Package Resolution Issues
+
 ```bash
 # Error: Package not found or version conflicts
 # Solution: Clean and rebuild workspace
@@ -17,6 +18,7 @@ flutter pub get
 ```
 
 #### Import Errors
+
 ```dart
 // Error: 'package:shared/shared.dart' not found
 // Check: Verify package dependencies in pubspec.yaml
@@ -26,6 +28,7 @@ dependencies:
 ```
 
 #### Missing Generated Files
+
 ```bash
 # Error: Localization files not found
 # Solution: Generate localization files
@@ -39,6 +42,7 @@ melos run build_runner
 ### State Management Issues
 
 #### Redux Store Not Available
+
 ```dart
 // Error: Could not find the correct Provider<Store<AppState>>
 // Solution: Ensure StoreProvider wraps MaterialApp
@@ -49,6 +53,7 @@ StoreProvider<AppState>(
 ```
 
 #### Actions Not Dispatching
+
 ```dart
 // Error: Actions dispatched but state not updating
 // Check: Verify reducer handles the action
@@ -69,6 +74,7 @@ AppState appReducer(AppState state, dynamic action) {
 ### Localization Issues
 
 #### Missing Translations
+
 ```bash
 # Error: No translation found for key
 # Solution: Check ARB files in packages/languist/lib/l10n/
@@ -76,6 +82,7 @@ AppState appReducer(AppState state, dynamic action) {
 ```
 
 #### Localization Not Loading
+
 ```dart
 // Error: Languist.of(context) returns null
 // Check: MaterialApp configuration
@@ -89,11 +96,12 @@ MaterialApp(
 ### UI Kit Component Issues
 
 #### Component API Errors
+
 ```dart
 // Error: The named parameter 'title' isn't defined
 // Solution: Check component documentation
-// GlassyCard no longer accepts title/subtitle parameters
-GlassyCard(
+// KuiCard.glass no longer accepts title/subtitle parameters
+KuiCard.glass(
   child: Padding(
     padding: EdgeInsets.all(16),
     child: Column(
@@ -107,6 +115,7 @@ GlassyCard(
 ```
 
 #### Theme Not Applied
+
 ```dart
 // Error: Custom theme not working
 // Check: Theme configuration in MaterialApp
@@ -120,6 +129,7 @@ MaterialApp(
 ## 🔧 Development Environment Issues
 
 ### Flutter SDK Issues
+
 ```bash
 # Check Flutter installation
 flutter doctor
@@ -132,6 +142,7 @@ flutter channel stable
 ```
 
 ### Melos Issues
+
 ```bash
 # Install Melos globally
 dart pub global activate melos
@@ -146,6 +157,7 @@ melos bootstrap
 ### IDE Configuration
 
 #### VS Code Setup
+
 ```json
 // .vscode/settings.json
 {
@@ -157,6 +169,7 @@ melos bootstrap
 ```
 
 #### Android Studio Setup
+
 - Enable Dart and Flutter plugins
 - Configure Flutter SDK path
 - Set up device emulators
@@ -164,6 +177,7 @@ melos bootstrap
 ## 🐛 Debugging Strategies
 
 ### Debug Mode
+
 ```bash
 # Run in debug mode with verbose output
 flutter run -d linux --verbose
@@ -173,6 +187,7 @@ final store = createStore(enableLogging: true);
 ```
 
 ### Logging
+
 ```dart
 // Add debug prints
 import 'dart:developer' as developer;
@@ -188,6 +203,7 @@ if (kDebugMode) {
 ```
 
 ### Performance Issues
+
 ```bash
 # Profile mode
 flutter run --profile
@@ -199,6 +215,7 @@ flutter run --enable-software-rendering
 ## 📱 Platform-Specific Issues
 
 ### Linux Desktop
+
 ```bash
 # Enable Linux desktop support
 flutter config --enable-linux-desktop
@@ -208,6 +225,7 @@ sudo apt-get install clang cmake ninja-build pkg-config libgtk-3-dev
 ```
 
 ### Web Platform
+
 ```bash
 # Enable web support
 flutter config --enable-web
@@ -217,6 +235,7 @@ flutter run -d chrome
 ```
 
 ### Mobile Platforms
+
 ```bash
 # Android setup
 flutter doctor --android-licenses
@@ -228,6 +247,7 @@ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 ## 🔍 Testing Issues
 
 ### Widget Tests
+
 ```dart
 // Error: Widget not found in test
 // Solution: Use proper finders and pump widgets
@@ -240,6 +260,7 @@ testWidgets('Counter increments smoke test', (WidgetTester tester) async {
 ```
 
 ### Integration Tests
+
 ```bash
 # Run integration tests
 flutter test integration_test/
@@ -251,6 +272,7 @@ flutter test integration_test/ -d linux
 ## 🚀 Performance Optimization
 
 ### Build Optimization
+
 ```bash
 # Release build
 flutter build linux --release
@@ -260,6 +282,7 @@ flutter build linux --analyze-size
 ```
 
 ### Memory Issues
+
 ```dart
 // Dispose controllers properly
 @override
@@ -275,6 +298,7 @@ const MyWidget({super.key});
 ## 📊 Monitoring and Analytics
 
 ### Error Tracking
+
 ```dart
 // Add error handling
 try {
@@ -285,6 +309,7 @@ try {
 ```
 
 ### Performance Monitoring
+
 ```dart
 // Use Timeline for performance tracking
 import 'dart:developer';
@@ -297,6 +322,7 @@ Timeline.finishSync();
 ## 🔄 Git and Version Control Issues
 
 ### Merge Conflicts
+
 ```bash
 # Check status
 git status
@@ -310,6 +336,7 @@ git commit -m "Resolve merge conflicts"
 ```
 
 ### Branch Management
+
 ```bash
 # Create feature branch
 git checkout -b feature/new-feature
@@ -322,6 +349,7 @@ git branch -d feature/completed-feature
 ```
 
 ### Workspace Sync Issues
+
 ```bash
 # Sync with remote
 git fetch origin
@@ -334,16 +362,19 @@ git reset --hard origin/main
 ## 📞 Getting Help
 
 ### Documentation Resources
+
 - [Flutter Documentation](https://docs.flutter.dev/)
 - [Dart Language Tour](https://dart.dev/guides/language/language-tour)
 - [Material Design](https://material.io/design)
 
 ### Community Support
+
 - [Flutter Community](https://flutter.dev/community)
 - [Stack Overflow](https://stackoverflow.com/questions/tagged/flutter)
 - [GitHub Issues](https://github.com/flutter/flutter/issues)
 
 ### Workspace-Specific Help
+
 1. Check package README files
 2. Review example applications
 3. Examine test files for usage patterns
@@ -352,13 +383,14 @@ git reset --hard origin/main
 ## 🛠️ Advanced Troubleshooting
 
 ### Custom Debugging Tools
+
 ```dart
 // Create debug overlay
 class DebugOverlay extends StatelessWidget {
   final Widget child;
-  
+
   const DebugOverlay({required this.child, super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -384,6 +416,7 @@ class DebugOverlay extends StatelessWidget {
 ```
 
 ### Performance Profiling
+
 ```bash
 # Profile app performance
 flutter run --profile --trace-startup
@@ -393,6 +426,7 @@ flutter analyze --suggestions
 ```
 
 ### Memory Leak Detection
+
 ```dart
 // Use memory profiler
 import 'package:flutter/services.dart';

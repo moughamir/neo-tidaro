@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import '../core/core.dart';
-import '../../domain/models/models.dart';
+import 'package:domain/domain.dart';
 
 /// Booking state following functional programming patterns
 class BookingState extends BaseAsyncState<List<Booking>> {
@@ -12,7 +12,7 @@ class BookingState extends BaseAsyncState<List<Booking>> {
     required this.selectedBookingId,
   });
 
-  final BookingFilters filters;
+  final Map<String, dynamic> filters;
   final Option<String> selectedBookingId;
 
   /// Initial state factory
@@ -21,7 +21,7 @@ class BookingState extends BaseAsyncState<List<Booking>> {
       isLoading: false,
       data: const Some([]),
       error: const None(),
-      filters: const BookingFilters(),
+      filters: const {},
       selectedBookingId: const None(),
     );
   }
@@ -32,7 +32,7 @@ class BookingState extends BaseAsyncState<List<Booking>> {
       isLoading: true,
       data: const Some([]),
       error: const None(),
-      filters: const BookingFilters(),
+      filters: const {},
       selectedBookingId: const None(),
     );
   }
@@ -40,14 +40,14 @@ class BookingState extends BaseAsyncState<List<Booking>> {
   /// Success state factory
   factory BookingState.success(
     List<Booking> bookings, {
-    BookingFilters? filters,
+    Map<String, dynamic>? filters,
     Option<String>? selectedBookingId,
   }) {
     return BookingState(
       isLoading: false,
       data: Some(bookings),
       error: const None(),
-      filters: filters ?? const BookingFilters(),
+      filters: filters ?? const {},
       selectedBookingId: selectedBookingId ?? const None(),
     );
   }
@@ -56,14 +56,14 @@ class BookingState extends BaseAsyncState<List<Booking>> {
   factory BookingState.error(
     Exception error, {
     List<Booking>? previousBookings,
-    BookingFilters? filters,
+    Map<String, dynamic>? filters,
     Option<String>? selectedBookingId,
   }) {
     return BookingState(
       isLoading: false,
       data: Some(previousBookings ?? []),
       error: Some(error),
-      filters: filters ?? const BookingFilters(),
+      filters: filters ?? const {},
       selectedBookingId: selectedBookingId ?? const None(),
     );
   }
@@ -73,7 +73,7 @@ class BookingState extends BaseAsyncState<List<Booking>> {
     bool? isLoading,
     Option<List<Booking>>? data,
     Option<Exception>? error,
-    BookingFilters? filters,
+    Map<String, dynamic>? filters,
     Option<String>? selectedBookingId,
   }) {
     return BookingState(
@@ -91,36 +91,31 @@ class BookingState extends BaseAsyncState<List<Booking>> {
       var filtered = bookings;
 
       // Filter by status
-      if (filters.status != null) {
-        filtered = filtered.where((b) => b.status == filters.status).toList();
-      }
-
-      // Filter by service category
-      if (filters.serviceCategory != null) {
+      if (filters['status'] != null) {
         filtered = filtered
-            .where((b) => b.serviceCategory == filters.serviceCategory)
+            .where((b) => b.status == filters['status'])
             .toList();
       }
 
       // Filter by date range
-      if (filters.dateRange != null) {
+      if (filters['dateRange'] != null) {
         filtered = filtered.where((b) {
-          return b.scheduledDate.isAfter(filters.dateRange!.start) &&
-              b.scheduledDate.isBefore(filters.dateRange!.end);
+          return b.scheduledStartTime.isAfter(filters['dateRange']!['start']) &&
+              b.scheduledEndTime.isBefore(filters['dateRange']!['end']);
         }).toList();
       }
 
       // Filter by customer ID
-      if (filters.customerId != null) {
+      if (filters['clientId'] != null) {
         filtered = filtered
-            .where((b) => b.customerId == filters.customerId)
+            .where((b) => b.clientId == filters['clientId'])
             .toList();
       }
 
       // Filter by cleaner ID
-      if (filters.cleanerId != null) {
+      if (filters['professionalId'] != null) {
         filtered = filtered
-            .where((b) => b.cleanerId == filters.cleanerId)
+            .where((b) => b.professionalId == filters['professionalId'])
             .toList();
       }
 

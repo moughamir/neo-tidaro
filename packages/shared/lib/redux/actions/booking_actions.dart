@@ -1,7 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:shared/domain/enums/enums.dart';
-import '../core/core.dart';
-import '../../domain/models/models.dart';
+import 'package:shared/redux/redux.dart';
 
 /// Booking action types
 class BookingActionTypes {
@@ -22,13 +21,13 @@ class BookingActionTypes {
 class LoadBookingsAction extends BaseAsyncAction<List<Booking>> {
   const LoadBookingsAction({this.filters});
 
-  final BookingFilters? filters;
+  final Map<String, dynamic>? filters;
 
   @override
   String get type => BookingActionTypes.loadBookings;
 
   @override
-  BookingFilters? get payload => filters;
+  Map<String, dynamic>? get payload => filters;
 
   @override
   Future<Either<Exception, List<Booking>>> execute() async {
@@ -43,13 +42,13 @@ class LoadBookingsAction extends BaseAsyncAction<List<Booking>> {
 class UpdateBookingFiltersAction extends BaseAction {
   const UpdateBookingFiltersAction(this.filters);
 
-  final BookingFilters filters;
+  final Map<String, dynamic> filters;
 
   @override
   String get type => BookingActionTypes.updateFilters;
 
   @override
-  BookingFilters get payload => filters;
+  Map<String, dynamic> get payload => filters;
 
   @override
   List<Object?> get props => [filters];

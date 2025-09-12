@@ -1,6 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import '../core/core.dart';
-import '../../domain/models/models.dart';
+import 'package:domain/domain.dart';
 
 /// Dashboard action types
 class DashboardActionTypes {

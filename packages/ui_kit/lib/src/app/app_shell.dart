@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/src/localization/app_localizations.dart';
-import 'package:ui_kit/src/theme/app_theme.dart';
+import 'package:ui_kit/src/design_system/design_system.dart';
 
 /// AppShell: A reusable MaterialApp wrapper that wires themes and localization.
 class AppShell extends StatelessWidget {
@@ -31,8 +31,8 @@ class AppShell extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: title,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
+      theme: KuiTheme.light(),
+      darkTheme: KuiTheme.dark(),
       themeMode: themeMode,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

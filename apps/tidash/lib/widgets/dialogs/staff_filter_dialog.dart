@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -12,15 +10,15 @@ class StaffFilterDialog extends StatefulWidget {
     required this.onFilterChanged,
   });
 
-  final CleanerStatus? currentFilter;
-  final Function(CleanerStatus?) onFilterChanged;
+  final ProfessionalActivityStatus? currentFilter;
+  final Function(ProfessionalActivityStatus?) onFilterChanged;
 
   @override
   State<StaffFilterDialog> createState() => _StaffFilterDialogState();
 }
 
 class _StaffFilterDialogState extends State<StaffFilterDialog> {
-  CleanerStatus? _selectedStatus;
+  ProfessionalActivityStatus? _selectedStatus;
   bool? _availabilityFilter;
   final List<ServiceCategory> _selectedSpecialties = <ServiceCategory>[];
   double _minRating = 0;
@@ -89,8 +87,8 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                       runSpacing: 8,
                       children: <Widget>[
                         _buildStatusChip(null, 'All Staff'),
-                        ...CleanerStatus.values.map(
-                          (CleanerStatus status) =>
+                        ...ProfessionalActivityStatus.values.map(
+                          (ProfessionalActivityStatus status) =>
                               _buildStatusChip(status, _getStatusName(status)),
                         ),
                       ],
@@ -214,7 +212,7 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
     );
   }
 
-  Widget _buildStatusChip(CleanerStatus? status, String label) {
+  Widget _buildStatusChip(ProfessionalActivityStatus? status, String label) {
     final ThemeData theme = Theme.of(context);
     final bool isSelected = _selectedStatus == status;
 
@@ -250,16 +248,16 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
     );
   }
 
-  String _getStatusName(CleanerStatus status) {
+  String _getStatusName(ProfessionalActivityStatus status) {
     final IntlLocalizations l10n = Languist.of(context);
     switch (status) {
-      case CleanerStatus.available:
+      case ProfessionalActivityStatus.available:
         return l10n.cleanerStatusAvailable;
-      case CleanerStatus.onJob:
+      case ProfessionalActivityStatus.onJob:
         return l10n.cleanerStatusOnJob;
-      case CleanerStatus.offline:
+      case ProfessionalActivityStatus.offline:
         return l10n.cleanerStatusOffline;
-      case CleanerStatus.onBreak:
+      case ProfessionalActivityStatus.onBreak:
         return l10n.cleanerStatusOnBreak;
     }
   }
@@ -285,6 +283,33 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
         return l10n.serviceCategoryStandardCleaning;
       case ServiceCategory.residential:
         return l10n.serviceCategoryResidential;
+      case ServiceCategory.cleaning:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.laundry:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.cooking:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.babysitting:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.petCare:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.gardening:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.maintenance:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.organization:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.other:
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 

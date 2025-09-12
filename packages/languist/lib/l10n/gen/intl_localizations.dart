@@ -64,15 +64,17 @@ import 'intl_localizations_fr.dart';
 /// be consistent with the languages listed in the IntlLocalizations.supportedLocales
 /// property.
 abstract class IntlLocalizations {
-  IntlLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  IntlLocalizations(String locale)
+    : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static IntlLocalizations of(BuildContext context) {
-    return Localizations.of<IntlLocalizations>(context, IntlLocalizations)!;
+  static IntlLocalizations? of(BuildContext context) {
+    return Localizations.of<IntlLocalizations>(context, IntlLocalizations);
   }
 
-  static const LocalizationsDelegate<IntlLocalizations> delegate = _IntlLocalizationsDelegate();
+  static const LocalizationsDelegate<IntlLocalizations> delegate =
+      _IntlLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -84,19 +86,20 @@ abstract class IntlLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-  ];
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ];
 
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
     Locale('en'),
     Locale('es'),
-    Locale('fr')
+    Locale('fr'),
   ];
 
   /// Application Title
@@ -116,6 +119,24 @@ abstract class IntlLocalizations {
   /// In en, this message translates to:
   /// **'Hello {userName}'**
   String helloUser(Object userName);
+
+  /// Good Morning
+  ///
+  /// In en, this message translates to:
+  /// **'Good Morning'**
+  String get greetGoodMorning;
+
+  /// Good Afternoon
+  ///
+  /// In en, this message translates to:
+  /// **'Good Afternoon'**
+  String get greetGoodAfternoon;
+
+  /// Good Evening
+  ///
+  /// In en, this message translates to:
+  /// **'Good Evening'**
+  String get greetGoodEvening;
 
   /// Welcome message
   ///
@@ -1419,43 +1440,109 @@ abstract class IntlLocalizations {
   /// **'Foreground'**
   String get parallaxForegroundText;
 
+  /// Indicates parallax is controlled by mouse movement
+  ///
+  /// In en, this message translates to:
+  /// **'Mouse Mode'**
+  String get parallaxMouseMode;
+
+  /// Indicates parallax is controlled by device gyroscope
+  ///
+  /// In en, this message translates to:
+  /// **'Gyroscope Mode'**
+  String get parallaxGyroscopeMode;
+
   /// Booking started activity type
   ///
   /// In en, this message translates to:
   /// **'Booking Started'**
   String get bookingStarted;
+
+  /// Duration in days (singular)
+  ///
+  /// In en, this message translates to:
+  /// **'{count} day'**
+  String durationDays(int count);
+
+  /// Duration in days (plural)
+  ///
+  /// In en, this message translates to:
+  /// **'{count} days'**
+  String durationDaysPlural(int count);
+
+  /// Duration in hours (singular)
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hour'**
+  String durationHours(int count);
+
+  /// Duration in hours (plural)
+  ///
+  /// In en, this message translates to:
+  /// **'{count} hours'**
+  String durationHoursPlural(int count);
+
+  /// Duration in minutes (singular)
+  ///
+  /// In en, this message translates to:
+  /// **'{count} minute'**
+  String durationMinutes(int count);
+
+  /// Duration in minutes (plural)
+  ///
+  /// In en, this message translates to:
+  /// **'{count} minutes'**
+  String durationMinutesPlural(int count);
+
+  /// Duration in seconds (singular)
+  ///
+  /// In en, this message translates to:
+  /// **'{count} second'**
+  String durationSeconds(int count);
+
+  /// Duration in seconds (plural)
+  ///
+  /// In en, this message translates to:
+  /// **'{count} seconds'**
+  String durationSecondsPlural(int count);
 }
 
-class _IntlLocalizationsDelegate extends LocalizationsDelegate<IntlLocalizations> {
+class _IntlLocalizationsDelegate
+    extends LocalizationsDelegate<IntlLocalizations> {
   const _IntlLocalizationsDelegate();
 
   @override
   Future<IntlLocalizations> load(Locale locale) {
-    return SynchronousFuture<IntlLocalizations>(lookupIntlLocalizations(locale));
+    return SynchronousFuture<IntlLocalizations>(
+      lookupIntlLocalizations(locale),
+    );
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ar', 'en', 'es', 'fr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ar', 'en', 'es', 'fr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_IntlLocalizationsDelegate old) => false;
 }
 
 IntlLocalizations lookupIntlLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ar': return IntlLocalizationsAr();
-    case 'en': return IntlLocalizationsEn();
-    case 'es': return IntlLocalizationsEs();
-    case 'fr': return IntlLocalizationsFr();
+    case 'ar':
+      return IntlLocalizationsAr();
+    case 'en':
+      return IntlLocalizationsEn();
+    case 'es':
+      return IntlLocalizationsEs();
+    case 'fr':
+      return IntlLocalizationsFr();
   }
 
   throw FlutterError(
     'IntlLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
+    'that was used.',
   );
 }

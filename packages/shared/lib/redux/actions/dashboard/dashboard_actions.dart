@@ -1,6 +1,5 @@
 // Dashboard Actions
-
-import 'package:shared/domain/models/dashboard_models.dart';
+import 'package:domain/domain.dart';
 
 class LoadDashboardAction {
   const LoadDashboardAction();

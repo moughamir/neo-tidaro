@@ -8,14 +8,14 @@ class AppState extends BaseState {
     required this.authState,
     required this.dashboardState,
     required this.bookingState,
-    required this.cleanerState,
+    required this.professionalState,
     required this.uiState,
   });
 
   final AuthState authState;
   final DashboardState dashboardState;
   final BookingState bookingState;
-  final CleanerState cleanerState;
+  final ProfessionalState professionalState;
   final UiState uiState;
 
   /// Initial state factory
@@ -24,7 +24,7 @@ class AppState extends BaseState {
       authState: AuthState.initial(),
       dashboardState: DashboardState.initial(),
       bookingState: BookingState.initial(),
-      cleanerState: CleanerState.initial(),
+      professionalState: ProfessionalState.initial(),
       uiState: UiState.initial(),
     );
   }
@@ -34,14 +34,14 @@ class AppState extends BaseState {
     AuthState? authState,
     DashboardState? dashboardState,
     BookingState? bookingState,
-    CleanerState? cleanerState,
+    ProfessionalState? cleanerState,
     UiState? uiState,
   }) {
     return AppState(
       authState: authState ?? this.authState,
       dashboardState: dashboardState ?? this.dashboardState,
       bookingState: bookingState ?? this.bookingState,
-      cleanerState: cleanerState ?? this.cleanerState,
+      professionalState: cleanerState ?? this.professionalState,
       uiState: uiState ?? this.uiState,
     );
   }
@@ -54,16 +54,17 @@ class AppState extends BaseState {
     authState,
     dashboardState,
     bookingState,
-    cleanerState,
+    professionalState,
     uiState,
   ];
 
   @override
-  String toString() => 'AppState('
+  String toString() =>
+      'AppState('
       'authState: ${authState.stateType}, '
       'dashboardState: ${dashboardState.stateType}, '
       'bookingState: ${bookingState.stateType}, '
-      'cleanerState: ${cleanerState.stateType}, '
+      'cleanerState: ${professionalState.stateType}, '
       'uiState: ${uiState.stateType}'
       ')';
 }

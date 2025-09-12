@@ -16,9 +16,11 @@ flutter run -d linux
 ## 📱 Available Examples
 
 ### 1. Basic App (`examples/basic_app`)
+
 **Purpose**: Demonstrates basic workspace integration and package usage.
 
 **Features**:
+
 - Simple UI Kit component usage
 - Basic Redux state management
 - Localization integration
@@ -27,9 +29,11 @@ flutter run -d linux
 **Run**: `flutter run -d linux` from `examples/basic_app/`
 
 ### 2. Authentication Flow (`examples/auth_flow`)
+
 **Purpose**: Complete authentication system with form validation and state management.
 
 **Features**:
+
 - Login/logout functionality
 - Form validation and error handling
 - Loading states and user feedback
@@ -37,6 +41,7 @@ flutter run -d linux
 - Demo authentication flow
 
 **Key Components**:
+
 - Login form with validation
 - Authenticated user dashboard
 - Error handling and recovery
@@ -45,9 +50,11 @@ flutter run -d linux
 **Run**: `flutter run -d linux` from `examples/auth_flow/`
 
 ### 3. Redux Showcase (`examples/redux_showcase`)
+
 **Purpose**: Comprehensive Redux state management patterns and best practices.
 
 **Features**:
+
 - Complete store setup (actions, reducers, selectors)
 - Counter functionality with increment/decrement
 - Loading states and async operations
@@ -55,6 +62,7 @@ flutter run -d linux
 - Middleware integration examples
 
 **Key Concepts**:
+
 - Action creators and types
 - Reducer composition
 - Selector patterns
@@ -64,10 +72,12 @@ flutter run -d linux
 **Run**: `flutter run -d linux` from `examples/redux_showcase/`
 
 ### 4. UI Kit Showcase (`examples/ui_kit_showcase`)
+
 **Purpose**: Interactive demonstration of all available UI components.
 
 **Features**:
-- All UI Kit components (NeomorphicButton, GlassyCard)
+
+- All UI Kit components (NeomorphicButton, KuiCard.glass)
 - Shared package widgets (InfoCard, ErrorDisplay, LoadingIndicator)
 - Material Design variations
 - Interactive component gallery
@@ -75,6 +85,7 @@ flutter run -d linux
 - Responsive layouts
 
 **Components Showcased**:
+
 - Custom buttons with different styles
 - Cards and containers
 - Loading and error states
@@ -86,6 +97,7 @@ flutter run -d linux
 ## 🏗️ Architecture Overview
 
 ### Package Integration
+
 All examples demonstrate proper integration of workspace packages:
 
 ```dart
@@ -97,6 +109,7 @@ import 'package:ui_kit/ui_kit.dart';      // Custom UI components
 ```
 
 ### State Management Pattern
+
 Examples use Redux for predictable state management:
 
 ```dart
@@ -115,6 +128,7 @@ StoreConnector<AppState, AuthState>(
 ```
 
 ### Localization Integration
+
 All examples support multiple languages:
 
 ```dart
@@ -128,28 +142,36 @@ MaterialApp(
 ## 📚 Learning Path
 
 ### Beginner → `basic_app`
+
 Start here to understand:
+
 - Workspace package structure
 - Basic component usage
 - Simple state management
 - Localization basics
 
 ### Intermediate → `auth_flow`
+
 Learn about:
+
 - Form handling and validation
 - Complex state management
 - Error handling patterns
 - User experience flows
 
 ### Advanced → `redux_showcase`
+
 Master:
+
 - Advanced Redux patterns
 - Middleware implementation
 - State normalization
 - Performance optimization
 
 ### Expert → `ui_kit_showcase`
+
 Explore:
+
 - Custom component development
 - Advanced theming
 - Responsive design
@@ -158,11 +180,13 @@ Explore:
 ## 🛠️ Development Setup
 
 ### Prerequisites
+
 - Flutter SDK (>=3.35.0)
 - Dart SDK (>=3.9.0)
 - Linux desktop support enabled
 
 ### Installation
+
 ```bash
 # Clone and setup workspace
 git clone https://github.com/moughamir/neo-tidaro.git
@@ -175,6 +199,7 @@ melos run test
 ```
 
 ### Running Examples
+
 ```bash
 # Method 1: Direct Flutter command
 cd examples/[example_name]
@@ -187,6 +212,7 @@ melos run flutter:run:[example_name]
 ## 🧪 Testing Examples
 
 ### Run All Tests
+
 ```bash
 # Test all examples
 melos run test --scope="*example*"
@@ -197,14 +223,18 @@ flutter test
 ```
 
 ### Widget Testing
+
 Each example includes widget tests demonstrating:
+
 - Component rendering
 - User interaction testing
 - State change verification
 - Error condition handling
 
 ### Integration Testing
+
 Examples include integration tests for:
+
 - Complete user flows
 - Cross-component interactions
 - State persistence
@@ -213,6 +243,7 @@ Examples include integration tests for:
 ## 🎨 Customization Guide
 
 ### Theming
+
 Customize the appearance by modifying theme configurations:
 
 ```dart
@@ -225,12 +256,14 @@ MaterialApp(
 ```
 
 ### Adding New Components
+
 1. Create component in `packages/ui_kit/lib/src/widgets/`
 2. Export in `packages/ui_kit/lib/ui_kit.dart`
 3. Add example usage in `ui_kit_showcase`
 4. Include tests and documentation
 
 ### State Management Extensions
+
 1. Define new actions in `packages/shared/lib/redux/actions/`
 2. Add reducers in `packages/shared/lib/redux/reducers/`
 3. Create selectors in `packages/shared/lib/redux/selectors/`
@@ -241,6 +274,7 @@ MaterialApp(
 ### Common Issues
 
 #### Build Errors
+
 ```bash
 # Clean and rebuild
 flutter clean
@@ -249,6 +283,7 @@ melos bootstrap
 ```
 
 #### Package Resolution Issues
+
 ```bash
 # Reset workspace
 melos clean
@@ -256,11 +291,13 @@ melos bootstrap
 ```
 
 #### Hot Reload Issues
+
 - Restart the app completely
 - Check for syntax errors
 - Verify import statements
 
 ### Getting Help
+
 - Check the documentation in `/documentation/`
 - Review package README files
 - Examine working examples

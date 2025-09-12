@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared/shared.dart';
+import 'package:shared/shared.dart' hide TimeOfDay;
 import 'package:languist/languist.dart';
-import 'package:ui_kit/ui_kit.dart';
+import 'package:ui_kit/ui_kit.dart' hide TimeOfDay;
 
 /// Dialog for creating a new booking
 class CreateBookingDialog extends StatefulWidget {
@@ -90,7 +90,10 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
                       // Customer Information Section
-                      const SectionHeader(title: 'Customer Information', icon: Icons.person),
+                      const SectionHeader(
+                        title: 'Customer Information',
+                        icon: Icons.person,
+                      ),
                       const SizedBox(height: 16),
 
                       TextFormField(
@@ -149,7 +152,10 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                       const SizedBox(height: 24),
 
                       // Service Information Section
-                      const SectionHeader(title: 'Service Details', icon: Icons.cleaning_services),
+                      const SectionHeader(
+                        title: 'Service Details',
+                        icon: Icons.cleaning_services,
+                      ),
                       const SizedBox(height: 16),
 
                       DropdownButtonFormField<ServiceCategory>(
@@ -221,7 +227,10 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                       const SizedBox(height: 24),
 
                       // Address Section
-                      const SectionHeader(title: 'Service Address', icon: Icons.location_on),
+                      const SectionHeader(
+                        title: 'Service Address',
+                        icon: Icons.location_on,
+                      ),
                       const SizedBox(height: 16),
 
                       TextFormField(
@@ -370,26 +379,59 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
     );
   }
 
-  
-
   String _getServiceCategoryName(ServiceCategory category) {
     switch (category) {
+      case ServiceCategory.cleaning:
+        // TODO: Handle this case.
+        throw UnimplementedError();
       case ServiceCategory.standardCleaning:
-        return 'Standard Cleaning';
+        // TODO: Handle this case.
+        throw UnimplementedError();
       case ServiceCategory.regularCleaning:
-        return 'Regular Cleaning';
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.laundry:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.cooking:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.babysitting:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.petCare:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.gardening:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.maintenance:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.organization:
+        // TODO: Handle this case.
+        throw UnimplementedError();
       case ServiceCategory.deepCleaning:
-        return 'Deep Cleaning';
+        // TODO: Handle this case.
+        throw UnimplementedError();
       case ServiceCategory.moveInOut:
-        return 'Move In/Out';
+        // TODO: Handle this case.
+        throw UnimplementedError();
       case ServiceCategory.postConstruction:
-        return 'Post Construction';
+        // TODO: Handle this case.
+        throw UnimplementedError();
       case ServiceCategory.commercial:
-        return 'Commercial';
+        // TODO: Handle this case.
+        throw UnimplementedError();
       case ServiceCategory.residential:
-        return 'Residential';
+        // TODO: Handle this case.
+        throw UnimplementedError();
       case ServiceCategory.specialized:
-        return 'Specialized';
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.other:
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 
@@ -411,6 +453,33 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
         return 220.0;
       case ServiceCategory.specialized:
         return 350.0;
+      case ServiceCategory.cleaning:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.laundry:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.cooking:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.babysitting:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.petCare:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.gardening:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.maintenance:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.organization:
+        // TODO: Handle this case.
+        throw UnimplementedError();
+      case ServiceCategory.other:
+        // TODO: Handle this case.
+        throw UnimplementedError();
     }
   }
 
@@ -461,25 +530,32 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
         street: _streetController.text.trim(),
         city: _cityController.text.trim(),
         state: _stateController.text.trim(),
-        zipCode: _zipCodeController.text.trim(),
+        postalCode: _zipCodeController.text.trim(),
         instructions: _notesController.text.trim().isEmpty
             ? null
             : _notesController.text.trim(),
+        id: '',
+        createdAt: null,
+        updatedAt: null,
+        type: AddressType.work,
+        country: '',
       );
 
       final Booking booking = Booking(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
-        customerId: DateTime.now().millisecondsSinceEpoch.toString(),
-        serviceCategory: _selectedService,
-        address: address,
-        scheduledDate: scheduledDateTime,
+        clientId: DateTime.now().millisecondsSinceEpoch.toString(),
+        addressId: address.id,
+        scheduledStartTime: scheduledDateTime,
         status: BookingStatus.pending,
-        price: _estimatedPrice,
-        notes: _notesController.text.trim().isEmpty
+        totalAmount: _estimatedPrice,
+        specialInstructions: _notesController.text.trim().isEmpty
             ? null
             : _notesController.text.trim(),
         createdAt: DateTime.now(),
         updatedAt: null,
+        professionalId: '',
+        serviceId: '',
+        scheduledEndTime: scheduledDateTime.endOfDay,
       );
 
       // Dispatch action to create booking

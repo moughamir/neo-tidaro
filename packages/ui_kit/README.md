@@ -1,16 +1,26 @@
 # Neo‑Tidaro UI Kit
 
-A reusable, Material-first Flutter UI component library for Neo‑Tidaro apps, featuring a clean, modern design with subtle glassmorphism/neumorphism accents. Built for Clean Architecture with DRY, SOLID, KISS, and YAGNI principles. Fully localized via the Languist package.
+A centralized, unified Flutter UI component library featuring a comprehensive design system that combines Neumorphism and Glassmorphism effects. Built for Clean Architecture with DRY, SOLID, KISS, and YAGNI principles. Fully localized via the Languist package.
 
 ![Showcase](./docs/images/showcase-hero.png)
 
-## Design philosophy
+## 🎨 Unified Design System
 
-- Material 3 as the baseline for accessibility and consistency
-- Opinionated but minimal styling (glassmorphic cards, soft shadows, rounded corners)
-- Clean Architecture separation: UI here, state/business elsewhere
-- DRY and composable widgets with sensible defaults
-- First‑class internationalization via Languist (centralized ARB strings)
+The UI Kit now features a **centralized design system** that consolidates all previous theme implementations into a single, cohesive foundation:
+
+- **Design Tokens**: Centralized spacing, colors, typography, and effects
+- **Unified Theme**: Single theme system replacing AppTheme, NeumorphicTheme, and TidaroColorPalette
+- **Effect System**: Consistent Neumorphism and Glassmorphism effects across all components
+- **Consolidated Components**: Unified button and card components replacing duplicates
+
+## Design Philosophy
+
+- **Material 3** as the baseline for accessibility and consistency
+- **Unified Design System** with centralized tokens and consistent effects
+- **Neumorphism + Glassmorphism** seamlessly integrated for modern UI
+- **Clean Architecture** separation: UI here, state/business elsewhere
+- **DRY Principles** with consolidated components and shared design tokens
+- **First‑class internationalization** via Languist (centralized ARB strings)
 
 ## What’s inside
 
@@ -89,18 +99,24 @@ supportedLocales: AppLocalizations.supportedLocales,
 
 ## Theming
 
-`AppTheme` exposes light/dark `ThemeData` based on `TidaroColorPalette`:
+Use the unified design system `KuiTheme`:
 
 ```dart
-theme: AppTheme.lightTheme,
-darkTheme: AppTheme.darkTheme,
-themeMode: ThemeMode.system,
+import 'package:ui_kit/src/design_system/design_system.dart';
+
+MaterialApp(
+  theme: KuiTheme.light(),
+  darkTheme: KuiTheme.dark(),
+  themeMode: ThemeMode.system,
+)
 ```
 
-Access semantic colors anywhere with:
+Quick helpers:
 
 ```dart
-final colors = Theme.of(context).colorScheme; // primary, secondary, surface, etc.
+final colors = KuiTheme.colorsOf(context); // DesignColorTokens
+final deco = KuiTheme.neumorphicOf(context, elevation: 2);
+final glass = KuiTheme.glassOf(context, child: myWidget);
 ```
 
 ## Responsive helpers

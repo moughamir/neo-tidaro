@@ -1,5 +1,4 @@
-import '../base_entity.dart';
-import '../../enums/enums.dart';
+import 'package:domain/domain.dart';
 
 /// Booking entity for service appointments
 class Booking extends BaseEntity {
@@ -13,6 +12,7 @@ class Booking extends BaseEntity {
   final DateTime? actualEndTime;
   final BookingStatus status;
   final double totalAmount;
+
   final String? specialInstructions;
   final String? cancellationReason;
   final RecurrenceType recurrenceType;
@@ -26,12 +26,14 @@ class Booking extends BaseEntity {
     required this.professionalId,
     required this.serviceId,
     this.addressId,
+
     required this.scheduledStartTime,
     required this.scheduledEndTime,
     this.actualStartTime,
     this.actualEndTime,
     this.status = BookingStatus.pending,
     required this.totalAmount,
+
     this.specialInstructions,
     this.cancellationReason,
     this.recurrenceType = RecurrenceType.none,
@@ -59,7 +61,16 @@ class Booking extends BaseEntity {
 
   /// Check if booking can be cancelled
   bool get canBeCancelled {
-    return status == BookingStatus.pending || 
-           status == BookingStatus.confirmed;
+    return status == BookingStatus.pending || status == BookingStatus.confirmed;
   }
+
+  double get overallRating => this.overallRating;
+
+  String get bookingId => this.id;
+
+  String get reviewerId => this.clientId;
+
+  String get revieweeId => this.professionalId;
+
+  PaymentStatus get paymentStatus => PaymentStatus.pending;
 }

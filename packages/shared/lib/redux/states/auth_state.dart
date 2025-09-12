@@ -1,9 +1,9 @@
+import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
 import '../core/core.dart';
-import '../actions/auth_actions.dart';
 
 /// Authentication state following functional programming patterns
-class AuthState extends BaseAsyncState<AuthUser> {
+class AuthState extends BaseAsyncState<User> {
   const AuthState({
     required super.isLoading,
     required super.data,
@@ -38,7 +38,7 @@ class AuthState extends BaseAsyncState<AuthUser> {
   }
 
   /// Authenticated state factory
-  factory AuthState.authenticated(AuthUser user, String token) {
+  factory AuthState.authenticated(User user, String token) {
     return AuthState(
       isLoading: false,
       data: Some(user),
@@ -62,7 +62,7 @@ class AuthState extends BaseAsyncState<AuthUser> {
   /// Copy with method for immutable updates
   AuthState copyWith({
     bool? isLoading,
-    Option<AuthUser>? data,
+    Option<User>? data,
     Option<Exception>? error,
     bool? isAuthenticated,
     Option<String>? authToken,

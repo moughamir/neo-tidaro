@@ -1,18 +1,23 @@
 name: neo_tidaro
-version: 0.1.0-pre-alpha.2
-publish_to: 'none'
+description: Neo Tidaro Workspace
+version: 0.1.0-pre-alpha.3
+publish_to: "none"
 environment:
-  sdk: '3.9.0'
+  sdk: "3.9.0"
 
 workspace:
+  # Core Packages
   - packages/ui_kit # UI Kit for Widgets and Styles
   - packages/shared # Shared and Utils
+  - packages/domain # Domain Layer
   - packages/core # Core Packages
   - packages/languist # Internationalization and localization
   - packages/device_sensors # Device Sensors and Permissions
+  # Applications
   - apps/tidash # Admin Dashboard
   - apps/tidaro_mini # Mini TiDaro App for Quick retention
   - apps/tidaro # Full TiDaro App
+  # Examples
   - examples/basic_app # Basic integration example
   - examples/auth_flow # Authentication flow example
   - examples/ui_kit_showcase # UI Kit components showcase
@@ -32,7 +37,7 @@ dependencies:
 # Platform support configuration
 flutter:
   uses-material-design: true
-  
+
 platforms:
   android:
   ios:
@@ -72,7 +77,7 @@ melos:
     generate:
       run: melos exec -c 8 --depends-on build_runner -- dart run build_runner build
       description: Run build_runner in all packages.
-      
+
     gen:l10n:
       run: melos exec -c 8 --scope="languist" -- dart run bin/generate_l10n.dart
       description: Generate localization files for the languist package using configuration from languist.yaml.
@@ -90,7 +95,6 @@ melos:
       run: melos exec -c 8 --scope="tidaro" -- flutter run -d linux
       description: Run Tidaro on Linux desktop.
 
-
     run:tidaro:web:
       run: melos exec -c 8 --scope="tidaro" -- flutter run -d web-server --web-port=8080
       description: Run Tidaro on web browser.
@@ -102,8 +106,6 @@ melos:
     run:tidaro_mini:android:
       run: melos exec -c 8 --scope="tidaro_mini" -- flutter run -d android
       description: Run Tidaro Mini on Android.
-
-
 
     run:tidaro_mini:linux:
       run: melos exec -c 8 --scope="tidaro_mini" -- flutter run -d linux
@@ -121,12 +123,9 @@ melos:
       run: melos exec -c 8 --scope="tidash" -- flutter run -d android
       description: Run Tidash admin dashboard on Android.
 
-
     run:tidash:linux:
       run: melos exec -c 8 --scope="tidash" -- flutter run -d linux
       description: Run Tidash admin dashboard on Linux desktop.
-
-
 
     run:tidash:web:
       run: melos exec -c 8 --scope="tidash" -- flutter run -d web-server --web-port=8082
@@ -145,7 +144,6 @@ melos:
       run: melos exec -c 8 --scope="auth_flow_example" -- flutter run -d linux
       description: Run the authentication flow example on Linux desktop.
 
-
     run:ui_kit_showcase:
       run: melos exec -c 8 --scope="ui_kit_showcase" -- flutter run -d linux
       description: Run the UI Kit showcase example on Linux desktop.
@@ -155,7 +153,6 @@ melos:
       run: melos exec -c 8 --scope="tidaro*" -- flutter build apk --release
       description: Build Android APK for all Tidaro apps.
 
-
     build:web:
       run: melos exec -c 8 --scope="tidaro*" -- flutter build web --release
       description: Build web app for all Tidaro apps.
@@ -163,8 +160,6 @@ melos:
     build:linux:
       run: melos exec -c 8 --scope="tidaro*" -- flutter build linux --release
       description: Build Linux desktop app for all Tidaro apps.
-
-
 
     build:windows:
       run: melos exec -c 8 --scope="tidaro*" -- flutter build windows --release

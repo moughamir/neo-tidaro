@@ -18,7 +18,9 @@ Store<AppState> createStore({
   final List<Middleware<AppState>> middleware = <Middleware<AppState>>[];
 
   // Add dashboard middleware
-  middleware.addAll(createDashboardMiddleware());
+  middleware.addAll(
+    createDashboardMiddleware() as Iterable<Middleware<AppState>>,
+  );
 
   // housekeeping middleware removed due to domain model conflicts
 

@@ -1,3 +1,4 @@
+import 'dashboard_state.dart';
 import 'user_state.dart';
 import 'auth_state.dart';
 import 'booking_state.dart';
@@ -16,6 +17,7 @@ class AppState {
   final NotificationState notificationState;
   final UIState uiState;
   final CacheState cacheState;
+  final DashboardState dashboardState;
 
   const AppState({
     required this.authState,
@@ -26,6 +28,7 @@ class AppState {
     required this.notificationState,
     required this.uiState,
     required this.cacheState,
+    required this.dashboardState,
   });
 
   factory AppState.initial() => AppState(
@@ -37,6 +40,7 @@ class AppState {
     notificationState: NotificationState.initial(),
     uiState: UIState.initial(),
     cacheState: CacheState.initial(),
+    dashboardState: DashboardState.initial(),
   );
 
   AppState copyWith({
@@ -48,6 +52,7 @@ class AppState {
     NotificationState? notificationState,
     UIState? uiState,
     CacheState? cacheState,
+    DashboardState? dashboardState,
   }) {
     return AppState(
       authState: authState ?? this.authState,
@@ -58,6 +63,7 @@ class AppState {
       notificationState: notificationState ?? this.notificationState,
       uiState: uiState ?? this.uiState,
       cacheState: cacheState ?? this.cacheState,
+      dashboardState: dashboardState ?? this.dashboardState,
     );
   }
 }
