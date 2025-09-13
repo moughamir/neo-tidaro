@@ -111,7 +111,7 @@ class BookingDetailsDialog extends StatelessWidget {
                       children: <Widget>[
                         InfoRow(label: 'Customer ID', value: booking.clientId),
                         InfoRow(
-                          label: 'Assigned Cleaner',
+                          label: 'Assigned Professional',
                           value: booking.professionalId,
                         ),
                       ],
@@ -152,13 +152,13 @@ class BookingDetailsDialog extends StatelessWidget {
             // Action Buttons
             Row(
               children: <Widget>[
-                if (booking.status == BookingStatus.pending ||
-                    booking.status == BookingStatus.confirmed)
+                if (booking.status == BookingActivityStatus.pending ||
+                    booking.status == BookingActivityStatus.confirmed)
                   Expanded(
                     child: OutlinedButton.icon(
                       onPressed: () => _updateBookingStatus(
                         context,
-                        BookingStatus.cancelled,
+                        BookingActivityStatus.cancelled,
                       ),
                       icon: const Icon(Icons.cancel),
                       label: Text(l10n.cancel),
@@ -167,8 +167,8 @@ class BookingDetailsDialog extends StatelessWidget {
                       ),
                     ),
                   ),
-                if (booking.status == BookingStatus.pending ||
-                    booking.status == BookingStatus.confirmed)
+                if (booking.status == BookingActivityStatus.pending ||
+                    booking.status == BookingActivityStatus.confirmed)
                   const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton.icon(
@@ -188,23 +188,23 @@ class BookingDetailsDialog extends StatelessWidget {
     );
   }
 
-  String _getStatusName(BookingStatus status) {
+  String _getStatusName(BookingActivityStatus status) {
     switch (status) {
-      case BookingStatus.pending:
+      case BookingActivityStatus.pending:
         return 'Pending';
-      case BookingStatus.confirmed:
+      case BookingActivityStatus.confirmed:
         return 'Confirmed';
-      case BookingStatus.assigned:
+      case BookingActivityStatus.assigned:
         return 'Assigned';
-      case BookingStatus.inProgress:
+      case BookingActivityStatus.inProgress:
         return 'In Progress';
-      case BookingStatus.completed:
+      case BookingActivityStatus.completed:
         return 'Completed';
-      case BookingStatus.cancelled:
+      case BookingActivityStatus.cancelled:
         return 'Cancelled';
-      case BookingStatus.rescheduled:
+      case BookingActivityStatus.rescheduled:
         return 'Rescheduled';
-      case BookingStatus.noShow:
+      case BookingActivityStatus.noShow:
         return 'No Show';
     }
   }
@@ -213,60 +213,63 @@ class BookingDetailsDialog extends StatelessWidget {
     return '${dateTime.day}/${dateTime.month}/${dateTime.year} ${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}';
   }
 
-  BookingStatus _getNextStatus(BookingStatus currentStatus) {
+  BookingActivityStatus _getNextStatus(BookingActivityStatus currentStatus) {
     switch (currentStatus) {
-      case BookingStatus.pending:
-        return BookingStatus.confirmed;
-      case BookingStatus.confirmed:
-        return BookingStatus.assigned;
-      case BookingStatus.assigned:
-        return BookingStatus.inProgress;
-      case BookingStatus.inProgress:
-        return BookingStatus.completed;
+      case BookingActivityStatus.pending:
+        return BookingActivityStatus.confirmed;
+      case BookingActivityStatus.confirmed:
+        return BookingActivityStatus.assigned;
+      case BookingActivityStatus.assigned:
+        return BookingActivityStatus.inProgress;
+      case BookingActivityStatus.inProgress:
+        return BookingActivityStatus.completed;
       default:
         return currentStatus;
     }
   }
 
-  IconData _getNextStatusIcon(BookingStatus currentStatus) {
+  IconData _getNextStatusIcon(BookingActivityStatus currentStatus) {
     switch (currentStatus) {
-      case BookingStatus.pending:
+      case BookingActivityStatus.pending:
         return Icons.check_circle;
-      case BookingStatus.confirmed:
+      case BookingActivityStatus.confirmed:
         return Icons.assignment_ind;
-      case BookingStatus.assigned:
+      case BookingActivityStatus.assigned:
         return Icons.play_arrow;
-      case BookingStatus.inProgress:
+      case BookingActivityStatus.inProgress:
         return Icons.done_all;
-      case BookingStatus.noShow:
+      case BookingActivityStatus.noShow:
         return Icons.report_gmailerrorred;
       default:
         return Icons.info;
     }
   }
 
-  String _getNextStatusText(BookingStatus currentStatus) {
+  String _getNextStatusText(BookingActivityStatus currentStatus) {
     switch (currentStatus) {
-      case BookingStatus.pending:
+      case BookingActivityStatus.pending:
         return 'Confirm';
-      case BookingStatus.confirmed:
-        return 'Assign Cleaner';
-      case BookingStatus.assigned:
+      case BookingActivityStatus.confirmed:
+        return 'Assign Professional';
+      case BookingActivityStatus.assigned:
         return 'Start Service';
-      case BookingStatus.inProgress:
+      case BookingActivityStatus.inProgress:
         return 'Complete';
-      case BookingStatus.completed:
+      case BookingActivityStatus.completed:
         return 'Completed';
-      case BookingStatus.cancelled:
+      case BookingActivityStatus.cancelled:
         return 'Cancelled';
-      case BookingStatus.rescheduled:
+      case BookingActivityStatus.rescheduled:
         return 'Rescheduled';
-      case BookingStatus.noShow:
+      case BookingActivityStatus.noShow:
         return 'No Show';
     }
   }
 
-  void _updateBookingStatus(BuildContext context, BookingStatus newStatus) {
+  void _updateBookingStatus(
+    BuildContext context,
+    BookingActivityStatus newStatus,
+  ) {
     StoreProvider.of<AppState>(context, listen: false).dispatch(
       UpdateBookingStatusAction(bookingId: booking.id, status: newStatus),
     );

@@ -1,15 +1,12 @@
-import '../enums/service_category.dart';
-import '../enums/user_role.dart';
+import 'package:domain/enums/enums.dart';
 
-import '../enums/auth_provider.dart';
 import 'geo_location_dto.dart';
 
 class OAuthSignInDto {
+  const OAuthSignInDto({required this.provider, this.redirectUrl, this.scopes});
   final AuthProvider provider;
   final String? redirectUrl;
   final Map<String, String>? scopes;
-
-  const OAuthSignInDto({required this.provider, this.redirectUrl, this.scopes});
 }
 
 /// DTOs for API Communication
@@ -18,14 +15,6 @@ class OAuthSignInDto {
 // ============= AUTH DTOs =============
 
 class SignUpDto {
-  final String email;
-  final String password;
-  final String firstName;
-  final String lastName;
-  final UserRole role;
-  final String? phoneNumber;
-  final Map<String, dynamic>? metadata;
-
   const SignUpDto({
     required this.email,
     required this.password,
@@ -35,6 +24,13 @@ class SignUpDto {
     this.phoneNumber,
     this.metadata,
   });
+  final String email;
+  final String password;
+  final String firstName;
+  final String lastName;
+  final PlatformUserRole role;
+  final String? phoneNumber;
+  final Map<String, dynamic>? metadata;
 
   Map<String, dynamic> toJson() => {
     'email': email,
@@ -50,24 +46,14 @@ class SignUpDto {
 }
 
 class SignInDto {
+  const SignInDto({required this.email, required this.password});
   final String email;
   final String password;
-
-  const SignInDto({required this.email, required this.password});
 
   Map<String, dynamic> toJson() => {'email': email, 'password': password};
 }
 
 class ProfessionalRegistrationDto {
-  final String userId;
-  final List<ServiceCategory> categories;
-  final double hourlyRate;
-  final String? businessName;
-  final String? taxId;
-  final double serviceRadius;
-  final GeoLocationDto? location;
-  final Map<String, dynamic>? skills;
-
   const ProfessionalRegistrationDto({
     required this.userId,
     required this.categories,
@@ -78,6 +64,14 @@ class ProfessionalRegistrationDto {
     this.location,
     this.skills,
   });
+  final String userId;
+  final List<PreBookingServiceCategory> categories;
+  final double hourlyRate;
+  final String? businessName;
+  final String? taxId;
+  final double serviceRadius;
+  final GeoLocationDto? location;
+  final Map<String, dynamic>? skills;
 
   Map<String, dynamic> toJson() => {
     'user_id': userId,

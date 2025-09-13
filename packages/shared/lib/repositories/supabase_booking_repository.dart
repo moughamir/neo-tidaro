@@ -1,8 +1,6 @@
-import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:fpdart/fpdart.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 import 'package:domain/domain.dart';
 
-import 'package:shared/utils/type_defs.dart';
 import 'package:shared/utils/logger.dart';
 import 'package:shared/utils/failures/failure.dart';
 
@@ -22,13 +20,21 @@ class SupabaseBookingRepository implements BookingRepository {
         serviceId: json['service_id'] as String? ?? '',
         addressId: json['address_id'] as String?,
         status: _parseBookingStatus(json['status'] as String? ?? ''),
-        scheduledDate: DateTime.parse(
-          json['scheduled_date'] as String? ?? DateTime.now().toIso8601String(),
+        scheduledStartTime: DateTime.parse(
+          json['scheduled_start_time'] as String? ??
+              DateTime.now().toIso8601String(),
         ),
-        bookingTimeStart: DateTime.parse(json['booking_time_start'] as String? ?? DateTime.now().toIso8601String()),
-        bookingTimeEnd: DateTime.parse(json['booking_time_end'] as String? ?? DateTime.now().toIso8601String()),
-        durationMinutes: json['duration_minutes'] as int? ?? 60,
-        totalPrice: (json['total_price'] as num?)?.toDouble(),
+        scheduledEndTime: DateTime.parse(
+          json['scheduled_end_time'] as String? ??
+              DateTime.now().toIso8601String(),
+        ),
+        actualStartTime: (json['actual_start_time'] as String?) != null
+            ? DateTime.tryParse(json['actual_start_time'] as String)
+            : null,
+        actualEndTime: (json['actual_end_time'] as String?) != null
+            ? DateTime.tryParse(json['actual_end_time'] as String)
+            : null,
+        totalAmount: (json['total_amount'] as num?)?.toDouble() ?? 0,
         specialInstructions: json['special_instructions'] as String?,
         cancellationReason: json['cancellation_reason'] as String?,
         createdAt: DateTime.tryParse(json['created_at'] as String? ?? ''),
@@ -41,22 +47,22 @@ class SupabaseBookingRepository implements BookingRepository {
   }
 
   /// Parses a status string to BookingStatus enum
-  BookingStatus _parseBookingStatus(String status) {
+  BookingActivityStatus _parseBookingStatus(String status) {
     switch (status.toLowerCase()) {
       case 'pending':
-        return BookingStatus.pending;
+        return BookingActivityStatus.pending;
       case 'confirmed':
-        return BookingStatus.confirmed;
+        return BookingActivityStatus.confirmed;
       case 'in_progress':
       case 'inprogress':
-        return BookingStatus.inProgress;
+        return BookingActivityStatus.inProgress;
       case 'completed':
-        return BookingStatus.completed;
+        return BookingActivityStatus.completed;
       case 'cancelled':
       case 'canceled':
-        return BookingStatus.cancelled;
+        return BookingActivityStatus.cancelled;
       default:
-        return BookingStatus.pending;
+        return BookingActivityStatus.pending;
     }
   }
 
@@ -67,9 +73,13 @@ class SupabaseBookingRepository implements BookingRepository {
     'provider_id': booking.professionalId,
     'service_id': booking.serviceId,
     'address_id': booking.addressId,
-    'scheduled_date': booking.scheduledDate.toIso8601String(),
-    'duration_minutes': booking.durationMinutes,
-    'total_price': booking.totalPrice,
+    'scheduled_start_time': booking.scheduledStartTime.toIso8601String(),
+    'scheduled_end_time': booking.scheduledEndTime.toIso8601String(),
+    if (booking.actualStartTime != null)
+      'actual_start_time': booking.actualStartTime!.toIso8601String(),
+    if (booking.actualEndTime != null)
+      'actual_end_time': booking.actualEndTime!.toIso8601String(),
+    'total_amount': booking.totalAmount,
     'special_instructions': booking.specialInstructions,
     'status': _bookingStatusToString(booking.status),
     'cancellation_reason': booking.cancellationReason,
@@ -82,7 +92,7 @@ class SupabaseBookingRepository implements BookingRepository {
   };
 
   /// Converts BookingStatus to string representation for storage
-  String _bookingStatusToString(BookingStatus status) =>
+  String _bookingStatusToString(BookingActivityStatus status) =>
       status.toString().split('.').last;
 
   /// Creates a new [SupabaseBookingRepository] with the given [SupabaseClient].
@@ -227,9 +237,9 @@ class SupabaseBookingRepository implements BookingRepository {
     CoreLogger.database('Cancelling booking: $id, reason: $reason');
     try {
       await _client.rpc(
-                'cancel_booking',
-                params: {'p_booking_id': id, 'p_reason': reason},
-              );
+        'cancel_booking',
+        params: {'p_booking_id': id, 'p_reason': reason},
+      );
     } on PostgrestException catch (e) {
       CoreLogger.error('Failed to cancel booking $id: ${e.message}');
       throw Failure.database(e.message);
@@ -293,9 +303,7 @@ class SupabaseBookingRepository implements BookingRepository {
 
       // Map the response to Booking list
       final bookings = (response as List<dynamic>)
-          .map<Booking>(
-            (json) => _mapToBooking(json as Map<String, dynamic>),
-          )
+          .map<Booking>((json) => _mapToBooking(json as Map<String, dynamic>))
           .toList();
 
       return bookings;
@@ -336,13 +344,11 @@ class SupabaseBookingRepository implements BookingRepository {
     throw UnimplementedError();
   }
 
-  @override
   Future<RepositoryResult<Booking>> create(Booking entity) {
     // TODO: implement create
     throw UnimplementedError();
   }
 
-  @override
   Future<RepositoryResult<List<Booking>>> createBatch(List<Booking> entities) {
     // TODO: implement createBatch
     throw UnimplementedError();
@@ -354,13 +360,11 @@ class SupabaseBookingRepository implements BookingRepository {
     throw UnimplementedError();
   }
 
-  @override
   Future<RepositoryResult<bool>> delete(String id) {
     // TODO: implement delete
     throw UnimplementedError();
   }
 
-  @override
   Future<RepositoryResult<bool>> deleteBatch(List<String> ids) {
     // TODO: implement deleteBatch
     throw UnimplementedError();
@@ -369,10 +373,50 @@ class SupabaseBookingRepository implements BookingRepository {
   @override
   Future<RepositoryResult<List<Booking>>> getAll({
     PaginationDto? pagination,
-    SortBy? sortBy,
-  }) {
-    // TODO: implement getAll
-    throw UnimplementedError();
+    PreBookingSortBy? sortBy,
+  }) async {
+    try {
+      // Build ordered query first to ensure a TransformBuilder type
+      // Sorting: map domain SortBy to booking columns where applicable
+      // Default to scheduled_start_time desc
+      String orderColumn = 'scheduled_start_time';
+      bool ascending = false;
+      if (sortBy != null) {
+        switch (sortBy) {
+          case PreBookingSortBy.price:
+            orderColumn = 'total_amount';
+            ascending = false;
+            break;
+          default:
+            orderColumn = 'scheduled_start_time';
+            ascending = false;
+        }
+      }
+
+      final ordered = _client
+          .from(_bookingsTable)
+          .select()
+          .order(orderColumn, ascending: ascending);
+
+      final built = pagination != null
+          ? ordered.range(
+              (pagination.page - 1) * pagination.limit,
+              (pagination.page - 1) * pagination.limit + pagination.limit - 1,
+            )
+          : ordered;
+
+      final response = await built as List<dynamic>;
+      final bookings = response
+          .map((e) => _mapToBooking(e as Map<String, dynamic>))
+          .toList();
+      return RepositoryResult.success(bookings);
+    } on PostgrestException catch (e) {
+      CoreLogger.error('getAll failed: ${e.message}');
+      return RepositoryResult.failure(e.message);
+    } catch (e) {
+      CoreLogger.error('getAll unexpected error: $e');
+      return RepositoryResult.failure(e.toString());
+    }
   }
 
   @override
@@ -382,36 +426,118 @@ class SupabaseBookingRepository implements BookingRepository {
   }
 
   @override
-  Future<RepositoryResult<Booking>> getById(String id) {
-    // TODO: implement getById
-    throw UnimplementedError();
+  Future<RepositoryResult<Booking>> getById(String id) async {
+    try {
+      final booking = await findById(id);
+      return RepositoryResult.success(booking);
+    } catch (e) {
+      CoreLogger.error('getById failed: $e');
+      return RepositoryResult.failure(e.toString());
+    }
   }
 
   @override
   Future<List<Booking>> getClientBookings(
     String clientId, {
-    BookingStatus? status,
+    BookingActivityStatus? status,
     PaginationDto? pagination,
-  }) {
-    // TODO: implement getClientBookings
-    throw UnimplementedError();
+  }) async {
+    CoreLogger.database('Fetching client bookings for: $clientId');
+    try {
+      var q = _client.from(_bookingsTable).select().eq('client_id', clientId);
+
+      if (status != null) {
+        q = q.eq('status', _bookingStatusToString(status));
+      }
+
+      // order by most recent scheduled start
+      var ordered = q.order('scheduled_start_time', ascending: false);
+
+      if (pagination != null) {
+        final start = (pagination.page - 1) * pagination.limit;
+        final end = start + pagination.limit - 1;
+        ordered = ordered.range(start, end);
+      }
+
+      final rows = await ordered as List<dynamic>;
+      return rows.map((e) => _mapToBooking(e as Map<String, dynamic>)).toList();
+    } on PostgrestException catch (e) {
+      CoreLogger.error('getClientBookings failed: ${e.message}');
+      throw Failure.database(e.message);
+    } catch (e, st) {
+      CoreLogger.error('Unexpected getClientBookings error: $e', st);
+      throw Failure.unexpected(e.toString());
+    }
   }
 
   @override
   Future<List<Booking>> getProfessionalBookings(
     String professionalId, {
-    BookingStatus? status,
+    BookingActivityStatus? status,
     DateTime? date,
     PaginationDto? pagination,
-  }) {
-    // TODO: implement getProfessionalBookings
-    throw UnimplementedError();
+  }) async {
+    CoreLogger.database('Fetching professional bookings for: $professionalId');
+    try {
+      var q = _client
+          .from(_bookingsTable)
+          .select()
+          .eq('provider_id', professionalId);
+
+      if (status != null) {
+        q = q.eq('status', _bookingStatusToString(status));
+      }
+
+      if (date != null) {
+        final startOfDay = DateTime(date.year, date.month, date.day);
+        final endOfDay = startOfDay
+            .add(const Duration(days: 1))
+            .subtract(const Duration(microseconds: 1));
+        q = q.gte('scheduled_start_time', startOfDay.toIso8601String());
+        q = q.lte('scheduled_start_time', endOfDay.toIso8601String());
+      }
+
+      var ordered = q.order('scheduled_start_time', ascending: false);
+
+      if (pagination != null) {
+        final start = (pagination.page - 1) * pagination.limit;
+        final end = start + pagination.limit - 1;
+        ordered = ordered.range(start, end);
+      }
+
+      final rows = await ordered as List<dynamic>;
+      return rows.map((e) => _mapToBooking(e as Map<String, dynamic>)).toList();
+    } on PostgrestException catch (e) {
+      CoreLogger.error('getProfessionalBookings failed: ${e.message}');
+      throw Failure.database(e.message);
+    } catch (e, st) {
+      CoreLogger.error('Unexpected getProfessionalBookings error: $e', st);
+      throw Failure.unexpected(e.toString());
+    }
   }
 
   @override
-  Future<List<Booking>> getUpcomingBookings(String userId) {
-    // TODO: implement getUpcomingBookings
-    throw UnimplementedError();
+  Future<List<Booking>> getUpcomingBookings(String userId) async {
+    CoreLogger.database('Fetching upcoming bookings for user: $userId');
+    try {
+      final nowIso = DateTime.now().toIso8601String();
+      // Use OR across client/provider and filter by scheduled_start_time >= now
+      final q = _client
+          .from(_bookingsTable)
+          .select()
+          .or('client_id.eq.$userId,provider_id.eq.$userId')
+          .gte('scheduled_start_time', nowIso)
+          .order('scheduled_start_time', ascending: true);
+
+      final rows = await q as List<dynamic>;
+      return rows.map((e) => _mapToBooking(e as Map<String, dynamic>)).toList();
+    } on PostgrestException catch (e) {
+      CoreLogger.error('getUpcomingBookings failed: ${e.message}');
+      throw Failure.database(e.message);
+    } catch (e, st) {
+      CoreLogger.error('Unexpected getUpcomingBookings error: $e', st);
+      throw Failure.unexpected(e.toString());
+    }
   }
 
   @override
@@ -419,12 +545,55 @@ class SupabaseBookingRepository implements BookingRepository {
     String query, {
     PaginationDto? pagination,
     Map<String, dynamic>? filters,
-  }) {
-    // TODO: implement search
-    throw UnimplementedError();
+  }) async {
+    try {
+      // Perform OR ILIKE on id-like columns (client_id, provider_id, service_id)
+      final q = query.trim();
+      // Build filterable builder first
+      final rqFilter = _client
+          .from(_bookingsTable)
+          .select()
+          .or(
+            'client_id.ilike.%$q%,provider_id.ilike.%$q%,service_id.ilike.%$q%',
+          );
+
+      // Optional status filter on the filter-builder
+      final rqFiltered = (() {
+        if (filters != null && filters['status'] is String) {
+          return rqFilter.eq('status', filters['status']);
+        } else if (filters != null &&
+            filters['status'] is BookingActivityStatus) {
+          final st = filters['status'] as BookingActivityStatus;
+          return rqFilter.eq('status', _bookingStatusToString(st));
+        }
+        return rqFilter;
+      })();
+
+      // Now apply ordering, producing a TransformBuilder
+      final rqOrdered = rqFiltered.order('scheduled_start_time');
+
+      // Pagination
+      final built = pagination != null
+          ? rqOrdered.range(
+              (pagination.page - 1) * pagination.limit,
+              (pagination.page - 1) * pagination.limit + pagination.limit - 1,
+            )
+          : rqOrdered;
+
+      final response = await built as List<dynamic>;
+      final bookings = response
+          .map((e) => _mapToBooking(e as Map<String, dynamic>))
+          .toList();
+      return RepositoryResult.success(bookings);
+    } on PostgrestException catch (e) {
+      CoreLogger.error('search failed: ${e.message}');
+      return RepositoryResult.failure(e.message);
+    } catch (e) {
+      CoreLogger.error('search unexpected error: $e');
+      return RepositoryResult.failure(e.toString());
+    }
   }
 
-  @override
   Future<RepositoryResult<Booking>> update(Booking entity) {
     // TODO: implement update
     throw UnimplementedError();
@@ -438,25 +607,88 @@ class SupabaseBookingRepository implements BookingRepository {
 
   @override
   Stream<List<Booking>> watchAll() {
-    // TODO: implement watchAll
-    throw UnimplementedError();
+    return _client
+        .from(_bookingsTable)
+        .stream(primaryKey: ['id'])
+        .order('scheduled_start_time')
+        .map((rows) => rows.map((e) => _mapToBooking(e)).toList());
   }
 
   @override
   Stream<Booking> watchBooking(String bookingId) {
-    // TODO: implement watchBooking
-    throw UnimplementedError();
+    return _client
+        .from(_bookingsTable)
+        .stream(primaryKey: ['id'])
+        .eq('id', bookingId)
+        .map(
+          (rows) => rows.isNotEmpty
+              ? _mapToBooking(rows.first)
+              : throw Failure.notFound('Booking $bookingId not found'),
+        );
   }
 
   @override
   Stream<Booking?> watchById(String id) {
-    // TODO: implement watchById
-    throw UnimplementedError();
+    return _client
+        .from(_bookingsTable)
+        .stream(primaryKey: ['id'])
+        .eq('id', id)
+        .map((rows) => rows.isNotEmpty ? _mapToBooking(rows.first) : null);
   }
 
   @override
   Stream<List<Booking>> watchUserBookings(String userId) {
-    // TODO: implement watchUserBookings
-    throw UnimplementedError();
+    // Merge two filtered streams (client_id and provider_id) and de-duplicate by id.
+    final clientStream = _client
+        .from(_bookingsTable)
+        .stream(primaryKey: ['id'])
+        .eq('client_id', userId)
+        .order('scheduled_start_time');
+
+    final providerStream = _client
+        .from(_bookingsTable)
+        .stream(primaryKey: ['id'])
+        .eq('provider_id', userId)
+        .order('scheduled_start_time');
+
+    // Combine latest from both streams
+    List<Map<String, dynamic>> latestClient = const [];
+    List<Map<String, dynamic>> latestProvider = const [];
+
+    return clientStream
+        .asyncMap((clientRows) async {
+          latestClient = clientRows;
+          // merge with latest provider
+          final merged = <String, Map<String, dynamic>>{};
+          for (final e in latestClient) {
+            merged[e['id'] as String] = e;
+          }
+          for (final e in latestProvider) {
+            merged[e['id'] as String] = e;
+          }
+          final list = merged.values.map((e) => _mapToBooking(e)).toList()
+            ..sort(
+              (a, b) => a.scheduledStartTime.compareTo(b.scheduledStartTime),
+            );
+          return list;
+        })
+        .asyncExpand((clientList) {
+          // return a stream that also listens to provider updates and emits merged results
+          return providerStream.map((providerRows) {
+            latestProvider = providerRows;
+            final merged = <String, Map<String, dynamic>>{};
+            for (final e in latestClient) {
+              merged[e['id'] as String] = e;
+            }
+            for (final e in latestProvider) {
+              merged[e['id'] as String] = e;
+            }
+            final list = merged.values.map((e) => _mapToBooking(e)).toList()
+              ..sort(
+                (a, b) => a.scheduledStartTime.compareTo(b.scheduledStartTime),
+              );
+            return list;
+          });
+        });
   }
 }

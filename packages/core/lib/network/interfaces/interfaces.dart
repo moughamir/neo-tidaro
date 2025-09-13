@@ -1,4 +1,4 @@
-/// Exports all network-related interfaces to make imports cleaner
+/// Exports all network-related interfaces to make imports professional
 /// across the application
 
 export 'auth_service.dart';

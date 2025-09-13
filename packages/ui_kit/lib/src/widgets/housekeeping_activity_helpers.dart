@@ -16,9 +16,9 @@ Color getActivityColor(HousekeepingActivityType type) {
       return Colors.red;
     case HousekeepingActivityType.bookingRescheduled:
       return Colors.orange;
-    case HousekeepingActivityType.cleanerAssigned:
+    case HousekeepingActivityType.professionalAssigned:
       return Colors.purple;
-    case HousekeepingActivityType.cleanerUnassigned:
+    case HousekeepingActivityType.professionalUnassigned:
       return Colors.grey;
     case HousekeepingActivityType.paymentReceived:
       return Colors.green;
@@ -26,7 +26,7 @@ Color getActivityColor(HousekeepingActivityType type) {
       return Colors.amber;
     case HousekeepingActivityType.customerRegistered:
       return Colors.indigo;
-    case HousekeepingActivityType.cleanerRegistered:
+    case HousekeepingActivityType.professionalRegistered:
       return Colors.cyan;
   }
 }
@@ -45,9 +45,9 @@ IconData getActivityIcon(HousekeepingActivityType type) {
       return Icons.cancel_outlined;
     case HousekeepingActivityType.bookingRescheduled:
       return Icons.schedule;
-    case HousekeepingActivityType.cleanerAssigned:
+    case HousekeepingActivityType.professionalAssigned:
       return Icons.person_add_outlined;
-    case HousekeepingActivityType.cleanerUnassigned:
+    case HousekeepingActivityType.professionalUnassigned:
       return Icons.person_remove_outlined;
     case HousekeepingActivityType.paymentReceived:
       return Icons.payment;
@@ -55,12 +55,15 @@ IconData getActivityIcon(HousekeepingActivityType type) {
       return Icons.star_outline;
     case HousekeepingActivityType.customerRegistered:
       return Icons.person_outline;
-    case HousekeepingActivityType.cleanerRegistered:
+    case HousekeepingActivityType.professionalRegistered:
       return Icons.cleaning_services_outlined;
   }
 }
 
-String getActivityTypeName(BuildContext context, HousekeepingActivityType type) {
+String getActivityTypeName(
+  BuildContext context,
+  HousekeepingActivityType type,
+) {
   final l10n = Languist.of(context);
   switch (type) {
     case HousekeepingActivityType.bookingCreated:
@@ -75,17 +78,17 @@ String getActivityTypeName(BuildContext context, HousekeepingActivityType type) 
       return l10n.bookingCancelled;
     case HousekeepingActivityType.bookingRescheduled:
       return l10n.bookingRescheduled;
-    case HousekeepingActivityType.cleanerAssigned:
-      return l10n.cleanerAssigned;
-    case HousekeepingActivityType.cleanerUnassigned:
-      return l10n.cleanerUnassigned;
+    case HousekeepingActivityType.professionalAssigned:
+      return l10n.professionalAssigned;
+    case HousekeepingActivityType.professionalUnassigned:
+      return l10n.professionalUnassigned;
     case HousekeepingActivityType.paymentReceived:
       return l10n.paymentReceived;
     case HousekeepingActivityType.reviewSubmitted:
       return l10n.reviewSubmitted;
     case HousekeepingActivityType.customerRegistered:
       return l10n.customerRegistered;
-    case HousekeepingActivityType.cleanerRegistered:
-      return l10n.cleanerRegistered;
+    case HousekeepingActivityType.professionalRegistered:
+      return l10n.professionalRegistered;
   }
 }

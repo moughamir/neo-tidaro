@@ -1,6 +1,6 @@
 import 'package:redux/redux.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../app_state.dart';
+import '../states/app_state.dart';
 import '../actions/dashboard/dashboard_auth_actions.dart';
 
 List<Middleware<AppState>> createDashboardAuthMiddleware() {

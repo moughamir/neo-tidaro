@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart' hide State;
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -109,7 +108,7 @@ class _BookingsPageState extends State<BookingsPage> {
                         booking: booking,
                         onTap: () =>
                             _navigateToBookingDetails(context, booking),
-                        onStatusChanged: (BookingStatus status) =>
+                        onStatusChanged: (BookingActivityStatus status) =>
                             viewModel.onUpdateBookingStatus(booking.id, status),
                       ),
                     );
@@ -123,8 +122,6 @@ class _BookingsPageState extends State<BookingsPage> {
     );
   }
 
-  
-
   void _showCreateBookingDialog(BuildContext context) {
     showDialog<void>(
       context: context,
@@ -136,19 +133,21 @@ class _BookingsPageState extends State<BookingsPage> {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) =>
-          StoreConnector<AppState, BookingStatus?>(
-            converter: (Store<AppState> store) => BookingSelectors.getBookingFilters(store.state).status,
-            builder: (BuildContext context, BookingStatus? currentFilter) =>
-                BookingFilterDialog(
-                  currentFilter: currentFilter,
-                  onFilterChanged: (BookingStatus? filter) {
-                    StoreProvider.of<AppState>(context, listen: false).dispatch(
-                      UpdateBookingFiltersAction(
-                        BookingFilters(status: filter),
-                      ),
-                    );
-                  },
-                ),
+          StoreConnector<AppState, BookingActivityStatus?>(
+            builder:
+                (BuildContext context, BookingActivityStatus? currentFilter) =>
+                    BookingFilterDialog(
+                      currentFilter: currentFilter,
+                      onFilterChanged: (BookingActivityStatus? filter) {
+                        StoreProvider.of<AppState>(
+                          context,
+                          listen: false,
+                        ).dispatch(UpdateBookingFiltersAction(filter));
+                      },
+                    ),
+            converter: (Store<AppState> store) {
+              return null;
+            },
           ),
     );
   }
@@ -176,42 +175,45 @@ class BookingsViewModel {
   final List<Booking> bookings;
   final bool isLoading;
   final Option<Exception> error;
-  final BookingStatus? currentFilter;
+  final BookingActivityStatus? currentFilter;
   final VoidCallback onRefresh;
-  final Function(BookingStatus?) onFilterChanged;
-  final Function(String bookingId, BookingStatus status) onUpdateBookingStatus;
+  final Function(BookingActivityStatus?) onFilterChanged;
+  final Function(String bookingId, BookingActivityStatus status)
+  onUpdateBookingStatus;
 
   int get activeBookings => bookings
       .where(
         (Booking b) =>
-            b.status == BookingStatus.confirmed ||
-            b.status == BookingStatus.inProgress,
+            b.status == BookingActivityStatus.confirmed ||
+            b.status == BookingActivityStatus.inProgress,
       )
       .length;
 
-  int get completedBookings =>
-      bookings.where((Booking b) => b.status == BookingStatus.completed).length;
+  int get completedBookings => bookings
+      .where((Booking b) => b.status == BookingActivityStatus.completed)
+      .length;
 
   static BookingsViewModel fromStore(Store<AppState> store) {
     return BookingsViewModel(
       bookings: BookingSelectors.getFilteredBookings(store.state),
       isLoading: BookingSelectors.isBookingsLoading(store.state),
       error: BookingSelectors.getBookingError(store.state),
-      currentFilter: BookingSelectors.getBookingFilters(store.state).status,
+
       onRefresh: () {
         store.dispatch(const LoadBookingsAction());
       },
-      onFilterChanged: (BookingStatus? filter) {
-        store.dispatch(UpdateBookingFiltersAction(
-          BookingFilters(status: filter),
-        ));
+      onFilterChanged: (BookingActivityStatus? filter) {
+        store.dispatch(UpdateBookingFiltersAction(filter));
       },
-      onUpdateBookingStatus: (String bookingId, BookingStatus status) {
-        store.dispatch(UpdateBookingAction(
-          bookingId: bookingId,
-          updates: <String, dynamic>{'status': status.name},
-        ));
+      onUpdateBookingStatus: (String bookingId, BookingActivityStatus status) {
+        store.dispatch(
+          UpdateBookingAction(
+            bookingId: bookingId,
+            updates: <String, dynamic>{'status': status.name},
+          ),
+        );
       },
+      currentFilter: null,
     );
   }
 }

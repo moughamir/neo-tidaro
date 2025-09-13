@@ -20,11 +20,11 @@ abstract class ProfessionalRepository
   Future<RepositoryResult<List<ProfessionalProfile>>> getNearby({
     required GeoLocation location,
     required double radius,
-    ServiceCategory? category,
+    PreBookingServiceCategory? category,
   });
 
   Future<RepositoryResult<List<ProfessionalProfile>>> getTopRated({
-    ServiceCategory? category,
+    PreBookingServiceCategory? category,
     int limit = 10,
   });
 
@@ -55,14 +55,6 @@ abstract class ProfessionalRepository
 
 /// Professional statistics domain object
 class ProfessionalStatistics {
-  final double averageRating;
-  final int totalReviews;
-  final int completedJobs;
-  final double responseRate;
-  final Duration averageResponseTime;
-  final int totalEarnings;
-  final Map<ServiceCategory, int> jobsByCategory;
-
   const ProfessionalStatistics({
     required this.averageRating,
     required this.totalReviews,
@@ -72,4 +64,11 @@ class ProfessionalStatistics {
     required this.totalEarnings,
     required this.jobsByCategory,
   });
+  final double averageRating;
+  final int totalReviews;
+  final int completedJobs;
+  final double responseRate;
+  final Duration averageResponseTime;
+  final int totalEarnings;
+  final Map<PreBookingServiceCategory, int> jobsByCategory;
 }

@@ -9,15 +9,38 @@ enum HousekeepingActivityType {
   bookingCancelled,
   bookingRescheduled,
   //
-  cleanerAssigned,
-  cleanerUnassigned,
+  professionalAssigned,
+  professionalUnassigned,
   //
   paymentReceived,
   reviewSubmitted,
   //
   customerRegistered,
-  cleanerRegistered,
+  professionalRegistered,
 }
 
-/// Cleaner status enumeration (shared-specific)
+enum BookingActivityStatus {
+  pending,
+  confirmed,
+  assigned,
+  inProgress,
+  completed,
+  cancelled,
+  rescheduled,
+  noShow,
+}
+
+/// Professional status enumeration (shared-specific)
 enum ProfessionalActivityStatus { available, onJob, offline, onBreak }
+
+/// Professional status in the Neo-Tidaro system
+enum ProfessionalKycStatus {
+  pending,
+  active,
+  inactive,
+  suspended,
+  rejected,
+  underReview,
+}
+
+enum JobStatus { available, reserved, failed }

@@ -12,9 +12,11 @@ dependencies:
 
   languist:
     path: ../../packages/languist
+  ui_kit:
+    path: ../../packages/ui_kit
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
+  flutter_lints: any
 flutter:
   uses-material-design: true

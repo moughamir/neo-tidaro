@@ -1,4 +1,4 @@
-enum ReviewAspect {
+enum PostBookingReviewAspect {
   punctuality,
   quality,
   communication,

@@ -187,7 +187,7 @@ class KuiTheme {
       centerTitle: false,
       titleTextStyle: textTheme.titleLarge,
       toolbarHeight: DesignTokens.appBarHeight,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           bottom: Radius.circular(DesignTokens.radiusLg),
         ),
@@ -204,7 +204,25 @@ class KuiTheme {
         borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
       ),
       clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.all(DesignTokens.space2),
+      margin: const EdgeInsets.all(DesignTokens.space2),
+    );
+  }
+
+  static ButtonStyle _buildBaseButtonStyle(
+    DesignColorTokens colors,
+    TextTheme textTheme,
+  ) {
+    return TextButton.styleFrom(
+      disabledForegroundColor: colors.onSurface.withValues(alpha: 0.38),
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      minimumSize: const Size(88, DesignTokens.buttonHeightMd),
+      padding: const EdgeInsets.symmetric(horizontal: DesignTokens.space4),
+      textStyle: textTheme.labelLarge,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
+      ),
+      animationDuration: DesignTokens.durationFast,
     );
   }
 
@@ -213,20 +231,11 @@ class KuiTheme {
     TextTheme textTheme,
   ) {
     return ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: colors.primary,
-        foregroundColor: colors.onPrimary,
-        disabledBackgroundColor: colors.outline,
-        disabledForegroundColor: colors.onSurface.withValues(alpha: 0.38),
-        elevation: 0, // We use custom neumorphic effects
-        shadowColor: Colors.transparent,
-        minimumSize: Size(88, DesignTokens.buttonHeightMd),
-        padding: EdgeInsets.symmetric(horizontal: DesignTokens.space4),
-        textStyle: textTheme.labelLarge,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
-        ),
-        animationDuration: DesignTokens.durationFast,
+      style: _buildBaseButtonStyle(colors, textTheme).copyWith(
+        backgroundColor: WidgetStateProperty.all(colors.primary),
+        foregroundColor: WidgetStateProperty.all(colors.onPrimary),
+        //        disabledBackgroundColor: WidgetStateProperty.all(colors.outline),
+        shadowColor: WidgetStateProperty.all(Colors.transparent),
       ),
     );
   }
@@ -236,19 +245,9 @@ class KuiTheme {
     TextTheme textTheme,
   ) {
     return OutlinedButtonThemeData(
-      style: OutlinedButton.styleFrom(
-        foregroundColor: colors.primary,
-        disabledForegroundColor: colors.onSurface.withValues(alpha: 0.38),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        minimumSize: Size(88, DesignTokens.buttonHeightMd),
-        padding: EdgeInsets.symmetric(horizontal: DesignTokens.space4),
-        textStyle: textTheme.labelLarge,
-        side: BorderSide(color: colors.outline),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
-        ),
-        animationDuration: DesignTokens.durationFast,
+      style: _buildBaseButtonStyle(colors, textTheme).copyWith(
+        foregroundColor: WidgetStateProperty.all(colors.primary),
+        side: WidgetStateProperty.all(BorderSide(color: colors.outline)),
       ),
     );
   }
@@ -258,19 +257,10 @@ class KuiTheme {
     TextTheme textTheme,
   ) {
     return TextButtonThemeData(
-      style: TextButton.styleFrom(
-        foregroundColor: colors.primary,
-        disabledForegroundColor: colors.onSurface.withValues(alpha: 0.38),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        minimumSize: Size(88, DesignTokens.buttonHeightMd),
-        padding: EdgeInsets.symmetric(horizontal: DesignTokens.space4),
-        textStyle: textTheme.labelLarge,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
-        ),
-        animationDuration: DesignTokens.durationFast,
-      ),
+      style: _buildBaseButtonStyle(
+        colors,
+        textTheme,
+      ).copyWith(foregroundColor: WidgetStateProperty.all(colors.primary)),
     );
   }
 
@@ -278,41 +268,32 @@ class KuiTheme {
     DesignColorTokens colors,
     TextTheme textTheme,
   ) {
+    final baseBorder = OutlineInputBorder(
+      borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
+      borderSide: BorderSide(color: colors.outline),
+    );
+
     return InputDecorationTheme(
       filled: true,
       fillColor: colors.surface,
-      contentPadding: EdgeInsets.symmetric(
+      contentPadding: const EdgeInsets.symmetric(
         horizontal: DesignTokens.space4,
         vertical: DesignTokens.space3,
       ),
-
-      // Border styles using neumorphic effects
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
-        borderSide: BorderSide(color: colors.outline),
-      ),
-      enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
-        borderSide: BorderSide(color: colors.outline),
-      ),
-      focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
+      border: baseBorder,
+      enabledBorder: baseBorder,
+      focusedBorder: baseBorder.copyWith(
         borderSide: BorderSide(color: colors.primary, width: 2),
       ),
-      errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
+      errorBorder: baseBorder.copyWith(
         borderSide: BorderSide(color: colors.error, width: 2),
       ),
-      focusedErrorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
+      focusedErrorBorder: baseBorder.copyWith(
         borderSide: BorderSide(color: colors.error, width: 2),
       ),
-      disabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
+      disabledBorder: baseBorder.copyWith(
         borderSide: BorderSide(color: colors.outline.withValues(alpha: 0.38)),
       ),
-
-      // Text styles
       labelStyle: textTheme.bodyMedium?.copyWith(
         color: colors.onSurfaceVariant,
       ),
@@ -336,7 +317,7 @@ class KuiTheme {
         borderRadius: BorderRadius.circular(DesignTokens.radiusSm),
       ),
       textStyle: textTheme.bodySmall?.copyWith(color: colors.onInverseSurface),
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: DesignTokens.space3,
         vertical: DesignTokens.space2,
       ),
@@ -352,7 +333,7 @@ class KuiTheme {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(DesignTokens.radius2xl),
       ),
-      insetPadding: EdgeInsets.all(DesignTokens.space6),
+      insetPadding: const EdgeInsets.all(DesignTokens.space6),
     );
   }
 
@@ -360,7 +341,7 @@ class KuiTheme {
     return BottomSheetThemeData(
       backgroundColor: colors.surface,
       elevation: 0, // We use custom neumorphic effects
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(DesignTokens.radius2xl),
         ),
@@ -400,7 +381,7 @@ class KuiTheme {
       secondaryLabelStyle: textTheme.bodyMedium?.copyWith(
         color: colors.onSecondary,
       ),
-      padding: EdgeInsets.symmetric(horizontal: DesignTokens.space3),
+      padding: const EdgeInsets.symmetric(horizontal: DesignTokens.space3),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(DesignTokens.radiusLg),
       ),

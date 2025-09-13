@@ -1,11 +1,14 @@
 import 'dart:async';
 
 import 'package:core/utils/logger.dart';
-import 'package:redux/redux.dart';
-import 'package:domain/domain.dart';
-import 'package:shared/redux/actions/booking_actions.dart';
-import 'package:shared/redux/core/base_action.dart';
+import 'package:domain/entities/user/user.dart';
+
+import 'package:domain/dto/booking_dto.dart' show UpdateBookingStatusDto;
+import 'package:domain/enums/enums.dart';
+
+import 'package:shared/redux/redux.dart';
 import 'package:shared/repositories/supabase_booking_repository.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy, User;
 
 /// Booking middleware for handling async operations with Supabase
 class BookingMiddleware extends MiddlewareClass<AppState> {
@@ -38,7 +41,7 @@ class BookingMiddleware extends MiddlewareClass<AppState> {
   ) async {
     final authState = store.state.authState;
 
-    if (authState.isLoading || authState.hasError) {
+    if (authState.isLoading || (authState.error.isSome())) {
       store.dispatch(
         ActionCreators.failure(
           BookingActionTypes.loadBookingsFailure,
@@ -48,7 +51,7 @@ class BookingMiddleware extends MiddlewareClass<AppState> {
       return;
     }
 
-    final user = authState.dataOrNull;
+    final User? user = authState.data.fold<User?>(() => null, (User u) => u);
     if (user == null) {
       store.dispatch(
         ActionCreators.failure(
@@ -60,30 +63,23 @@ class BookingMiddleware extends MiddlewareClass<AppState> {
     }
 
     try {
-      final result = await _bookingRepository.findUpcomingBookings(
-        clientId: user.role == UserRole.clientConsumer ? user.id : null,
-        providerId: user.role == UserRole.clientProfessional ? user.id : null,
-        startDate: action.filters?.dateRange?.start,
-        endDate: action.filters?.dateRange?.end,
+      final start = action.filters?['dateRange']?['start'] as DateTime?;
+      final end = action.filters?['dateRange']?['end'] as DateTime?;
+
+      final bookings = await _bookingRepository.findUpcomingBookings(
+        clientId: user.role == PlatformUserRole.clientConsumer ? user.id : null,
+        providerId: user.role == PlatformUserRole.clientProfessional
+            ? user.id
+            : null,
+        startDate: start,
+        endDate: end,
       );
 
-      await result.fold(
-        (failure) async {
-          store.dispatch(
-            ActionCreators.failure(
-              BookingActionTypes.loadBookingsFailure,
-              Exception(failure.message),
-            ),
-          );
-        },
-        (bookings) async {
-          store.dispatch(
-            ActionCreators.success(
-              BookingActionTypes.loadBookingsSuccess,
-              bookings,
-            ),
-          );
-        },
+      store.dispatch(
+        ActionCreators.success(
+          BookingActionTypes.loadBookingsSuccess,
+          bookings,
+        ),
       );
     } catch (e, stackTrace) {
       CoreLogger.error(
@@ -105,108 +101,37 @@ class BookingMiddleware extends MiddlewareClass<AppState> {
     UpdateBookingAction action,
   ) async {
     try {
-      final result = await _bookingRepository.findById(action.bookingId);
-
-      await result.fold(
-        (failure) async => store.dispatch(
-          ActionCreators.failure(
-            BookingActionTypes.updateBookingFailure,
-            Exception(failure.message),
-          ),
-        ),
-
-        (booking) async {
-          // Parse and validate update values
-          final providerId =
-              action.updates['providerId'] as String? ?? booking.providerId;
-          final serviceId =
-              action.updates['serviceId'] as String? ?? booking.serviceId;
-          final addressId =
-              action.updates['addressId'] as String? ?? booking.addressId;
-
-          // Handle DateTime conversion
-          DateTime? scheduledDate = booking.scheduledDate;
-          if (action.updates['scheduledDate'] is DateTime) {
-            scheduledDate = action.updates['scheduledDate'] as DateTime;
-          } else if (action.updates['scheduledDate'] != null) {
-            scheduledDate =
-                DateTime.tryParse(action.updates['scheduledDate'].toString()) ??
-                booking.scheduledDate;
-          }
-
-          final specialInstructions =
-              action.updates['specialInstructions'] as String? ??
-              booking.specialInstructions;
-
-          // Parse numeric values with type safety
-          int durationMinutes = booking.durationMinutes;
-          if (action.updates['durationMinutes'] is int) {
-            durationMinutes = action.updates['durationMinutes'] as int;
-          } else if (action.updates['durationMinutes'] is String) {
-            durationMinutes =
-                int.tryParse(action.updates['durationMinutes'] as String) ??
-                booking.durationMinutes;
-          }
-
-          double totalPrice = booking.totalPrice;
-          if (action.updates['totalPrice'] is num) {
-            totalPrice = (action.updates['totalPrice'] as num).toDouble();
-          } else if (action.updates['totalPrice'] is String) {
-            totalPrice =
-                double.tryParse(action.updates['totalPrice'] as String) ??
-                booking.totalPrice;
-          }
-
-          // Handle status enum conversion
-          BookingStatus status = booking.status;
-          if (action.updates['status'] is BookingStatus) {
-            status = action.updates['status'] as BookingStatus;
-          } else if (action.updates['status'] is String) {
-            final statusStr = action.updates['status'] as String;
-            status = BookingStatus.values.firstWhere(
-              (e) => e.toString().split('.').last == statusStr,
-              orElse: () => booking.status,
-            );
-          }
-
-          // Create a new booking with updated fields
-          final updatedBooking = BookingModel(
-            id: booking.id,
-            clientId: booking.clientId,
-            providerId: providerId,
-            serviceId: serviceId,
-            addressId: addressId,
-            scheduledDate: scheduledDate,
-            status: status,
-            specialInstructions: specialInstructions,
-            durationMinutes: durationMinutes,
-            totalPrice: totalPrice,
-            client: booking.client,
-            provider: booking.provider,
-            service: booking.service,
-            address: booking.address,
-            createdAt: booking.createdAt,
-            updatedAt: DateTime.now(),
+      final booking = await _bookingRepository.findById(action.bookingId);
+      {
+        // Parse and validate update values
+        // Handle status-only update for now; complex updates TBD
+        if (action.updates.containsKey('status')) {
+          final statusVal = action.updates['status'];
+          final status = statusVal is BookingActivityStatus
+              ? statusVal
+              : BookingActivityStatus.values.firstWhere(
+                  (e) => e.toString().split('.').last == statusVal,
+                  orElse: () => booking.status,
+                );
+          final saved = await _bookingRepository.updateStatus(
+            UpdateBookingStatusDto(bookingId: booking.id, status: status),
           );
-
-          final saveResult = await _bookingRepository.save(updatedBooking);
-
-          saveResult.fold(
-            (failure) => store.dispatch(
-              ActionCreators.failure(
-                BookingActionTypes.updateBookingFailure,
-                Exception(failure.message),
-              ),
-            ),
-            (savedBooking) => store.dispatch(
-              ActionCreators.success(
-                BookingActionTypes.updateBookingSuccess,
-                savedBooking,
-              ),
+          store.dispatch(
+            ActionCreators.success(
+              BookingActionTypes.updateBookingSuccess,
+              saved,
             ),
           );
-        },
-      );
+        } else {
+          // No supported updates
+          store.dispatch(
+            ActionCreators.failure(
+              BookingActionTypes.updateBookingFailure,
+              Exception('Unsupported update fields'),
+            ),
+          );
+        }
+      }
     } catch (e, stackTrace) {
       CoreLogger.error(
         'Error in _handleUpdateBooking',

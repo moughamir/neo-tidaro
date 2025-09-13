@@ -1,22 +1,10 @@
 // ============= LOCATION DTOs =============
 
-import '../enums/address_type.dart';
+import 'package:domain/enums/enums.dart';
 
 import 'geo_location_dto.dart';
 
 class CreateAddressDto {
-  final String userId;
-  final AddressType type;
-  final String street;
-  final String? apartment;
-  final String city;
-  final String state;
-  final String postalCode;
-  final String country;
-  final GeoLocationDto? location;
-  final String? instructions;
-  final bool isDefault;
-
   const CreateAddressDto({
     required this.userId,
     required this.type,
@@ -30,6 +18,17 @@ class CreateAddressDto {
     this.instructions,
     this.isDefault = false,
   });
+  final String userId;
+  final AddressType type;
+  final String street;
+  final String? apartment;
+  final String city;
+  final String state;
+  final String postalCode;
+  final String country;
+  final GeoLocationDto? location;
+  final String? instructions;
+  final bool isDefault;
 
   Map<String, dynamic> toJson() => {
     'user_id': userId,

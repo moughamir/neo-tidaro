@@ -65,7 +65,7 @@ class _NeumorphicInputFieldState extends State<NeumorphicInputField> {
     final effectiveBackgroundColor = widget.backgroundColor ?? colors.surface;
     final effectiveTextColor = widget.textColor ?? colors.onSurface;
     final effectiveHintColor =
-        widget.hintColor ?? colors.onSurface.withValues(alpha: 0.6);
+        widget.hintColor ?? colors.onSurface.withOpacity(0.6);
 
     return Container(
       decoration: (_isFocused
@@ -175,7 +175,7 @@ class _AuthInputFieldState extends State<AuthInputField> {
                 ? IconButton(
                     icon: Icon(
                       _isObscured ? Icons.visibility : Icons.visibility_off,
-                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                      color: theme.colorScheme.onSurface.withOpacity(0.6),
                     ),
                     onPressed: () {
                       setState(() {
@@ -184,39 +184,6 @@ class _AuthInputFieldState extends State<AuthInputField> {
                     },
                   )
                 : widget.suffixIcon,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: theme.colorScheme.outline.withValues(alpha: 0.3),
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: theme.colorScheme.outline.withValues(alpha: 0.3),
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(
-                color: theme.colorScheme.primary,
-                width: 2,
-              ),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: theme.colorScheme.error),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(color: theme.colorScheme.error, width: 2),
-            ),
-            filled: true,
-            fillColor: theme.colorScheme.surface.withValues(alpha: 0.8),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
-            ),
           ),
         ),
       ],

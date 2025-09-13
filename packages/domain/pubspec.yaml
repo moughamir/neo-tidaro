@@ -1,6 +1,6 @@
 name: domain
 description: "Domain layer for Neo-Tidaro workspace containing business models and entities"
-version: 0.1.0-pre-alpha.3
+version: 0.1.0-pre-alpha.4
 homepage: https://github.com/neo-tidaro/neo-tidaro
 repository: https://github.com/neo-tidaro/neo-tidaro
 publish_to: none
@@ -13,5 +13,5 @@ environment:
 dependencies:
 
 dev_dependencies:
-  test: ^1.25.0
-  lints: ^6.0.0
+  test: any
+  lints: any

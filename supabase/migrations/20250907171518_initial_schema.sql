@@ -2,7 +2,7 @@ create extension if not exists "postgis" with schema "public" version '3.3.7';
 
 create type "public"."booking_status_enum" as enum ('pending', 'confirmed', 'assigned', 'in_progress', 'completed', 'cancelled', 'rescheduled');
 
-create type "public"."cleaner_status_enum" as enum ('available', 'on_job', 'offline', 'on_break');
+create type "public"."professional_status_enum" as enum ('available', 'on_job', 'offline', 'on_break');
 
 create type "public"."document_type_enum" as enum ('cin', 'cine', 'reference_letter', 'background_check');
 
@@ -77,7 +77,7 @@ create table "public"."bookings" (
     "payment_status" payment_status_enum not null,
     "address_id" uuid not null,
     "notes" text,
-    "cleaner_id" uuid,
+    "professional_id" uuid,
     "created_at" timestamp with time zone default now(),
     "updated_at" timestamp with time zone default now(),
     "completed_at" timestamp with time zone,
@@ -119,7 +119,7 @@ create table "public"."profiles" (
     "avatar_url" text,
     "phone_number" text,
     "role" user_role_enum not null default 'client_consumer'::user_role_enum,
-    "cleaner_status" cleaner_status_enum not null default 'offline'::cleaner_status_enum,
+    "professional_status" professional_status_enum not null default 'offline'::professional_status_enum,
     "created_at" timestamp with time zone default now(),
     "updated_at" timestamp with time zone default now()
 );
@@ -224,7 +224,7 @@ CREATE INDEX idx_blocked_periods_profile_id ON public.blocked_periods USING btre
 
 CREATE INDEX idx_blocked_periods_start_date ON public.blocked_periods USING btree (start_date);
 
-CREATE INDEX idx_bookings_cleaner_id ON public.bookings USING btree (cleaner_id);
+CREATE INDEX idx_bookings_professional_id ON public.bookings USING btree (professional_id);
 
 CREATE INDEX idx_bookings_created_at ON public.bookings USING btree (created_at DESC);
 
@@ -350,9 +350,9 @@ alter table "public"."bookings" add constraint "bookings_address_id_fkey" FOREIG
 
 alter table "public"."bookings" validate constraint "bookings_address_id_fkey";
 
-alter table "public"."bookings" add constraint "bookings_cleaner_id_fkey" FOREIGN KEY (cleaner_id) REFERENCES profiles(id) ON DELETE SET NULL not valid;
+alter table "public"."bookings" add constraint "bookings_professional_id_fkey" FOREIGN KEY (professional_id) REFERENCES profiles(id) ON DELETE SET NULL not valid;
 
-alter table "public"."bookings" validate constraint "bookings_cleaner_id_fkey";
+alter table "public"."bookings" validate constraint "bookings_professional_id_fkey";
 
 alter table "public"."bookings" add constraint "bookings_customer_id_fkey" FOREIGN KEY (customer_id) REFERENCES profiles(id) ON DELETE CASCADE not valid;
 
@@ -431,7 +431,7 @@ create or replace view "public"."active_bookings_view" as  SELECT b.id,
     b.payment_status,
     b.address_id,
     b.notes,
-    b.cleaner_id,
+    b.professional_id,
     b.created_at,
     b.updated_at,
     b.completed_at,
@@ -445,13 +445,13 @@ create or replace view "public"."active_bookings_view" as  SELECT b.id,
   WHERE (b.status = ANY (ARRAY['pending'::booking_status_enum, 'confirmed'::booking_status_enum, 'in_progress'::booking_status_enum]));
 
 
-create or replace view "public"."cleaner_performance_view" as  SELECT p.id AS cleaner_id,
-    p.full_name AS cleaner_name,
+create or replace view "public"."professional_performance_view" as  SELECT p.id AS professional_id,
+    p.full_name AS professional_name,
     count(b.id) AS total_completed_bookings,
     avg(r.rating) AS average_rating,
     sum(b.total_price) AS total_revenue_generated
    FROM ((profiles p
-     LEFT JOIN bookings b ON (((p.id = b.cleaner_id) AND (b.status = 'completed'::booking_status_enum))))
+     LEFT JOIN bookings b ON (((p.id = b.professional_id) AND (b.status = 'completed'::booking_status_enum))))
      LEFT JOIN reviews r ON ((b.id = r.booking_id)))
   WHERE (p.role = 'client_provider'::user_role_enum)
   GROUP BY p.id, p.full_name;
@@ -466,7 +466,7 @@ create or replace view "public"."completed_bookings_view" as  SELECT b.id,
     b.payment_status,
     b.address_id,
     b.notes,
-    b.cleaner_id,
+    b.professional_id,
     b.created_at,
     b.updated_at,
     b.completed_at,

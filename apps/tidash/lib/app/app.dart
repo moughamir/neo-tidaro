@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import '../pages/home_page.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -12,7 +11,8 @@ class TiDashApp extends StatelessWidget {
     return StoreProvider<AppState>(
       store: createStore(
         enableLogging: true,
-        logger: (String message) => CoreLogger.debug(message, tag: 'REDUX', showLevel: true),
+        logger: (String message) =>
+            CoreLogger.debug(message, tag: 'REDUX', showLevel: true),
         onError: (Exception error, BaseAction action) => CoreLogger.error(
           'Redux error on action ${action.type}',
           error: error,

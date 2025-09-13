@@ -1,4 +1,4 @@
-enum ServiceCategory {
+enum PreBookingServiceCategory {
   cleaning,
   standardCleaning,
   regularCleaning,

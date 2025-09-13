@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:languist/languist.dart';
 
 /// Time formatting utilities with full internationalization support
@@ -95,7 +94,7 @@ String getGreeting([IntlLocalizations? l10n]) {
   if (l10n != null) {
     // Since Languist doesn't have specific time-of-day greetings,
     // we use hello with the appropriate time greeting
-    return '${l10n.hello}';
+    return l10n.hello;
   }
   
   return timeBasedGreeting;

@@ -1,5 +1,5 @@
 /// Data Transfer Objects for the domain layer
-library dto;
+library;
 
 export 'auth_dto.dart';
 export 'booking_dto.dart';

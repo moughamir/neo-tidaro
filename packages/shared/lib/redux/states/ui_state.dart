@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
-import '../core/core.dart';
+import 'package:shared/redux/core/core.dart';
+
 import '../actions/ui_actions.dart';
 
 /// UI state following functional programming patterns
@@ -73,7 +74,8 @@ class UiState extends BaseState {
   ];
 
   @override
-  String toString() => 'UiState('
+  String toString() =>
+      'UiState('
       'themeMode: $themeMode, '
       'locale: $locale, '
       'hasSnackBar: ${snackBarMessage.isSome()}, '

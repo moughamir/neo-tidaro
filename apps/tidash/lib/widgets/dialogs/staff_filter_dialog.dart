@@ -20,7 +20,8 @@ class StaffFilterDialog extends StatefulWidget {
 class _StaffFilterDialogState extends State<StaffFilterDialog> {
   ProfessionalActivityStatus? _selectedStatus;
   bool? _availabilityFilter;
-  final List<ServiceCategory> _selectedSpecialties = <ServiceCategory>[];
+  final List<PreBookingServiceCategory> _selectedSpecialties =
+      <PreBookingServiceCategory>[];
   double _minRating = 0;
   double _maxRating = 5;
 
@@ -126,8 +127,8 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                     Wrap(
                       spacing: 8,
                       runSpacing: 8,
-                      children: ServiceCategory.values.map((
-                        ServiceCategory category,
+                      children: PreBookingServiceCategory.values.map((
+                        PreBookingServiceCategory category,
                       ) {
                         final bool isSelected = _selectedSpecialties.contains(
                           category,
@@ -252,62 +253,62 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
     final IntlLocalizations l10n = Languist.of(context);
     switch (status) {
       case ProfessionalActivityStatus.available:
-        return l10n.cleanerStatusAvailable;
+        return l10n.professionalStatusAvailable;
       case ProfessionalActivityStatus.onJob:
-        return l10n.cleanerStatusOnJob;
+        return l10n.professionalStatusOnJob;
       case ProfessionalActivityStatus.offline:
-        return l10n.cleanerStatusOffline;
+        return l10n.professionalStatusOffline;
       case ProfessionalActivityStatus.onBreak:
-        return l10n.cleanerStatusOnBreak;
+        return l10n.professionalStatusOnBreak;
     }
   }
 
-  String _getServiceCategoryName(ServiceCategory category) {
+  String _getServiceCategoryName(PreBookingServiceCategory category) {
     final IntlLocalizations l10n = Languist.of(context);
     switch (category) {
-      case ServiceCategory.regularCleaning:
+      case PreBookingServiceCategory.regularCleaning:
         return l10n.serviceCategoryRegularCleaning;
-      case ServiceCategory.deepCleaning:
+      case PreBookingServiceCategory.deepCleaning:
         return l10n.serviceCategoryDeepCleaning;
-      case ServiceCategory.moveInOut:
+      case PreBookingServiceCategory.moveInOut:
         return l10n.serviceCategoryMoveInOut;
-      case ServiceCategory.postConstruction:
+      case PreBookingServiceCategory.postConstruction:
         return l10n.serviceCategoryPostConstruction;
-      case ServiceCategory.commercial:
+      case PreBookingServiceCategory.commercial:
         return l10n.serviceCategoryCommercial;
-      case ServiceCategory.specialized:
+      case PreBookingServiceCategory.specialized:
         // Fallback: Languist currently has no `serviceCategorySpecialized` key.
         // Consider adding it to Languist ARB files. Using a safe English fallback meanwhile.
         return 'Specialized';
-      case ServiceCategory.standardCleaning:
+      case PreBookingServiceCategory.standardCleaning:
         return l10n.serviceCategoryStandardCleaning;
-      case ServiceCategory.residential:
+      case PreBookingServiceCategory.residential:
         return l10n.serviceCategoryResidential;
-      case ServiceCategory.cleaning:
+      case PreBookingServiceCategory.cleaning:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.laundry:
+      case PreBookingServiceCategory.laundry:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.cooking:
+      case PreBookingServiceCategory.cooking:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.babysitting:
+      case PreBookingServiceCategory.babysitting:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.petCare:
+      case PreBookingServiceCategory.petCare:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.gardening:
+      case PreBookingServiceCategory.gardening:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.maintenance:
+      case PreBookingServiceCategory.maintenance:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.organization:
+      case PreBookingServiceCategory.organization:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.other:
+      case PreBookingServiceCategory.other:
         // TODO: Handle this case.
         throw UnimplementedError();
     }

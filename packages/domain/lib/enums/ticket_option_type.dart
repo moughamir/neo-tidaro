@@ -1,5 +1,1 @@
-enum TicketOptionType {
-  status,
-  priority,
-  category,
-}
+enum SupportTicketOptionType { status, priority, category }

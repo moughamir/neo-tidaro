@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart' hide AuthState;
+import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
 import '../core/core.dart';
 import '../actions/auth_actions.dart';

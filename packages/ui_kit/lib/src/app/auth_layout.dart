@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:languist/languist.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 /// Responsive two-column authentication layout
 /// Left column: Themed gradient background with brand and quote
@@ -26,14 +27,34 @@ class AuthLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final l10n = Languist.of(context);
-    final screenSize = MediaQuery.of(context).size;
-    final isDesktop = screenSize.width >= 768;
+    final isDesktop = MediaQuery.of(context).size.width >= 768;
 
     if (isDesktop) {
       return _buildDesktopLayout(context, theme, l10n);
     } else {
       return _buildMobileLayout(context, theme, l10n);
     }
+  }
+
+  // DRY helper: top controls row used in both mobile header and desktop right column
+  Widget _buildControlsRow(
+    ThemeData theme,
+    IntlLocalizations l10n, {
+    bool compactBrand = false,
+  }) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        _buildBrandSection(theme, compact: compactBrand),
+        Row(
+          children: [
+            _buildLanguageSelector(theme, l10n),
+            const SizedBox(width: 8),
+            _buildThemeToggle(theme),
+          ],
+        ),
+      ],
+    );
   }
 
   Widget _buildDesktopLayout(
@@ -44,9 +65,7 @@ class AuthLayout extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          // Left column - Themed gradient background with brand and quote
           Flexible(flex: 1, child: _buildLeftColumn(context, theme, l10n)),
-          // Right column - Authentication form with controls
           Flexible(flex: 1, child: _buildRightColumn(context, theme, l10n)),
         ],
       ),
@@ -61,7 +80,6 @@ class AuthLayout extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          // Top section - Compact brand with controls
           Container(
             height: 140,
             width: double.infinity,
@@ -76,43 +94,19 @@ class AuthLayout extends StatelessWidget {
                   ? _buildTiDashGradient(theme)
                   : null,
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.black.withValues(alpha: 0.3),
-                    Colors.black.withValues(alpha: 0.1),
-                  ],
-                ),
-              ),
+            child: _GradientOverlay(
               child: SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
                     children: [
-                      // Controls row
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          _buildBrandSection(theme, compact: true),
-                          Row(
-                            children: [
-                              _buildLanguageSelector(theme, l10n),
-                              const SizedBox(width: 8),
-                              _buildThemeToggle(theme),
-                            ],
-                          ),
-                        ],
-                      ),
+                      _buildControlsRow(theme, l10n, compactBrand: true),
                     ],
                   ),
                 ),
               ),
             ),
           ),
-          // Bottom section - Authentication form
           Expanded(
             child: Container(
               width: double.infinity,
@@ -145,29 +139,17 @@ class AuthLayout extends StatelessWidget {
             : null,
         gradient: backgroundImage == null ? _buildTiDashGradient(theme) : null,
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              Colors.black.withValues(alpha: 0.4),
-              Colors.black.withValues(alpha: 0.2),
+      child: _GradientOverlay(
+        child: Padding(
+          padding: const EdgeInsets.all(40),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildBrandSection(theme),
+              const Spacer(),
+              _buildQuoteSection(theme, l10n),
             ],
           ),
-        ),
-        padding: const EdgeInsets.all(40),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Brand section at top-left
-            _buildBrandSection(theme),
-
-            const Spacer(),
-
-            // Today's quote at bottom-left
-            _buildQuoteSection(theme, l10n),
-          ],
         ),
       ),
     );
@@ -182,19 +164,10 @@ class AuthLayout extends StatelessWidget {
       color: theme.colorScheme.surface,
       child: Column(
         children: [
-          // Controls bar at top
           Container(
             padding: const EdgeInsets.all(8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                _buildLanguageSelector(theme, l10n),
-                const SizedBox(width: 12),
-                _buildThemeToggle(theme),
-              ],
-            ),
+            child: _buildControlsRow(theme, l10n),
           ),
-          // Auth form content
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -211,25 +184,26 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildBrandSection(ThemeData theme, {bool compact = false}) {
+  Widget _buildBrandSection(ThemeData theme, {bool compact = true}) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // TiDash logo with orange accent
         Container(
           width: compact ? 32 : 48,
           height: compact ? 32 : 48,
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.15),
+            color: theme.colorScheme.onPrimaryContainer,
             borderRadius: BorderRadius.circular(12),
             border: Border.all(
-              color: Colors.white.withValues(alpha: 0.3),
+              color: theme.colorScheme.onPrimaryContainer.withValues(
+                alpha: 0.3,
+              ),
               width: 1,
             ),
           ),
           child: Icon(
             Icons.dashboard_rounded,
-            color: Colors.white,
+            color: theme.colorScheme.primary,
             size: compact ? 20 : 28,
           ),
         ),
@@ -237,7 +211,7 @@ class AuthLayout extends StatelessWidget {
         Text(
           'TiDash',
           style: theme.textTheme.headlineSmall?.copyWith(
-            color: Colors.white,
+            color: theme.colorScheme.onSurface,
             fontWeight: FontWeight.bold,
             fontSize: compact ? 20 : 24,
             letterSpacing: 0.5,
@@ -255,26 +229,23 @@ class AuthLayout extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: Colors.white.withValues(alpha: 0.1),
+            color: theme.colorScheme.onPrimaryContainer,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.2),
-              width: 1,
-            ),
+            border: Border.all(color: theme.colorScheme.primary, width: 1),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Icon(
                 Icons.format_quote,
-                color: Colors.white.withValues(alpha: 0.7),
+                color: theme.colorScheme.primary,
                 size: 32,
               ),
               const SizedBox(height: 12),
               Text(
                 'Transform your workflow with powerful analytics and intuitive design. Built for modern teams.',
                 style: theme.textTheme.bodyLarge?.copyWith(
-                  color: Colors.white.withValues(alpha: 0.9),
+                  color: theme.colorScheme.onPrimaryContainer,
                   height: 1.6,
                   fontSize: 16,
                 ),
@@ -283,7 +254,7 @@ class AuthLayout extends StatelessWidget {
               Text(
                 '— TiDash Team',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: Colors.white.withValues(alpha: 0.7),
+                  color: theme.colorScheme.primary,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -294,53 +265,37 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  /// Creates TiDash-themed gradient with orange accent
   LinearGradient _buildTiDashGradient(ThemeData theme) {
     final isDark = theme.brightness == Brightness.dark;
-
-    if (isDark) {
-      return const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Color(0xFF1A1A1A), // Dark base
-          Color(0xFF2D1B1B), // Dark with orange tint
-          Color(0xFF3D2914), // Darker orange
-          Color(0xFF1A1A1A), // Back to dark
-        ],
-        stops: [0.0, 0.3, 0.7, 1.0],
-      );
-    } else {
-      return const LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [
-          Color(0xFFFF8C00), // Orange accent
-          Color(0xFFFF7F00), // Bright orange
-          Color(0xFFFF6B35), // Orange-red
-          Color(0xFFE55D00), // Deeper orange
-        ],
-        stops: [0.0, 0.3, 0.7, 1.0],
-      );
-    }
+    return LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      colors: isDark
+          ? const [
+              Color(0xFF1A1A1A),
+              Color(0xFF2D1B1B),
+              Color(0xFF3D2914),
+              Color(0xFF1A1A1A),
+            ]
+          : const [
+              Color(0xFFFF8C00),
+              Color(0xFFFF7F00),
+              Color(0xFFFF6B35),
+              Color(0xFFE55D00),
+            ],
+      stops: const [0.0, 0.3, 0.7, 1.0],
+    );
   }
 
-  /// Builds theme toggle button
   Widget _buildThemeToggle(ThemeData theme) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.2),
-          width: 1,
-        ),
-      ),
+    return _ControlContainer(
       child: IconButton(
         onPressed: onThemeToggle,
         icon: Icon(
           isDarkMode ? Icons.light_mode : Icons.dark_mode,
-          color: Colors.white,
+          color: isDarkMode
+              ? theme.colorScheme.primary
+              : theme.colorScheme.onPrimaryContainer,
           size: 20,
         ),
         tooltip: isDarkMode ? 'Light Mode' : 'Dark Mode',
@@ -348,7 +303,6 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  /// Builds language selector dropdown
   Widget _buildLanguageSelector(ThemeData theme, IntlLocalizations l10n) {
     final languages = {
       'en': 'English',
@@ -357,15 +311,7 @@ class AuthLayout extends StatelessWidget {
       'fr': 'Français',
     };
 
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(
-          color: Colors.white.withValues(alpha: 0.2),
-          width: 1,
-        ),
-      ),
+    return _ControlContainer(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
@@ -373,11 +319,11 @@ class AuthLayout extends StatelessWidget {
           onChanged: (String? value) => onLanguageChanged?.call(value!),
           icon: Icon(
             Icons.language,
-            color: Colors.white.withValues(alpha: 0.7),
+            color: theme.colorScheme.primary,
             size: 16,
           ),
           style: theme.textTheme.bodySmall?.copyWith(
-            color: Colors.white,
+            color: theme.colorScheme.primary,
             fontSize: 12,
           ),
           dropdownColor: theme.colorScheme.surface,
@@ -395,6 +341,52 @@ class AuthLayout extends StatelessWidget {
           }).toList(),
         ),
       ),
+    );
+  }
+}
+
+/// A container that applies a dark gradient overlay.
+class _GradientOverlay extends StatelessWidget {
+  const _GradientOverlay({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            // TODO: Add Gradient color constants from designSystem (Glitchy//Synthwavee style red/blue)
+            Color(0xFF07D4E7),
+            Color(0xFFEA0559),
+          ],
+        ),
+      ),
+      child: child,
+    );
+  }
+}
+
+/// A container for the theme and language controls with a consistent style.
+class _ControlContainer extends StatelessWidget {
+  const _ControlContainer({required this.child, this.padding});
+
+  final Widget child;
+  final EdgeInsetsGeometry? padding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: padding,
+      decoration: BoxDecoration(
+        color: Color(0xFF07D4E7),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(width: 1),
+      ),
+      child: child,
     );
   }
 }

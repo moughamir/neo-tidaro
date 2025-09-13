@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
 import 'package:ui_kit/ui_kit.dart' as ui;
-import 'package:domain/domain.dart';
-import 'package:domain/mappers/professional_status_mapper.dart';
 
 /// Dialog for viewing staff member details
 class StaffDetailsDialog extends StatelessWidget {
@@ -87,7 +85,7 @@ class StaffDetailsDialog extends StatelessWidget {
                             spacing: 8,
                             runSpacing: 8,
                             children: professional.categories.map((
-                              ServiceCategory category,
+                              PreBookingServiceCategory category,
                             ) {
                               return Chip(
                                 label: Text(_getServiceCategoryName(category)),
@@ -255,49 +253,49 @@ class StaffDetailsDialog extends StatelessWidget {
     }
   }
 
-  String _getServiceCategoryName(ServiceCategory category) {
+  String _getServiceCategoryName(PreBookingServiceCategory category) {
     switch (category) {
-      case ServiceCategory.regularCleaning:
+      case PreBookingServiceCategory.regularCleaning:
         return 'Regular Cleaning';
-      case ServiceCategory.deepCleaning:
+      case PreBookingServiceCategory.deepCleaning:
         return 'Deep Cleaning';
-      case ServiceCategory.moveInOut:
+      case PreBookingServiceCategory.moveInOut:
         return 'Move In/Out';
-      case ServiceCategory.postConstruction:
+      case PreBookingServiceCategory.postConstruction:
         return 'Post Construction';
-      case ServiceCategory.commercial:
+      case PreBookingServiceCategory.commercial:
         return 'Commercial';
-      case ServiceCategory.specialized:
+      case PreBookingServiceCategory.specialized:
         return 'Specialized';
-      case ServiceCategory.standardCleaning:
+      case PreBookingServiceCategory.standardCleaning:
         return 'Standard Cleaning';
-      case ServiceCategory.residential:
+      case PreBookingServiceCategory.residential:
         return 'Residential';
-      case ServiceCategory.cleaning:
+      case PreBookingServiceCategory.cleaning:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.laundry:
+      case PreBookingServiceCategory.laundry:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.cooking:
+      case PreBookingServiceCategory.cooking:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.babysitting:
+      case PreBookingServiceCategory.babysitting:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.petCare:
+      case PreBookingServiceCategory.petCare:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.gardening:
+      case PreBookingServiceCategory.gardening:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.maintenance:
+      case PreBookingServiceCategory.maintenance:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.organization:
+      case PreBookingServiceCategory.organization:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.other:
+      case PreBookingServiceCategory.other:
         // TODO: Handle this case.
         throw UnimplementedError();
     }
@@ -309,18 +307,18 @@ class StaffDetailsDialog extends StatelessWidget {
 
   void _toggleAvailability(BuildContext context) {
     // Determine the next activity status
-    final ProfessionalActivityStatus currentActivityStatus = 
+    final ProfessionalActivityStatus currentActivityStatus =
         ProfessionalStatusMapper.toActivityStatus(professional.status);
-        
+
     final ProfessionalActivityStatus nextActivityStatus =
         currentActivityStatus == ProfessionalActivityStatus.available
         ? ProfessionalActivityStatus.offline
         : currentActivityStatus == ProfessionalActivityStatus.onJob
         ? ProfessionalActivityStatus.onBreak
         : ProfessionalActivityStatus.available;
-    
+
     // Map to the appropriate ProfessionalStatus for the Redux action
-    final ProfessionalStatus nextStatus = 
+    final ProfessionalKycStatus nextStatus =
         ProfessionalStatusMapper.fromActivityStatus(nextActivityStatus);
 
     StoreProvider.of<AppState>(context, listen: false).dispatch(
@@ -334,7 +332,9 @@ class StaffDetailsDialog extends StatelessWidget {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Staff status updated to ${_getStatusName(nextActivityStatus)}'),
+        content: Text(
+          'Staff status updated to ${_getStatusName(nextActivityStatus)}',
+        ),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
     );

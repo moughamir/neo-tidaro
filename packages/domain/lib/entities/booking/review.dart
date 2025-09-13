@@ -1,17 +1,8 @@
-import '../base_entity.dart';
 import '../../enums/enums.dart';
+import '../base_entity.dart';
 
 /// Review entity for service feedback
 class Review extends BaseEntity {
-  final String bookingId;
-  final String reviewerId;
-  final String revieweeId;
-  final double overallRating;
-  final Map<ReviewAspect, double>? aspectRatings;
-  final String? comment;
-  final List<String> images;
-  final bool isVerifiedBooking;
-
   const Review({
     required super.id,
     required super.createdAt,
@@ -25,4 +16,12 @@ class Review extends BaseEntity {
     this.images = const [],
     this.isVerifiedBooking = false,
   });
+  final String bookingId;
+  final String reviewerId;
+  final String revieweeId;
+  final double overallRating;
+  final Map<PostBookingReviewAspect, double>? aspectRatings;
+  final String? comment;
+  final List<String> images;
+  final bool isVerifiedBooking;
 }

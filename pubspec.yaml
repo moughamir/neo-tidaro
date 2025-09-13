@@ -25,15 +25,33 @@ workspace:
 dependencies:
   flutter:
     sdk: flutter
-  fpdart: ^1.1.1
-  equatable: ^2.0.5
-  intl: ^0.20.2
-  google_fonts: ^6.2.1
-  supabase_flutter: ^2.10.0
-  clay_containers: ^0.3.4
-  permission_handler: ^12.0.1
-  sensors_plus: ^6.1.2
+  flutter_localizations:
+    sdk: flutter
+  clay_containers: 0.3.4
+  connectivity_plus: 6.1.5
+  equatable: 2.0.7
+  flutter_dotenv: 6.0.0
+  flutter_markdown: 0.7.7+1
 
+  flutter_secure_storage: 9.2.4
+  fpdart: 1.1.1
+  get_it: 8.2.0
+  google_fonts: 6.3.1
+  intl: 0.20.2
+  logging: 1.3.0
+  material_color_utilities: 0.11.1
+  moment_dart: 5.2.4
+  permission_handler: 12.0.1
+  # Redux State Management
+  redux: 5.0.0
+  redux_thunk: 0.4.0
+  flutter_redux: 0.10.0
+  #
+  sensors_plus: 6.1.2
+  shared_preferences: 2.5.3
+  supabase_flutter: 2.10.0
+  uuid: 4.5.1
+  yaml: 3.1.3
 # Platform support configuration
 flutter:
   uses-material-design: true
@@ -46,32 +64,29 @@ platforms:
   web:
   windows:
 
-dependency_overrides:
-  sensors_plus: ^6.1.2
-
 melos:
   scripts:
     analyze:
-      run: melos exec -c 1  -- flutter analyze
+      run: melos exec -c 8  -- flutter analyze
       description: Run `flutter analyze` in all packages.
 
     fix:apply:
-      run: melos exec --depends-on build_runner -- dart fix --apply
+      run: melos exec -c 8 --depends-on build_runner -- dart fix --apply
       description: Run `dart fix --apply` in all packages.
     fix:dry:
-      run: melos exec --depends-on build_runner -- dart fix -n
+      run: melos exec -c 8 --depends-on build_runner -- dart fix -n
       description: Run `dart fix` in all packages with a dry run.
 
     test:
-      run: melos exec -c 4 -- flutter test
+      run: melos exec -c 8 -- flutter test
       description: Run `flutter test` in all packages.
 
     run:app:
-      run: melos exec -c "flutter run"
+      run: melos exec -c 8 "flutter run"
       description: Run the main application.
 
     pub:upgrade:
-      run: melos exec -- flutter pub upgrade
+      run: melos exec -c 8 -- flutter pub upgrade
       description: Run `flutter pub upgrade` in all packages.
 
     generate:
@@ -166,4 +181,9 @@ melos:
       description: Build Windows desktop app for all Tidaro apps.
 
 dev_dependencies:
-  melos: ^7.1.0
+  melos: 7.1.0
+  flutter_test:
+    sdk: flutter
+  flutter_lints: any
+  mocktail: any
+  build_runner: any

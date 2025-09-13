@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import '../core/core.dart';
+import 'package:shared/redux/core/core.dart';
 import 'package:domain/domain.dart';
 
 /// Booking state following functional programming patterns
@@ -11,9 +11,6 @@ class BookingState extends BaseAsyncState<List<Booking>> {
     required this.filters,
     required this.selectedBookingId,
   });
-
-  final Map<String, dynamic> filters;
-  final Option<String> selectedBookingId;
 
   /// Initial state factory
   factory BookingState.initial() {
@@ -112,7 +109,7 @@ class BookingState extends BaseAsyncState<List<Booking>> {
             .toList();
       }
 
-      // Filter by cleaner ID
+      // Filter by professional ID
       if (filters['professionalId'] != null) {
         filtered = filtered
             .where((b) => b.professionalId == filters['professionalId'])
@@ -149,4 +146,7 @@ class BookingState extends BaseAsyncState<List<Booking>> {
 
   @override
   String get stateType => 'BookingState';
+
+  final Map<String, dynamic> filters;
+  final Option<String> selectedBookingId;
 }

@@ -75,8 +75,9 @@ class MetricCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       subtitle!,
-                      style: textTheme.bodySmall
-                          ?.copyWith(color: colors.onSurfaceVariant),
+                      style: textTheme.bodySmall?.copyWith(
+                        color: colors.onSurfaceVariant,
+                      ),
                     ),
                   ),
                 if (trend != null)
@@ -87,9 +88,10 @@ class MetricCard extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: (isPositiveTrend ? colors.success : colors.error)
-                          .withOpacity(0.1),
-                      borderRadius:
-                          BorderRadius.circular(DesignTokens.radiusSm),
+                          .withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(
+                        DesignTokens.radiusSm,
+                      ),
                     ),
                     child: Text(
                       trend!,

@@ -2,7 +2,7 @@ library shared.redux.selectors.professional_selectors;
 
 import 'package:domain/domain.dart' hide AppState, ProfessionalState;
 
-import '../app_state.dart';
+import '../states/app_state.dart';
 import '../states/professional_state.dart';
 
 /// Professional selectors for accessing professional state
@@ -49,7 +49,7 @@ class ProfessionalSelectors {
   /// Get professionals by service category
   static List<ProfessionalProfile> getProfessionalsByServiceCategory(
     AppState state,
-    ServiceCategory category,
+    PreBookingServiceCategory category,
   ) {
     return state.professionalState.professionals
         .where((professional) => professional.categories.contains(category))

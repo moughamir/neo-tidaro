@@ -69,7 +69,7 @@ class ActivityCard extends StatelessWidget {
                 Text(
                   formatTimestampShort(timestamp),
                   style: textTheme.bodySmall?.copyWith(
-                    color: colors.onSurfaceVariant.withOpacity(0.7),
+                    color: colors.onSurfaceVariant.withValues(alpha: 0.7),
                   ),
                 ),
               ],

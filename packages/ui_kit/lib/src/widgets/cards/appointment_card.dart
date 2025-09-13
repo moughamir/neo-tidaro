@@ -63,7 +63,7 @@ class AppointmentCard<T, S> extends StatelessWidget {
 
   /// Function to get status label and color
   final ({String label, Color color})? Function(BuildContext context, S status)?
-      getStatusInfo;
+  getStatusInfo;
 
   /// Function to format date and time
   final String Function(DateTime dateTime)? formatDateTime;
@@ -108,7 +108,8 @@ class AppointmentCard<T, S> extends StatelessWidget {
               _buildInfoRow(
                 context,
                 icon: Icons.person_outline,
-                text: customerName ??
+                text:
+                    customerName ??
                     (customerId != null && customerId!.length > 8
                         ? 'Customer #${customerId!.substring(0, 8)}'
                         : 'Customer #$customerId'),
@@ -130,7 +131,8 @@ class AppointmentCard<T, S> extends StatelessWidget {
             _buildInfoRow(
               context,
               icon: Icons.schedule_outlined,
-              text: formatDateTime?.call(scheduledDate) ??
+              text:
+                  formatDateTime?.call(scheduledDate) ??
                   formatFullTimestamp(scheduledDate),
               trailing: Text(
                 '\${price.toStringAsFixed(2)}',
@@ -148,11 +150,12 @@ class AppointmentCard<T, S> extends StatelessWidget {
               _buildInfoRow(
                 context,
                 icon: Icons.location_on_outlined,
-                text: [address!.street, address!.city]
-                    .where((e) => e != null)
-                    .join(', '),
+                text: [
+                  address!.street,
+                  address!.city,
+                ].where((e) => e != null).join(', '),
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -170,8 +173,7 @@ class AppointmentCard<T, S> extends StatelessWidget {
   }
 
   Widget _buildInfoRow(
-    BuildContext context,
-      {
+    BuildContext context, {
     required IconData icon,
     required String text,
     TextStyle? style,
@@ -183,7 +185,7 @@ class AppointmentCard<T, S> extends StatelessWidget {
         Icon(
           icon,
           size: 16,
-          color: theme.colorScheme.onSurface.withOpacity(0.6),
+          color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
         ),
         const SizedBox(width: 8),
         Expanded(
@@ -209,9 +211,9 @@ class AppointmentCard<T, S> extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: statusInfo.color.withOpacity(0.1),
+        color: statusInfo.color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: statusInfo.color.withOpacity(0.3)),
+        border: Border.all(color: statusInfo.color.withValues(alpha: 0.3)),
       ),
       child: Text(
         statusInfo.label,

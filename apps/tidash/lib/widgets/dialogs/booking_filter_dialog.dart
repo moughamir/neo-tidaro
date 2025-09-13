@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:shared/shared.dart' hide DateTimeRange;
+import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -11,15 +10,15 @@ class BookingFilterDialog extends StatefulWidget {
     required this.onFilterChanged,
   });
 
-  final BookingStatus? currentFilter;
-  final Function(BookingStatus?) onFilterChanged;
+  final BookingActivityStatus? currentFilter;
+  final Function(BookingActivityStatus?) onFilterChanged;
 
   @override
   State<BookingFilterDialog> createState() => _BookingFilterDialogState();
 }
 
 class _BookingFilterDialogState extends State<BookingFilterDialog> {
-  BookingStatus? _selectedFilter;
+  BookingActivityStatus? _selectedFilter;
   DateTimeRange? _dateRange;
   double _minPrice = 0;
   double _maxPrice = 1000;
@@ -76,7 +75,10 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     // Status Filter
-                    const SectionHeader(title: 'Booking Status', icon: Icons.assignment),
+                    const SectionHeader(
+                      title: 'Booking Status',
+                      icon: Icons.assignment,
+                    ),
                     const SizedBox(height: 16),
 
                     Wrap(
@@ -84,8 +86,8 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
                       runSpacing: 8,
                       children: <Widget>[
                         _buildStatusChip(null, 'All Bookings'),
-                        ...BookingStatus.values.map(
-                          (BookingStatus status) =>
+                        ...BookingActivityStatus.values.map(
+                          (BookingActivityStatus status) =>
                               _buildStatusChip(status, _getStatusName(status)),
                         ),
                       ],
@@ -93,7 +95,10 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
                     const SizedBox(height: 24),
 
                     // Date Range Filter
-                    const SectionHeader(title: 'Date Range', icon: Icons.date_range),
+                    const SectionHeader(
+                      title: 'Date Range',
+                      icon: Icons.date_range,
+                    ),
                     const SizedBox(height: 16),
 
                     InkWell(
@@ -133,7 +138,10 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
                     const SizedBox(height: 24),
 
                     // Price Range Filter
-                    const SectionHeader(title: 'Price Range', icon: Icons.attach_money),
+                    const SectionHeader(
+                      title: 'Price Range',
+                      icon: Icons.attach_money,
+                    ),
                     const SizedBox(height: 16),
 
                     Text(
@@ -189,9 +197,7 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
     );
   }
 
-  
-
-  Widget _buildStatusChip(BookingStatus? status, String label) {
+  Widget _buildStatusChip(BookingActivityStatus? status, String label) {
     final ThemeData theme = Theme.of(context);
     final bool isSelected = _selectedFilter == status;
 
@@ -209,23 +215,23 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
     );
   }
 
-  String _getStatusName(BookingStatus status) {
+  String _getStatusName(BookingActivityStatus status) {
     switch (status) {
-      case BookingStatus.pending:
+      case BookingActivityStatus.pending:
         return 'Pending';
-      case BookingStatus.confirmed:
+      case BookingActivityStatus.confirmed:
         return 'Confirmed';
-      case BookingStatus.assigned:
+      case BookingActivityStatus.assigned:
         return 'Assigned';
-      case BookingStatus.inProgress:
+      case BookingActivityStatus.inProgress:
         return 'In Progress';
-      case BookingStatus.completed:
+      case BookingActivityStatus.completed:
         return 'Completed';
-      case BookingStatus.cancelled:
+      case BookingActivityStatus.cancelled:
         return 'Cancelled';
-      case BookingStatus.rescheduled:
+      case BookingActivityStatus.rescheduled:
         return 'Rescheduled';
-      case BookingStatus.noShow:
+      case BookingActivityStatus.noShow:
         return 'No Show';
     }
   }

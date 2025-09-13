@@ -57,7 +57,7 @@ CREATE TYPE public.payment_status_enum AS ENUM (
     'refunded'
 );
 
-CREATE TYPE public.cleaner_status_enum AS ENUM (
+CREATE TYPE public.professional_status_enum AS ENUM (
     'available',
     'on_job',
     'offline',
@@ -95,7 +95,7 @@ CREATE TABLE public.profiles (
     avatar_url TEXT,
     phone_number TEXT,
     role public.user_role_enum DEFAULT 'client_consumer'::public.user_role_enum NOT NULL,
-    cleaner_status public.cleaner_status_enum DEFAULT 'offline'::public.cleaner_status_enum NOT NULL,
+    professional_status public.professional_status_enum DEFAULT 'offline'::public.professional_status_enum NOT NULL,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -157,7 +157,7 @@ CREATE TABLE public.bookings (
     payment_status public.payment_status_enum NOT NULL,
     address_id UUID REFERENCES public.addresses(id) ON DELETE RESTRICT NOT NULL, -- RESTRICT to prevent deleting address if booking exists
     notes TEXT,
-    cleaner_id UUID REFERENCES public.profiles(id) ON DELETE SET NULL, -- SET NULL if cleaner is deleted
+    professional_id UUID REFERENCES public.profiles(id) ON DELETE SET NULL, -- SET NULL if professional is deleted
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),
     completed_at TIMESTAMPTZ,
@@ -279,7 +279,7 @@ CREATE INDEX idx_service_addons_service_id ON public.service_addons (service_id)
 -- bookings indexes
 CREATE INDEX idx_bookings_customer_id ON public.bookings (customer_id);
 CREATE INDEX idx_bookings_service_id ON public.bookings (service_id);
-CREATE INDEX idx_bookings_cleaner_id ON public.bookings (cleaner_id);
+CREATE INDEX idx_bookings_professional_id ON public.bookings (professional_id);
 CREATE INDEX idx_bookings_scheduled_date ON public.bookings (scheduled_date);
 CREATE INDEX idx_bookings_status ON public.bookings (status);
 CREATE INDEX idx_bookings_created_at ON public.bookings (created_at DESC);
@@ -359,18 +359,18 @@ JOIN
 WHERE
     b.status = 'completed'::public.booking_status_enum;
 
--- cleaner_performance_view: Aggregates data for cleaner performance
-CREATE VIEW public.cleaner_performance_view AS
+-- professional_performance_view: Aggregates data for professional performance
+CREATE VIEW public.professional_performance_view AS
 SELECT
-    p.id AS cleaner_id,
-    p.full_name AS cleaner_name,
+    p.id AS professional_id,
+    p.full_name AS professional_name,
     COUNT(b.id) AS total_completed_bookings,
     AVG(r.rating) AS average_rating,
     SUM(b.total_price) AS total_revenue_generated
 FROM
     public.profiles p
 LEFT JOIN
-    public.bookings b ON p.id = b.cleaner_id AND b.status = 'completed'::public.booking_status_enum
+    public.bookings b ON p.id = b.professional_id AND b.status = 'completed'::public.booking_status_enum
 LEFT JOIN
     public.reviews r ON b.id = r.booking_id
 WHERE

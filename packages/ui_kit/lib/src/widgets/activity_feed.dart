@@ -636,7 +636,6 @@ class _FilterDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Theme.of(context);
     final l10n = Languist.of(context);
 
     return AlertDialog(

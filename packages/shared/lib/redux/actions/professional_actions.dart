@@ -4,7 +4,7 @@ import 'package:domain/domain.dart';
 import 'package:shared/redux/redux.dart' show BaseAction;
 
 /// Professional action types
-class ProfessionalrActionTypes {
+class ProfessionalActionTypes {
   static const String loadProfessionals = 'PROFESSIONALS_LOAD';
   static const String updateProfessionalStatus = 'PROFESSIONALS_UPDATE_STATUS';
   static const String createProfessional = 'PROFESSIONALS_CREATE';
@@ -30,7 +30,7 @@ class LoadProfessionalsAction extends BaseAction {
   List<Object?> get props => [];
 
   @override
-  String get type => ProfessionalrActionTypes.loadProfessionals;
+  String get type => ProfessionalActionTypes.loadProfessionals;
 }
 
 /// Load professionals success action
@@ -43,7 +43,7 @@ class LoadProfessionalsSuccessAction extends BaseAction {
   List<Object?> get props => [professionals];
 
   @override
-  String get type => ProfessionalrActionTypes.loadProfessionals;
+  String get type => ProfessionalActionTypes.loadProfessionals;
 }
 
 /// Load professionals failure action
@@ -56,20 +56,20 @@ class LoadProfessionalsFailureAction extends BaseAction {
   List<Object?> get props => [error];
 
   @override
-  String get type => ProfessionalrActionTypes.loadProfessionals;
+  String get type => ProfessionalActionTypes.loadProfessionals;
 }
 
 /// Update professional filters action
 class UpdateProfessionalsFiltersAction extends BaseAction {
   const UpdateProfessionalsFiltersAction({required this.filters});
 
-  final ProfessionalSearchDto filters;
+  final ProfessionalActionTypes? filters;
 
   @override
   List<Object?> get props => [filters];
 
   @override
-  String get type => ProfessionalrActionTypes.updateProfessionalFilters;
+  String get type => ProfessionalActionTypes.updateProfessionalFilters;
 }
 
 /// Clear professional filters action
@@ -80,7 +80,7 @@ class ClearProfessionalsFiltersAction extends BaseAction {
   List<Object?> get props => [];
 
   @override
-  String get type => ProfessionalrActionTypes.clearProfessionalFilters;
+  String get type => ProfessionalActionTypes.clearProfessionalFilters;
 }
 
 /// Select professional action
@@ -93,7 +93,7 @@ class SelectProfessionalAction extends BaseAction {
   List<Object?> get props => [professionalId];
 
   @override
-  String get type => ProfessionalrActionTypes.selectProfessional;
+  String get type => ProfessionalActionTypes.selectProfessional;
 }
 
 /// Update professional status action
@@ -104,13 +104,13 @@ class UpdateProfessionalStatusAction extends BaseAction {
   });
 
   final String professionalId;
-  final ProfessionalStatus status;
+  final ProfessionalKycStatus status;
 
   @override
   List<Object?> get props => [professionalId, status];
 
   @override
-  String get type => ProfessionalrActionTypes.updateProfessionalStatus;
+  String get type => ProfessionalActionTypes.updateProfessionalStatus;
 }
 
 /// Update professional status success action
@@ -121,13 +121,13 @@ class UpdateProfessionalStatusSuccessAction extends BaseAction {
   });
 
   final String professionalId;
-  final ProfessionalStatus status;
+  final ProfessionalActivityStatus status;
 
   @override
   List<Object?> get props => [professionalId, status];
 
   @override
-  String get type => ProfessionalrActionTypes.updateProfessionalStatus;
+  String get type => ProfessionalActionTypes.updateProfessionalStatus;
 }
 
 /// Update professional status failure action
@@ -140,7 +140,7 @@ class UpdateProfessionalStatusFailureAction extends BaseAction {
   List<Object?> get props => [error];
 
   @override
-  String get type => ProfessionalrActionTypes.updateProfessionalStatus;
+  String get type => ProfessionalActionTypes.updateProfessionalStatus;
 }
 
 /// Create professional action
@@ -153,7 +153,7 @@ class CreateProfessionalAction extends BaseAction {
   List<Object?> get props => [professional];
 
   @override
-  String get type => ProfessionalrActionTypes.createProfessional;
+  String get type => ProfessionalActionTypes.createProfessional;
 }
 
 /// Create professional success action
@@ -166,7 +166,7 @@ class CreateProfessionalSuccessAction extends BaseAction {
   List<Object?> get props => [professional];
 
   @override
-  String get type => ProfessionalrActionTypes.createProfessional;
+  String get type => ProfessionalActionTypes.createProfessional;
 }
 
 /// Create professional failure action
@@ -179,5 +179,5 @@ class CreateProfessionalFailureAction extends BaseAction {
   List<Object?> get props => [error];
 
   @override
-  String get type => ProfessionalrActionTypes.createProfessional;
+  String get type => ProfessionalActionTypes.createProfessional;
 }

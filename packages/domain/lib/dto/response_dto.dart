@@ -1,9 +1,5 @@
 
 class ApiResponseDto<T> {
-  final T? data;
-  final bool success;
-  final String? message;
-  final Map<String, dynamic>? errors;
 
   const ApiResponseDto({
     this.data,
@@ -11,14 +7,13 @@ class ApiResponseDto<T> {
     this.message,
     this.errors,
   });
+  final T? data;
+  final bool success;
+  final String? message;
+  final Map<String, dynamic>? errors;
 }
 
 class PaginatedResponseDto<T> {
-  final List<T> data;
-  final int total;
-  final int page;
-  final int totalPages;
-  final String? nextCursor;
 
   const PaginatedResponseDto({
     required this.data,
@@ -27,4 +22,9 @@ class PaginatedResponseDto<T> {
     required this.totalPages,
     this.nextCursor,
   });
+  final List<T> data;
+  final int total;
+  final int page;
+  final int totalPages;
+  final String? nextCursor;
 }

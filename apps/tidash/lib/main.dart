@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:core/core.dart';
-import 'package:tidash/app/widgets/error_app.dart';
-import 'package:tidash/app/widgets/loading_app.dart';
 import 'package:tidash/get_app_config.dart';
 import 'package:tidash/initialize_platform.dart';
 import 'package:tidash/initialize_services.dart';

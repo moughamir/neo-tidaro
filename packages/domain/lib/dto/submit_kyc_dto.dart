@@ -1,12 +1,6 @@
 // ============= LOCATION DTOs =============
 
 class SubmitKycDto {
-  final String userId;
-  final String documentType;
-  final String documentNumber;
-  final String frontImageBase64;
-  final String? backImageBase64;
-
   const SubmitKycDto({
     required this.userId,
     required this.documentType,
@@ -14,6 +8,11 @@ class SubmitKycDto {
     required this.frontImageBase64,
     this.backImageBase64,
   });
+  final String userId;
+  final String documentType;
+  final String documentNumber;
+  final String frontImageBase64;
+  final String? backImageBase64;
 
   Map<String, dynamic> toJson() => {
     'user_id': userId,

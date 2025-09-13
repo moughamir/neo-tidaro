@@ -1,6 +1,6 @@
 // ============= LOCATION DTOs =============
 
-enum SortBy {
+enum PreBookingSortBy {
   distance('distance'),
   rating('rating'),
   price('price'),
@@ -8,5 +8,6 @@ enum SortBy {
   eloScore('elo_score');
 
   final String value;
-  const SortBy(this.value);
+  // ignore: sort_constructors_first
+  const PreBookingSortBy(this.value);
 }

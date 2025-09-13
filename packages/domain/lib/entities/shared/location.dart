@@ -1,20 +1,8 @@
-import '../base_entity.dart';
 import '../../enums/enums.dart';
+import '../base_entity.dart';
 
 /// Address entity for location management
 class Address extends BaseEntity {
-  final String? userId;
-  final AddressType type;
-  final String street;
-  final String city;
-  final String state;
-  final String country;
-  final String postalCode;
-  final double? latitude;
-  final double? longitude;
-  final bool isDefault;
-  final String? instructions;
-
   const Address({
     required super.id,
     required super.createdAt,
@@ -31,19 +19,29 @@ class Address extends BaseEntity {
     this.isDefault = false,
     this.instructions,
   });
+  final String? userId;
+  final AddressType type;
+  final String street;
+  final String city;
+  final String state;
+  final String country;
+  final String postalCode;
+  final double? latitude;
+  final double? longitude;
+  final bool isDefault;
+  final String? instructions;
 }
 
 /// Geographic location value object
 class GeoLocation {
-  final double latitude;
-  final double longitude;
-  final double? accuracy;
-
   const GeoLocation({
     required this.latitude,
     required this.longitude,
     this.accuracy,
   });
+  final double latitude;
+  final double longitude;
+  final double? accuracy;
 
   /// Calculate distance to another location in kilometers using Haversine formula
   double distanceTo(GeoLocation other) {
@@ -59,12 +57,6 @@ class GeoLocation {
 
 /// Service area entity for professional coverage
 class ServiceArea extends BaseEntity {
-  final String professionalId;
-  final String name;
-  final List<GeoLocation> boundaries;
-  final double? travelFee;
-  final bool isActive;
-
   const ServiceArea({
     required super.id,
     required super.createdAt,
@@ -75,4 +67,9 @@ class ServiceArea extends BaseEntity {
     this.travelFee,
     this.isActive = true,
   });
+  final String professionalId;
+  final String name;
+  final List<GeoLocation> boundaries;
+  final double? travelFee;
+  final bool isActive;
 }

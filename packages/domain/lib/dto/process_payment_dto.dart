@@ -3,10 +3,6 @@
 import '../enums/payment.dart';
 
 class ProcessPaymentDto {
-  final String bookingId;
-  final double amount;
-  final PaymentMethod method;
-  final Map<String, dynamic>? paymentDetails;
 
   const ProcessPaymentDto({
     required this.bookingId,
@@ -14,6 +10,10 @@ class ProcessPaymentDto {
     required this.method,
     this.paymentDetails,
   });
+  final String bookingId;
+  final double amount;
+  final PaymentMethod method;
+  final Map<String, dynamic>? paymentDetails;
 
   Map<String, dynamic> toJson() => {
     'booking_id': bookingId,

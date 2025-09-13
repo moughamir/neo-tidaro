@@ -11,7 +11,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
 
   # Workspace Dependencies - excluding core/shared to avoid flutter_secure_storage Linux issues
   ui_kit:

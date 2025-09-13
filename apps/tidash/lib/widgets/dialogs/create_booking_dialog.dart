@@ -26,7 +26,8 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
 
   DateTime? _selectedDate;
   TimeOfDay? _selectedTime;
-  ServiceCategory _selectedService = ServiceCategory.standardCleaning;
+  PreBookingServiceCategory _selectedService =
+      PreBookingServiceCategory.standardCleaning;
   double _estimatedPrice = 120.0;
 
   @override
@@ -158,22 +159,22 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                       ),
                       const SizedBox(height: 16),
 
-                      DropdownButtonFormField<ServiceCategory>(
+                      DropdownButtonFormField<PreBookingServiceCategory>(
                         initialValue: _selectedService,
                         decoration: const InputDecoration(
                           labelText: 'Service Type',
                           prefixIcon: Icon(Icons.home_work_outlined),
                           border: OutlineInputBorder(),
                         ),
-                        items: ServiceCategory.values.map((
-                          ServiceCategory category,
+                        items: PreBookingServiceCategory.values.map((
+                          PreBookingServiceCategory category,
                         ) {
-                          return DropdownMenuItem<ServiceCategory>(
+                          return DropdownMenuItem<PreBookingServiceCategory>(
                             value: category,
                             child: Text(_getServiceCategoryName(category)),
                           );
                         }).toList(),
-                        onChanged: (ServiceCategory? value) {
+                        onChanged: (PreBookingServiceCategory? value) {
                           if (value != null) {
                             setState(() {
                               _selectedService = value;
@@ -379,105 +380,105 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
     );
   }
 
-  String _getServiceCategoryName(ServiceCategory category) {
+  String _getServiceCategoryName(PreBookingServiceCategory category) {
     switch (category) {
-      case ServiceCategory.cleaning:
+      case PreBookingServiceCategory.cleaning:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.standardCleaning:
+      case PreBookingServiceCategory.standardCleaning:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.regularCleaning:
+      case PreBookingServiceCategory.regularCleaning:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.laundry:
+      case PreBookingServiceCategory.laundry:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.cooking:
+      case PreBookingServiceCategory.cooking:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.babysitting:
+      case PreBookingServiceCategory.babysitting:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.petCare:
+      case PreBookingServiceCategory.petCare:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.gardening:
+      case PreBookingServiceCategory.gardening:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.maintenance:
+      case PreBookingServiceCategory.maintenance:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.organization:
+      case PreBookingServiceCategory.organization:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.deepCleaning:
+      case PreBookingServiceCategory.deepCleaning:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.moveInOut:
+      case PreBookingServiceCategory.moveInOut:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.postConstruction:
+      case PreBookingServiceCategory.postConstruction:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.commercial:
+      case PreBookingServiceCategory.commercial:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.residential:
+      case PreBookingServiceCategory.residential:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.specialized:
+      case PreBookingServiceCategory.specialized:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.other:
+      case PreBookingServiceCategory.other:
         // TODO: Handle this case.
         throw UnimplementedError();
     }
   }
 
-  double _calculatePrice(ServiceCategory category) {
+  double _calculatePrice(PreBookingServiceCategory category) {
     switch (category) {
-      case ServiceCategory.standardCleaning:
+      case PreBookingServiceCategory.standardCleaning:
         return 120.0;
-      case ServiceCategory.regularCleaning:
+      case PreBookingServiceCategory.regularCleaning:
         return 100.0;
-      case ServiceCategory.deepCleaning:
+      case PreBookingServiceCategory.deepCleaning:
         return 200.0;
-      case ServiceCategory.moveInOut:
+      case PreBookingServiceCategory.moveInOut:
         return 250.0;
-      case ServiceCategory.postConstruction:
+      case PreBookingServiceCategory.postConstruction:
         return 300.0;
-      case ServiceCategory.commercial:
+      case PreBookingServiceCategory.commercial:
         return 180.0;
-      case ServiceCategory.residential:
+      case PreBookingServiceCategory.residential:
         return 220.0;
-      case ServiceCategory.specialized:
+      case PreBookingServiceCategory.specialized:
         return 350.0;
-      case ServiceCategory.cleaning:
+      case PreBookingServiceCategory.cleaning:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.laundry:
+      case PreBookingServiceCategory.laundry:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.cooking:
+      case PreBookingServiceCategory.cooking:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.babysitting:
+      case PreBookingServiceCategory.babysitting:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.petCare:
+      case PreBookingServiceCategory.petCare:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.gardening:
+      case PreBookingServiceCategory.gardening:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.maintenance:
+      case PreBookingServiceCategory.maintenance:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.organization:
+      case PreBookingServiceCategory.organization:
         // TODO: Handle this case.
         throw UnimplementedError();
-      case ServiceCategory.other:
+      case PreBookingServiceCategory.other:
         // TODO: Handle this case.
         throw UnimplementedError();
     }
@@ -546,7 +547,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
         clientId: DateTime.now().millisecondsSinceEpoch.toString(),
         addressId: address.id,
         scheduledStartTime: scheduledDateTime,
-        status: BookingStatus.pending,
+        status: BookingActivityStatus.pending,
         totalAmount: _estimatedPrice,
         specialInstructions: _notesController.text.trim().isEmpty
             ? null

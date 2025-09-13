@@ -4,7 +4,7 @@ import 'package:fpdart/fpdart.dart';
 import 'package:shared/utils/type_defs.dart';
 import 'package:shared/utils/failures/failure.dart';
 import 'package:shared/utils/logger.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 
 /// Base class for Supabase repositories that provides common CRUD operations.
 ///

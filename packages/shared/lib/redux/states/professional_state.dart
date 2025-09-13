@@ -2,7 +2,8 @@ library shared.redux.states.professional_state;
 
 import 'package:fpdart/fpdart.dart';
 import 'package:domain/domain.dart';
-import '../core/core.dart';
+import 'package:shared/redux/actions/professional_actions.dart';
+import 'package:shared/redux/core/core.dart';
 
 /// Professional state for Redux store
 class ProfessionalState extends BaseState {
@@ -17,7 +18,7 @@ class ProfessionalState extends BaseState {
   final List<ProfessionalProfile> professionals;
   final bool isLoading;
   final Option<Exception> error;
-  final ProfessionalSearchDto filters;
+  final dynamic filters;
   final String? selectedProfessionalId;
 
   /// Initial state factory
@@ -26,7 +27,7 @@ class ProfessionalState extends BaseState {
       professionals: const [],
       isLoading: false,
       error: none(),
-      filters: const ProfessionalSearchDto(),
+      filters: ProfessionalActionTypes(),
       selectedProfessionalId: null,
     );
   }
@@ -37,7 +38,7 @@ class ProfessionalState extends BaseState {
       professionals: const [],
       isLoading: true,
       error: none(),
-      filters: const ProfessionalSearchDto(),
+      filters: ProfessionalActionTypes(),
       selectedProfessionalId: null,
     );
   }
@@ -45,14 +46,14 @@ class ProfessionalState extends BaseState {
   /// Success state factory
   factory ProfessionalState.success({
     required List<ProfessionalProfile> professionals,
-    ProfessionalSearchDto? filters,
+    ProfessionalActionTypes? filters,
     String? selectedProfessionalId,
   }) {
     return ProfessionalState(
       professionals: professionals,
       isLoading: false,
       error: none(),
-      filters: filters ?? const ProfessionalSearchDto(),
+      filters: filters ?? ProfessionalActionTypes(),
       selectedProfessionalId: selectedProfessionalId,
     );
   }
@@ -61,14 +62,14 @@ class ProfessionalState extends BaseState {
   factory ProfessionalState.error({
     required Exception error,
     List<ProfessionalProfile>? professionals,
-    ProfessionalSearchDto? filters,
+    ProfessionalActionTypes? filters,
     String? selectedProfessionalId,
   }) {
     return ProfessionalState(
       professionals: professionals ?? const [],
       isLoading: false,
       error: some(error),
-      filters: filters ?? const ProfessionalSearchDto(),
+      filters: filters ?? ProfessionalActionTypes(),
       selectedProfessionalId: selectedProfessionalId,
     );
   }
@@ -78,7 +79,7 @@ class ProfessionalState extends BaseState {
     List<ProfessionalProfile>? professionals,
     bool? isLoading,
     Option<Exception>? error,
-    ProfessionalSearchDto? filters,
+    ProfessionalActionTypes? filters,
     String? selectedProfessionalId,
   }) {
     return ProfessionalState(

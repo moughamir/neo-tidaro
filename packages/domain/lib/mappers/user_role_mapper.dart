@@ -5,32 +5,32 @@ import '../enums/user_role.dart';
 // -------------------- UserRole --------------------
 // Note: Profile currently defines its own UserRole enum.
 // Map SQL directly to UserRole to avoid type mismatches.
-UserRole userRoleFromSql(String value) {
+PlatformUserRole userRoleFromSql(String value) {
   switch (value) {
     case 'admin':
-      return UserRole.admin;
+      return PlatformUserRole.admin;
     case 'moderator':
-      return UserRole.moderator;
+      return PlatformUserRole.moderator;
     case 'client_consumer':
-      return UserRole.clientConsumer;
+      return PlatformUserRole.clientConsumer;
     case 'client_provider':
-      return UserRole.clientProfessional;
+      return PlatformUserRole.clientProfessional;
     default:
-      return UserRole.clientConsumer;
+      return PlatformUserRole.clientConsumer;
   }
 }
 
-String userRoleToSql(UserRole value) {
+String userRoleToSql(PlatformUserRole value) {
   switch (value) {
-    case UserRole.admin:
+    case PlatformUserRole.admin:
       return 'admin';
-    case UserRole.moderator:
+    case PlatformUserRole.moderator:
       return 'moderator';
-    case UserRole.clientConsumer:
+    case PlatformUserRole.clientConsumer:
       return 'client_consumer';
-    case UserRole.clientProfessional:
+    case PlatformUserRole.clientProfessional:
       return 'client_provider';
-    case UserRole.superAdmin:
+    case PlatformUserRole.superAdmin:
       return 'super_admin';
   }
 }

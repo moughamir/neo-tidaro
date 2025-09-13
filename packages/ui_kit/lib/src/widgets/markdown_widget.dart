@@ -55,34 +55,7 @@ class MarkdownConfig {
   static MarkdownConfig defaultConfig(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
-    return MarkdownConfig(
-      headingStyle: GoogleFonts.inter(
-        fontWeight: FontWeight.w600,
-        color: colorScheme.onSurface,
-      ),
-      bodyStyle: GoogleFonts.inter(
-        fontSize: 14,
-        height: 1.5,
-        color: colorScheme.onSurface.withValues(alpha: 0.87),
-      ),
-      codeStyle: GoogleFonts.firaCode(
-        fontSize: 13,
-        backgroundColor: colorScheme.surfaceContainerHighest,
-        color: colorScheme.onSurface,
-      ),
-      linkColor: colorScheme.primary,
-      padding: const EdgeInsets.all(16),
-      selectable: true,
-      shrinkWrap: false,
-    );
-  }
 
-  /// Dark theme configuration
-  static MarkdownConfig darkConfig(BuildContext context) {
-    final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
-    
     return MarkdownConfig(
       headingStyle: GoogleFonts.inter(
         fontWeight: FontWeight.w600,
@@ -91,7 +64,7 @@ class MarkdownConfig {
       bodyStyle: GoogleFonts.inter(
         fontSize: 14,
         height: 1.5,
-        color: colorScheme.onSurface.withValues(alpha: 0.87),
+        color: colorScheme.onSurface.withOpacity(0.87),
       ),
       codeStyle: GoogleFonts.firaCode(
         fontSize: 13,
@@ -109,7 +82,7 @@ class MarkdownConfig {
   static MarkdownConfig compactConfig(BuildContext context) {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    
+
     return MarkdownConfig(
       headingStyle: GoogleFonts.inter(
         fontWeight: FontWeight.w600,
@@ -119,7 +92,7 @@ class MarkdownConfig {
       bodyStyle: GoogleFonts.inter(
         fontSize: 12,
         height: 1.4,
-        color: colorScheme.onSurface.withValues(alpha: 0.87),
+        color: colorScheme.onSurface.withOpacity(0.87),
       ),
       codeStyle: GoogleFonts.firaCode(
         fontSize: 11,
@@ -218,7 +191,7 @@ class MarkdownWidget extends StatelessWidget {
     return MarkdownWidget(
       key: key,
       data: data,
-      config: MarkdownConfig.darkConfig(context),
+      config: MarkdownConfig.defaultConfig(context),
       onTapLink: onTapLink,
       sizedImageBuilder: sizedImageBuilder,
       controller: controller,

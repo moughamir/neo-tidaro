@@ -1,7 +1,7 @@
 name: ui_kit
 description: "A Fresh UI Kit for Flutter."
 publish_to: none
-version: 0.1.0-pre-alpha.3
+version: 0.1.0-pre-alpha.4
 homepage: https://github.com/neo-tidaro/ui_kit
 repository: https://github.com/neo-tidaro/ui_kit
 resolution: workspace
@@ -11,18 +11,38 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  material_color_utilities: ^0.11.1
-  flutter_markdown: ^0.7.4+1
-  google_fonts: ^6.2.1
-
   languist:
     path: ../languist
   shared:
     path: ../shared
   domain:
     path: ../domain
+  clay_containers: 0.3.4
+  connectivity_plus: 6.1.5
+  equatable: 2.0.7
+  flutter_dotenv: 6.0.0
+  flutter_markdown: 0.7.7+1
+
+  flutter_secure_storage: 9.2.4
+  fpdart: 1.1.1
+  get_it: 8.2.0
+  google_fonts: 6.3.1
+  intl: 0.20.2
+  logging: 1.3.0
+  material_color_utilities: 0.11.1
+  moment_dart: 5.2.4
+  permission_handler: 12.0.1
+  # Redux State Management
+  redux: 5.0.0
+  redux_thunk: 0.4.0
+  flutter_redux: 0.10.0
+  #
+  sensors_plus: 6.1.2
+  shared_preferences: 2.5.3
+  supabase_flutter: 2.10.0
+  uuid: 4.5.1
+  yaml: 3.1.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
-flutter:
+  flutter_lints: 6.0.0

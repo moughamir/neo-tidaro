@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ui_kit/src/localization/app_localizations.dart';
 import 'package:ui_kit/src/widgets/cards/profile_card.dart';
 
-/// Card component for displaying staff/cleaner information
+/// Card component for displaying staff/professional information
 /// Now implemented using the generic ProfileCard component
 class StaffCard extends StatelessWidget {
   const StaffCard({
@@ -15,11 +15,11 @@ class StaffCard extends StatelessWidget {
 
   final ProfessionalProfile professional;
   final VoidCallback onTap;
-  final Function(ProfessionalStatus) onStatusChanged;
+  final Function(ProfessionalKycStatus) onStatusChanged;
 
   @override
   Widget build(BuildContext context) {
-    return ProfileCard<ProfessionalProfile, ProfessionalStatus>(
+    return ProfileCard<ProfessionalProfile, ProfessionalKycStatus>(
       profile: professional,
       name: professional.fullName ?? 'Professional',
       status: professional.status,
@@ -39,30 +39,33 @@ class StaffCard extends StatelessWidget {
     );
   }
 
-  Widget _buildActionButton(BuildContext context, ProfessionalStatus status) {
+  Widget _buildActionButton(
+    BuildContext context,
+    ProfessionalKycStatus status,
+  ) {
     switch (status) {
-      case ProfessionalStatus.active:
+      case ProfessionalKycStatus.active:
         return OutlinedButton(
-          onPressed: () => onStatusChanged(ProfessionalStatus.inactive),
+          onPressed: () => onStatusChanged(ProfessionalKycStatus.inactive),
           style: OutlinedButton.styleFrom(
             foregroundColor: Colors.grey,
             side: const BorderSide(color: Colors.grey),
           ),
           child: const Text('Set Inactive'),
         );
-      case ProfessionalStatus.inactive:
+      case ProfessionalKycStatus.inactive:
         return ElevatedButton(
-          onPressed: () => onStatusChanged(ProfessionalStatus.active),
+          onPressed: () => onStatusChanged(ProfessionalKycStatus.active),
           child: const Text('Set Active'),
         );
-      case ProfessionalStatus.suspended:
+      case ProfessionalKycStatus.suspended:
         return ElevatedButton(
-          onPressed: () => onStatusChanged(ProfessionalStatus.underReview),
+          onPressed: () => onStatusChanged(ProfessionalKycStatus.underReview),
           child: const Text('Request Review'),
         );
       default:
         return ElevatedButton(
-          onPressed: () => onStatusChanged(ProfessionalStatus.active),
+          onPressed: () => onStatusChanged(ProfessionalKycStatus.active),
           child: const Text('Activate'),
         );
     }
@@ -70,26 +73,26 @@ class StaffCard extends StatelessWidget {
 
   ({String label, Color color}) _getStatusInfo(
     BuildContext context,
-    ProfessionalStatus status,
+    ProfessionalKycStatus status,
   ) {
     switch (status) {
-      case ProfessionalStatus.active:
+      case ProfessionalKycStatus.active:
         return (
           label: AppLocalizations.of(context).available,
           color: Colors.green,
         );
-      case ProfessionalStatus.pending:
+      case ProfessionalKycStatus.pending:
         return (label: 'Pending', color: Colors.orange);
-      case ProfessionalStatus.inactive:
+      case ProfessionalKycStatus.inactive:
         return (
           label: AppLocalizations.of(context).offline,
           color: Colors.grey,
         );
-      case ProfessionalStatus.suspended:
+      case ProfessionalKycStatus.suspended:
         return (label: 'Suspended', color: Colors.red);
-      case ProfessionalStatus.rejected:
+      case ProfessionalKycStatus.rejected:
         return (label: 'Rejected', color: Colors.red);
-      case ProfessionalStatus.underReview:
+      case ProfessionalKycStatus.underReview:
         return (label: 'Under Review', color: Colors.blue);
     }
   }
@@ -109,11 +112,11 @@ class StaffCard extends StatelessWidget {
     return category;
   }
 
-  bool _shouldShowActionButtons(ProfessionalStatus status) {
-    return status == ProfessionalStatus.active ||
-        status == ProfessionalStatus.inactive ||
-        status == ProfessionalStatus.suspended ||
-        status == ProfessionalStatus.pending ||
-        status == ProfessionalStatus.underReview;
+  bool _shouldShowActionButtons(ProfessionalKycStatus status) {
+    return status == ProfessionalKycStatus.active ||
+        status == ProfessionalKycStatus.inactive ||
+        status == ProfessionalKycStatus.suspended ||
+        status == ProfessionalKycStatus.pending ||
+        status == ProfessionalKycStatus.underReview;
   }
 }

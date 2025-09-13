@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 import 'package:languist/languist.dart';
@@ -53,19 +52,21 @@ class _DashboardPageState extends State<DashboardPage> {
                 SliverPadding(
                   padding: const EdgeInsets.all(16.0),
                   sliver: SliverGrid(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 16.0,
-                      crossAxisSpacing: 16.0,
-                      childAspectRatio: 1.5,
-                    ),
-                    delegate: SliverChildBuilderDelegate(
-                      (BuildContext context, int index) {
-                        final DashboardMetrics metrics = viewModel.dashboardMetrics!;
-                        return _buildMetricCard(context, index, metrics, l10n);
-                      },
-                      childCount: 4,
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 16.0,
+                          crossAxisSpacing: 16.0,
+                          childAspectRatio: 1.5,
+                        ),
+                    delegate: SliverChildBuilderDelegate((
+                      BuildContext context,
+                      int index,
+                    ) {
+                      final DashboardMetrics metrics =
+                          viewModel.dashboardMetrics!;
+                      return _buildMetricCard(context, index, metrics, l10n);
+                    }, childCount: 4),
                   ),
                 ),
 
@@ -76,8 +77,18 @@ class _DashboardPageState extends State<DashboardPage> {
                 SliverPadding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   sliver: SliverToBoxAdapter(
+                    // ignore: always_specify_types
                     child: ActivityFeed(
                       activities: viewModel.dashboardMetrics!.recentActivities,
+                      titleExtractor: (ActivityItem activity) {
+                        return activity.title;
+                      },
+                      descriptionExtractor: (ActivityItem activity) {
+                        return activity.description;
+                      },
+                      timestampExtractor: (ActivityItem activity) {
+                        return activity.timestamp;
+                      },
                     ),
                   ),
                 ),
@@ -101,31 +112,30 @@ class _DashboardPageState extends State<DashboardPage> {
         return MetricCard(
           title: 'Total Customers',
           value: metrics.totalCustomers.toString(),
-          icon: Icons.people,
+          icon: const Icon(Icons.people),
         );
       case 1:
         return MetricCard(
-          title: 'Active Cleaners',
-          value: metrics.activeCleaners.toString(),
-          icon: Icons.assignment,
+          title: 'Active Professionals',
+          value: metrics.activeProfessionals.toString(),
+          icon: const Icon(Icons.assignment),
         );
       case 2:
         return MetricCard(
           title: 'Monthly Revenue',
           value: '\$${metrics.monthlyRevenue.toStringAsFixed(0)}',
-          icon: Icons.attach_money,
+          icon: const Icon(Icons.attach_money),
         );
       case 3:
         return MetricCard(
           title: 'Total Bookings',
           value: metrics.totalBookings.toString(),
-          icon: Icons.shopping_cart,
+          icon: const Icon(Icons.shopping_cart),
         );
       default:
         return const SizedBox.shrink();
     }
   }
-
 }
 
 class DashboardViewModel {

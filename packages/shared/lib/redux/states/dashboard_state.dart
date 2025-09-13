@@ -1,5 +1,6 @@
 import 'package:fpdart/fpdart.dart';
-import '../core/core.dart';
+import 'package:shared/redux/core/core.dart';
+
 import 'package:domain/domain.dart';
 
 /// Dashboard state following functional programming patterns

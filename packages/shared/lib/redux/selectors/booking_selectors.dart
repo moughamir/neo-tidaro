@@ -1,6 +1,6 @@
-import 'package:domain/entities/booking/booking.dart';
+import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
-import '../app_state.dart';
+import '../states/app_state.dart';
 import '../states/booking_state.dart';
 
 /// Booking selectors
@@ -19,7 +19,7 @@ class BookingSelectors {
   }
 
   /// Get booking filters
-  static BookingFilters getBookingFilters(AppState state) {
+  static Map<String, dynamic> getBookingFilters(AppState state) {
     return state.bookingState.filters;
   }
 
@@ -46,7 +46,7 @@ class BookingSelectors {
   /// Get bookings by status
   static List<Booking> getBookingsByStatus(
     AppState state,
-    BookingStatus status,
+    BookingActivityStatus status,
   ) {
     return getBookings(
       state,
@@ -63,11 +63,14 @@ class BookingSelectors {
     ).where((booking) => booking.clientId == customerId).toList();
   }
 
-  /// Get bookings by cleaner ID
-  static List<Booking> getBookingsByCleaner(AppState state, String cleanerId) {
+  /// Get bookings by professional ID
+  static List<Booking> getBookingsByProfessional(
+    AppState state,
+    String professionalId,
+  ) {
     return getBookings(
       state,
-    ).where((booking) => booking.professionalId == cleanerId).toList();
+    ).where((booking) => booking.professionalId == professionalId).toList();
   }
 
   /// Get bookings count
@@ -82,27 +85,27 @@ class BookingSelectors {
 
   /// Get pending bookings
   static List<Booking> getPendingBookings(AppState state) {
-    return getBookingsByStatus(state, BookingStatus.pending);
+    return getBookingsByStatus(state, BookingActivityStatus.pending);
   }
 
   /// Get confirmed bookings
   static List<Booking> getConfirmedBookings(AppState state) {
-    return getBookingsByStatus(state, BookingStatus.confirmed);
+    return getBookingsByStatus(state, BookingActivityStatus.confirmed);
   }
 
   /// Get assigned bookings
   static List<Booking> getAssignedBookings(AppState state) {
-    return getBookingsByStatus(state, BookingStatus.assigned);
+    return getBookingsByStatus(state, BookingActivityStatus.inProgress);
   }
 
   /// Get completed bookings
   static List<Booking> getCompletedBookings(AppState state) {
-    return getBookingsByStatus(state, BookingStatus.completed);
+    return getBookingsByStatus(state, BookingActivityStatus.completed);
   }
 
   /// Get cancelled bookings
   static List<Booking> getCancelledBookings(AppState state) {
-    return getBookingsByStatus(state, BookingStatus.cancelled);
+    return getBookingsByStatus(state, BookingActivityStatus.cancelled);
   }
 
   /// Get today's bookings
@@ -112,8 +115,8 @@ class BookingSelectors {
     final tomorrow = today.add(const Duration(days: 1));
 
     return getBookings(state).where((booking) {
-      return booking.scheduledDate.isAfter(today) &&
-          booking.scheduledDate.isBefore(tomorrow);
+      return booking.scheduledStartTime.isAfter(today) &&
+          booking.scheduledStartTime.isBefore(tomorrow);
     }).toList();
   }
 
@@ -123,18 +126,18 @@ class BookingSelectors {
     final nextWeek = now.add(const Duration(days: 7));
 
     return getBookings(state).where((booking) {
-      return booking.scheduledDate.isAfter(now) &&
-          booking.scheduledDate.isBefore(nextWeek);
+      return booking.scheduledStartTime.isAfter(now) &&
+          booking.scheduledStartTime.isBefore(nextWeek);
     }).toList();
   }
 
   /// Check if there are any active filters
   static bool hasActiveFilters(AppState state) {
     final filters = getBookingFilters(state);
-    return filters.status != null ||
-        filters.serviceCategory != null ||
-        filters.dateRange != null ||
-        filters.customerId != null ||
-        filters.cleanerId != null;
+    return filters['status'] != null ||
+        filters['serviceCategory'] != null ||
+        filters['dateRange'] != null ||
+        filters['clientId'] != null ||
+        filters['professionalId'] != null;
   }
 }

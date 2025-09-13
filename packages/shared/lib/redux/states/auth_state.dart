@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
-import '../core/core.dart';
+import 'package:shared/redux/core/core.dart';
 
 /// Authentication state following functional programming patterns
 class AuthState extends BaseAsyncState<User> {
@@ -89,7 +89,8 @@ class AuthState extends BaseAsyncState<User> {
   ];
 
   @override
-  String toString() => 'AuthState('
+  String toString() =>
+      'AuthState('
       'isLoading: $isLoading, '
       'isAuthenticated: $isAuthenticated, '
       'hasData: ${data.isSome()}, '

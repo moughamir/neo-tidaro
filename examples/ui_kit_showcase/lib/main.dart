@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 import 'package:ui_kit/ui_kit.dart';
 import 'package:shared/shared.dart';
@@ -265,7 +264,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                         builder: (context) => widget.isDarkMode
                             ? MarkdownWidget(
                                 data: _getMarkdownExample(),
-                                config: MarkdownConfig.darkConfig(context)
+                                config: MarkdownConfig.defaultConfig(context)
                                     .copyWith(
                                       shrinkWrap: false,
                                       padding: const EdgeInsets.all(8),
@@ -306,7 +305,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                         builder: (context) => MarkdownWidget(
                           data: _getCompactMarkdownExample(),
                           config: widget.isDarkMode
-                              ? MarkdownConfig.darkConfig(context).copyWith(
+                              ? MarkdownConfig.compactConfig(context).copyWith(
                                   shrinkWrap: false,
                                   padding: const EdgeInsets.all(8),
                                 )
@@ -342,7 +341,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                           data:
                               '**Dynamic Content:** `Live Demo`\n\n*Showcasing real-time markdown rendering*',
                           config: widget.isDarkMode
-                              ? MarkdownConfig.darkConfig(context).copyWith(
+                              ? MarkdownConfig.defaultConfig(context).copyWith(
                                   shrinkWrap: false,
                                   padding: const EdgeInsets.all(8),
                                 )
@@ -377,7 +376,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                         builder: (context) => MarkdownWidget(
                           data: _getGeneratedMarkdown(),
                           config: widget.isDarkMode
-                              ? MarkdownConfig.darkConfig(context).copyWith(
+                              ? MarkdownConfig.defaultConfig(context).copyWith(
                                   shrinkWrap: false,
                                   padding: const EdgeInsets.all(8),
                                 )
@@ -463,7 +462,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
               child: Column(
                 children: [
                   const SizedBox(height: 16),
-                  NeomorphicButton(
+                  KuiButton(
                     onPressed: () {},
                     tooltip: 'Neomorphic Button',
                     child: const Text('Neomorphic Button'),
@@ -487,12 +486,13 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
               child: Column(
                 children: [
                   const SizedBox(height: 16),
-                  PrimaryButton(
+                  KuiButton(
+                    variant: ButtonVariant.neumorphic,
                     onPressed: () {},
                     child: const Text('Primary Button'),
                   ),
                   const SizedBox(height: 12),
-                  PrimaryButton(
+                  KuiButton(
                     onPressed: () {},
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
@@ -504,7 +504,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  const PrimaryButton(
+                  const KuiButton(
                     onPressed: null,
                     child: Text('Disabled Button'),
                   ),
@@ -519,12 +519,11 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
               child: Column(
                 children: [
                   const SizedBox(height: 16),
-                  const MetricCard(
+                  MetricCard(
                     title: 'Total Users',
                     value: '12.5K',
-                    icon: Icons.people,
-                    trend: TrendDirection.up,
-                    trendValue: '+12%',
+                    icon: const Icon(Icons.people),
+                    trend: '+12%',
                   ),
                   const SizedBox(height: 16),
                   const InfoCard(
@@ -537,13 +536,14 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                     ],
                   ),
                   const SizedBox(height: 16),
-                  const InfoCardDope(
+                  const KuiCard.hybrid(
                     title: 'Enhanced Info Card',
-                    icon: Icons.star,
-                    content: Text(
+                    leading: Icon(Icons.star),
+                    trailing: Text('Footer content here'),
+                    showBorder: true,
+                    child: Text(
                       'This card has a structured layout with header, content, and footer.',
                     ),
-                    footer: Text('Footer content here'),
                   ),
                   const SizedBox(height: 16),
                   const KuiCard.glass(
@@ -553,7 +553,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const KuiCard.glassDope(
+                  const KuiCard.glass(
                     title: 'Enhanced Glassy Card',
                     child: Text(
                       'This glassy card has a title and structured content area.',
@@ -579,7 +579,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  const BaseGlassCard(
+                  const KuiCard.glass(
                     child: Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
@@ -676,6 +676,15 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                         type: ActivityType.system,
                       ),
                     ],
+                    titleExtractor: (ActivityItem activity) {
+                      return activity.title;
+                    },
+                    descriptionExtractor: (ActivityItem activity) {
+                      return activity.description;
+                    },
+                    timestampExtractor: (ActivityItem activity) {
+                      return activity.timestamp;
+                    },
                   ),
                 ],
               ),

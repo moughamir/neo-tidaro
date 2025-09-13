@@ -1,18 +1,8 @@
-import '../base_entity.dart';
 import '../../enums/enums.dart';
+import '../base_entity.dart';
 
 /// Payment entity for booking transactions
 class Payment extends BaseEntity {
-  final String bookingId;
-  final double amount;
-  final String currency;
-  final PaymentMethod method;
-  final PaymentStatus status;
-  final String? transactionId;
-  final String? paymentIntentId;
-  final DateTime? processedAt;
-  final String? failureReason;
-  final Map<String, dynamic>? metadata;
 
   const Payment({
     required super.id,
@@ -29,6 +19,16 @@ class Payment extends BaseEntity {
     this.failureReason,
     this.metadata,
   });
+  final String bookingId;
+  final double amount;
+  final String currency;
+  final PaymentMethod method;
+  final PaymentStatus status;
+  final String? transactionId;
+  final String? paymentIntentId;
+  final DateTime? processedAt;
+  final String? failureReason;
+  final Map<String, dynamic>? metadata;
 
   /// Check if payment is successful
   bool get isSuccessful => status == PaymentStatus.completed;

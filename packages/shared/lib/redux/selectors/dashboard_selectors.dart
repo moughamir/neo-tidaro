@@ -1,6 +1,7 @@
-import '../app_state.dart';
+import '../states/app_state.dart';
 import '../states/dashboard_state.dart';
-import '../../../../domain/lib/models/models.dart';
+import 'package:domain/entities/system/system.dart'
+    show ActivityItem, DashboardMetrics;
 
 class DashboardSelectors {
   static DashboardState getDashboardState(AppState state) {
@@ -54,8 +55,8 @@ class DashboardSelectors {
     return getMetrics(state)?.monthlyRevenue ?? 0.0;
   }
 
-  static int getActiveCleaners(AppState state) {
-    return getMetrics(state)?.activeCleaners ?? 0;
+  static int getActiveProfessionals(AppState state) {
+    return getMetrics(state)?.activeProfessionals ?? 0;
   }
 
   static int getTotalCustomers(AppState state) {
@@ -74,7 +75,10 @@ class DashboardSelectors {
     return getMetrics(state)?.recentActivities ?? [];
   }
 
-  static List<ServiceMetric> getTopServices(AppState state) {
-    return getMetrics(state)?.topServices ?? [];
+  // Top services metric is not defined in domain yet; return empty list
+  static List<ActivityItem> getTopServices(AppState state) {
+    return [];
   }
 }
+
+extension on DashboardMetrics? {}

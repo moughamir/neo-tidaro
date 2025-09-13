@@ -1,9 +1,9 @@
 
 class TimeOfDay {
-  final int hour;
-  final int minute;
 
   const TimeOfDay({required this.hour, required this.minute});
+  final int hour;
+  final int minute;
 
   @override
   bool operator ==(Object other) =>

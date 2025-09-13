@@ -91,8 +91,8 @@ class BookingsHeader extends StatelessWidget {
   final int totalBookings;
   final int activeBookings;
   final int completedBookings;
-  final Function(BookingStatus?) onFilterChanged;
-  final BookingStatus? currentFilter;
+  final Function(BookingActivityStatus?) onFilterChanged;
+  final BookingActivityStatus? currentFilter;
 
   @override
   Widget build(BuildContext context) {
@@ -139,45 +139,45 @@ class BookingsHeader extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              _StatusFilterChip<BookingStatus>(
+              _StatusFilterChip<BookingActivityStatus>(
                 label: 'All',
                 onSelected: onFilterChanged,
                 isSelected: currentFilter == null,
               ),
               const SizedBox(width: 8),
-              _StatusFilterChip<BookingStatus>(
+              _StatusFilterChip<BookingActivityStatus>(
                 label: 'Pending',
-                status: BookingStatus.pending,
+                status: BookingActivityStatus.pending,
                 onSelected: onFilterChanged,
-                isSelected: currentFilter == BookingStatus.pending,
+                isSelected: currentFilter == BookingActivityStatus.pending,
               ),
               const SizedBox(width: 8),
-              _StatusFilterChip<BookingStatus>(
+              _StatusFilterChip<BookingActivityStatus>(
                 label: 'Confirmed',
-                status: BookingStatus.confirmed,
+                status: BookingActivityStatus.confirmed,
                 onSelected: onFilterChanged,
-                isSelected: currentFilter == BookingStatus.confirmed,
+                isSelected: currentFilter == BookingActivityStatus.confirmed,
               ),
               const SizedBox(width: 8),
-              _StatusFilterChip<BookingStatus>(
+              _StatusFilterChip<BookingActivityStatus>(
                 label: 'In Progress',
-                status: BookingStatus.inProgress,
+                status: BookingActivityStatus.inProgress,
                 onSelected: onFilterChanged,
-                isSelected: currentFilter == BookingStatus.inProgress,
+                isSelected: currentFilter == BookingActivityStatus.inProgress,
               ),
               const SizedBox(width: 8),
-              _StatusFilterChip<BookingStatus>(
+              _StatusFilterChip<BookingActivityStatus>(
                 label: 'Completed',
-                status: BookingStatus.completed,
+                status: BookingActivityStatus.completed,
                 onSelected: onFilterChanged,
-                isSelected: currentFilter == BookingStatus.completed,
+                isSelected: currentFilter == BookingActivityStatus.completed,
               ),
               const SizedBox(width: 8),
-              _StatusFilterChip<BookingStatus>(
+              _StatusFilterChip<BookingActivityStatus>(
                 label: 'Cancelled',
-                status: BookingStatus.cancelled,
+                status: BookingActivityStatus.cancelled,
                 onSelected: onFilterChanged,
-                isSelected: currentFilter == BookingStatus.cancelled,
+                isSelected: currentFilter == BookingActivityStatus.cancelled,
               ),
             ],
           ),
@@ -328,13 +328,11 @@ class HousekeepingDashboardHeader extends StatelessWidget {
   }
 
   Widget _buildQuickStat(
-    BuildContext context,
-    {
+    BuildContext context, {
     required IconData icon,
     required String label,
     required Color color,
-  }
-  ) {
+  }) {
     final ThemeData theme = Theme.of(context);
 
     return Expanded(
@@ -435,7 +433,8 @@ class StaffHeader extends StatelessWidget {
                 label: 'Available',
                 status: ProfessionalActivityStatus.available,
                 onSelected: onFilterChanged,
-                isSelected: currentFilter == ProfessionalActivityStatus.available,
+                isSelected:
+                    currentFilter == ProfessionalActivityStatus.available,
               ),
               const SizedBox(width: 8),
               _StatusFilterChip<ProfessionalActivityStatus>(

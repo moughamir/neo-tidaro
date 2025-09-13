@@ -1,44 +1,44 @@
 import '../enums/enums.dart';
 
-BookingStatus bookingStatusFromSql(String value) {
+BookingActivityStatus bookingStatusFromSql(String value) {
   switch (value) {
     case 'pending':
-      return BookingStatus.pending;
+      return BookingActivityStatus.pending;
     case 'confirmed':
-      return BookingStatus.confirmed;
+      return BookingActivityStatus.confirmed;
     case 'assigned':
-      return BookingStatus.assigned;
+      return BookingActivityStatus.assigned;
     case 'in_progress':
-      return BookingStatus.inProgress;
+      return BookingActivityStatus.inProgress;
     case 'completed':
-      return BookingStatus.completed;
+      return BookingActivityStatus.completed;
     case 'cancelled':
-      return BookingStatus.cancelled;
+      return BookingActivityStatus.cancelled;
     case 'rescheduled':
-      return BookingStatus.rescheduled;
+      return BookingActivityStatus.rescheduled;
     default:
       // Fallback to pending
-      return BookingStatus.pending;
+      return BookingActivityStatus.pending;
   }
 }
 
-String bookingStatusToSql(BookingStatus value) {
+String bookingStatusToSql(BookingActivityStatus value) {
   switch (value) {
-    case BookingStatus.pending:
+    case BookingActivityStatus.pending:
       return 'pending';
-    case BookingStatus.confirmed:
+    case BookingActivityStatus.confirmed:
       return 'confirmed';
-    case BookingStatus.assigned:
+    case BookingActivityStatus.assigned:
       return 'assigned';
-    case BookingStatus.inProgress:
+    case BookingActivityStatus.inProgress:
       return 'in_progress';
-    case BookingStatus.completed:
+    case BookingActivityStatus.completed:
       return 'completed';
-    case BookingStatus.cancelled:
+    case BookingActivityStatus.cancelled:
       return 'cancelled';
-    case BookingStatus.rescheduled:
+    case BookingActivityStatus.rescheduled:
       return 'rescheduled';
-    case BookingStatus.noShow:
+    case BookingActivityStatus.noShow:
       // Not in DB – map to cancelled by policy
       return 'cancelled';
   }

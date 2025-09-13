@@ -17,7 +17,7 @@ abstract class ReviewRepository<T extends BaseEntity>
   Future<List<Review>> getReviewsForTarget(
     String targetId, {
     PaginationDto? pagination,
-    SortBy? sortBy,
+    PreBookingSortBy? sortBy,
   });
 
   Future<List<Review>> getReviewsByReviewer(
@@ -41,23 +41,21 @@ abstract class ReviewRepository<T extends BaseEntity>
 
 /// Review aspect rating for detailed feedback
 class ReviewAspectRating {
-  final ReviewAspect aspect;
-  final double rating;
-
   const ReviewAspectRating({required this.aspect, required this.rating});
+  final PostBookingReviewAspect aspect;
+  final double rating;
 }
 
 /// Review summary statistics
 class ReviewSummary {
-  final double averageRating;
-  final int totalReviews;
-  final Map<int, int> ratingDistribution;
-  final Map<ReviewAspect, double> aspectAverages;
-
   const ReviewSummary({
     required this.averageRating,
     required this.totalReviews,
     required this.ratingDistribution,
     required this.aspectAverages,
   });
+  final double averageRating;
+  final int totalReviews;
+  final Map<int, int> ratingDistribution;
+  final Map<PostBookingReviewAspect, double> aspectAverages;
 }

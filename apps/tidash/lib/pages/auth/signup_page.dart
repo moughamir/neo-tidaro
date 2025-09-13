@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart' hide State;
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -316,12 +315,7 @@ class SignUpViewModel {
         ),
       ),
       signUpWithProvider: (String provider) => store.dispatch(
-        SocialSignInAction(
-          provider: SocialProvider.values.firstWhere(
-            (SocialProvider p) => p.name == provider.toLowerCase(),
-            orElse: () => SocialProvider.google,
-          ),
-        ),
+        const SocialSignInAction(provider: AuthProvider.email),
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'design_tokens.dart';
 
 /// Unified effects system combining Neumorphism and Glassmorphism
-/// 
+///
 /// Provides consistent visual effects across the design system with
 /// proper DRY principles and centralized configuration
 class DesignEffects {
@@ -319,10 +319,7 @@ class DesignEffects {
         return BoxDecoration(
           color: backgroundColor ?? colors.surface,
           borderRadius: BorderRadius.circular(radius),
-          border: Border.all(
-            color: colors.primary,
-            width: 2.0,
-          ),
+          border: Border.all(color: colors.primary, width: 2.0),
           boxShadow: [
             BoxShadow(
               color: colors.primary.withValues(alpha: 0.2),
@@ -335,10 +332,7 @@ class DesignEffects {
         return BoxDecoration(
           color: backgroundColor ?? colors.surface,
           borderRadius: BorderRadius.circular(radius),
-          border: Border.all(
-            color: colors.error,
-            width: 2.0,
-          ),
+          border: Border.all(color: colors.error, width: 2.0),
           boxShadow: [
             BoxShadow(
               color: colors.error.withValues(alpha: 0.2),
@@ -358,17 +352,7 @@ class DesignEffects {
 }
 
 /// Button interaction states
-enum ButtonState {
-  normal,
-  hovered,
-  pressed,
-  disabled,
-}
+enum ButtonState { normal, hovered, pressed, disabled }
 
 /// Input field states
-enum InputState {
-  normal,
-  focused,
-  error,
-  disabled,
-}
+enum InputState { normal, focused, error, disabled }

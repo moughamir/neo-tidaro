@@ -1,35 +1,9 @@
-import '../user/user_profile.dart';
 import '../../enums/enums.dart';
 import '../../value_objects/value_objects.dart';
+import '../user/user_profile.dart';
 
 /// Professional-specific profile extending UserProfile
 class ProfessionalProfile extends UserProfile {
-  final List<ServiceCategory> categories;
-  final double hourlyRate;
-  final RateType defaultRateType;
-  final String? businessName;
-  final String? taxId;
-  final double rating;
-  final int totalReviews;
-  final int completedJobs;
-  final double serviceRadius;
-  final bool isAvailable;
-  final bool acceptsInstantBooking;
-  final List<String> portfolioImages;
-  final Map<String, dynamic>? skills;
-  final String? avatarUrl;
-  final UserRole role;
-
-  // Professional-specific fields
-  final ProfessionalStatus status;
-  final List<String> certifications;
-  final String? licenseNumber;
-  final DateTime? licenseExpiry;
-  final bool backgroundCheckCompleted;
-  final DateTime? backgroundCheckDate;
-  final List<String> serviceAreas;
-  final Map<String, dynamic>? professionalSettings;
-
   const ProfessionalProfile({
     required super.id,
     required super.createdAt,
@@ -53,8 +27,8 @@ class ProfessionalProfile extends UserProfile {
     this.portfolioImages = const [],
     this.skills,
     this.avatarUrl,
-    this.role = UserRole.clientProfessional,
-    this.status = ProfessionalStatus.pending,
+    this.role = PlatformUserRole.clientProfessional,
+    this.status = ProfessionalKycStatus.pending,
     this.certifications = const [],
     this.licenseNumber,
     this.licenseExpiry,
@@ -63,6 +37,31 @@ class ProfessionalProfile extends UserProfile {
     this.serviceAreas = const [],
     this.professionalSettings,
   });
+  final List<PreBookingServiceCategory> categories;
+  final double hourlyRate;
+  final JobRateType defaultRateType;
+  final String? businessName;
+  final String? taxId;
+  final double rating;
+  final int totalReviews;
+  final int completedJobs;
+  final double serviceRadius;
+  final bool isAvailable;
+  final bool acceptsInstantBooking;
+  final List<String> portfolioImages;
+  final Map<String, dynamic>? skills;
+  final String? avatarUrl;
+  final PlatformUserRole role;
+
+  // Professional-specific fields
+  final ProfessionalKycStatus status;
+  final List<String> certifications;
+  final String? licenseNumber;
+  final DateTime? licenseExpiry;
+  final bool backgroundCheckCompleted;
+  final DateTime? backgroundCheckDate;
+  final List<String> serviceAreas;
+  final Map<String, dynamic>? professionalSettings;
 
   /// Calculate professional score based on rating and completion rate
   double get professionalScore {
@@ -77,7 +76,7 @@ class ProfessionalProfile extends UserProfile {
   bool get isFullyVerified {
     return isVerified &&
         backgroundCheckCompleted &&
-        status == ProfessionalStatus.active;
+        status == ProfessionalKycStatus.active;
   }
 
   ProfessionalProfile copyWith({
@@ -85,9 +84,9 @@ class ProfessionalProfile extends UserProfile {
     PhoneVO? phone,
     bool? isPublic,
     bool? isVerified,
-    List<ServiceCategory>? categories,
+    List<PreBookingServiceCategory>? categories,
     double? hourlyRate,
-    RateType? defaultRateType,
+    JobRateType? defaultRateType,
     String? businessName,
     String? taxId,
     double? rating,
@@ -99,8 +98,8 @@ class ProfessionalProfile extends UserProfile {
     List<String>? portfolioImages,
     Map<String, dynamic>? skills,
     String? avatarUrl,
-    UserRole? role,
-    ProfessionalStatus? status,
+    PlatformUserRole? role,
+    ProfessionalKycStatus? status,
     List<String>? certifications,
     String? licenseNumber,
     DateTime? licenseExpiry,

@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:shared/shared.dart';
-import 'package:ui_kit/ui_kit.dart';
+// ignore_for_file: unrelated_type_equality_checks
+
 import 'package:languist/languist.dart';
-import '../../widgets/dialogs/add_staff_dialog.dart';
-import '../../widgets/dialogs/staff_filter_dialog.dart';
-import '../../widgets/dialogs/staff_details_dialog.dart';
+import 'package:shared/shared.dart';
+import 'package:tidash/widgets/dialogs/add_staff_dialog.dart';
+import 'package:tidash/widgets/dialogs/staff_details_dialog.dart';
+import 'package:tidash/widgets/dialogs/staff_filter_dialog.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 /// Staff management page for TiDash
 class StaffPage extends StatefulWidget {
@@ -18,7 +19,7 @@ class _StaffPageState extends State<StaffPage> {
   @override
   void initState() {
     super.initState();
-    // Load cleaners when page initializes
+    // Load professionals when page initializes
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final Store<AppState> store = StoreProvider.of<AppState>(
         context,
@@ -33,9 +34,9 @@ class _StaffPageState extends State<StaffPage> {
     final ThemeData theme = Theme.of(context);
     final IntlLocalizations l10n = Languist.of(context);
 
-    return StoreConnector<AppState, CleanerState>(
-      converter: (Store<AppState> store) => store.state.cleanerState,
-      builder: (BuildContext context, CleanerState cleanerState) {
+    return StoreConnector<AppState, ProfessionalState>(
+      converter: (Store<AppState> store) => store.state.professionalState,
+      builder: (BuildContext context, ProfessionalState professionalState) {
         return Scaffold(
           backgroundColor: theme.colorScheme.surface,
           appBar: AppBar(
@@ -73,7 +74,7 @@ class _StaffPageState extends State<StaffPage> {
                         ),
                         onChanged: (String value) {
                           // Update search filter
-                          final CleanerFilters updatedFilters = cleanerState
+                          final dynamic updatedFilters = professionalState
                               .filters
                               .copyWith(
                                 searchQuery: value.isEmpty ? null : value,
@@ -91,8 +92,10 @@ class _StaffPageState extends State<StaffPage> {
                     ),
                     const SizedBox(width: 16),
                     FilterChip(
-                      label: Text(_getFilterLabel(cleanerState.filters, l10n)),
-                      selected: _hasActiveFilters(cleanerState.filters),
+                      label: Text(
+                        _getFilterLabel(professionalState.filters, l10n),
+                      ),
+                      selected: _hasActiveFilters(professionalState.filters),
                       onSelected: (bool selected) {
                         if (!selected) {
                           StoreProvider.of<AppState>(
@@ -106,7 +109,7 @@ class _StaffPageState extends State<StaffPage> {
                 ),
                 const SizedBox(height: 16),
                 // Staff grid
-                Expanded(child: _buildStaffGrid(context, cleanerState)),
+                Expanded(child: _buildStaffGrid(context, professionalState)),
               ],
             ),
           ),
@@ -115,15 +118,18 @@ class _StaffPageState extends State<StaffPage> {
     );
   }
 
-  Widget _buildStaffGrid(BuildContext context, CleanerState cleanerState) {
+  Widget _buildStaffGrid(
+    BuildContext context,
+    ProfessionalState professionalState,
+  ) {
     return StoreConnector<AppState, StaffViewModel>(
       converter: (Store<AppState> store) => StaffViewModel.fromStore(store),
       builder: (BuildContext context, StaffViewModel viewModel) {
-        if (viewModel.isLoading && viewModel.cleaners.isEmpty) {
+        if (viewModel.isLoading && viewModel.professionals.isEmpty) {
           return const Center(child: CircularProgressIndicator());
         }
 
-        if (viewModel.cleaners.isEmpty) {
+        if (viewModel.professionals.isEmpty) {
           final IntlLocalizations l10n = Languist.of(context);
           return EmptyState(
             icon: Icons.people_outline,
@@ -148,14 +154,15 @@ class _StaffPageState extends State<StaffPage> {
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
             ),
-            itemCount: viewModel.cleaners.length,
+            itemCount: viewModel.professionals.length,
             itemBuilder: (BuildContext context, int index) {
-              final Cleaner cleaner = viewModel.cleaners[index];
+              final ProfessionalProfile professional =
+                  viewModel.professionals[index];
               return StaffCard(
-                cleaner: cleaner,
-                onTap: () => _navigateToStaffDetails(context, cleaner),
-                onStatusChanged: (ProfessionalStatus status) =>
-                    viewModel.onUpdateCleanerStatus(cleaner.id, status),
+                professional: professional,
+                onTap: () => _navigateToStaffDetails(context, professional),
+                onStatusChanged: (ProfessionalKycStatus status) => viewModel
+                    .onUpdateProfessionalStatus(professional.id, status),
               );
             },
           ),
@@ -164,14 +171,14 @@ class _StaffPageState extends State<StaffPage> {
     );
   }
 
-  String _getFilterLabel(CleanerFilters filters, IntlLocalizations l10n) {
+  String _getFilterLabel(filters, IntlLocalizations l10n) {
     if (filters.status != null) {
       return filters.status!.name;
     }
     return 'All';
   }
 
-  bool _hasActiveFilters(CleanerFilters filters) {
+  bool _hasActiveFilters(dynamic filters) {
     return filters.status != null ||
         (filters.searchQuery != null && filters.searchQuery!.isNotEmpty);
   }
@@ -187,33 +194,33 @@ class _StaffPageState extends State<StaffPage> {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) =>
-          StoreConnector<AppState, ProfessionalStatus?>(
+          StoreConnector<AppState, ProfessionalActionTypes?>(
             converter: (Store<AppState> store) =>
-                null, // TODO: Implement cleaner filters
+                null, // TODO: Implement professional filters
             builder:
-                (BuildContext context, ProfessionalStatus? currentFilter) =>
-                    StaffFilterDialog(
-                      currentFilter: currentFilter,
-                      onFilterChanged: (ProfessionalStatus? filter) {
-                        StoreProvider.of<AppState>(
-                          context,
-                          listen: false,
-                        ).dispatch(
-                          UpdateProfessionalsFiltersAction(
-                            filters: CleanerFilters(status: filter),
-                          ),
-                        );
-                      },
-                    ),
+                (
+                  BuildContext context,
+                  ProfessionalActionTypes? currentFilter,
+                ) => StaffFilterDialog(
+                  onFilterChanged: (ProfessionalActivityStatus? filter) {
+                    StoreProvider.of<AppState>(context, listen: false).dispatch(
+                      UpdateProfessionalsFiltersAction(filters: currentFilter),
+                    );
+                  },
+                  currentFilter: null,
+                ),
           ),
     );
   }
 
-  void _navigateToStaffDetails(BuildContext context, Cleaner cleaner) {
+  void _navigateToStaffDetails(
+    BuildContext context,
+    ProfessionalProfile professional,
+  ) {
     showDialog<void>(
       context: context,
       builder: (BuildContext context) =>
-          StaffDetailsDialog(professional: cleaner),
+          StaffDetailsDialog(professional: professional),
     );
   }
 }
@@ -221,51 +228,57 @@ class _StaffPageState extends State<StaffPage> {
 /// ViewModel for staff page
 class StaffViewModel {
   const StaffViewModel({
-    required this.cleaners,
+    required this.professionals,
     required this.isLoading,
     required this.error,
     required this.currentFilter,
     required this.onRefresh,
     required this.onFilterChanged,
-    required this.onUpdateCleanerStatus,
+    required this.onUpdateProfessionalStatus,
   });
 
-  final List<Cleaner> cleaners;
+  final List<ProfessionalProfile> professionals;
   final bool isLoading;
   final String? error;
-  final ProfessionalStatus? currentFilter;
+  final ProfessionalKycStatus? currentFilter;
   final VoidCallback onRefresh;
-  final Function(ProfessionalStatus?) onFilterChanged;
-  final Function(String cleanerId, ProfessionalStatus status)
-  onUpdateCleanerStatus;
+  final Function(ProfessionalActivityStatus?) onFilterChanged;
+  final Function(String professionalId, ProfessionalKycStatus status)
+  onUpdateProfessionalStatus;
 
-  int get availableStaff => cleaners
-      .where((Cleaner c) => c.status == ProfessionalStatus.available)
+  int get availableStaff => professionals
+      .where(
+        (ProfessionalProfile p) =>
+            p.status == ProfessionalActivityStatus.available,
+      )
       .length;
 
-  int get busyStaff => cleaners
-      .where((Cleaner c) => c.status == ProfessionalStatus.offline)
+  int get busyStaff => professionals
+      .where(
+        (ProfessionalProfile p) =>
+            p.status == ProfessionalActivityStatus.offline,
+      )
       .length;
 
   static StaffViewModel fromStore(Store<AppState> store) {
     return StaffViewModel(
-      cleaners: const <Cleaner>[], // TODO: Implement cleaners data source
-      isLoading: false, // TODO: Connect to appropriate state
-      error: null, // TODO: Connect to appropriate error handling
-      currentFilter: null, // TODO: Implement cleaner filters
-      onRefresh: () {}, // TODO: Implement refresh action
-      onFilterChanged: (ProfessionalStatus? filter) => store.dispatch(
-        UpdateProfessionalsFiltersAction(
-          filters: CleanerFilters(status: filter),
-        ),
-      ),
-      onUpdateCleanerStatus: (String cleanerId, ProfessionalStatus status) =>
-          store.dispatch(
-            UpdateProfessionalStatusAction(
-              professionalId: cleanerId,
-              status: status,
-            ),
-          ),
+      professionals: const <ProfessionalProfile>[],
+      isLoading: false,
+      error: null,
+      currentFilter: null,
+      onRefresh: () {},
+
+      onUpdateProfessionalStatus:
+          (String professionalId, ProfessionalKycStatus status) =>
+              store.dispatch(
+                UpdateProfessionalStatusAction(
+                  professionalId: professionalId,
+                  status: status,
+                ),
+              ),
+      onFilterChanged: (ProfessionalActivityStatus? p1) {
+        return p1;
+      },
     );
   }
 }

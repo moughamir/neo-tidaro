@@ -1,9 +1,9 @@
 /// Base Value Object for type-safe domain modeling
 /// Pure domain implementation without external dependencies
 abstract class BaseVO {
-  final String value;
   
   const BaseVO(this.value);
+  final String value;
   
   @override
   bool operator ==(Object other) =>

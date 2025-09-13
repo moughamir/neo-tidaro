@@ -1,6 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Flutter Run -&gt; 'ui_kit_showcase'" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="filePath" value="$PROJECT_DIR$/examples/ui_kit_showcase/lib/main.dart" />
-    <method v="2" />
-  </configuration>
-</component>

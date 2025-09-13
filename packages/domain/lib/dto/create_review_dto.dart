@@ -1,14 +1,6 @@
 import '../enums/review_aspect.dart';
 
 class CreateReviewDto {
-  final String bookingId;
-  final String reviewerId;
-  final String revieweeId;
-  final double overallRating;
-  final Map<ReviewAspect, double> aspectRatings;
-  final String? comment;
-  final List<String>? images;
-
   const CreateReviewDto({
     required this.bookingId,
     required this.reviewerId,
@@ -18,6 +10,13 @@ class CreateReviewDto {
     this.comment,
     this.images,
   });
+  final String bookingId;
+  final String reviewerId;
+  final String revieweeId;
+  final double overallRating;
+  final Map<PostBookingReviewAspect, double> aspectRatings;
+  final String? comment;
+  final List<String>? images;
 
   Map<String, dynamic> toJson() => {
     'booking_id': bookingId,

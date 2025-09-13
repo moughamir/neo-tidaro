@@ -1,25 +1,8 @@
-import '../enums/booking_status.dart';
-import '../enums/day_of_week.dart';
-import '../enums/payment.dart';
-import '../enums/rate_type.dart';
+import 'package:domain/enums/enums.dart';
 
 import 'time_slot_dto.dart';
 
 class CreateBookingDto {
-  final String clientId;
-  final String professionalId;
-  final String serviceId;
-  final DateTime scheduledDate;
-  final TimeSlotDto timeSlot;
-  final String addressId;
-  final PaymentMethod paymentMethod;
-  final String? specialInstructions;
-  final RecurrenceType recurrence;
-  final List<String>? attachments;
-
-  final int durationMinutes;
-  final double totalPrice;
-
   const CreateBookingDto({
     required this.clientId,
     required this.professionalId,
@@ -29,12 +12,25 @@ class CreateBookingDto {
     required this.addressId,
     required this.paymentMethod,
     this.specialInstructions,
-    this.recurrence = RecurrenceType.none,
+    this.recurrence = JobRecurrenceType.none,
     this.attachments,
 
     required this.durationMinutes,
     required this.totalPrice,
   });
+  final String clientId;
+  final String professionalId;
+  final String serviceId;
+  final DateTime scheduledDate;
+  final TimeSlotDto timeSlot;
+  final String addressId;
+  final PaymentMethod paymentMethod;
+  final String? specialInstructions;
+  final JobRecurrenceType recurrence;
+  final List<String>? attachments;
+
+  final int durationMinutes;
+  final double totalPrice;
 
   Map<String, dynamic> toJson() => {
     'client_id': clientId,
@@ -54,17 +50,16 @@ class CreateBookingDto {
 }
 
 class UpdateBookingStatusDto {
-  final String bookingId;
-  final BookingStatus status;
-  final String? reason;
-  final Map<String, dynamic>? metadata;
-
   const UpdateBookingStatusDto({
     required this.bookingId,
     required this.status,
     this.reason,
     this.metadata,
   });
+  final String bookingId;
+  final BookingActivityStatus status;
+  final String? reason;
+  final Map<String, dynamic>? metadata;
 
   Map<String, dynamic> toJson() => {
     'booking_id': bookingId,
@@ -75,17 +70,16 @@ class UpdateBookingStatusDto {
 }
 
 class SetAvailabilityDto {
-  final String professionalId;
-  final DayOfWeek dayOfWeek;
-  final List<TimeSlotDto> timeSlots;
-  final DateTime? specificDate;
-
   const SetAvailabilityDto({
     required this.professionalId,
     required this.dayOfWeek,
     required this.timeSlots,
     this.specificDate,
   });
+  final String professionalId;
+  final DayOfWeek dayOfWeek;
+  final List<TimeSlotDto> timeSlots;
+  final DateTime? specificDate;
 
   Map<String, dynamic> toJson() => {
     'professional_id': professionalId,

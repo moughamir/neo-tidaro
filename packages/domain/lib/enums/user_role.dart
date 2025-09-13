@@ -1,5 +1,5 @@
 /// User roles in the Neo-Tidaro system
-enum UserRole {
+enum PlatformUserRole {
   admin,
   moderator,
   clientConsumer,

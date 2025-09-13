@@ -2,22 +2,6 @@ import 'package:domain/domain.dart';
 
 /// Booking entity for service appointments
 class Booking extends BaseEntity {
-  final String clientId;
-  final String professionalId;
-  final String serviceId;
-  final String? addressId;
-  final DateTime scheduledStartTime;
-  final DateTime scheduledEndTime;
-  final DateTime? actualStartTime;
-  final DateTime? actualEndTime;
-  final BookingStatus status;
-  final double totalAmount;
-
-  final String? specialInstructions;
-  final String? cancellationReason;
-  final RecurrenceType recurrenceType;
-  final Map<String, dynamic>? metadata;
-
   const Booking({
     required super.id,
     required super.createdAt,
@@ -31,14 +15,29 @@ class Booking extends BaseEntity {
     required this.scheduledEndTime,
     this.actualStartTime,
     this.actualEndTime,
-    this.status = BookingStatus.pending,
+    this.status = BookingActivityStatus.pending,
     required this.totalAmount,
 
     this.specialInstructions,
     this.cancellationReason,
-    this.recurrenceType = RecurrenceType.none,
+    this.recurrenceType = JobRecurrenceType.none,
     this.metadata,
   });
+  final String clientId;
+  final String professionalId;
+  final String serviceId;
+  final String? addressId;
+  final DateTime scheduledStartTime;
+  final DateTime scheduledEndTime;
+  final DateTime? actualStartTime;
+  final DateTime? actualEndTime;
+  final BookingActivityStatus status;
+  final double totalAmount;
+
+  final String? specialInstructions;
+  final String? cancellationReason;
+  final JobRecurrenceType recurrenceType;
+  final Map<String, dynamic>? metadata;
 
   /// Calculate booking duration in minutes
   int get scheduledDurationMinutes {
@@ -54,23 +53,24 @@ class Booking extends BaseEntity {
   }
 
   /// Check if booking is in progress
-  bool get isInProgress => status == BookingStatus.inProgress;
+  bool get isInProgress => status == BookingActivityStatus.inProgress;
 
   /// Check if booking is completed
-  bool get isCompleted => status == BookingStatus.completed;
+  bool get isCompleted => status == BookingActivityStatus.completed;
 
   /// Check if booking can be cancelled
   bool get canBeCancelled {
-    return status == BookingStatus.pending || status == BookingStatus.confirmed;
+    return status == BookingActivityStatus.pending ||
+        status == BookingActivityStatus.confirmed;
   }
 
-  double get overallRating => this.overallRating;
+  double get overallRating => overallRating;
 
-  String get bookingId => this.id;
+  String get bookingId => id;
 
-  String get reviewerId => this.clientId;
+  String get reviewerId => clientId;
 
-  String get revieweeId => this.professionalId;
+  String get revieweeId => professionalId;
 
   PaymentStatus get paymentStatus => PaymentStatus.pending;
 }

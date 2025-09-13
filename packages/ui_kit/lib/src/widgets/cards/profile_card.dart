@@ -65,7 +65,7 @@ class ProfileCard<T, S> extends StatelessWidget {
 
   /// Function to get status label and color
   final ({String label, Color color})? Function(BuildContext context, S status)?
-      getStatusInfo;
+  getStatusInfo;
 
   /// Function to determine if action buttons should be shown
   final bool Function(S status)? shouldShowActionButtons;
@@ -90,7 +90,9 @@ class ProfileCard<T, S> extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 24,
-                  backgroundColor: theme.colorScheme.primary.withOpacity(0.1),
+                  backgroundColor: theme.colorScheme.primary.withValues(
+                    alpha: 0.1,
+                  ),
                   backgroundImage: profileImageUrl != null
                       ? NetworkImage(profileImageUrl!)
                       : null,
@@ -119,7 +121,7 @@ class ProfileCard<T, S> extends StatelessWidget {
               Text(
                 phone!,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -128,7 +130,7 @@ class ProfileCard<T, S> extends StatelessWidget {
               Text(
                 email!,
                 style: theme.textTheme.bodySmall?.copyWith(
-                  color: theme.colorScheme.onSurface.withOpacity(0.7),
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
             ],
@@ -154,7 +156,9 @@ class ProfileCard<T, S> extends StatelessWidget {
                     Text(
                       '$totalItems ${itemsLabel ?? ''}',
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                        color: theme.colorScheme.onSurface.withValues(
+                          alpha: 0.7,
+                        ),
                       ),
                     ),
                   ],
@@ -175,7 +179,7 @@ class ProfileCard<T, S> extends StatelessWidget {
                       vertical: 2,
                     ),
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.secondary.withOpacity(0.1),
+                      color: theme.colorScheme.secondary.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
@@ -216,9 +220,9 @@ class ProfileCard<T, S> extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: statusInfo.color.withOpacity(0.1),
+        color: statusInfo.color.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: statusInfo.color.withOpacity(0.3)),
+        border: Border.all(color: statusInfo.color.withValues(alpha: 0.3)),
       ),
       child: Text(
         statusInfo.label,

@@ -1,4 +1,5 @@
-enum UserStatus {
+enum PlatformUserStatus {
+  invited,
   pending,
   active,
   suspended,

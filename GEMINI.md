@@ -14,7 +14,7 @@ The primary target is **Tidaro** — a housekeeping and service mediation platfo
 Tidaro connects households and businesses with vetted housekeeping professionals in Morocco.
 
 - Customers can discover services, get transparent pricing, book and manage appointments, pay securely, and rate experiences.
-- Providers (cleaners/agencies) can manage availability, assignments, routes, and performance, and receive payouts.
+- Providers (professionals/agencies) can manage availability, assignments, routes, and performance, and receive payouts.
 - Operators use the dashboard (TiDash) to oversee supply/demand, staff, bookings, service quality, and support.
 
 Scope across apps:

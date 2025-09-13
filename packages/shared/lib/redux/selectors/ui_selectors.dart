@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../app_state.dart';
+import '../states/app_state.dart';
 import '../states/ui_state.dart';
 
 /// Selectors for UI state
@@ -14,18 +14,22 @@ class UiSelectors {
   static Locale getLocale(AppState state) => state.uiState.locale;
 
   /// Get language code from locale
-  static String getLanguageCode(AppState state) => state.uiState.locale.languageCode;
+  static String getLanguageCode(AppState state) =>
+      state.uiState.locale.languageCode;
 
   /// Get country code from locale (if available)
-  static String? getCountryCode(AppState state) => state.uiState.locale.countryCode;
+  static String? getCountryCode(AppState state) =>
+      state.uiState.locale.countryCode;
 
   /// Check if app is in dark mode
-  static bool isDarkMode(AppState state) => state.uiState.themeMode == ThemeMode.dark;
+  static bool isDarkMode(AppState state) =>
+      state.uiState.themeMode == ThemeMode.dark;
 
   /// Check if app is in light mode
-  static bool isLightMode(AppState state) => state.uiState.themeMode == ThemeMode.light;
+  static bool isLightMode(AppState state) =>
+      state.uiState.themeMode == ThemeMode.light;
 
   /// Check if app is using system theme
-  static bool isSystemTheme(AppState state) => state.uiState.themeMode == ThemeMode.system;
-
+  static bool isSystemTheme(AppState state) =>
+      state.uiState.themeMode == ThemeMode.system;
 }

@@ -1,14 +1,8 @@
-import '../base_entity.dart';
 import '../../value_objects/value_objects.dart';
+import '../base_entity.dart';
 
 /// Base profile for all user types
 abstract class UserProfile extends BaseEntity {
-  final EmailVO email;
-  final String? fullName;
-  final PhoneVO? phone;
-  final bool isPublic;
-  final bool isVerified;
-
   const UserProfile({
     required super.id,
     required super.createdAt,
@@ -19,17 +13,15 @@ abstract class UserProfile extends BaseEntity {
     this.isPublic = false,
     this.isVerified = false,
   });
+  final EmailVO email;
+  final String? fullName;
+  final PhoneVO? phone;
+  final bool isPublic;
+  final bool isVerified;
 }
 
 /// Client-specific profile
 class ClientProfile extends UserProfile {
-  final String? bio;
-  final DateTime? dateOfBirth;
-  final String? preferredLanguage;
-  final String? preferredCurrency;
-  final List<String> spokenLanguages;
-  final Map<String, dynamic>? preferences;
-
   const ClientProfile({
     required super.id,
     required super.createdAt,
@@ -46,4 +38,10 @@ class ClientProfile extends UserProfile {
     this.spokenLanguages = const [],
     this.preferences,
   });
+  final String? bio;
+  final DateTime? dateOfBirth;
+  final String? preferredLanguage;
+  final String? preferredCurrency;
+  final List<String> spokenLanguages;
+  final Map<String, dynamic>? preferences;
 }

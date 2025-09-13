@@ -10,7 +10,7 @@
 .flutter-plugins
 .flutter-plugins-dependencies
 .packages
-pubspec.lock
+!pubspec.lock
 .pub-cache/
 .pub/
 .fvm/flutter_sdk
@@ -85,31 +85,7 @@ cmake-build-*/
 # IDEs & Editors
 # =============================================================================
 # IntelliJ IDEA
-.idea/*
-!.idea/codeStyles/
-!.idea/runConfigurations/
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/**/usage.statistics.xml
-.idea/**/dictionaries/
-.idea/**/shelf/
-.idea/**/contentModel.xml
-.idea/**/dataSources/
-.idea/**/dataSources.ids
-.idea/**/dataSources.local.xml
-.idea/**/sqlDataSources.xml
-.idea/**/dynamic.xml
-.idea/**/uiDesigner.xml
-.idea/**/dbnavigator.xml
-.idea/**/gradle.xml
-.idea/**/libraries/
-.idea/**/mongoSettings.xml
-.idea/**/aws.xml
-.idea/httpRequests/
-.idea/caches/build_file_checksums.ser
-.idea/misc.xml
-.idea/replstate.xml
-.idea/sonarlint/
+.idea
 *.iml
 *.ipr
 *.iws
@@ -117,11 +93,6 @@ atlassian-ide-plugin.xml
 
 # VS Code
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
 .vscode-test/
 .history/
 
@@ -281,5 +252,5 @@ modules.xml
 # =============================================================================
 # Exceptions (Files to include despite patterns above)
 # =============================================================================
-!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+
 .snaplet

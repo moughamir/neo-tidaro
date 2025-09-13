@@ -1,19 +1,9 @@
-import '../base_entity.dart';
-import '../../enums/enums.dart';
+import 'package:domain/entities/base_entity.dart';
+import 'package:domain/enums/rate_type.dart';
+import 'package:domain/enums/service_category.dart';
 
 /// Service entity for professional offerings
 class Service extends BaseEntity {
-  final String? professionalId;
-  final ServiceCategory category;
-  final String name;
-  final String? description;
-  final double basePrice;
-  final RateType rateType;
-  final int estimatedDuration; // in minutes
-  final List<String> includedTasks;
-  final List<String> requirements;
-  final bool isActive;
-
   const Service({
     required super.id,
     required super.createdAt,
@@ -29,4 +19,14 @@ class Service extends BaseEntity {
     this.requirements = const [],
     this.isActive = true,
   });
+  final String? professionalId;
+  final PreBookingServiceCategory category;
+  final String name;
+  final String? description;
+  final double basePrice;
+  final JobRateType rateType;
+  final int estimatedDuration; // in minutes
+  final List<String> includedTasks;
+  final List<String> requirements;
+  final bool isActive;
 }

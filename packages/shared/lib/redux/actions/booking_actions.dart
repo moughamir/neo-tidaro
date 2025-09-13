@@ -42,13 +42,13 @@ class LoadBookingsAction extends BaseAsyncAction<List<Booking>> {
 class UpdateBookingFiltersAction extends BaseAction {
   const UpdateBookingFiltersAction(this.filters);
 
-  final Map<String, dynamic> filters;
+  final BookingActivityStatus? filters;
 
   @override
   String get type => BookingActionTypes.updateFilters;
 
   @override
-  Map<String, dynamic> get payload => filters;
+  BookingActivityStatus? get payload => filters;
 
   @override
   List<Object?> get props => [filters];
@@ -114,7 +114,7 @@ class UpdateBookingStatusAction extends BaseAction {
   });
 
   final String bookingId;
-  final BookingStatus status;
+  final BookingActivityStatus status;
 
   @override
   String get type => BookingActionTypes.updateBookingStatus;

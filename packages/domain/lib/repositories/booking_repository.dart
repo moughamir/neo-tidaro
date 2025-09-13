@@ -11,12 +11,12 @@ abstract class BookingRepository extends BaseRepository<Booking> {
   Future<Booking> updateStatus(UpdateBookingStatusDto dto);
   Future<List<Booking>> getClientBookings(
     String clientId, {
-    BookingStatus? status,
+    BookingActivityStatus? status,
     PaginationDto? pagination,
   });
   Future<List<Booking>> getProfessionalBookings(
     String professionalId, {
-    BookingStatus? status,
+    BookingActivityStatus? status,
     DateTime? date,
     PaginationDto? pagination,
   });

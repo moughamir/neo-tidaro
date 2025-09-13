@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
@@ -33,17 +32,6 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  void _handleSocialLogin(BuildContext context, String provider) {
-    StoreProvider.of<AppState>(context, listen: false).dispatch(
-      SocialSignInAction(
-        provider: SocialProvider.values.firstWhere(
-          (SocialProvider p) => p.name == provider.toLowerCase(),
-          orElse: () => SocialProvider.google,
-        ),
-      ),
-    );
-  }
-
   void _showForgotPasswordDialog(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final ThemeData theme = Theme.of(context);
@@ -75,9 +63,7 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: () {
               if (emailController.text.isNotEmpty) {
                 StoreProvider.of<AppState>(context, listen: false).dispatch(
-                  ResetPasswordAction(
-                    email: emailController.text.trim(),
-                  ),
+                  ResetPasswordAction(email: emailController.text.trim()),
                 );
                 Navigator.pop(context);
                 ScaffoldMessenger.of(context).showSnackBar(
@@ -251,19 +237,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
 
                         const SizedBox(height: 24),
-
-                        // Divider
-                        const AuthDivider(),
-
-                        const SizedBox(height: 24),
-
-                        // Social login buttons
-                        SocialAuthButton(
-                          onPressed: () =>
-                              _handleSocialLogin(context, 'github'),
-                          provider: SocialAuthProvider.github,
-                          isLoading: authState.isLoading,
-                        ),
 
                         const SizedBox(height: 32),
 

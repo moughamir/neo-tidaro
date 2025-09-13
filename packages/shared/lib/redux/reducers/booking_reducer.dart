@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart' hide BookingState;
+import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../actions/booking_actions.dart';
@@ -29,9 +29,9 @@ BookingState bookingReducer(BookingState state, dynamic action) {
     );
   }
 
-  if (action is UpdateBookingFiltersAction) {
-    return state.copyWith(filters: action.filters);
-  }
+  // if (action is UpdateBookingFiltersAction) {
+  //   return state.copyWith(filters: action.filters);
+  // }
 
   if (action is SelectBookingAction) {
     return state.copyWith(selectedBookingId: Some(action.bookingId));

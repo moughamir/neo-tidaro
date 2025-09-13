@@ -1,5 +1,4 @@
 import '../enums/activity_type.dart';
-import '../enums/professional_status.dart';
 
 /// Maps between ProfessionalStatus and ProfessionalActivityStatus
 ///
@@ -8,32 +7,36 @@ import '../enums/professional_status.dart';
 /// - ProfessionalActivityStatus: UI-focused representation (available, onJob, etc.)
 class ProfessionalStatusMapper {
   /// Maps a ProfessionalActivityStatus to the corresponding ProfessionalStatus
-  static ProfessionalStatus fromActivityStatus(ProfessionalActivityStatus status) {
+  static ProfessionalKycStatus fromActivityStatus(
+    ProfessionalActivityStatus status,
+  ) {
     switch (status) {
       case ProfessionalActivityStatus.available:
-        return ProfessionalStatus.active;
+        return ProfessionalKycStatus.active;
       case ProfessionalActivityStatus.onJob:
-        return ProfessionalStatus.active; // Still active, but busy
+        return ProfessionalKycStatus.active; // Still active, but busy
       case ProfessionalActivityStatus.offline:
-        return ProfessionalStatus.inactive;
+        return ProfessionalKycStatus.inactive;
       case ProfessionalActivityStatus.onBreak:
-        return ProfessionalStatus.active; // Still active, just on break
+        return ProfessionalKycStatus.active; // Still active, just on break
       // All cases are covered above
     }
   }
 
   /// Maps a ProfessionalStatus to the most appropriate ProfessionalActivityStatus
-  static ProfessionalActivityStatus toActivityStatus(ProfessionalStatus status) {
+  static ProfessionalActivityStatus toActivityStatus(
+    ProfessionalKycStatus status,
+  ) {
     switch (status) {
-      case ProfessionalStatus.active:
+      case ProfessionalKycStatus.active:
         return ProfessionalActivityStatus.available;
-      case ProfessionalStatus.inactive:
+      case ProfessionalKycStatus.inactive:
         return ProfessionalActivityStatus.offline;
-      case ProfessionalStatus.suspended:
-      case ProfessionalStatus.rejected:
+      case ProfessionalKycStatus.suspended:
+      case ProfessionalKycStatus.rejected:
         return ProfessionalActivityStatus.offline;
-      case ProfessionalStatus.pending:
-      case ProfessionalStatus.underReview:
+      case ProfessionalKycStatus.pending:
+      case ProfessionalKycStatus.underReview:
         return ProfessionalActivityStatus.offline;
     }
   }

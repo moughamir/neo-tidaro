@@ -1,6 +1,5 @@
-import 'package:domain/entities/system/system.dart';
-import 'package:domain/enums/activity_type.dart';
-import 'package:domain/states/app_state.dart';
+import 'package:domain/entities/entities.dart';
+import 'package:domain/enums/enums.dart';
 import 'package:shared/redux/redux.dart';
 
 List<Middleware<AppState>> createDashboardMiddleware() {
@@ -58,7 +57,7 @@ void _loadDashboard(
       completedBookings: 189,
       totalRevenue: 45678.90,
       monthlyRevenue: 12500.00,
-      activeCleaners: 25,
+      activeProfessionals: 25,
       totalCustomers: 856,
       averageRating: 4.7,
       recentActivities: sampleActivities,
@@ -100,6 +99,12 @@ void _refreshDashboard(
         totalCustomers: metrics.totalCustomers + 2,
         totalRevenue: metrics.totalRevenue + 150.0,
         monthlyRevenue: metrics.monthlyRevenue + 150.0,
+        pendingBookings: metrics.pendingBookings,
+        completedBookings: metrics.completedBookings,
+        activeProfessionals: metrics.activeProfessionals,
+        averageRating: metrics.averageRating,
+        completionRate: metrics.completionRate,
+        recentActivities: metrics.recentActivities,
       );
 
       store.dispatch(
@@ -118,6 +123,53 @@ void _refreshDashboard(
         DashboardActionTypes.refreshDashboard,
         Exception(error.toString()),
       ),
+    );
+  }
+}
+
+extension on DashboardMetrics {
+  get totalBookings => 0;
+
+  get totalCustomers => 0;
+
+  get totalRevenue => 0;
+
+  get monthlyRevenue => 0;
+
+  get pendingBookings => 0;
+
+  get completedBookings => 0;
+
+  get activeProfessionals => 0;
+
+  get averageRating => 0;
+
+  get completionRate => 0;
+
+  get recentActivities => 0;
+  DashboardMetrics copyWith({
+    required totalBookings,
+    required totalCustomers,
+    required totalRevenue,
+    required monthlyRevenue,
+    required pendingBookings,
+    required completedBookings,
+    required activeProfessionals,
+    required averageRating,
+    required completionRate,
+    required recentActivities,
+  }) {
+    return DashboardMetrics(
+      activeProfessionals: 0,
+      id: '',
+      totalBookings: 0,
+      pendingBookings: 0,
+      completedBookings: 0,
+      totalRevenue: 0,
+      monthlyRevenue: 0,
+      totalCustomers: 0,
+      averageRating: 0,
+      recentActivities: [],
     );
   }
 }

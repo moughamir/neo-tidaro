@@ -19,30 +19,30 @@ extension _StringHumanizeX on String {
   }
 }
 
-extension BookingStatusL10n on BookingStatus {
+extension BookingStatusL10n on BookingActivityStatus {
   String label(BuildContext context) {
     switch (this) {
-      case BookingStatus.pending:
+      case BookingActivityStatus.pending:
         return 'pending'.humanize();
-      case BookingStatus.confirmed:
+      case BookingActivityStatus.confirmed:
         return 'confirmed'.humanize();
-      case BookingStatus.assigned:
+      case BookingActivityStatus.assigned:
         return 'assigned'.humanize();
-      case BookingStatus.inProgress:
+      case BookingActivityStatus.inProgress:
         return 'in_progress'.humanize();
-      case BookingStatus.completed:
+      case BookingActivityStatus.completed:
         return 'completed'.humanize();
-      case BookingStatus.cancelled:
+      case BookingActivityStatus.cancelled:
         return 'cancelled'.humanize();
-      case BookingStatus.rescheduled:
+      case BookingActivityStatus.rescheduled:
         return 'rescheduled'.humanize();
-      case BookingStatus.noShow:
+      case BookingActivityStatus.noShow:
         return 'no_show'.humanize();
     }
   }
 }
 
-extension CleanerStatusL10n on ProfessionalActivityStatus {
+extension ProfessionalStatusL10n on ProfessionalActivityStatus {
   String label(BuildContext context) {
     switch (this) {
       case ProfessionalActivityStatus.available:
@@ -57,42 +57,42 @@ extension CleanerStatusL10n on ProfessionalActivityStatus {
   }
 }
 
-extension ServiceCategoryL10n on ServiceCategory {
+extension ServiceCategoryL10n on PreBookingServiceCategory {
   String label(BuildContext context) {
     switch (this) {
-      case ServiceCategory.standardCleaning:
+      case PreBookingServiceCategory.standardCleaning:
         return 'standard_cleaning'.humanize();
-      case ServiceCategory.regularCleaning:
+      case PreBookingServiceCategory.regularCleaning:
         return 'regular_cleaning'.humanize();
-      case ServiceCategory.deepCleaning:
+      case PreBookingServiceCategory.deepCleaning:
         return 'deep_cleaning'.humanize();
-      case ServiceCategory.moveInOut:
+      case PreBookingServiceCategory.moveInOut:
         return 'move_in_out'.humanize();
-      case ServiceCategory.postConstruction:
+      case PreBookingServiceCategory.postConstruction:
         return 'post_construction'.humanize();
-      case ServiceCategory.commercial:
+      case PreBookingServiceCategory.commercial:
         return 'commercial'.humanize();
-      case ServiceCategory.residential:
+      case PreBookingServiceCategory.residential:
         return 'residential'.humanize();
-      case ServiceCategory.specialized:
+      case PreBookingServiceCategory.specialized:
         return 'specialized'.humanize();
-      case ServiceCategory.cleaning:
+      case PreBookingServiceCategory.cleaning:
         return 'cleaning'.humanize();
-      case ServiceCategory.laundry:
+      case PreBookingServiceCategory.laundry:
         return 'laundry'.humanize();
-      case ServiceCategory.cooking:
+      case PreBookingServiceCategory.cooking:
         return 'cooking'.humanize();
-      case ServiceCategory.babysitting:
+      case PreBookingServiceCategory.babysitting:
         return 'babysitting'.humanize();
-      case ServiceCategory.petCare:
+      case PreBookingServiceCategory.petCare:
         return 'pet_care'.humanize();
-      case ServiceCategory.gardening:
+      case PreBookingServiceCategory.gardening:
         return 'gardening'.humanize();
-      case ServiceCategory.maintenance:
+      case PreBookingServiceCategory.maintenance:
         return 'maintenance'.humanize();
-      case ServiceCategory.organization:
+      case PreBookingServiceCategory.organization:
         return 'organization'.humanize();
-      case ServiceCategory.other:
+      case PreBookingServiceCategory.other:
         return 'other'.humanize();
     }
   }

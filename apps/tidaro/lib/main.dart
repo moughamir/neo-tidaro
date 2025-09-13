@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
-
-import 'package:tidaro/app/app.dart';
+import 'package:tidaro/page.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const BaseApp(title: 'Mini TiDaro Lab', home: DarPage()));
 }

@@ -22,7 +22,8 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
   final TextEditingController _zipCodeController = TextEditingController();
   ProfessionalActivityStatus _selectedStatus =
       ProfessionalActivityStatus.offline;
-  final List<ServiceCategory> _selectedCategories = <ServiceCategory>[];
+  final List<PreBookingServiceCategory> _selectedCategories =
+      <PreBookingServiceCategory>[];
 
   @override
   void dispose() {
@@ -229,8 +230,8 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       Wrap(
                         spacing: 8,
                         runSpacing: 8,
-                        children: ServiceCategory.values.map((
-                          ServiceCategory category,
+                        children: PreBookingServiceCategory.values.map((
+                          PreBookingServiceCategory category,
                         ) {
                           final bool isSelected = _selectedCategories.contains(
                             category,
@@ -351,25 +352,25 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
     }
   }
 
-  String _getServiceCategoryName(ServiceCategory category) {
+  String _getServiceCategoryName(PreBookingServiceCategory category) {
     return switch (category) {
-      ServiceCategory.cleaning => 'Cleaning',
-      ServiceCategory.standardCleaning => 'Standard Cleaning',
-      ServiceCategory.regularCleaning => 'Regular Cleaning',
-      ServiceCategory.laundry => 'Laundry',
-      ServiceCategory.cooking => 'Cooking',
-      ServiceCategory.babysitting => 'Babysitting',
-      ServiceCategory.petCare => 'Pet Care',
-      ServiceCategory.gardening => 'Gardening',
-      ServiceCategory.maintenance => 'Maintenance',
-      ServiceCategory.organization => 'Organization',
-      ServiceCategory.deepCleaning => 'Deep Cleaning',
-      ServiceCategory.moveInOut => 'Move In-Out',
-      ServiceCategory.postConstruction => 'Post Construction',
-      ServiceCategory.commercial => 'Commercial',
-      ServiceCategory.residential => 'Residential',
-      ServiceCategory.specialized => 'Specialized',
-      ServiceCategory.other => 'Other',
+      PreBookingServiceCategory.cleaning => 'Cleaning',
+      PreBookingServiceCategory.standardCleaning => 'Standard Cleaning',
+      PreBookingServiceCategory.regularCleaning => 'Regular Cleaning',
+      PreBookingServiceCategory.laundry => 'Laundry',
+      PreBookingServiceCategory.cooking => 'Cooking',
+      PreBookingServiceCategory.babysitting => 'Babysitting',
+      PreBookingServiceCategory.petCare => 'Pet Care',
+      PreBookingServiceCategory.gardening => 'Gardening',
+      PreBookingServiceCategory.maintenance => 'Maintenance',
+      PreBookingServiceCategory.organization => 'Organization',
+      PreBookingServiceCategory.deepCleaning => 'Deep Cleaning',
+      PreBookingServiceCategory.moveInOut => 'Move In-Out',
+      PreBookingServiceCategory.postConstruction => 'Post Construction',
+      PreBookingServiceCategory.commercial => 'Commercial',
+      PreBookingServiceCategory.residential => 'Residential',
+      PreBookingServiceCategory.specialized => 'Specialized',
+      PreBookingServiceCategory.other => 'Other',
     };
   }
 
@@ -384,11 +385,11 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
         hourlyRate: 350,
-        defaultRateType: RateType.perService,
+        defaultRateType: JobRateType.perService,
         email: EmailVO(_emailController.text.trim()),
       );
 
-      // Dispatch action to create cleaner
+      // Dispatch action to create professional
       StoreProvider.of<AppState>(
         context,
         listen: false,

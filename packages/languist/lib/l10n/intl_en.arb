@@ -5,16 +5,27 @@
   "@appTitle": {
     "description": "Application Title"
   },
-  "hello": "Hello",
-  "@hello": {
+  "greetHello": "Hello",
+  "@greetHello": {
     "description": "A simple greeting"
   },
-  "helloUser": "Hello {userName}",
-  "@helloUser": {
+  "greetHelloUser": "Hello {userName}",
+  "@greetHelloUser": {
     "description": "A greeting to the user.",
     "placeholders": {
-      "userName": {}
+      "userName": {
+        "type": "String",
+        "description": "The name of the user"
+      }
     }
+  },
+  "greetWelcome": "Welcome",
+  "@greetWelcome": {
+    "description": "Welcome message"
+  },
+  "greetWelcomeBack": "Welcome back",
+  "@greetWelcomeBack": {
+    "description": "Welcome back message"
   },
   "greetGoodMorning": "Good Morning",
   "@greetGoodMorning": {
@@ -28,24 +39,16 @@
   "@greetGoodEvening": {
     "description": "Good Evening"
   },
-  "welcome": "Welcome",
-  "@welcome": {
-    "description": "Welcome message"
-  },
-  "welcomeBack": "Welcome back",
-  "@welcomeBack": {
-    "description": "Welcome back message"
-  },
-  "goodbye": "Goodbye",
-  "@goodbye": {
+  "greetGoodbye": "Goodbye",
+  "@greetGoodbye": {
     "description": "Farewell message"
   },
-  "ok": "OK",
-  "@ok": {
+  "commonOk": "OK",
+  "@commonOk": {
     "description": "OK button"
   },
-  "cancel": "Cancel",
-  "@cancel": {
+  "commonCancel": "Cancel",
+  "@commonCancel": {
     "description": "Cancel button"
   },
   "save": "Save",
@@ -594,13 +597,13 @@
   "@bookingRescheduled": {
     "description": "Booking rescheduled activity type"
   },
-  "cleanerAssigned": "Cleaner Assigned",
-  "@cleanerAssigned": {
-    "description": "Cleaner assigned activity type"
+  "professionalAssigned": "Professional Assigned",
+  "@professionalAssigned": {
+    "description": "Professional assigned activity type"
   },
-  "cleanerUnassigned": "Cleaner Unassigned",
-  "@cleanerUnassigned": {
-    "description": "Cleaner unassigned activity type"
+  "professionalUnassigned": "Professional Unassigned",
+  "@professionalUnassigned": {
+    "description": "Professional unassigned activity type"
   },
   "paymentReceived": "Payment Received",
   "@paymentReceived": {
@@ -614,9 +617,9 @@
   "@customerRegistered": {
     "description": "Customer registered activity type"
   },
-  "cleanerRegistered": "Cleaner Registered",
-  "@cleanerRegistered": {
-    "description": "Cleaner registered activity type"
+  "professionalRegistered": "Professional Registered",
+  "@professionalRegistered": {
+    "description": "Professional registered activity type"
   },
   "personalInformation": "Personal Information",
   "@personalInformation": {
@@ -819,9 +822,9 @@
   "@monthlyRevenue": {
     "description": "Monthly revenue metric title"
   },
-  "activeCleaners": "Active Cleaners",
-  "@activeCleaners": {
-    "description": "Active cleaners metric title"
+  "activeProfessionals": "Active Professionals",
+  "@activeProfessionals": {
+    "description": "Active professionals metric title"
   },
   "totalCustomers": "Total Customers",
   "@totalCustomers": {
@@ -847,20 +850,20 @@
   "@staffFilterByServiceSpecialties": {
     "description": "Filter by service specialties label"
   },
-  "cleanerStatusAvailable": "Available",
-  "@cleanerStatusAvailable": {
+  "professionalStatusAvailable": "Available",
+  "@professionalStatusAvailable": {
     "description": "Available status"
   },
-  "cleanerStatusOnJob": "On Job",
-  "@cleanerStatusOnJob": {
+  "professionalStatusOnJob": "On Job",
+  "@professionalStatusOnJob": {
     "description": "On job status"
   },
-  "cleanerStatusOffline": "Offline",
-  "@cleanerStatusOffline": {
+  "professionalStatusOffline": "Offline",
+  "@professionalStatusOffline": {
     "description": "Offline status"
   },
-  "cleanerStatusOnBreak": "On Break",
-  "@cleanerStatusOnBreak": {
+  "professionalStatusOnBreak": "On Break",
+  "@professionalStatusOnBreak": {
     "description": "On break status"
   },
   "serviceCategoryRegularCleaning": "Regular Cleaning",

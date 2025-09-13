@@ -1,6 +1,5 @@
 library shared.redux.reducers.professional_reducer;
 
-import 'package:domain/dto/professional_search_dto.dart';
 import 'package:redux/redux.dart';
 
 import '../actions/professional_actions.dart';
@@ -80,7 +79,7 @@ ProfessionalState _clearFilters(
   ProfessionalState state,
   ClearProfessionalsFiltersAction action,
 ) {
-  return state.copyWith(filters: const ProfessionalSearchDto());
+  return state.copyWith();
 }
 
 ProfessionalState _selectProfessional(

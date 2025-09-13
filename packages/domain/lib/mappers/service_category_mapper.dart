@@ -1,63 +1,63 @@
 import '../enums/service_category.dart';
 
-String serviceCategoryToSql(ServiceCategory value) {
+String serviceCategoryToSql(PreBookingServiceCategory value) {
   switch (value) {
-    case ServiceCategory.standardCleaning:
+    case PreBookingServiceCategory.standardCleaning:
       return 'standard_cleaning';
-    case ServiceCategory.regularCleaning:
+    case PreBookingServiceCategory.regularCleaning:
       return 'regular_cleaning';
-    case ServiceCategory.deepCleaning:
+    case PreBookingServiceCategory.deepCleaning:
       return 'deep_cleaning';
-    case ServiceCategory.moveInOut:
+    case PreBookingServiceCategory.moveInOut:
       return 'move_in_out';
-    case ServiceCategory.postConstruction:
+    case PreBookingServiceCategory.postConstruction:
       return 'post_construction';
-    case ServiceCategory.commercial:
+    case PreBookingServiceCategory.commercial:
       return 'commercial';
-    case ServiceCategory.residential:
+    case PreBookingServiceCategory.residential:
       return 'residential';
-    case ServiceCategory.specialized:
+    case PreBookingServiceCategory.specialized:
       return 'specialized';
-    case ServiceCategory.cleaning:
+    case PreBookingServiceCategory.cleaning:
       return 'cleaning';
-    case ServiceCategory.laundry:
+    case PreBookingServiceCategory.laundry:
       return 'laundry';
-    case ServiceCategory.cooking:
+    case PreBookingServiceCategory.cooking:
       return 'cooking';
-    case ServiceCategory.babysitting:
+    case PreBookingServiceCategory.babysitting:
       return 'babysitting';
-    case ServiceCategory.petCare:
+    case PreBookingServiceCategory.petCare:
       return 'pet_care';
-    case ServiceCategory.gardening:
+    case PreBookingServiceCategory.gardening:
       return 'gardening';
-    case ServiceCategory.maintenance:
+    case PreBookingServiceCategory.maintenance:
       return 'maintenance';
-    case ServiceCategory.organization:
+    case PreBookingServiceCategory.organization:
       return 'organization';
-    case ServiceCategory.other:
+    case PreBookingServiceCategory.other:
       return 'other';
   }
 }
 
-ServiceCategory serviceCategoryFromSql(String value) {
+PreBookingServiceCategory serviceCategoryFromSql(String value) {
   switch (value) {
     case 'standard_cleaning':
-      return ServiceCategory.standardCleaning;
+      return PreBookingServiceCategory.standardCleaning;
     case 'regular_cleaning':
-      return ServiceCategory.regularCleaning;
+      return PreBookingServiceCategory.regularCleaning;
     case 'deep_cleaning':
-      return ServiceCategory.deepCleaning;
+      return PreBookingServiceCategory.deepCleaning;
     case 'move_in_out':
-      return ServiceCategory.moveInOut;
+      return PreBookingServiceCategory.moveInOut;
     case 'post_construction':
-      return ServiceCategory.postConstruction;
+      return PreBookingServiceCategory.postConstruction;
     case 'commercial':
-      return ServiceCategory.commercial;
+      return PreBookingServiceCategory.commercial;
     case 'residential':
-      return ServiceCategory.residential;
+      return PreBookingServiceCategory.residential;
     case 'specialized':
-      return ServiceCategory.specialized;
+      return PreBookingServiceCategory.specialized;
     default:
-      return ServiceCategory.standardCleaning;
+      return PreBookingServiceCategory.standardCleaning;
   }
 }

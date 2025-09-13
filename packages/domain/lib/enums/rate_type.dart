@@ -1,3 +1,3 @@
-enum RateType { hourly, fixed, daily, weekly, monthly, perService }
+enum JobRateType { hourly, fixed, daily, weekly, monthly, perService }
 
-enum RecurrenceType { none, daily, weekly, biweekly, monthly, custom }
+enum JobRecurrenceType { none, daily, weekly, biweekly, monthly, custom }

@@ -1,4 +1,3 @@
-import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared/shared.dart';
 
@@ -210,7 +209,7 @@ class AuthUser {
     this.fullName,
     this.avatarUrl,
     this.phoneNumber,
-    this.role = UserRole.clientConsumer,
+    this.role = PlatformUserRole.clientConsumer,
     this.emailVerified = false,
     this.phoneVerified = false,
   });
@@ -223,7 +222,7 @@ class AuthUser {
   final bool emailVerified;
   final bool phoneVerified;
 
-  final UserRole role;
+  final PlatformUserRole role;
 }
 
 enum SocialProvider { google, facebook, apple, github }

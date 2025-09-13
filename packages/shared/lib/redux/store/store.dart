@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:redux/redux.dart';
 
-import '../app_state.dart';
+import '../states/app_state.dart';
 import '../middleware/logging_middleware.dart';
 import '../middleware/dashboard_middleware.dart';
 // housekeeping_middleware.dart removed due to domain model conflicts

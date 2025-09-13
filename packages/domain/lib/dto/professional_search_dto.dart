@@ -3,17 +3,6 @@ import '../enums/sort_by.dart';
 import 'geo_location_dto.dart';
 
 class ProfessionalSearchDto {
-  final List<ServiceCategory>? categories;
-  final GeoLocationDto? location;
-  final double? maxDistance;
-  final double? minRating;
-  final double? maxHourlyRate;
-  final bool? instantBooking;
-  final String? searchQuery;
-  final SortBy? sortBy;
-  final int page;
-  final int limit;
-
   const ProfessionalSearchDto({
     this.categories,
     this.location,
@@ -26,6 +15,16 @@ class ProfessionalSearchDto {
     this.page = 1,
     this.limit = 20,
   });
+  final List<PreBookingServiceCategory>? categories;
+  final GeoLocationDto? location;
+  final double? maxDistance;
+  final double? minRating;
+  final double? maxHourlyRate;
+  final bool? instantBooking;
+  final String? searchQuery;
+  final PreBookingSortBy? sortBy;
+  final int page;
+  final int limit;
 
   Map<String, dynamic> toJson() => {
     if (categories != null)

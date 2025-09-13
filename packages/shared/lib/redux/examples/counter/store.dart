@@ -11,9 +11,12 @@ Store<CounterState> createCounterStore({bool withLogging = true}) {
     (state, action) => reducer.reduce(state, action as BaseAction),
     initialState: CounterState.initial,
     middleware: middleware
-        .map((m) => (Store<CounterState> store, dynamic action, NextDispatcher next) {
-              m.call(store, action as BaseAction, next);
-            })
+        .map(
+          (m) =>
+              (Store<CounterState> store, dynamic action, NextDispatcher next) {
+                m.call(store, action as BaseAction, next);
+              },
+        )
         .toList(),
   );
 }

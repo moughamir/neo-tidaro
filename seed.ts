@@ -11,15 +11,23 @@ async function runSeed() {
 
   // Generate Profiles (Customers and Providers)
   const profiles = await seed.profiles((create) =>
-    Array.from({ length: 1 }, (_, i) => // Changed length to 1 for initial test
-      create({
-        full_name: copycat.fullName(i),
-        email: copycat.email(i),
-        phone_number: copycat.phoneNumber(i, { format: "06########" }), // Moroccan format
-        role: i < 10 ? "clientConsumer" : "clientProvider", // First 10 are consumers, rest are providers
-        cleaner_status: i < 10 ? null : copycat.oneOf(i, ["available", "busy", "offline", "onBreak"]),
-        avatar_url: `https://via.placeholder.com/150?text=Avatar+${i}`, // Using a placeholder image URL
-      })
+    Array.from(
+      { length: 1 },
+      (
+        _,
+        i // Changed length to 1 for initial test
+      ) =>
+        create({
+          full_name: copycat.fullName(i),
+          email: copycat.email(i),
+          phone_number: copycat.phoneNumber(i, { format: "06########" }), // Moroccan format
+          role: i < 10 ? "clientConsumer" : "clientProvider", // First 10 are consumers, rest are providers
+          professional_status:
+            i < 10
+              ? null
+              : copycat.oneOf(i, ["available", "busy", "offline", "onBreak"]),
+          avatar_url: `https://via.placeholder.com/150?text=Avatar+${i}`, // Using a placeholder image URL
+        })
     )
   );
 
@@ -60,7 +68,7 @@ async function runSeed() {
   //   Array.from({ length: 30 }, (_, i) => {
   //     const customer = copycat.oneOf(i, consumerProfiles);
   //     const service = copycat.oneOf(i, services);
-  //     const cleaner = copycat.oneOf(i, providerProfiles);
+  //     const professional = copycat.oneOf(i, providerProfiles);
   //     const status = copycat.oneOf(i, ["pending", "confirmed", "inProgress", "completed", "cancelled", "rescheduled", "noShow", "disputed"]);
   //     const payment_status = copycat.oneOf(i, ["pending", "paid", "failed", "refunded"]);
 
@@ -68,7 +76,7 @@ async function runSeed() {
   //       customer_id: customer.id,
   //       service_id: service.id,
   //       address_id: copycat.oneOf(i, customer.addresses).id, // Assuming addresses are linked to customers
-  //       cleaner_id: cleaner.id,
+  //       professional_id: professional.id,
   //       scheduled_date: copycat.date(i, { min: "2025-01-01", max: "2025-12-31" }),
   //       status: status,
   //       total_price: copycat.float(i, { min: 100, max: 1000, precision: 2 }),
@@ -87,10 +95,10 @@ async function runSeed() {
   // const allBookings = await seed.bookings.findMany(); // Fetch all generated bookings
   // await seed.reviews((create) =>
   //   allBookings.filter((_, i) => copycat.boolean(i)).map((booking, i) => { // Review a subset of bookings
-  //     // Assuming customer and cleaner are directly accessible from the booking object
-  //     // If not, you might need to fetch them based on booking.customer_id and booking.cleaner_id
+  //     // Assuming customer and professional are directly accessible from the booking object
+  //     // If not, you might need to fetch them based on booking.customer_id and booking.professional_id
   //     const reviewer_id = booking.customer_id;
-  //     const reviewee_id = booking.cleaner_id;
+  //     const reviewee_id = booking.professional_id;
 
   //     return create({
   //       booking_id: booking.id,
@@ -102,7 +110,6 @@ async function runSeed() {
   //     });
   //   })
   // );
-
 
   console.log("Database seeded successfully with Snaplet!");
   process.exit(0);

@@ -18,11 +18,11 @@ class BookingCard extends StatelessWidget {
 
   final Booking booking;
   final VoidCallback onTap;
-  final Function(BookingStatus) onStatusChanged;
+  final Function(BookingActivityStatus) onStatusChanged;
 
   @override
   Widget build(BuildContext context) {
-    return AppointmentCard<Booking, BookingStatus>(
+    return AppointmentCard<Booking, BookingActivityStatus>(
       appointment: booking,
       id: booking.id,
       status: booking.status,
@@ -34,20 +34,23 @@ class BookingCard extends StatelessWidget {
       address: (street: booking.addressId, city: booking.addressId),
       onTap: onTap,
       onStatusChanged: onStatusChanged,
-      getStatusInfo: (context, status) => getStatusInfo(status),
+      getStatusInfo: getStatusInfo,
       formatDateTime: formatFullTimestamp,
       shouldShowActionButtons: shouldShowActionButtons,
       buildActionButtons: _buildActionButtons,
     );
   }
 
-  Widget _buildActionButtons(BuildContext context, BookingStatus status) {
+  Widget _buildActionButtons(
+    BuildContext context,
+    BookingActivityStatus status,
+  ) {
     return Row(
       children: [
-        if (status == BookingStatus.pending) ...[
+        if (status == BookingActivityStatus.pending) ...[
           Expanded(
             child: OutlinedButton(
-              onPressed: () => onStatusChanged(BookingStatus.cancelled),
+              onPressed: () => onStatusChanged(BookingActivityStatus.cancelled),
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.red,
                 side: const BorderSide(color: Colors.red),
@@ -58,23 +61,24 @@ class BookingCard extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: ElevatedButton(
-              onPressed: () => onStatusChanged(BookingStatus.confirmed),
+              onPressed: () => onStatusChanged(BookingActivityStatus.confirmed),
               child: const Text('Confirm'),
             ),
           ),
         ],
-        if (status == BookingStatus.confirmed) ...[
+        if (status == BookingActivityStatus.confirmed) ...[
           Expanded(
             child: ElevatedButton(
-              onPressed: () => onStatusChanged(BookingStatus.inProgress),
+              onPressed: () =>
+                  onStatusChanged(BookingActivityStatus.inProgress),
               child: const Text('Start'),
             ),
           ),
         ],
-        if (status == BookingStatus.inProgress) ...[
+        if (status == BookingActivityStatus.inProgress) ...[
           Expanded(
             child: ElevatedButton(
-              onPressed: () => onStatusChanged(BookingStatus.completed),
+              onPressed: () => onStatusChanged(BookingActivityStatus.completed),
               child: const Text('Complete'),
             ),
           ),

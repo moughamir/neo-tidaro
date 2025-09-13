@@ -1,16 +1,9 @@
-import '../mappers/mappers.dart';
+import 'package:domain/mappers/cleaner_status_mapper.dart';
+
 import '../enums/enums.dart';
+import '../mappers/mappers.dart';
 
 class SupabaseProfileDto {
-  final String id;
-  final String fullName;
-  final String? avatarUrl;
-  final String? phoneNumber;
-  final UserRole role;
-  final ProfessionalActivityStatus? professionalActivityStatus;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-
   const SupabaseProfileDto({
     required this.id,
     required this.fullName,
@@ -40,6 +33,14 @@ class SupabaseProfileDto {
           : null,
     );
   }
+  final String id;
+  final String fullName;
+  final String? avatarUrl;
+  final String? phoneNumber;
+  final PlatformUserRole role;
+  final ProfessionalActivityStatus? professionalActivityStatus;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   Map<String, dynamic> toMap() {
     return {

@@ -4,16 +4,6 @@ import '../enums/rate_type.dart';
 import '../enums/service_category.dart';
 
 class CreateServiceDto {
-  final String professionalId;
-  final ServiceCategory category;
-  final String name;
-  final String description;
-  final double basePrice;
-  final RateType rateType;
-  final int estimatedDuration;
-  final List<String> includedTasks;
-  final List<String> requirements;
-
   const CreateServiceDto({
     required this.professionalId,
     required this.category,
@@ -25,6 +15,15 @@ class CreateServiceDto {
     this.includedTasks = const [],
     this.requirements = const [],
   });
+  final String professionalId;
+  final PreBookingServiceCategory category;
+  final String name;
+  final String description;
+  final double basePrice;
+  final JobRateType rateType;
+  final int estimatedDuration;
+  final List<String> includedTasks;
+  final List<String> requirements;
 
   Map<String, dynamic> toJson() => {
     'professional_id': professionalId,
