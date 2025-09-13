@@ -27,14 +27,38 @@ class ActivityLog extends BaseEntity {
   final String? userAgent;
 }
 
-class HousekeepingActivity extends ActivityItem {
-  HousekeepingActivity({
+class HousekeepingActivity extends BaseEntity {
+  const HousekeepingActivity({
     required super.id,
-    required super.description,
-    required super.title,
-    required super.timestamp,
-    required super.type,
+    required this.title,
+    required this.description,
+    required this.timestamp,
+    required this.type,
+    super.createdAt,
+    super.updatedAt,
   });
+
+  final String title;
+  final String description;
+  final DateTime timestamp;
+  final HousekeepingActivityType type;
+
+  HousekeepingActivity copyWith({
+    String? title,
+    String? description,
+    DateTime? timestamp,
+    HousekeepingActivityType? type,
+  }) {
+    return HousekeepingActivity(
+      id: id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      timestamp: timestamp ?? this.timestamp,
+      type: type ?? this.type,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
 }
 
 class ActivityItem extends BaseEntity {

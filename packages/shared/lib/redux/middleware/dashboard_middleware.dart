@@ -10,7 +10,8 @@ List<Middleware<AppState>> createDashboardMiddleware(SupabaseService supabase) {
   ];
 }
 
-Middleware<AppState> _loadDashboard(SupabaseService supabase) {
+void Function(Store<AppState>, LoadDashboardAction, NextDispatcher) _loadDashboard(
+    SupabaseService supabase) {
   return (
     Store<AppState> store,
     LoadDashboardAction action,
@@ -98,7 +99,8 @@ Middleware<AppState> _loadDashboard(SupabaseService supabase) {
   };
 }
 
-Middleware<AppState> _refreshDashboard(SupabaseService supabase) {
+void Function(Store<AppState>, RefreshDashboardAction, NextDispatcher)
+    _refreshDashboard(SupabaseService supabase) {
   return (
     Store<AppState> store,
     RefreshDashboardAction action,

@@ -3,7 +3,7 @@ description: "Shared utilities and widgets for TiDaro applications."
 version: 0.1.0-pre-alpha.3
 homepage: https://github.com/neo-tidaro/neo-tidaro
 repository: https://github.com/neo-tidaro/neo-tidaro
-publish_to: none
+publish_to: http://localhost:4000
 
 resolution: workspace
 
@@ -14,6 +14,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  domain:
+    path: ../domain
 
 dev_dependencies:
   flutter_test:

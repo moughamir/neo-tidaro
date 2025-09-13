@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:languist/languist.dart';
 
+import '../admin/kyc_review_page.dart';
+import '../bookings/bookings_page.dart';
 // Pages
 import '../dashboard/dashboard_page.dart';
-import '../bookings/bookings_page.dart';
 import '../staff/staff_page.dart';
-import '../admin/kyc_review_page.dart';
 
 /// Main layout with navigation for TiDash
 class MainLayout extends StatefulWidget {
@@ -27,7 +27,7 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final IntlLocalizations l10n = Languist.of(context);
+    final l10n = Languist.of(context);
     final ThemeData theme = Theme.of(context);
 
     return Scaffold(

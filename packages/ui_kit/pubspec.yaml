@@ -1,6 +1,6 @@
 name: ui_kit
 description: "A Fresh UI Kit for Flutter."
-publish_to: none
+publish_to: http://localhost:4000
 version: 0.1.0-pre-alpha.4
 homepage: https://github.com/neo-tidaro/ui_kit
 repository: https://github.com/neo-tidaro/ui_kit

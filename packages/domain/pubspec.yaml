@@ -3,7 +3,7 @@ description: "Domain layer for Neo-Tidaro workspace containing business models a
 version: 0.1.0-pre-alpha.4
 homepage: https://github.com/neo-tidaro/neo-tidaro
 repository: https://github.com/neo-tidaro/neo-tidaro
-publish_to: none
+publish_to: http://localhost:4000
 
 resolution: workspace
 
