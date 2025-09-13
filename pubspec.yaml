@@ -1,6 +1,6 @@
 name: neo_tidaro
 description: Neo Tidaro Workspace
-version: 0.1.0-pre-alpha.3
+version: 0.1.0-pre-alpha.4
 publish_to: http://localhost:4000
 homepage: https://github.com/odinn-s/neo-tidaro
 repository: https://github.com/odinn-s/neo-tidaro
