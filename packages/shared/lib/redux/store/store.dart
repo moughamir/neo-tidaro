@@ -7,6 +7,8 @@ import '../middleware/dashboard_middleware.dart';
 // housekeeping_middleware.dart removed due to domain model conflicts
 import '../reducers/app_reducer.dart';
 import '../core/base_action.dart';
+import '../middleware/kyc_middleware.dart';
+import 'package:core/network/supabase_service.dart';
 
 /// Creates and configures the Redux store
 Store<AppState> createStore({
@@ -19,7 +21,12 @@ Store<AppState> createStore({
 
   // Add dashboard middleware
   middleware.addAll(
-    createDashboardMiddleware() as Iterable<Middleware<AppState>>,
+    createDashboardMiddleware(SupabaseService()),
+  );
+
+  // Add KYC middleware (requires SupabaseService)
+  middleware.addAll(
+    createKycMiddleware(SupabaseService()),
   );
 
   // housekeeping middleware removed due to domain model conflicts

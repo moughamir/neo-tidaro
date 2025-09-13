@@ -3,7 +3,7 @@ description: "A Fresh Core for Flutter."
 version: 0.1.0-pre-alpha.3
 homepage: https://github.com/neo-tidaro/core
 repository: https://github.com/neo-tidaro/core
-publish_to: "none"
+publish_to: http://localhost:4000
 resolution: workspace
 
 environment:

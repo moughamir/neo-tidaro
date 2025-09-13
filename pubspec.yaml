@@ -1,7 +1,9 @@
 name: neo_tidaro
 description: Neo Tidaro Workspace
 version: 0.1.0-pre-alpha.3
-publish_to: "none"
+publish_to: http://localhost:4000
+homepage: https://github.com/odinn-s/neo-tidaro
+repository: https://github.com/odinn-s/neo-tidaro
 environment:
   sdk: "3.9.0"
 
@@ -18,40 +20,40 @@ workspace:
   - apps/tidaro_mini # Mini TiDaro App for Quick retention
   - apps/tidaro # Full TiDaro App
   # Examples
-  - examples/basic_app # Basic integration example
-  - examples/auth_flow # Authentication flow example
-  - examples/ui_kit_showcase # UI Kit components showcase
+  - example/basic_app # Basic integration example
+  - example/auth_flow # Authentication flow example
+  - example/ui_kit_showcase # UI Kit components showcase
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  clay_containers: 0.3.4
-  connectivity_plus: 6.1.5
-  equatable: 2.0.7
-  flutter_dotenv: 6.0.0
-  flutter_markdown: 0.7.7+1
+  clay_containers: ^0.3.4
+  connectivity_plus: ^6.1.5
+  equatable: ^2.0.7
+  flutter_dotenv: ^6.0.0
+  flutter_markdown: ^0.7.7+1
 
-  flutter_secure_storage: 9.2.4
-  fpdart: 1.1.1
-  get_it: 8.2.0
-  google_fonts: 6.3.1
-  intl: 0.20.2
-  logging: 1.3.0
-  material_color_utilities: 0.11.1
-  moment_dart: 5.2.4
-  permission_handler: 12.0.1
+  flutter_secure_storage: ^9.2.4
+  fpdart: ^1.1.1
+  get_it: ^8.2.0
+  google_fonts: ^6.3.1
+  intl: ^0.20.2
+  logging: ^1.3.0
+  material_color_utilities: ^0.11.1
+  moment_dart: ^5.2.4
+  permission_handler: ^12.0.1
   # Redux State Management
-  redux: 5.0.0
-  redux_thunk: 0.4.0
-  flutter_redux: 0.10.0
+  redux: ^5.0.0
+  redux_thunk: ^0.4.0
+  flutter_redux: ^0.10.0
   #
-  sensors_plus: 6.1.2
-  shared_preferences: 2.5.3
-  supabase_flutter: 2.10.0
-  uuid: 4.5.1
-  yaml: 3.1.3
+  sensors_plus: ^6.1.2
+  shared_preferences: ^2.5.3
+  supabase_flutter: ^2.10.0
+  uuid: ^4.5.1
+  yaml: ^3.1.3
 # Platform support configuration
 flutter:
   uses-material-design: true
@@ -181,9 +183,4 @@ melos:
       description: Build Windows desktop app for all Tidaro apps.
 
 dev_dependencies:
-  melos: 7.1.0
-  flutter_test:
-    sdk: flutter
-  flutter_lints: any
-  mocktail: any
-  build_runner: any
+  melos: ^7.1.0

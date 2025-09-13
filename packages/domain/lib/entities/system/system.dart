@@ -38,55 +38,95 @@ class HousekeepingActivity extends ActivityItem {
 }
 
 class ActivityItem extends BaseEntity {
-  ActivityItem({
+  const ActivityItem({
     required super.id,
-    required String description,
-    required String title,
-    required DateTime timestamp,
-    required ActivityType type,
+    required this.title,
+    required this.description,
+    required this.timestamp,
+    required this.type,
+    super.createdAt,
+    super.updatedAt,
   });
 
-  var description;
+  final String title;
+  final String description;
+  final DateTime timestamp;
+  final ActivityType type;
 
-  var timestamp;
-
-  get title => null;
-
-  get type => null;
+  ActivityItem copyWith({
+    String? title,
+    String? description,
+    DateTime? timestamp,
+    ActivityType? type,
+  }) {
+    return ActivityItem(
+      id: id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      timestamp: timestamp ?? this.timestamp,
+      type: type ?? this.type,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
 }
 
 class DashboardMetrics extends BaseEntity {
-  DashboardMetrics({
+  const DashboardMetrics({
     required super.id,
-    required int totalBookings,
-    required int pendingBookings,
-    required int completedBookings,
-    required double totalRevenue,
-    required double monthlyRevenue,
-    required int activeProfessionals,
-    required int totalCustomers,
-    required double averageRating,
-    required List<ActivityItem> recentActivities,
+    required this.totalBookings,
+    required this.pendingBookings,
+    required this.completedBookings,
+    required this.totalRevenue,
+    required this.monthlyRevenue,
+    required this.activeProfessionals,
+    required this.totalCustomers,
+    required this.averageRating,
+    required this.recentActivities,
+    this.completionRate = 0,
+    super.createdAt,
+    super.updatedAt,
   });
-  var totalBookings;
 
-  get pendingBookings => null;
+  final int totalBookings;
+  final int pendingBookings;
+  final int completedBookings;
+  final double totalRevenue;
+  final double monthlyRevenue;
+  final int activeProfessionals;
+  final int totalCustomers;
+  final double averageRating;
+  final double completionRate;
+  final List<ActivityItem> recentActivities;
 
-  get completedBookings => null;
-
-  get totalRevenue => null;
-
-  get monthlyRevenue => null;
-
-  get activeProfessionals => null;
-
-  get totalCustomers => null;
-
-  get averageRating => null;
-
-  get completionRate => null;
-
-  get recentActivities => null;
+  DashboardMetrics copyWith({
+    int? totalBookings,
+    int? pendingBookings,
+    int? completedBookings,
+    double? totalRevenue,
+    double? monthlyRevenue,
+    int? activeProfessionals,
+    int? totalCustomers,
+    double? averageRating,
+    double? completionRate,
+    List<ActivityItem>? recentActivities,
+  }) {
+    return DashboardMetrics(
+      id: id,
+      totalBookings: totalBookings ?? this.totalBookings,
+      pendingBookings: pendingBookings ?? this.pendingBookings,
+      completedBookings: completedBookings ?? this.completedBookings,
+      totalRevenue: totalRevenue ?? this.totalRevenue,
+      monthlyRevenue: monthlyRevenue ?? this.monthlyRevenue,
+      activeProfessionals: activeProfessionals ?? this.activeProfessionals,
+      totalCustomers: totalCustomers ?? this.totalCustomers,
+      averageRating: averageRating ?? this.averageRating,
+      completionRate: completionRate ?? this.completionRate,
+      recentActivities: recentActivities ?? this.recentActivities,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
 }
 
 /// Configuration entity for system settings

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:languist/languist.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 /// Responsive two-column authentication layout
@@ -26,29 +25,29 @@ class AuthLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final l10n = Languist.of(context);
     final isDesktop = MediaQuery.of(context).size.width >= 768;
 
     if (isDesktop) {
-      return _buildDesktopLayout(context, theme, l10n);
+      return _buildDesktopLayout(context, theme);
     } else {
-      return _buildMobileLayout(context, theme, l10n);
+      return _buildMobileLayout(context, theme);
     }
   }
 
   // DRY helper: top controls row used in both mobile header and desktop right column
   Widget _buildControlsRow(
     ThemeData theme,
-    IntlLocalizations l10n, {
-    bool compactBrand = false,
-  }) {
+    {
+      bool compactBrand = false,
+    }
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         _buildBrandSection(theme, compact: compactBrand),
         Row(
           children: [
-            _buildLanguageSelector(theme, l10n),
+            _buildLanguageSelector(theme),
             const SizedBox(width: 8),
             _buildThemeToggle(theme),
           ],
@@ -60,13 +59,12 @@ class AuthLayout extends StatelessWidget {
   Widget _buildDesktopLayout(
     BuildContext context,
     ThemeData theme,
-    IntlLocalizations l10n,
   ) {
     return Scaffold(
       body: Row(
         children: [
-          Flexible(flex: 1, child: _buildLeftColumn(context, theme, l10n)),
-          Flexible(flex: 1, child: _buildRightColumn(context, theme, l10n)),
+          Flexible(flex: 1, child: _buildLeftColumn(context, theme)),
+          Flexible(flex: 1, child: _buildRightColumn(context, theme)),
         ],
       ),
     );
@@ -75,7 +73,6 @@ class AuthLayout extends StatelessWidget {
   Widget _buildMobileLayout(
     BuildContext context,
     ThemeData theme,
-    IntlLocalizations l10n,
   ) {
     return Scaffold(
       body: Column(
@@ -100,7 +97,7 @@ class AuthLayout extends StatelessWidget {
                   padding: const EdgeInsets.all(20),
                   child: Column(
                     children: [
-                      _buildControlsRow(theme, l10n, compactBrand: true),
+                      _buildControlsRow(theme, compactBrand: true),
                     ],
                   ),
                 ),
@@ -127,7 +124,6 @@ class AuthLayout extends StatelessWidget {
   Widget _buildLeftColumn(
     BuildContext context,
     ThemeData theme,
-    IntlLocalizations l10n,
   ) {
     return Container(
       decoration: BoxDecoration(
@@ -147,7 +143,7 @@ class AuthLayout extends StatelessWidget {
             children: [
               _buildBrandSection(theme),
               const Spacer(),
-              _buildQuoteSection(theme, l10n),
+              _buildQuoteSection(theme),
             ],
           ),
         ),
@@ -158,7 +154,6 @@ class AuthLayout extends StatelessWidget {
   Widget _buildRightColumn(
     BuildContext context,
     ThemeData theme,
-    IntlLocalizations l10n,
   ) {
     return Container(
       color: theme.colorScheme.surface,
@@ -166,7 +161,7 @@ class AuthLayout extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.all(8),
-            child: _buildControlsRow(theme, l10n),
+            child: _buildControlsRow(theme),
           ),
           Expanded(
             child: Padding(
@@ -221,7 +216,7 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildQuoteSection(ThemeData theme, IntlLocalizations l10n) {
+  Widget _buildQuoteSection(ThemeData theme) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -303,7 +298,7 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildLanguageSelector(ThemeData theme, IntlLocalizations l10n) {
+  Widget _buildLanguageSelector(ThemeData theme) {
     final languages = {
       'en': 'English',
       'ar': 'العربية',

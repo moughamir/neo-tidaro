@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:clay_containers/clay_containers.dart';
 import 'package:ui_kit/src/design_system/design_system.dart';
 
 export 'cards/cards.dart';
@@ -145,6 +146,26 @@ class KuiCard extends StatelessWidget {
     this.borderColor,
   }) : variant = CardVariant.hybrid;
 
+  /// Neumorphic card using ClayContainer
+  const KuiCard.neumorphic({
+    super.key,
+    required this.child,
+    this.width,
+    this.height,
+    this.borderRadius,
+    this.backgroundColor,
+    this.padding,
+    this.margin,
+    this.elevation = 2,
+    this.onTap,
+    this.title,
+    this.subtitle,
+    this.leading,
+    this.trailing,
+    this.showBorder = false,
+    this.borderColor,
+  }) : variant = CardVariant.neumorphic;
+
   @override
   Widget build(BuildContext context) {
     final colors = KuiTheme.colorsOf(context);
@@ -258,39 +279,47 @@ class KuiCard extends StatelessWidget {
     EdgeInsetsGeometry padding,
     Color backgroundColor,
   ) {
-    switch (variant) {
-      case CardVariant.elevated:
-        return Container(
+    // Small helpers to reduce repetition
+    Widget _sizedPadded(EdgeInsetsGeometry p, Widget c) => Container(
           width: width,
           height: height,
-          padding: padding,
-          decoration: DesignEffects.elevationLevel(
+          padding: p,
+          child: c,
+        );
+
+    Widget _boxWithDecoration(EdgeInsetsGeometry p, Decoration d, Widget c) =>
+        Container(
+          width: width,
+          height: height,
+          padding: p,
+          decoration: d,
+          child: c,
+        );
+
+    switch (variant) {
+      case CardVariant.elevated:
+        return _boxWithDecoration(
+          padding,
+          DesignEffects.elevationLevel(
             colors: colors,
             level: elevation,
             radius: radius,
             backgroundColor: backgroundColor,
           ),
-          child: child,
+          child,
         );
 
       case CardVariant.glass:
         return DesignEffects.glassContainer(
-          child: Container(
-            width: width,
-            height: height,
-            padding: padding,
-            child: child,
-          ),
+          child: _sizedPadded(padding, child),
           colors: colors,
           radius: radius,
         );
 
       case CardVariant.outlined:
-        return Container(
-          width: width,
-          height: height,
-          padding: padding,
-          decoration: BoxDecoration(
+        return _boxWithDecoration(
+          padding,
+          BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(radius),
             border: Border.all(
@@ -298,41 +327,48 @@ class KuiCard extends StatelessWidget {
               width: 1.0,
             ),
           ),
-          child: child,
+          child,
         );
 
       case CardVariant.flat:
-        return Container(
-          width: width,
-          height: height,
-          padding: padding,
-          decoration: BoxDecoration(
+        return _boxWithDecoration(
+          padding,
+          BoxDecoration(
             color: backgroundColor,
             borderRadius: BorderRadius.circular(radius),
             border: showBorder
                 ? Border.all(
-                    color: borderColor ?? colors.outline.withValues(alpha: 0.2),
+                    color: borderColor ??
+                        colors.outline.withValues(alpha: 0.2),
                     width: 0.5,
                   )
                 : null,
           ),
-          child: child,
+          child,
         );
 
       case CardVariant.hybrid:
         return DesignEffects.hybridCard(
-          child: Container(
-            width: width,
-            height: height,
-            padding: padding,
-            child: child,
-          ),
+          child: _sizedPadded(padding, child),
           colors: colors,
           radius: radius,
+        );
+
+      case CardVariant.neumorphic:
+        // Map design tokens to ClayContainer's neumorphic effect
+        return ClayContainer(
+          width: width,
+          height: height,
+          borderRadius: radius,
+          color: backgroundColor,
+          depth: (elevation.clamp(0, 10)) * 8,
+          spread: 1,
+          curveType: CurveType.convex,
+          child: _sizedPadded(padding, child),
         );
     }
   }
 }
 
 /// Card visual variants
-enum CardVariant { elevated, glass, outlined, flat, hybrid }
+enum CardVariant { elevated, glass, outlined, flat, hybrid, neumorphic }

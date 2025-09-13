@@ -2,26 +2,6 @@ import 'package:shared/redux/core/core.dart';
 import 'states.dart';
 
 class AppState extends BaseState {
-  final AuthState authState;
-  final BookingState bookingState;
-  final CacheState cacheState;
-  final ChatState chatState;
-  final DashboardState dashboardState;
-  final NotificationState notificationState;
-  final ProfessionalState professionalState;
-  final UiState uiState;
-  final UserState userState;
-  const AppState({
-    required this.authState,
-    required this.bookingState,
-    required this.cacheState,
-    required this.chatState,
-    required this.dashboardState,
-    required this.notificationState,
-    required this.professionalState,
-    required this.uiState,
-    required this.userState,
-  });
   factory AppState.initial() => AppState(
     authState: AuthState.initial(),
     bookingState: BookingState.initial(),
@@ -30,9 +10,32 @@ class AppState extends BaseState {
     dashboardState: DashboardState.initial(),
     notificationState: NotificationState.initial(),
     professionalState: ProfessionalState.initial(),
+    kycQueueState: KycQueueState.empty,
     uiState: UiState.initial(),
     userState: UserState.initial(),
   );
+  const AppState({
+    required this.authState,
+    required this.bookingState,
+    required this.cacheState,
+    required this.chatState,
+    required this.dashboardState,
+    required this.notificationState,
+    required this.professionalState,
+    required this.kycQueueState,
+    required this.uiState,
+    required this.userState,
+  });
+  final AuthState authState;
+  final BookingState bookingState;
+  final CacheState cacheState;
+  final ChatState chatState;
+  final DashboardState dashboardState;
+  final NotificationState notificationState;
+  final ProfessionalState professionalState;
+  final KycQueueState kycQueueState;
+  final UiState uiState;
+  final UserState userState;
   AppState copyWith({
     AuthState? authState,
     BookingState? bookingState,
@@ -41,6 +44,7 @@ class AppState extends BaseState {
     DashboardState? dashboardState,
     NotificationState? notificationState,
     ProfessionalState? professionalState,
+    KycQueueState? kycQueueState,
     UiState? uiState,
     UserState? userState,
   }) {
@@ -52,6 +56,7 @@ class AppState extends BaseState {
       dashboardState: dashboardState ?? this.dashboardState,
       notificationState: notificationState ?? this.notificationState,
       professionalState: professionalState ?? this.professionalState,
+      kycQueueState: kycQueueState ?? this.kycQueueState,
       uiState: uiState ?? this.uiState,
       userState: userState ?? this.userState,
     );
@@ -71,6 +76,7 @@ class AppState extends BaseState {
     notificationState,
     professionalState,
     professionalState,
+    kycQueueState,
     uiState,
     uiState,
     userState,
@@ -88,6 +94,7 @@ class AppState extends BaseState {
       'dashboardState: ${dashboardState.stateType},'
       'notificationState: ${notificationState.stateType}'
       'professionalState: ${professionalState.stateType},'
+      'kycQueueState: ${kycQueueState.stateType}'
       'uiState: ${uiState.stateType}'
       'userState: ${userState.stateType}'
       ')';

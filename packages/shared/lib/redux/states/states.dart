@@ -11,3 +11,4 @@ export 'notification_state.dart';
 export 'professional_state.dart';
 export 'ui_state.dart';
 export 'user_state.dart';
+export 'kyc_queue_state.dart';

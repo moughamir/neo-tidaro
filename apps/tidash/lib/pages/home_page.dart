@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
 import 'auth/login_page.dart';
-import 'dashboard/dashboard_page.dart';
+import 'main/main_layout.dart';
 
 /// TiDash home page that handles authentication state routing
 /// 
@@ -27,7 +27,7 @@ class TiDashHome extends StatelessWidget {
         }
 
         if (authState.isAuthenticated) {
-          return const DashboardPage();
+          return const MainLayout();
         } else {
           return const LoginPage();
         }

@@ -2,6 +2,16 @@
 
 All notable changes to the Neo-Tidaro project will be documented in this file.
 
+## [0.1.0-pre-alpha.3] - 2025-09-13
+
+### Fixed
+- **Publishing Issues**: Resolved several warnings and errors that prevented publishing the package.
+- **LICENSE**: Added a `LICENSE` file to the root of the project.
+- **Directory Structure**: Renamed `examples` directory to `example` to align with pub.dev conventions.
+- **pubspec.yaml**: 
+  - Added `homepage` and `repository` fields.
+  - Loosened dependency constraints to allow for more flexible versioning.
+
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 

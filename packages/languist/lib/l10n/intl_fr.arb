@@ -582,5 +582,332 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "housekeeping": "Ménage",
+  "@housekeeping": {
+    "description": "General housekeeping term - Morocco French"
+  },
+  "cleaning": "Nettoyage",
+  "@cleaning": {
+    "description": "General cleaning term"
+  },
+  "housekeeper": "Femme de ménage",
+  "@housekeeper": {
+    "description": "Person who provides housekeeping services - Morocco French"
+  },
+  "cleaner": "Agent d'entretien",
+  "@cleaner": {
+    "description": "Person who provides cleaning services"
+  },
+  "domesticWorker": "Employé(e) domestique",
+  "@domesticWorker": {
+    "description": "General term for domestic service provider"
+  },
+  "roleClient": "Client",
+  "@roleClient": {
+    "description": "Client role - person who books services"
+  },
+  "roleProvider": "Prestataire de services",
+  "@roleProvider": {
+    "description": "Provider role - person who offers services"
+  },
+  "roleAdmin": "Administrateur",
+  "@roleAdmin": {
+    "description": "Admin role - platform administrator"
+  },
+  "roleModerator": "Modérateur",
+  "@roleModerator": {
+    "description": "Moderator role - content moderator"
+  },
+  "selectRole": "Sélectionnez votre rôle",
+  "@selectRole": {
+    "description": "Role selection prompt"
+  },
+  "clientDescription": "J'ai besoin de services de ménage",
+  "@clientDescription": {
+    "description": "Description for client role"
+  },
+  "providerDescription": "Je fournis des services de ménage",
+  "@providerDescription": {
+    "description": "Description for provider role"
+  },
+  "regularCleaning": "Ménage régulier",
+  "@regularCleaning": {
+    "description": "Regular weekly/monthly cleaning service"
+  },
+  "deepCleaning": "Grand ménage",
+  "@deepCleaning": {
+    "description": "Thorough deep cleaning service - Morocco term"
+  },
+  "oneTimeCleaning": "Ménage ponctuel",
+  "@oneTimeCleaning": {
+    "description": "Single cleaning session"
+  },
+  "moveInOutCleaning": "Ménage de déménagement",
+  "@moveInOutCleaning": {
+    "description": "Cleaning for moving in or out"
+  },
+  "postConstructionCleaning": "Nettoyage après travaux",
+  "@postConstructionCleaning": {
+    "description": "Cleaning after construction work"
+  },
+  "officeCleaning": "Nettoyage de bureaux",
+  "@officeCleaning": {
+    "description": "Commercial office cleaning"
+  },
+  "laundryServices": "Services de lessive",
+  "@laundryServices": {
+    "description": "Washing and ironing services"
+  },
+  "dishWashing": "Vaisselle",
+  "@dishWashing": {
+    "description": "Kitchen cleaning and dish washing"
+  },
+  "windowCleaning": "Nettoyage de vitres",
+  "@windowCleaning": {
+    "description": "Window and glass cleaning"
+  },
+  "carpetCleaning": "Nettoyage de tapis",
+  "@carpetCleaning": {
+    "description": "Carpet and upholstery cleaning"
+  },
+
+  "postJob": "Publier une annonce",
+  "@postJob": {
+    "description": "Action to create a new job posting"
+  },
+  "jobRequest": "Demande de service",
+  "@jobRequest": {
+    "description": "A request for housekeeping services"
+  },
+  "jobDescription": "Description du travail",
+  "@jobDescription": {
+    "description": "Description of the work needed"
+  },
+  "serviceNeeded": "Service demandé",
+  "@serviceNeeded": {
+    "description": "Type of service required"
+  },
+  "preferredDate": "Date préférée",
+  "@preferredDate": {
+    "description": "Client's preferred date for service"
+  },
+  "preferredTime": "Heure préférée",
+  "@preferredTime": {
+    "description": "Client's preferred time for service"
+  },
+  "estimatedDuration": "Durée estimée",
+  "@estimatedDuration": {
+    "description": "How long the job is expected to take"
+  },
+  "budget": "Budget",
+  "@budget": {
+    "description": "Client's budget for the service"
+  },
+  "budgetRange": "Fourchette de prix",
+  "@budgetRange": {
+    "description": "Range of acceptable prices"
+  },
+  "propertySize": "Taille de la propriété",
+  "@propertySize": {
+    "description": "Size of property to be cleaned"
+  },
+  "numberOfRooms": "Nombre de pièces",
+  "@numberOfRooms": {
+    "description": "How many rooms need cleaning"
+  },
+  "numberOfBathrooms": "Nombre de salles de bains",
+  "@numberOfBathrooms": {
+    "description": "How many bathrooms need cleaning"
+  },
+  "specialInstructions": "Instructions spéciales",
+  "@specialInstructions": {
+    "description": "Additional notes or requirements"
+  },
+
+  "placeBid": "Faire une offre",
+  "@placeBid": {
+    "description": "Action to submit a bid for a job"
+  },
+  "yourBid": "Votre offre",
+  "@yourBid": {
+    "description": "Provider's bid amount"
+  },
+  "bidAmount": "Montant de l'offre",
+  "@bidAmount": {
+    "description": "Amount being offered for the job"
+  },
+  "acceptBid": "Accepter l'offre",
+  "@acceptBid": {
+    "description": "Action to accept a provider's bid"
+  },
+  "rejectBid": "Rejeter l'offre",
+  "@rejectBid": {
+    "description": "Action to reject a provider's bid"
+  },
+  "counterOffer": "Contre-offre",
+  "@counterOffer": {
+    "description": "Make a counter-offer to a bid"
+  },
+  "bidsReceived": "Offres reçues",
+  "@bidsReceived": {
+    "description": "Number of bids received for a job"
+  },
+  "averageBid": "Offre moyenne",
+  "@averageBid": {
+    "description": "Average of all bids received"
+  },
+  "lowestBid": "Offre la plus basse",
+  "@lowestBid": {
+    "description": "Lowest bid received"
+  },
+  "highestBid": "Offre la plus haute",
+  "@highestBid": {
+    "description": "Highest bid received"
+  },
+  "bidMessage": "Message d'offre",
+  "@bidMessage": {
+    "description": "Optional message with a bid"
+  },
+  "negotiating": "En négociation",
+  "@negotiating": {
+    "description": "Status when client and provider are negotiating"
+  },
+
+  "location": "Localisation",
+  "@location": {
+    "description": "Service location"
+  },
+  "serviceArea": "Zone de service",
+  "@serviceArea": {
+    "description": "Area where provider offers services"
+  },
+  "bouskoura": "Bouskoura",
+  "@bouskoura": {
+    "description": "Bouskoura area in Morocco"
+  },
+  "casablanca": "Casablanca",
+  "@casablanca": {
+    "description": "Casablanca city in Morocco"
+  },
+  "nearbyProviders": "Prestataires à proximité",
+  "@nearbyProviders": {
+    "description": "Service providers in the area"
+  },
+  "kmAway": "À {distance} km",
+  "@kmAway": {
+    "description": "Distance in kilometers",
+    "placeholders": {
+      "distance": {
+        "type": "double"
+      }
+    }
+  },
+
+  "cashOnDelivery": "Paiement à la livraison",
+  "@cashOnDelivery": {
+    "description": "Payment method - cash after service"
+  },
+  "payInCash": "Payer en espèces",
+  "@payInCash": {
+    "description": "Cash payment option"
+  },
+  "paymentMethod": "Mode de paiement",
+  "@paymentMethod": {
+    "description": "How payment will be made"
+  },
+  "pricePerHour": "Prix par heure",
+  "@pricePerHour": {
+    "description": "Hourly rate for service"
+  },
+  "totalPrice": "Prix total",
+  "@totalPrice": {
+    "description": "Total cost for the service"
+  },
+  "moroccanDirham": "Dirham Marocain (MAD)",
+  "@moroccanDirham": {
+    "description": "Morocco currency"
+  },
+  "mad": "MAD",
+  "@mad": {
+    "description": "Morocco currency abbreviation"
+  },
+
+  "providerProfile": "Profil du prestataire",
+  "@providerProfile": {
+    "description": "Service provider's profile"
+  },
+  "yearsOfExperience": "Années d'expérience",
+  "@yearsOfExperience": {
+    "description": "How many years of experience"
+  },
+  "verified": "Vérifié",
+  "@verified": {
+    "description": "Account or profile is verified"
+  },
+  "unverified": "Non vérifié",
+  "@unverified": {
+    "description": "Account or profile is not verified"
+  },
+  "verificationPending": "Vérification en cours",
+  "@verificationPending": {
+    "description": "Verification is in progress"
+  },
+  "idVerification": "Vérification d'identité",
+  "@idVerification": {
+    "description": "Identity document verification"
+  },
+  "uploadId": "Télécharger une pièce d'identité",
+  "@uploadId": {
+    "description": "Action to upload identification"
+  },
+  "cnie": "CNIE (Carte d'identité nationale)",
+  "@cnie": {
+    "description": "Morocco national ID card"
+  },
+  "passport": "Passeport",
+  "@passport": {
+    "description": "Passport document"
+  },
+
+  "rating": "Note",
+  "@rating": {
+    "description": "Service rating"
+  },
+  "reviews": "Avis",
+  "@reviews": {
+    "description": "Service reviews"
+  },
+  "rateService": "Noter ce service",
+  "@rateService": {
+    "description": "Action to rate a completed service"
+  },
+  "writeReview": "Écrire un avis",
+  "@writeReview": {
+    "description": "Action to write a service review"
+  },
+  "serviceRating": "Note du service",
+  "@serviceRating": {
+    "description": "Rating for the service quality"
+  },
+  "wouldRecommend": "Recommanderait",
+  "@wouldRecommend": {
+    "description": "Would recommend this provider"
+  },
+  "excellent": "Excellent",
+  "@excellent": {
+    "description": "Excellent rating"
+  },
+  "good": "Bon",
+  "@good": {
+    "description": "Good rating"
+  },
+  "average": "Moyen",
+  "@average": {
+    "description": "Average rating"
+  },
+  "poor": "Mauvais",
+  "@poor": {
+    "description": "Poor rating"
   }
 }

@@ -1,0 +1,23 @@
+name: auth_flow_example
+description: "Authentication flow example with form validation and state management"
+publish_to: http://localhost:4000
+resolution: workspace
+version: 0.1.0-pre-alpha.3
+
+environment:
+  sdk: "3.9.0"
+  flutter: ">=3.35.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Workspace Dependencies - excluding core/shared to avoid flutter_secure_storage Linux issues
+  ui_kit:
+    path: ../../packages/ui_kit
+
+flutter:
+  uses-material-design: true
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

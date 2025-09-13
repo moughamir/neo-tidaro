@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:languist/languist.dart';
+
+// Pages
 import '../dashboard/dashboard_page.dart';
 import '../bookings/bookings_page.dart';
 import '../staff/staff_page.dart';
+import '../admin/kyc_review_page.dart';
 
 /// Main layout with navigation for TiDash
 class MainLayout extends StatefulWidget {
@@ -19,6 +22,7 @@ class _MainLayoutState extends State<MainLayout> {
     const DashboardPage(),
     const BookingsPage(),
     const StaffPage(),
+    const KycReviewPage(),
   ];
 
   @override
@@ -54,6 +58,11 @@ class _MainLayoutState extends State<MainLayout> {
                 icon: const Icon(Icons.people_outline),
                 selectedIcon: const Icon(Icons.people),
                 label: Text(l10n.staff),
+              ),
+              const NavigationRailDestination(
+                icon: Icon(Icons.verified_user_outlined),
+                selectedIcon: Icon(Icons.verified_user),
+                label: Text('KYC'),
               ),
             ],
           ),

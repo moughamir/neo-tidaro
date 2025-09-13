@@ -1005,5 +1005,326 @@
         "type": "int"
       }
     }
+  },
+  "housekeeping": "Housekeeping",
+  "@housekeeping": {
+    "description": "General housekeeping term"
+  },
+  "cleaning": "Cleaning",
+  "@cleaning": {
+    "description": "General cleaning term"
+  },
+  "housekeeper": "Housekeeper",
+  "@housekeeper": {
+    "description": "Person who provides housekeeping services"
+  },
+  "cleaner": "Cleaner",
+  "@cleaner": {
+    "description": "Person who provides cleaning services"
+  },
+  "domesticWorker": "Domestic Worker",
+  "@domesticWorker": {
+    "description": "General term for domestic service provider"
+  },
+  "roleClient": "Client",
+  "@roleClient": {
+    "description": "Client role - person who books services"
+  },
+  "roleProvider": "Service Provider",
+  "@roleProvider": {
+    "description": "Provider role - person who offers services"
+  },
+  "roleAdmin": "Administrator",
+  "@roleAdmin": {
+    "description": "Admin role - platform administrator"
+  },
+  "roleModerator": "Moderator",
+  "@roleModerator": {
+    "description": "Moderator role - content moderator"
+  },
+  "selectRole": "Select Your Role",
+  "@selectRole": {
+    "description": "Role selection prompt"
+  },
+  "clientDescription": "I need housekeeping services",
+  "@clientDescription": {
+    "description": "Description for client role"
+  },
+  "providerDescription": "I provide housekeeping services",
+  "@providerDescription": {
+    "description": "Description for provider role"
+  },
+  "regularCleaning": "Regular Cleaning",
+  "@regularCleaning": {
+    "description": "Regular weekly/monthly cleaning service"
+  },
+  "deepCleaning": "Deep Cleaning",
+  "@deepCleaning": {
+    "description": "Thorough deep cleaning service"
+  },
+  "oneTimeCleaning": "One-time Cleaning",
+  "@oneTimeCleaning": {
+    "description": "Single cleaning session"
+  },
+  "moveInOutCleaning": "Move In/Out Cleaning",
+  "@moveInOutCleaning": {
+    "description": "Cleaning for moving in or out"
+  },
+  "postConstructionCleaning": "Post-Construction Cleaning",
+  "@postConstructionCleaning": {
+    "description": "Cleaning after construction work"
+  },
+  "officeCleaning": "Office Cleaning",
+  "@officeCleaning": {
+    "description": "Commercial office cleaning"
+  },
+  "laundryServices": "Laundry Services",
+  "@laundryServices": {
+    "description": "Washing and ironing services"
+  },
+  "dishWashing": "Dish Washing",
+  "@dishWashing": {
+    "description": "Kitchen cleaning and dish washing"
+  },
+  "windowCleaning": "Window Cleaning",
+  "@windowCleaning": {
+    "description": "Window and glass cleaning"
+  },
+  "carpetCleaning": "Carpet Cleaning",
+  "@carpetCleaning": {
+    "description": "Carpet and upholstery cleaning"
+  },
+  "postJob": "Post a Job",
+  "@postJob": {
+    "description": "Action to create a new job posting"
+  },
+  "jobRequest": "Job Request",
+  "@jobRequest": {
+    "description": "A request for housekeeping services"
+  },
+  "jobDescription": "Job Description",
+  "@jobDescription": {
+    "description": "Description of the work needed"
+  },
+  "serviceNeeded": "Service Needed",
+  "@serviceNeeded": {
+    "description": "Type of service required"
+  },
+  "preferredDate": "Preferred Date",
+  "@preferredDate": {
+    "description": "Client's preferred date for service"
+  },
+  "preferredTime": "Preferred Time",
+  "@preferredTime": {
+    "description": "Client's preferred time for service"
+  },
+  "estimatedDuration": "Estimated Duration",
+  "@estimatedDuration": {
+    "description": "How long the job is expected to take"
+  },
+  "budget": "Budget",
+  "@budget": {
+    "description": "Client's budget for the service"
+  },
+  "budgetRange": "Budget Range",
+  "@budgetRange": {
+    "description": "Range of acceptable prices"
+  },
+  "propertySize": "Property Size",
+  "@propertySize": {
+    "description": "Size of property to be cleaned"
+  },
+  "numberOfRooms": "Number of Rooms",
+  "@numberOfRooms": {
+    "description": "How many rooms need cleaning"
+  },
+  "numberOfBathrooms": "Number of Bathrooms",
+  "@numberOfBathrooms": {
+    "description": "How many bathrooms need cleaning"
+  },
+  "specialInstructions": "Special Instructions",
+  "@specialInstructions": {
+    "description": "Additional notes or requirements"
+  },
+  "placeBid": "Place Bid",
+  "@placeBid": {
+    "description": "Action to submit a bid for a job"
+  },
+  "yourBid": "Your Bid",
+  "@yourBid": {
+    "description": "Provider's bid amount"
+  },
+  "bidAmount": "Bid Amount",
+  "@bidAmount": {
+    "description": "Amount being offered for the job"
+  },
+  "acceptBid": "Accept Bid",
+  "@acceptBid": {
+    "description": "Action to accept a provider's bid"
+  },
+  "rejectBid": "Reject Bid",
+  "@rejectBid": {
+    "description": "Action to reject a provider's bid"
+  },
+  "counterOffer": "Counter Offer",
+  "@counterOffer": {
+    "description": "Make a counter-offer to a bid"
+  },
+  "bidsReceived": "Bids Received",
+  "@bidsReceived": {
+    "description": "Number of bids received for a job"
+  },
+  "averageBid": "Average Bid",
+  "@averageBid": {
+    "description": "Average of all bids received"
+  },
+  "lowestBid": "Lowest Bid",
+  "@lowestBid": {
+    "description": "Lowest bid received"
+  },
+  "highestBid": "Highest Bid",
+  "@highestBid": {
+    "description": "Highest bid received"
+  },
+  "bidMessage": "Bid Message",
+  "@bidMessage": {
+    "description": "Optional message with a bid"
+  },
+  "negotiating": "Negotiating",
+  "@negotiating": {
+    "description": "Status when client and provider are negotiating"
+  },
+  "location": "Location",
+  "@location": {
+    "description": "Service location"
+  },
+  "serviceArea": "Service Area",
+  "@serviceArea": {
+    "description": "Area where provider offers services"
+  },
+  "bouskoura": "Bouskoura",
+  "@bouskoura": {
+    "description": "Bouskoura area in Morocco"
+  },
+  "casablanca": "Casablanca",
+  "@casablanca": {
+    "description": "Casablanca city in Morocco"
+  },
+  "nearbyProviders": "Nearby Providers",
+  "@nearbyProviders": {
+    "description": "Service providers in the area"
+  },
+  "kmAway": "{distance} km away",
+  "@kmAway": {
+    "description": "Distance in kilometers",
+    "placeholders": {
+      "distance": {
+        "type": "double"
+      }
+    }
+  },
+  "cashOnDelivery": "Cash on Delivery",
+  "@cashOnDelivery": {
+    "description": "Payment method - cash after service"
+  },
+  "payInCash": "Pay in Cash",
+  "@payInCash": {
+    "description": "Cash payment option"
+  },
+  "paymentMethod": "Payment Method",
+  "@paymentMethod": {
+    "description": "How payment will be made"
+  },
+  "pricePerHour": "Price per Hour",
+  "@pricePerHour": {
+    "description": "Hourly rate for service"
+  },
+  "totalPrice": "Total Price",
+  "@totalPrice": {
+    "description": "Total cost for the service"
+  },
+  "moroccanDirham": "Moroccan Dirham (MAD)",
+  "@moroccanDirham": {
+    "description": "Morocco currency"
+  },
+  "mad": "MAD",
+  "@mad": {
+    "description": "Morocco currency abbreviation"
+  },
+  "providerProfile": "Provider Profile",
+  "@providerProfile": {
+    "description": "Service provider's profile"
+  },
+  "yearsOfExperience": "Years of Experience",
+  "@yearsOfExperience": {
+    "description": "How many years of experience"
+  },
+  "verified": "Verified",
+  "@verified": {
+    "description": "Account or profile is verified"
+  },
+  "unverified": "Unverified",
+  "@unverified": {
+    "description": "Account or profile is not verified"
+  },
+  "verificationPending": "Verification Pending",
+  "@verificationPending": {
+    "description": "Verification is in progress"
+  },
+  "idVerification": "ID Verification",
+  "@idVerification": {
+    "description": "Identity document verification"
+  },
+  "uploadId": "Upload ID Document",
+  "@uploadId": {
+    "description": "Action to upload identification"
+  },
+  "cnie": "CNIE (National ID)",
+  "@cnie": {
+    "description": "Morocco national ID card"
+  },
+  "passport": "Passport",
+  "@passport": {
+    "description": "Passport document"
+  },
+  "rating": "Rating",
+  "@rating": {
+    "description": "Service rating"
+  },
+  "reviews": "Reviews",
+  "@reviews": {
+    "description": "Service reviews"
+  },
+  "rateService": "Rate this Service",
+  "@rateService": {
+    "description": "Action to rate a completed service"
+  },
+  "writeReview": "Write a Review",
+  "@writeReview": {
+    "description": "Action to write a service review"
+  },
+  "serviceRating": "Service Rating",
+  "@serviceRating": {
+    "description": "Rating for the service quality"
+  },
+  "wouldRecommend": "Would Recommend",
+  "@wouldRecommend": {
+    "description": "Would recommend this provider"
+  },
+  "excellent": "Excellent",
+  "@excellent": {
+    "description": "Excellent rating"
+  },
+  "good": "Good",
+  "@good": {
+    "description": "Good rating"
+  },
+  "average": "Average",
+  "@average": {
+    "description": "Average rating"
+  },
+  "poor": "Poor",
+  "@poor": {
+    "description": "Poor rating"
   }
 }

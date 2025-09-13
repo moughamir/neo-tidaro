@@ -618,5 +618,335 @@
   "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
   "@passwordTooShort": {
     "description": "Password too short validation message"
+  },
+
+  "housekeeping": "تنظيف المنزل",
+  "@housekeeping": {
+    "description": "General housekeeping term"
+  },
+  "cleaning": "تنظيف",
+  "@cleaning": {
+    "description": "General cleaning term"
+  },
+  "housekeeper": "عاملة منزلية",
+  "@housekeeper": {
+    "description": "Person who provides housekeeping services"
+  },
+  "cleaner": "منظف",
+  "@cleaner": {
+    "description": "Person who provides cleaning services"
+  },
+  "domesticWorker": "عامل منزلي",
+  "@domesticWorker": {
+    "description": "General term for domestic service provider"
+  },
+
+  "roleClient": "عميل",
+  "@roleClient": {
+    "description": "Client role - person who books services"
+  },
+  "roleProvider": "مقدم خدمة",
+  "@roleProvider": {
+    "description": "Provider role - person who offers services"
+  },
+  "roleAdmin": "مدير",
+  "@roleAdmin": {
+    "description": "Admin role - platform administrator"
+  },
+  "roleModerator": "مشرف",
+  "@roleModerator": {
+    "description": "Moderator role - content moderator"
+  },
+  "selectRole": "اختر دورك",
+  "@selectRole": {
+    "description": "Role selection prompt"
+  },
+  "clientDescription": "أحتاج خدمات تنظيف منزلية",
+  "@clientDescription": {
+    "description": "Description for client role"
+  },
+  "providerDescription": "أقدم خدمات تنظيف منزلية",
+  "@providerDescription": {
+    "description": "Description for provider role"
+  },
+
+  "regularCleaning": "تنظيف منتظم",
+  "@regularCleaning": {
+    "description": "Regular weekly/monthly cleaning service"
+  },
+  "deepCleaning": "تنظيف شامل",
+  "@deepCleaning": {
+    "description": "Thorough deep cleaning service"
+  },
+  "oneTimeCleaning": "تنظيف لمرة واحدة",
+  "@oneTimeCleaning": {
+    "description": "Single cleaning session"
+  },
+  "moveInOutCleaning": "تنظيف الانتقال",
+  "@moveInOutCleaning": {
+    "description": "Cleaning for moving in or out"
+  },
+  "postConstructionCleaning": "تنظيف ما بعد البناء",
+  "@postConstructionCleaning": {
+    "description": "Cleaning after construction work"
+  },
+  "officeCleaning": "تنظيف المكاتب",
+  "@officeCleaning": {
+    "description": "Commercial office cleaning"
+  },
+  "laundryServices": "خدمات الغسيل",
+  "@laundryServices": {
+    "description": "Washing and ironing services"
+  },
+  "dishWashing": "غسيل الأطباق",
+  "@dishWashing": {
+    "description": "Kitchen cleaning and dish washing"
+  },
+  "windowCleaning": "تنظيف النوافذ",
+  "@windowCleaning": {
+    "description": "Window and glass cleaning"
+  },
+  "carpetCleaning": "تنظيف السجاد",
+  "@carpetCleaning": {
+    "description": "Carpet and upholstery cleaning"
+  },
+
+  "postJob": "نشر وظيفة",
+  "@postJob": {
+    "description": "Action to create a new job posting"
+  },
+  "jobRequest": "طلب خدمة",
+  "@jobRequest": {
+    "description": "A request for housekeeping services"
+  },
+  "jobDescription": "وصف العمل",
+  "@jobDescription": {
+    "description": "Description of the work needed"
+  },
+  "serviceNeeded": "الخدمة المطلوبة",
+  "@serviceNeeded": {
+    "description": "Type of service required"
+  },
+  "preferredDate": "التاريخ المفضل",
+  "@preferredDate": {
+    "description": "Client's preferred date for service"
+  },
+  "preferredTime": "الوقت المفضل",
+  "@preferredTime": {
+    "description": "Client's preferred time for service"
+  },
+  "estimatedDuration": "المدة المقدرة",
+  "@estimatedDuration": {
+    "description": "How long the job is expected to take"
+  },
+  "budget": "الميزانية",
+  "@budget": {
+    "description": "Client's budget for the service"
+  },
+  "budgetRange": "نطاق الميزانية",
+  "@budgetRange": {
+    "description": "Range of acceptable prices"
+  },
+  "propertySize": "حجم العقار",
+  "@propertySize": {
+    "description": "Size of property to be cleaned"
+  },
+  "numberOfRooms": "عدد الغرف",
+  "@numberOfRooms": {
+    "description": "How many rooms need cleaning"
+  },
+  "numberOfBathrooms": "عدد الحمامات",
+  "@numberOfBathrooms": {
+    "description": "How many bathrooms need cleaning"
+  },
+  "specialInstructions": "تعليمات خاصة",
+  "@specialInstructions": {
+    "description": "Additional notes or requirements"
+  },
+
+  "placeBid": "تقديم عرض",
+  "@placeBid": {
+    "description": "Action to submit a bid for a job"
+  },
+  "yourBid": "عرضك",
+  "@yourBid": {
+    "description": "Provider's bid amount"
+  },
+  "bidAmount": "مبلغ العرض",
+  "@bidAmount": {
+    "description": "Amount being offered for the job"
+  },
+  "acceptBid": "قبول العرض",
+  "@acceptBid": {
+    "description": "Action to accept a provider's bid"
+  },
+  "rejectBid": "رفض العرض",
+  "@rejectBid": {
+    "description": "Action to reject a provider's bid"
+  },
+  "counterOffer": "عرض مضاد",
+  "@counterOffer": {
+    "description": "Make a counter-offer to a bid"
+  },
+  "bidsReceived": "العروض المستلمة",
+  "@bidsReceived": {
+    "description": "Number of bids received for a job"
+  },
+  "averageBid": "متوسط العروض",
+  "@averageBid": {
+    "description": "Average of all bids received"
+  },
+  "lowestBid": "أقل عرض",
+  "@lowestBid": {
+    "description": "Lowest bid received"
+  },
+  "highestBid": "أعلى عرض",
+  "@highestBid": {
+    "description": "Highest bid received"
+  },
+  "bidMessage": "رسالة العرض",
+  "@bidMessage": {
+    "description": "Optional message with a bid"
+  },
+  "negotiating": "في المفاوضة",
+  "@negotiating": {
+    "description": "Status when client and provider are negotiating"
+  },
+
+  "location": "الموقع",
+  "@location": {
+    "description": "Service location"
+  },
+  "serviceArea": "منطقة الخدمة",
+  "@serviceArea": {
+    "description": "Area where provider offers services"
+  },
+  "bouskoura": "بوسكورة",
+  "@bouskoura": {
+    "description": "Bouskoura area in Morocco"
+  },
+  "casablanca": "الدار البيضاء",
+  "@casablanca": {
+    "description": "Casablanca city in Morocco"
+  },
+  "nearbyProviders": "مقدمو خدمات قريبون",
+  "@nearbyProviders": {
+    "description": "Service providers in the area"
+  },
+  "kmAway": "على بعد {distance} كم",
+  "@kmAway": {
+    "description": "Distance in kilometers",
+    "placeholders": {
+      "distance": {
+        "type": "double"
+      }
+    }
+  },
+
+  "cashOnDelivery": "الدفع عند الاستلام",
+  "@cashOnDelivery": {
+    "description": "Payment method - cash after service"
+  },
+  "payInCash": "دفع نقدي",
+  "@payInCash": {
+    "description": "Cash payment option"
+  },
+  "paymentMethod": "طريقة الدفع",
+  "@paymentMethod": {
+    "description": "How payment will be made"
+  },
+  "pricePerHour": "السعر في الساعة",
+  "@pricePerHour": {
+    "description": "Hourly rate for service"
+  },
+  "totalPrice": "السعر الإجمالي",
+  "@totalPrice": {
+    "description": "Total cost for the service"
+  },
+  "moroccanDirham": "الدرهم المغربي (MAD)",
+  "@moroccanDirham": {
+    "description": "Morocco currency"
+  },
+  "mad": "درهم",
+  "@mad": {
+    "description": "Morocco currency abbreviation"
+  },
+
+  "providerProfile": "ملف مقدم الخدمة",
+  "@providerProfile": {
+    "description": "Service provider's profile"
+  },
+  "yearsOfExperience": "سنوات الخبرة",
+  "@yearsOfExperience": {
+    "description": "How many years of experience"
+  },
+  "verified": "موثق",
+  "@verified": {
+    "description": "Account or profile is verified"
+  },
+  "unverified": "غير موثق",
+  "@unverified": {
+    "description": "Account or profile is not verified"
+  },
+  "verificationPending": "التحقق قيد المراجعة",
+  "@verificationPending": {
+    "description": "Verification is in progress"
+  },
+  "idVerification": "التحقق من الهوية",
+  "@idVerification": {
+    "description": "Identity document verification"
+  },
+  "uploadId": "رفع وثيقة الهوية",
+  "@uploadId": {
+    "description": "Action to upload identification"
+  },
+  "cnie": "البطاقة الوطنية للتعريف الإلكترونية",
+  "@cnie": {
+    "description": "Morocco national ID card"
+  },
+  "passport": "جواز السفر",
+  "@passport": {
+    "description": "Passport document"
+  },
+
+  "rating": "التقييم",
+  "@rating": {
+    "description": "Service rating"
+  },
+  "reviews": "المراجعات",
+  "@reviews": {
+    "description": "Service reviews"
+  },
+  "rateService": "قيم هذه الخدمة",
+  "@rateService": {
+    "description": "Action to rate a completed service"
+  },
+  "writeReview": "اكتب مراجعة",
+  "@writeReview": {
+    "description": "Action to write a service review"
+  },
+  "serviceRating": "تقييم الخدمة",
+  "@serviceRating": {
+    "description": "Rating for the service quality"
+  },
+  "wouldRecommend": "أوصي بهذا",
+  "@wouldRecommend": {
+    "description": "Would recommend this provider"
+  },
+  "excellent": "ممتاز",
+  "@excellent": {
+    "description": "Excellent rating"
+  },
+  "good": "جيد",
+  "@good": {
+    "description": "Good rating"
+  },
+  "average": "متوسط",
+  "@average": {
+    "description": "Average rating"
+  },
+  "poor": "ضعيف",
+  "@poor": {
+    "description": "Poor rating"
   }
 }
