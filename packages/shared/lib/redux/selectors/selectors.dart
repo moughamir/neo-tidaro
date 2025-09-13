@@ -1,5 +1,5 @@
 /// Selectors barrel file for organized exports
-library redux_selectors;
+library;
 
 export 'auth_selectors.dart';
 export 'booking_selectors.dart';

@@ -1,17 +1,16 @@
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
 import 'package:fpdart/fpdart.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:shared/utils/failures/failure.dart';
 import 'package:shared/utils/type_defs.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../utils/logger.dart';
 import 'interfaces/auth_service.dart';
 import 'interfaces/database_service.dart';
-import 'interfaces/storage_service.dart';
 import 'interfaces/remote_data_source.dart';
+import 'interfaces/storage_service.dart';
 
 /// A comprehensive service class to interact with Supabase.
 ///
@@ -23,10 +22,10 @@ import 'interfaces/remote_data_source.dart';
 /// adherence to SOLID principles, allowing for dependency inversion.
 class SupabaseService
     implements AuthService, DatabaseService, StorageService, RemoteDataSource {
-  // --- Singleton Setup ---
-  static final SupabaseService _instance = SupabaseService._internal();
   factory SupabaseService() => _instance;
   SupabaseService._internal();
+  // --- Singleton Setup ---
+  static final SupabaseService _instance = SupabaseService._internal();
 
   // --- Properties ---
   late final SupabaseClient _client;
@@ -37,6 +36,7 @@ class SupabaseService
   SupabaseClient get client => _client;
 
   /// The currently authenticated user, if any.
+  @override
   User? get currentUser => _client.auth.currentUser;
 
   /// The GoTrue client for authentication operations.

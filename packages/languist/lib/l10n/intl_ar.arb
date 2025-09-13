@@ -948,5 +948,29 @@
   "poor": "ضعيف",
   "@poor": {
     "description": "Poor rating"
+  },
+  "selectUserRole": "اختر دورك",
+  "@selectUserRole": {
+    "description": "Header for role selection during registration"
+  },
+  "selectUserRoleDescription": "اختر كيف تخطط لاستخدام تيدارو",
+  "@selectUserRoleDescription": {
+    "description": "Description for role selection"
+  },
+  "roleClientConsumer": "أحتاج خدمات",
+  "@roleClientConsumer": {
+    "description": "Role for customers who book services"
+  },
+  "roleClientConsumerDescription": "احجز خدمات التنظيف لمنزلك",
+  "@roleClientConsumerDescription": {
+    "description": "Description for client consumer role"
+  },
+  "roleClientProfessional": "أقدم خدمات",
+  "@roleClientProfessional": {
+    "description": "Role for service providers"
+  },
+  "roleClientProfessionalDescription": "قدم خدمات التنظيف للعملاء",
+  "@roleClientProfessionalDescription": {
+    "description": "Description for client professional role"
   }
 }

@@ -6,6 +6,16 @@ import '../actions/ui_actions.dart';
 
 /// UI state following functional programming patterns
 class UiState extends BaseState {
+
+  /// Initial state factory
+  factory UiState.initial() {
+    return const UiState(
+      themeMode: ThemeMode.system,
+      locale: Locale('en', 'US'),
+      snackBarMessage: None(),
+      loadingStates: {},
+    );
+  }
   const UiState({
     required this.themeMode,
     required this.locale,
@@ -17,16 +27,6 @@ class UiState extends BaseState {
   final Locale locale;
   final Option<SnackBarMessage> snackBarMessage;
   final Map<String, bool> loadingStates;
-
-  /// Initial state factory
-  factory UiState.initial() {
-    return const UiState(
-      themeMode: ThemeMode.system,
-      locale: Locale('en', 'US'),
-      snackBarMessage: None(),
-      loadingStates: {},
-    );
-  }
 
   /// Copy with method for immutable updates
   UiState copyWith({

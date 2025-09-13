@@ -59,7 +59,7 @@ class MetricCard extends StatelessWidget {
               if (icon != null) icon!,
             ],
           ),
-          SizedBox(height: DesignTokens.space2),
+          const SizedBox(height: DesignTokens.space2),
           Text(
             value,
             style: textTheme.headlineSmall?.copyWith(
@@ -68,7 +68,7 @@ class MetricCard extends StatelessWidget {
             ),
           ),
           if (subtitle != null || trend != null) ...[
-            SizedBox(height: DesignTokens.space1),
+            const SizedBox(height: DesignTokens.space1),
             Row(
               children: [
                 if (subtitle != null)
@@ -82,7 +82,7 @@ class MetricCard extends StatelessWidget {
                   ),
                 if (trend != null)
                   Container(
-                    padding: EdgeInsets.symmetric(
+                    padding: const EdgeInsets.symmetric(
                       horizontal: DesignTokens.space2,
                       vertical: DesignTokens.space1,
                     ),

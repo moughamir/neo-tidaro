@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:clay_containers/clay_containers.dart';
+import 'package:flutter/material.dart';
 import 'package:ui_kit/src/design_system/design_system.dart';
 
 export 'cards/cards.dart';
@@ -9,22 +9,6 @@ export 'cards/cards.dart';
 /// Replaces KuiCard.glass and other card duplicates with a single,
 /// consistent implementation using the unified design system
 class KuiCard extends StatelessWidget {
-  final Widget child;
-  final CardVariant variant;
-  final double? width;
-  final double? height;
-  final double? borderRadius;
-  final Color? backgroundColor;
-  final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
-  final int elevation;
-  final VoidCallback? onTap;
-  final String? title;
-  final String? subtitle;
-  final Widget? leading;
-  final Widget? trailing;
-  final bool showBorder;
-  final Color? borderColor;
 
   const KuiCard({
     super.key,
@@ -165,6 +149,22 @@ class KuiCard extends StatelessWidget {
     this.showBorder = false,
     this.borderColor,
   }) : variant = CardVariant.neumorphic;
+  final Widget child;
+  final CardVariant variant;
+  final double? width;
+  final double? height;
+  final double? borderRadius;
+  final Color? backgroundColor;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
+  final int elevation;
+  final VoidCallback? onTap;
+  final String? title;
+  final String? subtitle;
+  final Widget? leading;
+  final Widget? trailing;
+  final bool showBorder;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -172,11 +172,11 @@ class KuiCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     final effectiveRadius = borderRadius ?? DesignTokens.radiusLg;
-    final effectivePadding = padding ?? EdgeInsets.all(DesignTokens.space4);
-    final effectiveMargin = margin ?? EdgeInsets.all(DesignTokens.space2);
+    final effectivePadding = padding ?? const EdgeInsets.all(DesignTokens.space4);
+    final effectiveMargin = margin ?? const EdgeInsets.all(DesignTokens.space2);
     final effectiveBackgroundColor = backgroundColor ?? colors.surface;
 
-    Widget cardContent = _buildCardContent(context, colors, textTheme);
+    final Widget cardContent = _buildCardContent(context, colors, textTheme);
     Widget decoratedCard = _buildDecoratedCard(
       context,
       colors,
@@ -219,7 +219,7 @@ class KuiCard extends StatelessWidget {
         children: [
           header,
           if (title != null || subtitle != null)
-            SizedBox(height: DesignTokens.space3),
+            const SizedBox(height: DesignTokens.space3),
           Expanded(child: content),
         ],
       );
@@ -237,7 +237,7 @@ class KuiCard extends StatelessWidget {
       children: [
         if (leading != null) ...[
           leading!,
-          SizedBox(width: DesignTokens.space3),
+          const SizedBox(width: DesignTokens.space3),
         ],
         Expanded(
           child: Column(
@@ -252,7 +252,7 @@ class KuiCard extends StatelessWidget {
                   ),
                 ),
               if (subtitle != null) ...[
-                SizedBox(height: DesignTokens.space1),
+                const SizedBox(height: DesignTokens.space1),
                 Text(
                   subtitle!,
                   style: textTheme.bodyMedium?.copyWith(
@@ -264,7 +264,7 @@ class KuiCard extends StatelessWidget {
           ),
         ),
         if (trailing != null) ...[
-          SizedBox(width: DesignTokens.space3),
+          const SizedBox(width: DesignTokens.space3),
           trailing!,
         ],
       ],
@@ -280,14 +280,14 @@ class KuiCard extends StatelessWidget {
     Color backgroundColor,
   ) {
     // Small helpers to reduce repetition
-    Widget _sizedPadded(EdgeInsetsGeometry p, Widget c) => Container(
+    Widget sizedPadded(EdgeInsetsGeometry p, Widget c) => Container(
           width: width,
           height: height,
           padding: p,
           child: c,
         );
 
-    Widget _boxWithDecoration(EdgeInsetsGeometry p, Decoration d, Widget c) =>
+    Widget boxWithDecoration(EdgeInsetsGeometry p, Decoration d, Widget c) =>
         Container(
           width: width,
           height: height,
@@ -298,7 +298,7 @@ class KuiCard extends StatelessWidget {
 
     switch (variant) {
       case CardVariant.elevated:
-        return _boxWithDecoration(
+        return boxWithDecoration(
           padding,
           DesignEffects.elevationLevel(
             colors: colors,
@@ -311,13 +311,13 @@ class KuiCard extends StatelessWidget {
 
       case CardVariant.glass:
         return DesignEffects.glassContainer(
-          child: _sizedPadded(padding, child),
+          child: sizedPadded(padding, child),
           colors: colors,
           radius: radius,
         );
 
       case CardVariant.outlined:
-        return _boxWithDecoration(
+        return boxWithDecoration(
           padding,
           BoxDecoration(
             color: backgroundColor,
@@ -331,7 +331,7 @@ class KuiCard extends StatelessWidget {
         );
 
       case CardVariant.flat:
-        return _boxWithDecoration(
+        return boxWithDecoration(
           padding,
           BoxDecoration(
             color: backgroundColor,
@@ -349,7 +349,7 @@ class KuiCard extends StatelessWidget {
 
       case CardVariant.hybrid:
         return DesignEffects.hybridCard(
-          child: _sizedPadded(padding, child),
+          child: sizedPadded(padding, child),
           colors: colors,
           radius: radius,
         );
@@ -364,7 +364,7 @@ class KuiCard extends StatelessWidget {
           depth: (elevation.clamp(0, 10)) * 8,
           spread: 1,
           curveType: CurveType.convex,
-          child: _sizedPadded(padding, child),
+          child: sizedPadded(padding, child),
         );
     }
   }

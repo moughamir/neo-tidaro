@@ -19,3 +19,9 @@ flutter:
 
 executables:
   generate_l10n: generate_l10n
+dependencies:
+  flutter: any
+  flutter_localizations: any
+  intl: any
+  moment_dart: any
+  yaml: any

@@ -4,6 +4,20 @@ import 'package:flutter/material.dart';
 ///
 /// Provides consistent loading visualization across the application
 class LoadingIndicator extends StatelessWidget {
+
+  const LoadingIndicator({
+    super.key,
+    this.message,
+    this.size = 36.0,
+    this.centered = true,
+    this.transparent = false,
+    this.showRing = true,
+    this.overlay = false,
+    this.padding,
+    this.color,
+    this.strokeWidth = 4.0,
+    this.transparentBackground = false,
+  });
   /// Optional message to display with the loading indicator
   final String? message;
 
@@ -33,20 +47,6 @@ class LoadingIndicator extends StatelessWidget {
 
   /// Whether the background should be transparent
   final bool transparentBackground;
-
-  const LoadingIndicator({
-    super.key,
-    this.message,
-    this.size = 36.0,
-    this.centered = true,
-    this.transparent = false,
-    this.showRing = true,
-    this.overlay = false,
-    this.padding,
-    this.color,
-    this.strokeWidth = 4.0,
-    this.transparentBackground = false,
-  });
 
   @override
   Widget build(BuildContext context) {
@@ -95,15 +95,15 @@ class LoadingIndicator extends StatelessWidget {
 
 /// A custom circular progress indicator with neumorphic styling
 class _NeumorphicCircularProgressIndicator extends StatelessWidget {
-  final Color? color;
-  final double strokeWidth;
-  final bool isDark;
 
   const _NeumorphicCircularProgressIndicator({
     required this.isDark,
     this.color,
     this.strokeWidth = 4.0,
   });
+  final Color? color;
+  final double strokeWidth;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {

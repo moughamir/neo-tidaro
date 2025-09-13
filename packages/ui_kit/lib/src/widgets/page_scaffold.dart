@@ -5,6 +5,16 @@ import 'package:ui_kit/src/design_system/design_system.dart';
 ///
 /// Provides consistent page layout across the application
 class PageScaffold extends StatelessWidget {
+
+  const PageScaffold({
+    super.key,
+    this.title,
+    required this.content,
+    this.actions,
+    this.drawer,
+    this.automaticallyImplyLeading = true,
+    this.contentPadding,
+  });
   /// Page title displayed in the header
   final String? title;
 
@@ -22,16 +32,6 @@ class PageScaffold extends StatelessWidget {
 
   /// Optional padding for the content
   final EdgeInsets? contentPadding;
-
-  const PageScaffold({
-    super.key,
-    this.title,
-    required this.content,
-    this.actions,
-    this.drawer,
-    this.automaticallyImplyLeading = true,
-    this.contentPadding,
-  });
 
   @override
   Widget build(BuildContext context) {

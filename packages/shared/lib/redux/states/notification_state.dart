@@ -2,10 +2,6 @@ import 'package:domain/domain.dart';
 import 'package:shared/redux/core/base_state.dart';
 
 class NotificationState extends BaseState {
-  final List<Notification> notifications;
-  final int unreadCount;
-  final bool isLoading;
-  final String? error;
 
   const NotificationState({
     this.notifications = const [],
@@ -16,6 +12,10 @@ class NotificationState extends BaseState {
 
   factory NotificationState.initial() =>
       const NotificationState(isLoading: false);
+  final List<Notification> notifications;
+  final int unreadCount;
+  final bool isLoading;
+  final String? error;
 
   @override
   // TODO: implement props

@@ -12,7 +12,7 @@ class LanguistConfigReader {
     final File file = File(configPath);
 
     if (!file.existsSync()) {
-      throw FileSystemException('Configuration file not found', configPath);
+      throw const FileSystemException('Configuration file not found', configPath);
     }
 
     final String yamlString = file.readAsStringSync();

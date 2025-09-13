@@ -19,3 +19,8 @@ dependencies:
     path: ../shared
   domain:
     path: ../domain
+  flutter_dotenv: any
+  get_it: any
+  fpdart: any
+  http: any
+  supabase_flutter: any

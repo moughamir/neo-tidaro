@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
+import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart' as ui;
 
 /// Dialog for viewing staff member details

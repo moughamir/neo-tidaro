@@ -11,9 +11,9 @@ class CounterExampleApp extends StatelessWidget {
 
     return StoreProvider<CounterState>(
       store: store,
-      child: MaterialApp(
+      child: const MaterialApp(
         title: 'Redux Counter Example',
-        home: const CounterExamplePage(),
+        home: CounterExamplePage(),
       ),
     );
   }

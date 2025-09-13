@@ -11,18 +11,14 @@
 
 library;
 
-// Unified design system (NEW - replaces old theme system)
-export 'src/design_system/design_system.dart';
-
-// Widget components
-export 'src/widgets/widgets.dart';
-
-// Localization wrapper
-export 'src/localization/app_localizations.dart';
-
-export 'package:material_color_utilities/material_color_utilities.dart';
-export 'package:google_fonts/google_fonts.dart';
-
 export 'package:flutter/material.dart';
+export 'package:google_fonts/google_fonts.dart';
+export 'package:material_color_utilities/material_color_utilities.dart';
 
 export 'src/app/app_n_layouts.dart';
+// Unified design system (NEW - replaces old theme system)
+export 'src/design_system/design_system.dart';
+// Localization wrapper
+export 'src/localization/app_localizations.dart';
+// Widget components
+export 'src/widgets/widgets.dart';

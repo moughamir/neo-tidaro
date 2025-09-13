@@ -6,10 +6,10 @@ import 'booking_reducer.dart';
 import 'cache_reducer.dart';
 import 'chat_reducer.dart';
 import 'dashboard_reducer.dart';
+import 'kyc_reducer.dart';
+import 'notification_reducer.dart';
 import 'professional_reducer.dart';
 import 'ui_reducer.dart';
-import 'notification_reducer.dart';
-import 'kyc_reducer.dart';
 
 /// Main app reducer that combines all feature reducers
 AppState appReducer(AppState state, dynamic action) {

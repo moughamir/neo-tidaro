@@ -993,4 +993,24 @@ class GenLocalizationsEn extends GenLocalizations {
 
   @override
   String get poor => 'Poor';
+
+  @override
+  String get selectUserRole => 'Select Your Role';
+
+  @override
+  String get selectUserRoleDescription => 'Choose how you plan to use Tidaro';
+
+  @override
+  String get roleClientConsumer => 'I Need Services';
+
+  @override
+  String get roleClientConsumerDescription =>
+      'Book housekeeping services for your home';
+
+  @override
+  String get roleClientProfessional => 'I Provide Services';
+
+  @override
+  String get roleClientProfessionalDescription =>
+      'Offer housekeeping services to customers';
 }

@@ -1,7 +1,8 @@
-import 'package:shared/shared.dart';
-import '../pages/home_page.dart';
-import 'package:ui_kit/ui_kit.dart';
 import 'package:core/core.dart';
+import 'package:shared/shared.dart';
+import 'package:ui_kit/ui_kit.dart';
+
+import '../pages/home_page.dart';
 
 class TiDashApp extends StatelessWidget {
   const TiDashApp({super.key});

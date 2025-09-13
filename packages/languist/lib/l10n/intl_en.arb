@@ -1326,5 +1326,29 @@
   "poor": "Poor",
   "@poor": {
     "description": "Poor rating"
+  },
+  "selectUserRole": "Select Your Role",
+  "@selectUserRole": {
+    "description": "Header for role selection during registration"
+  },
+  "selectUserRoleDescription": "Choose how you plan to use Tidaro",
+  "@selectUserRoleDescription": {
+    "description": "Description for role selection"
+  },
+  "roleClientConsumer": "I Need Services",
+  "@roleClientConsumer": {
+    "description": "Role for customers who book services"
+  },
+  "roleClientConsumerDescription": "Book housekeeping services for your home",
+  "@roleClientConsumerDescription": {
+    "description": "Description for client consumer role"
+  },
+  "roleClientProfessional": "I Provide Services",
+  "@roleClientProfessional": {
+    "description": "Role for service providers"
+  },
+  "roleClientProfessionalDescription": "Offer housekeeping services to customers",
+  "@roleClientProfessionalDescription": {
+    "description": "Description for client professional role"
   }
 }

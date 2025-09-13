@@ -4,16 +4,6 @@ import 'package:shared/redux/core/core.dart';
 
 /// Authentication state following functional programming patterns
 class AuthState extends BaseAsyncState<User> {
-  const AuthState({
-    required super.isLoading,
-    required super.data,
-    required super.error,
-    required this.isAuthenticated,
-    required this.authToken,
-  });
-
-  final bool isAuthenticated;
-  final Option<String> authToken;
 
   /// Initial state factory
   factory AuthState.initial() {
@@ -58,6 +48,16 @@ class AuthState extends BaseAsyncState<User> {
       authToken: const None(),
     );
   }
+  const AuthState({
+    required super.isLoading,
+    required super.data,
+    required super.error,
+    required this.isAuthenticated,
+    required this.authToken,
+  });
+
+  final bool isAuthenticated;
+  final Option<String> authToken;
 
   /// Copy with method for immutable updates
   AuthState copyWith({

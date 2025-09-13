@@ -1,9 +1,8 @@
 import 'package:domain/entities/base_entity.dart';
 import 'package:fpdart/fpdart.dart';
-
-import 'package:shared/utils/type_defs.dart';
 import 'package:shared/utils/failures/failure.dart';
 import 'package:shared/utils/logger.dart';
+import 'package:shared/utils/type_defs.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 
 /// Base class for Supabase repositories that provides common CRUD operations.
@@ -12,14 +11,14 @@ import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 /// [C] is the create DTO type
 /// [U] is the update DTO type
 abstract class SupabaseRepository<T extends BaseEntity, C, U> {
+
+  /// Creates a new Supabase repository
+  SupabaseRepository(this.tableName, SupabaseClient client) : _client = client;
   /// The table name in Supabase
   final String tableName;
 
   /// The Supabase client
   final SupabaseClient _client;
-
-  /// Creates a new Supabase repository
-  SupabaseRepository(this.tableName, SupabaseClient client) : _client = client;
 
   /// Converts a Map from Supabase to an entity
   T fromJson(Map<String, dynamic> json);

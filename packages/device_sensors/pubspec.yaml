@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  sensors_plus: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

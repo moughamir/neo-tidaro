@@ -1,5 +1,5 @@
-import 'moment_bridge.dart';
 import '../../l10n/gen/intl_localizations.dart';
+import 'moment_bridge.dart';
 
 /// Advanced time formatting utilities using Languist and moment_dart
 class TimeFormatter {
@@ -82,8 +82,9 @@ class TimeFormatter {
     final date = fromDate ?? DateTime.now();
     // Simple implementation to get next weekday
     int daysUntilTarget = (weekday - date.weekday) % 7;
-    if (daysUntilTarget == 0)
+    if (daysUntilTarget == 0) {
       daysUntilTarget = 7; // If today is the target day, get next week
+    }
     return date.add(Duration(days: daysUntilTarget));
   }
 
@@ -94,7 +95,7 @@ class TimeFormatter {
         return DateTime(date.year, date.month, date.day);
       case 'week':
         // Start of week (Monday)
-        int daysFromMonday = date.weekday - 1;
+        final int daysFromMonday = date.weekday - 1;
         return DateTime(
           date.year,
           date.month,

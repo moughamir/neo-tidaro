@@ -993,4 +993,25 @@ class GenLocalizationsFr extends GenLocalizations {
 
   @override
   String get poor => 'Mauvais';
+
+  @override
+  String get selectUserRole => 'Sélectionnez votre rôle';
+
+  @override
+  String get selectUserRoleDescription =>
+      'Choisissez comment vous comptez utiliser Tidaro';
+
+  @override
+  String get roleClientConsumer => 'J\'ai besoin de services';
+
+  @override
+  String get roleClientConsumerDescription =>
+      'Réservez des services de ménage pour votre domicile';
+
+  @override
+  String get roleClientProfessional => 'Je fournis des services';
+
+  @override
+  String get roleClientProfessionalDescription =>
+      'Offrez des services de ménage aux clients';
 }

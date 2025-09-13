@@ -142,7 +142,7 @@ class ProfileCard<T, S> extends StatelessWidget {
               Row(
                 children: [
                   if (rating != null) ...[
-                    Icon(Icons.star, size: 16, color: Colors.amber),
+                    const Icon(Icons.star, size: 16, color: Colors.amber),
                     const SizedBox(width: 4),
                     Text(
                       rating!.toStringAsFixed(1),

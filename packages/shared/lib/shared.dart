@@ -2,12 +2,14 @@
 ///
 /// This package provides shared functionality that can be used across
 /// different applications in the workspace.
-library shared;
+library;
 
-export 'repositories/index.dart';
-// Utils exports
-export 'utils/utils.dart';
+export 'package:domain/domain.dart';
 
 // Redux exports
 export 'redux/redux.dart';
-export 'package:domain/domain.dart';
+export 'repositories/index.dart';
+// Utils exports
+export 'utils/utils.dart';
+// Widgets exports
+export 'widgets/widgets.dart';

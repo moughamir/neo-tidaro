@@ -1,4 +1,4 @@
-library shared.redux.actions.professional_actions;
+library;
 
 import 'package:domain/domain.dart';
 import 'package:shared/redux/redux.dart' show BaseAction;

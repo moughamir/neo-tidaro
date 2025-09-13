@@ -1,4 +1,4 @@
 /// Redux example scaffolds barrel
-library redux_examples;
+library;
 
 export 'counter/counter.dart';

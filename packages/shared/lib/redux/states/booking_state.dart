@@ -1,6 +1,6 @@
+import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared/redux/core/core.dart';
-import 'package:domain/domain.dart';
 
 /// Booking state following functional programming patterns
 class BookingState extends BaseAsyncState<List<Booking>> {
@@ -14,23 +14,23 @@ class BookingState extends BaseAsyncState<List<Booking>> {
 
   /// Initial state factory
   factory BookingState.initial() {
-    return BookingState(
+    return const BookingState(
       isLoading: false,
-      data: const Some([]),
-      error: const None(),
-      filters: const {},
-      selectedBookingId: const None(),
+      data: Some([]),
+      error: None(),
+      filters: {},
+      selectedBookingId: None(),
     );
   }
 
   /// Loading state factory
   factory BookingState.loading() {
-    return BookingState(
+    return const BookingState(
       isLoading: true,
-      data: const Some([]),
-      error: const None(),
-      filters: const {},
-      selectedBookingId: const None(),
+      data: Some([]),
+      error: None(),
+      filters: {},
+      selectedBookingId: None(),
     );
   }
 

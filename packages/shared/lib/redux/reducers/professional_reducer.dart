@@ -1,4 +1,4 @@
-library shared.redux.reducers.professional_reducer;
+library;
 
 import 'package:redux/redux.dart';
 
@@ -10,31 +10,31 @@ ProfessionalState professionalReducer(ProfessionalState state, dynamic action) {
   return combineReducers<ProfessionalState>([
     TypedReducer<ProfessionalState, LoadProfessionalsAction>(
       _loadProfessionals,
-    ),
+    ).call,
     TypedReducer<ProfessionalState, LoadProfessionalsSuccessAction>(
       _loadProfessionalsSuccess,
-    ),
+    ).call,
     TypedReducer<ProfessionalState, LoadProfessionalsFailureAction>(
       _loadProfessionalsFailure,
-    ),
+    ).call,
     TypedReducer<ProfessionalState, UpdateProfessionalsFiltersAction>(
       _updateFilters,
-    ),
+    ).call,
     TypedReducer<ProfessionalState, ClearProfessionalsFiltersAction>(
       _clearFilters,
-    ),
+    ).call,
     TypedReducer<ProfessionalState, SelectProfessionalAction>(
       _selectProfessional,
-    ),
+    ).call,
     TypedReducer<ProfessionalState, CreateProfessionalAction>(
       _createProfessional,
-    ),
+    ).call,
     TypedReducer<ProfessionalState, CreateProfessionalSuccessAction>(
       _createProfessionalSuccess,
-    ),
+    ).call,
     TypedReducer<ProfessionalState, CreateProfessionalFailureAction>(
       _createProfessionalFailure,
-    ),
+    ).call,
   ])(state, action);
 }
 

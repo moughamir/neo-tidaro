@@ -1,7 +1,7 @@
 import 'package:fpdart/fpdart.dart' hide State;
+import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
-import 'package:languist/languist.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -289,17 +289,6 @@ class _SignUpPageState extends State<SignUpPage> {
 }
 
 class SignUpViewModel {
-  const SignUpViewModel({
-    required this.isLoading,
-    required this.error,
-    required this.signUp,
-    required this.signUpWithProvider,
-  });
-
-  final bool isLoading;
-  final Option<Exception> error;
-  final Function(String email, String password, String name) signUp;
-  final Function(String provider) signUpWithProvider;
 
   factory SignUpViewModel.fromStore(Store<AppState> store) {
     return SignUpViewModel(
@@ -319,4 +308,15 @@ class SignUpViewModel {
       ),
     );
   }
+  const SignUpViewModel({
+    required this.isLoading,
+    required this.error,
+    required this.signUp,
+    required this.signUpWithProvider,
+  });
+
+  final bool isLoading;
+  final Option<Exception> error;
+  final Function(String email, String password, String name) signUp;
+  final Function(String provider) signUpWithProvider;
 }

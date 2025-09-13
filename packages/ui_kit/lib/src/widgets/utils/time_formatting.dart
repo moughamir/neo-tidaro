@@ -17,13 +17,13 @@ extension DateTimeFormatting on DateTime {
     final l10n = Languist.of(context);
     return TimeFormatter.formatTimestampShort(this, l10n);
   }
-  
+
   /// Gets a calendar representation (e.g., "Today at 2:30 PM")
   String toCalendarString(BuildContext context) {
     final l10n = Languist.of(context);
     return TimeFormatter.formatFullTimestamp(this, l10n);
   }
-  
+
   /// Gets a formatted time string using moment_dart through Languist
   String toFormattedString(String pattern, BuildContext context) {
     final l10n = Languist.of(context);
@@ -32,14 +32,14 @@ extension DateTimeFormatting on DateTime {
 }
 
 /// Formats a timestamp for display in a short, relative format (e.g., "5m ago", "2h ago").
-String formatTimestampShort(DateTime timestamp, [IntlLocalizations? l10n]) {
+String formatTimestampShort(DateTime timestamp, [dynamic l10n]) {
   if (l10n != null) {
     return TimeFormatter.formatTimestampShort(timestamp, l10n);
   } else {
     // Fallback to built-in functionality
     final now = DateTime.now();
     final difference = now.difference(timestamp);
-    
+
     if (difference.inMinutes < 1) {
       return 'just now';
     } else if (difference.inHours < 1) {
@@ -53,14 +53,14 @@ String formatTimestampShort(DateTime timestamp, [IntlLocalizations? l10n]) {
 }
 
 /// Formats a timestamp for display in a verbose, relative format (e.g., "5 minutes ago").
-String formatLastUpdated(DateTime dateTime, [IntlLocalizations? l10n]) {
+String formatLastUpdated(DateTime dateTime, [dynamic l10n]) {
   if (l10n != null) {
     return TimeFormatter.formatLastUpdated(dateTime, l10n);
   } else {
     // Fallback to built-in functionality
     final now = DateTime.now();
     final difference = now.difference(dateTime);
-    
+
     if (difference.inMinutes < 1) {
       return 'just now';
     } else if (difference.inMinutes < 60) {
@@ -77,7 +77,7 @@ String formatLastUpdated(DateTime dateTime, [IntlLocalizations? l10n]) {
 }
 
 /// Returns a greeting based on the time of day (e.g., "Good Morning").
-String getGreeting([IntlLocalizations? l10n]) {
+String getGreeting([dynamic l10n]) {
   final hour = DateTime.now().hour;
 
   // Time-based greeting formatting
@@ -96,12 +96,12 @@ String getGreeting([IntlLocalizations? l10n]) {
     // we use hello with the appropriate time greeting
     return l10n.hello;
   }
-  
+
   return timeBasedGreeting;
 }
 
 /// Formats the time part of a DateTime object (e.g., "14:30").
-String formatTime(DateTime timestamp, [IntlLocalizations? l10n]) {
+String formatTime(DateTime timestamp, [dynamic l10n]) {
   if (l10n != null) {
     return TimeFormatter.formatDate(timestamp, 'HH:mm', l10n);
   }
@@ -109,14 +109,14 @@ String formatTime(DateTime timestamp, [IntlLocalizations? l10n]) {
 }
 
 /// Formats a timestamp for a full date and time display (e.g., "Today at 14:30").
-String formatFullTimestamp(DateTime timestamp, [IntlLocalizations? l10n]) {
+String formatFullTimestamp(DateTime timestamp, [dynamic l10n]) {
   if (l10n != null) {
     return TimeFormatter.formatFullTimestamp(timestamp, l10n);
   } else {
     // Fallback to built-in functionality
     final now = DateTime.now();
     final timeStr = formatTime(timestamp);
-    
+
     if (DateUtils.isSameDay(timestamp, now)) {
       return 'Today at $timeStr';
     } else if (DateUtils.isSameDay(
@@ -135,7 +135,7 @@ String formatFullTimestamp(DateTime timestamp, [IntlLocalizations? l10n]) {
 /// Advanced time formatting utilities using Languist TimeFormatter
 class TimeUtils {
   /// Convert a DateTime to a human-readable duration string
-  static String toDurationString(Duration duration, [IntlLocalizations? l10n]) {
+  static String toDurationString(Duration duration, [dynamic l10n]) {
     if (l10n != null) {
       return TimeFormatter.formatDuration(duration, l10n);
     }
@@ -143,7 +143,7 @@ class TimeUtils {
     final days = duration.inDays;
     final hours = duration.inHours % 24;
     final minutes = duration.inMinutes % 60;
-    
+
     if (days > 0) {
       return '${days}d ${hours}h ${minutes}m';
     } else if (hours > 0) {
@@ -152,15 +152,15 @@ class TimeUtils {
       return '${minutes}m';
     }
   }
-  
+
   /// Format a date in a specific pattern with localization
-  static String formatDate(DateTime date, String pattern, [IntlLocalizations? l10n]) {
+  static String formatDate(DateTime date, String pattern, [dynamic l10n]) {
     if (l10n != null) {
       return TimeFormatter.formatDate(date, pattern, l10n);
     }
     return DateFormat(pattern).format(date);
   }
-  
+
   /// Get a date for a specific weekday (e.g., next Monday)
   static DateTime getNextWeekday(int weekday, [DateTime? fromDate]) {
     final date = fromDate ?? DateTime.now();
@@ -168,7 +168,7 @@ class TimeUtils {
     final daysToAdd = daysUntilWeekday == 0 ? 7 : daysUntilWeekday;
     return date.add(Duration(days: daysToAdd));
   }
-  
+
   /// Get start of a specific time unit (day, week, month, year)
   static DateTime startOf(DateTime date, String unit) {
     switch (unit.toLowerCase()) {
@@ -185,7 +185,7 @@ class TimeUtils {
         return date;
     }
   }
-  
+
   /// Check if a date is between two other dates
   static bool isBetween(DateTime date, DateTime start, DateTime end) {
     return date.isAfter(start) && date.isBefore(end);

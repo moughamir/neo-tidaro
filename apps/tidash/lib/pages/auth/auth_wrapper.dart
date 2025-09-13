@@ -26,13 +26,6 @@ class AuthWrapper extends StatelessWidget {
 }
 
 class AuthWrapperViewModel {
-  const AuthWrapperViewModel({
-    required this.isAuthenticated,
-    required this.user,
-  });
-
-  final bool isAuthenticated;
-  final User? user;
 
   factory AuthWrapperViewModel.fromStore(Store<AppState> store) {
     return AuthWrapperViewModel(
@@ -40,4 +33,11 @@ class AuthWrapperViewModel {
       user: store.state.authState.data.fold(() => null, (User user) => user),
     );
   }
+  const AuthWrapperViewModel({
+    required this.isAuthenticated,
+    required this.user,
+  });
+
+  final bool isAuthenticated;
+  final User? user;
 }

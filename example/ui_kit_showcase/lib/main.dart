@@ -1,7 +1,8 @@
 
-import 'package:ui_kit/ui_kit.dart';
-import 'package:shared/shared.dart';
 import 'package:languist/languist.dart';
+import 'package:shared/shared.dart';
+import 'package:ui_kit/ui_kit.dart';
+
 import 'parallax_example_page.dart';
 
 void main() {
@@ -53,14 +54,14 @@ class _UiKitShowcaseAppState extends State<UiKitShowcaseApp> {
 }
 
 class UiKitDashboard extends StatefulWidget {
-  final VoidCallback onThemeToggle;
-  final bool isDarkMode;
 
   const UiKitDashboard({
     super.key,
     required this.onThemeToggle,
     required this.isDarkMode,
   });
+  final VoidCallback onThemeToggle;
+  final bool isDarkMode;
 
   @override
   State<UiKitDashboard> createState() => _UiKitDashboardState();
@@ -117,7 +118,7 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 16),
-                          Text('Welcome to UI Kit Showcase'),
+                          const Text('Welcome to UI Kit Showcase'),
                         ],
                       ),
                     ),
@@ -514,19 +515,19 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
             const SizedBox(height: 16),
 
             // Cards Components
-            _SectionCard(
+            const _SectionCard(
               title: 'Card Components',
               child: Column(
                 children: [
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   MetricCard(
                     title: 'Total Users',
                     value: '12.5K',
-                    icon: const Icon(Icons.people),
+                    icon: Icon(Icons.people),
                     trend: '+12%',
                   ),
-                  const SizedBox(height: 16),
-                  const InfoCard(
+                  SizedBox(height: 16),
+                  InfoCard(
                     title: 'Information Card',
                     icon: Icons.info,
                     children: [
@@ -535,8 +536,8 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                       Text('It can contain multiple widgets.'),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  const KuiCard.hybrid(
+                  SizedBox(height: 16),
+                  KuiCard.hybrid(
                     title: 'Enhanced Info Card',
                     leading: Icon(Icons.star),
                     trailing: Text('Footer content here'),
@@ -545,22 +546,22 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                       'This card has a structured layout with header, content, and footer.',
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  const KuiCard.glass(
+                  SizedBox(height: 16),
+                  KuiCard.glass(
                     child: Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text('Basic Glassy Card with blur effect'),
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  const KuiCard.glass(
+                  SizedBox(height: 16),
+                  KuiCard.glass(
                     title: 'Enhanced Glassy Card',
                     child: Text(
                       'This glassy card has a title and structured content area.',
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  const AuthCard(
+                  SizedBox(height: 16),
+                  AuthCard(
                     child: Padding(
                       padding: EdgeInsets.all(24.0),
                       child: Column(
@@ -578,8 +579,8 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  const KuiCard.glass(
+                  SizedBox(height: 16),
+                  KuiCard.glass(
                     child: Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
@@ -746,25 +747,25 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
             const SizedBox(height: 16),
 
             // Input Components
-            _SectionCard(
+            const _SectionCard(
               title: 'Input Components',
               child: Column(
                 children: [
-                  const SizedBox(height: 16),
-                  const AuthInputField(
+                  SizedBox(height: 16),
+                  AuthInputField(
                     label: 'Email',
                     hint: 'Enter your email',
                     prefixIcon: Icon(Icons.email),
                   ),
-                  const SizedBox(height: 16),
-                  const AuthInputField(
+                  SizedBox(height: 16),
+                  AuthInputField(
                     label: 'Password',
                     hint: 'Enter your password',
                     prefixIcon: Icon(Icons.lock),
                     obscureText: true,
                   ),
-                  const SizedBox(height: 16),
-                  const AuthDivider(text: 'OR'),
+                  SizedBox(height: 16),
+                  AuthDivider(text: 'OR'),
                 ],
               ),
             ),
@@ -776,8 +777,8 @@ class _UiKitDashboardState extends State<UiKitDashboard> {
               child: Column(
                 children: [
                   const SizedBox(height: 16),
-                  GlassContainer(
-                    child: const Padding(
+                  const GlassContainer(
+                    child: Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
                         'Glass Container with blur and transparency effects',
@@ -875,10 +876,10 @@ Visit our [documentation](https://github.com/neo-tidaro) for more details.
 }
 
 class _SectionCard extends StatelessWidget {
-  final String title;
-  final Widget child;
 
   const _SectionCard({required this.title, required this.child});
+  final String title;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

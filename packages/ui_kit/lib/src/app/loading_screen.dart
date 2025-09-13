@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
-  final String message;
-  final String? subtitle;
 
   const LoadingScreen({super.key, required this.message, this.subtitle});
+  final String message;
+  final String? subtitle;
 
   @override
   State<LoadingScreen> createState() => _LoadingScreenState();

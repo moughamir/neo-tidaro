@@ -1,5 +1,5 @@
 /// Actions barrel file for organized exports
-library redux_actions;
+library;
 
 export 'auth_actions.dart';
 export 'booking_actions.dart';

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fpdart/fpdart.dart';
-import '../core/core.dart';
+
 import '../actions/ui_actions.dart';
+import '../core/core.dart';
 import '../states/ui_state.dart';
 
 /// UI reducer following Clean Architecture and functional programming principles

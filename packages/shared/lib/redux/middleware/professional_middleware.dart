@@ -1,14 +1,15 @@
-library shared.redux.middleware.professional_middleware;
+library;
 
 import 'package:domain/domain.dart' hide AppState;
 import 'package:redux/redux.dart';
-import '../core/core.dart';
+
 import '../actions/professional_actions.dart';
+import '../core/core.dart';
 import '../states/app_state.dart';
 
 List<Middleware<AppState>> createProfessionalMiddleware() {
   return [
-    TypedMiddleware<AppState, LoadProfessionalsAction>(_loadProfessionals),
+    TypedMiddleware<AppState, LoadProfessionalsAction>(_loadProfessionals).call,
   ];
 }
 
@@ -27,8 +28,8 @@ void _loadProfessionals(
       ProfessionalProfile(
         id: '1',
         fullName: 'Sarah Johnson',
-        email: EmailVO('sarah.johnson@example.com'),
-        phone: PhoneVO('+1234567890'),
+        email: const EmailVO('sarah.johnson@example.com'),
+        phone: const PhoneVO('+1234567890'),
         categories: [
           PreBookingServiceCategory.regularCleaning,
           PreBookingServiceCategory.deepCleaning,
@@ -44,8 +45,8 @@ void _loadProfessionals(
       ProfessionalProfile(
         id: '2',
         fullName: 'Michael Chen',
-        email: EmailVO('michael.chen@example.com'),
-        phone: PhoneVO('+1234567891'),
+        email: const EmailVO('michael.chen@example.com'),
+        phone: const PhoneVO('+1234567891'),
         categories: [
           PreBookingServiceCategory.commercial,
           PreBookingServiceCategory.postConstruction,

@@ -1,7 +1,8 @@
-import '../states/app_state.dart';
-import '../states/dashboard_state.dart';
 import 'package:domain/entities/system/system.dart'
     show ActivityItem, DashboardMetrics;
+
+import '../states/app_state.dart';
+import '../states/dashboard_state.dart';
 
 class DashboardSelectors {
   static DashboardState getDashboardState(AppState state) {

@@ -5,9 +5,6 @@ import 'base_app.dart';
 
 /// A fallback error screen displayed when app initialization fails
 class ErrorApp extends StatelessWidget {
-  final Object error;
-  final StackTrace? stackTrace;
-  final String appName;
 
   const ErrorApp({
     super.key,
@@ -15,6 +12,9 @@ class ErrorApp extends StatelessWidget {
     this.stackTrace,
     required this.appName,
   });
+  final Object error;
+  final StackTrace? stackTrace;
+  final String appName;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +27,6 @@ class ErrorApp extends StatelessWidget {
 
 /// The actual error screen widget
 class ErrorScreen extends StatefulWidget {
-  final Object error;
-  final StackTrace? stackTrace;
-  final String appName;
 
   const ErrorScreen({
     super.key,
@@ -37,6 +34,9 @@ class ErrorScreen extends StatefulWidget {
     this.stackTrace,
     required this.appName,
   });
+  final Object error;
+  final StackTrace? stackTrace;
+  final String appName;
 
   @override
   State<ErrorScreen> createState() => _ErrorScreenState();

@@ -1,14 +1,15 @@
-import 'package:redux/redux.dart';
 import 'package:core/core.dart';
-import '../states/app_state.dart';
+import 'package:redux/redux.dart';
+
 import '../actions/auth_actions.dart';
 import '../core/core.dart';
+import '../states/app_state.dart';
 
 /// Auth middleware for handling async authentication operations
 class AuthMiddleware extends MiddlewareClass<AppState> {
-  final SupabaseService supabaseService;
 
   AuthMiddleware(this.supabaseService);
+  final SupabaseService supabaseService;
 
   @override
   void call(Store<AppState> store, dynamic action, NextDispatcher next) {

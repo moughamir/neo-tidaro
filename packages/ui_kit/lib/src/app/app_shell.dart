@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/src/localization/app_localizations.dart';
 import 'package:ui_kit/src/design_system/design_system.dart';
+import 'package:ui_kit/src/localization/app_localizations.dart';
 
 /// AppShell: A reusable MaterialApp wrapper that wires themes and localization.
 class AppShell extends StatelessWidget {

@@ -992,4 +992,22 @@ class GenLocalizationsAr extends GenLocalizations {
 
   @override
   String get poor => 'ضعيف';
+
+  @override
+  String get selectUserRole => 'اختر دورك';
+
+  @override
+  String get selectUserRoleDescription => 'اختر كيف تخطط لاستخدام تيدارو';
+
+  @override
+  String get roleClientConsumer => 'أحتاج خدمات';
+
+  @override
+  String get roleClientConsumerDescription => 'احجز خدمات التنظيف لمنزلك';
+
+  @override
+  String get roleClientProfessional => 'أقدم خدمات';
+
+  @override
+  String get roleClientProfessionalDescription => 'قدم خدمات التنظيف للعملاء';
 }

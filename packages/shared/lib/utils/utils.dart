@@ -1,4 +1,4 @@
-library shared.utils;
+library;
 
 export 'extensions/index.dart';
 

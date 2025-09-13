@@ -103,20 +103,6 @@ enum SocialAuthProvider { github, google, apple }
 /// Replaces NeomorphicButton, PrimaryButton, and other button duplicates
 /// with a single, consistent implementation using the unified design system
 class KuiButton extends StatefulWidget {
-  final Widget child;
-  final VoidCallback? onPressed;
-  final ButtonVariant variant;
-  final ButtonSize size;
-  final double? width;
-  final double? height;
-  final double? borderRadius;
-  final Color? backgroundColor;
-  final Color? foregroundColor;
-  final EdgeInsetsGeometry? padding;
-  final String? tooltip;
-  final Widget? icon;
-  final bool isLoading;
-  final Duration animationDuration;
 
   const KuiButton({
     super.key,
@@ -135,6 +121,20 @@ class KuiButton extends StatefulWidget {
     this.isLoading = false,
     this.animationDuration = DesignTokens.durationFast,
   });
+  final Widget child;
+  final VoidCallback? onPressed;
+  final ButtonVariant variant;
+  final ButtonSize size;
+  final double? width;
+  final double? height;
+  final double? borderRadius;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
+  final EdgeInsetsGeometry? padding;
+  final String? tooltip;
+  final Widget? icon;
+  final bool isLoading;
+  final Duration animationDuration;
 
   @override
   State<KuiButton> createState() => _KuiButtonState();
@@ -161,7 +161,7 @@ class _KuiButtonState extends State<KuiButton> {
     final effectivePadding = widget.padding ?? _getPaddingForSize(widget.size);
     final effectiveHeight = widget.height ?? _getHeightForSize(widget.size);
 
-    Widget buttonChild = _buildButtonContent(context, colors, textTheme);
+    final Widget buttonChild = _buildButtonContent(context, colors, textTheme);
 
     // Apply decoration based on variant
     Widget decoratedButton = _buildDecoratedButton(
@@ -200,7 +200,7 @@ class _KuiButtonState extends State<KuiButton> {
         mainAxisSize: MainAxisSize.min,
         children: [
           widget.icon!,
-          SizedBox(width: DesignTokens.space2),
+          const SizedBox(width: DesignTokens.space2),
           Flexible(child: content),
         ],
       );
@@ -221,7 +221,7 @@ class _KuiButtonState extends State<KuiButton> {
               ),
             ),
           ),
-          SizedBox(width: DesignTokens.space2),
+          const SizedBox(width: DesignTokens.space2),
           Flexible(child: content),
         ],
       );
@@ -375,17 +375,17 @@ class _KuiButtonState extends State<KuiButton> {
   EdgeInsetsGeometry _getPaddingForSize(ButtonSize size) {
     switch (size) {
       case ButtonSize.small:
-        return EdgeInsets.symmetric(
+        return const EdgeInsets.symmetric(
           horizontal: DesignTokens.space3,
           vertical: DesignTokens.space2,
         );
       case ButtonSize.medium:
-        return EdgeInsets.symmetric(
+        return const EdgeInsets.symmetric(
           horizontal: DesignTokens.space4,
           vertical: DesignTokens.space3,
         );
       case ButtonSize.large:
-        return EdgeInsets.symmetric(
+        return const EdgeInsets.symmetric(
           horizontal: DesignTokens.space6,
           vertical: DesignTokens.space4,
         );

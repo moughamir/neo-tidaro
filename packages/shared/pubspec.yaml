@@ -17,6 +17,15 @@ dependencies:
   domain:
     path: ../domain
 
+  equatable: any
+  fpdart: any
+  redux: any
+  core: any
+  flutter_redux: any
+  supabase_flutter: any
+  intl: any
+  languist: any
+  logging: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

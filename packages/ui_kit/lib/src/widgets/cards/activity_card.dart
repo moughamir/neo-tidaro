@@ -5,15 +5,6 @@ import 'package:ui_kit/src/widgets/utils/time_formatting.dart';
 
 /// Activity card for displaying timeline items
 class ActivityCard extends StatelessWidget {
-  final String title;
-  final String? description;
-  final DateTime timestamp;
-  final Widget? avatar;
-  final Color? statusColor;
-  final CardVariant variant;
-  final VoidCallback? onTap;
-  final EdgeInsetsGeometry? padding;
-  final EdgeInsetsGeometry? margin;
 
   const ActivityCard({
     super.key,
@@ -27,6 +18,15 @@ class ActivityCard extends StatelessWidget {
     this.padding,
     this.margin,
   });
+  final String title;
+  final String? description;
+  final DateTime timestamp;
+  final Widget? avatar;
+  final Color? statusColor;
+  final CardVariant variant;
+  final VoidCallback? onTap;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class ActivityCard extends StatelessWidget {
         children: [
           if (avatar != null) ...[
             avatar!,
-            SizedBox(width: DesignTokens.space3),
+            const SizedBox(width: DesignTokens.space3),
           ],
           Expanded(
             child: Column(
@@ -57,7 +57,7 @@ class ActivityCard extends StatelessWidget {
                   ),
                 ),
                 if (description != null) ...[
-                  SizedBox(height: DesignTokens.space1),
+                  const SizedBox(height: DesignTokens.space1),
                   Text(
                     description!,
                     style: textTheme.bodySmall?.copyWith(
@@ -65,7 +65,7 @@ class ActivityCard extends StatelessWidget {
                     ),
                   ),
                 ],
-                SizedBox(height: DesignTokens.space1),
+                const SizedBox(height: DesignTokens.space1),
                 Text(
                   formatTimestampShort(timestamp),
                   style: textTheme.bodySmall?.copyWith(
@@ -76,7 +76,7 @@ class ActivityCard extends StatelessWidget {
             ),
           ),
           if (statusColor != null) ...[
-            SizedBox(width: DesignTokens.space3),
+            const SizedBox(width: DesignTokens.space3),
             Container(
               width: 8,
               height: 8,

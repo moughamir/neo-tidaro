@@ -4,14 +4,8 @@ import 'package:equatable/equatable.dart';
 ///
 /// Used with Either<Failure, Success> pattern from fpdart for functional error handling
 abstract class Failure extends Equatable {
-  final String message;
-  final int? code;
-  final Map<String, dynamic>? details;
 
   const Failure(this.message, {this.code, this.details});
-  
-  @override
-  List<Object?> get props => [message, code, details];
   
   /// Creates a server failure with optional error code
   factory Failure.server(String message, {int? code, Map<String, dynamic>? details}) = ServerFailure;
@@ -30,6 +24,12 @@ abstract class Failure extends Equatable {
   
   /// Creates a not found failure
   factory Failure.notFound(String message, {Map<String, dynamic>? details}) = NotFoundFailure;
+  final String message;
+  final int? code;
+  final Map<String, dynamic>? details;
+  
+  @override
+  List<Object?> get props => [message, code, details];
   
   /// Creates a copy of this failure with the given fields replaced
   Failure copyWith({
@@ -37,15 +37,15 @@ abstract class Failure extends Equatable {
     int? code,
     Map<String, dynamic>? details,
   }) {
-    return this.runtimeType == ServerFailure
+    return runtimeType == ServerFailure
         ? Failure.server(message ?? this.message, code: code ?? this.code, details: details ?? this.details)
-        : this.runtimeType == ConnectionFailure
+        : runtimeType == ConnectionFailure
             ? Failure.connection(message ?? this.message, details: details ?? this.details)
-            : this.runtimeType == ValidationFailure
+            : runtimeType == ValidationFailure
                 ? Failure.validation(message ?? this.message, details: details ?? this.details)
-                : this.runtimeType == DatabaseFailure
+                : runtimeType == DatabaseFailure
                     ? Failure.database(message ?? this.message, code: code ?? this.code, details: details ?? this.details)
-                    : this.runtimeType == NotFoundFailure
+                    : runtimeType == NotFoundFailure
                         ? Failure.notFound(message ?? this.message, details: details ?? this.details)
                         : Failure.unexpected(message ?? this.message, details: details ?? this.details);
   }

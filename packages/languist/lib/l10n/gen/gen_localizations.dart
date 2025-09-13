@@ -1979,6 +1979,42 @@ abstract class GenLocalizations {
   /// In en, this message translates to:
   /// **'Poor'**
   String get poor;
+
+  /// Header for role selection during registration
+  ///
+  /// In en, this message translates to:
+  /// **'Select Your Role'**
+  String get selectUserRole;
+
+  /// Description for role selection
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how you plan to use Tidaro'**
+  String get selectUserRoleDescription;
+
+  /// Role for customers who book services
+  ///
+  /// In en, this message translates to:
+  /// **'I Need Services'**
+  String get roleClientConsumer;
+
+  /// Description for client consumer role
+  ///
+  /// In en, this message translates to:
+  /// **'Book housekeeping services for your home'**
+  String get roleClientConsumerDescription;
+
+  /// Role for service providers
+  ///
+  /// In en, this message translates to:
+  /// **'I Provide Services'**
+  String get roleClientProfessional;
+
+  /// Description for client professional role
+  ///
+  /// In en, this message translates to:
+  /// **'Offer housekeeping services to customers'**
+  String get roleClientProfessionalDescription;
 }
 
 class _GenLocalizationsDelegate

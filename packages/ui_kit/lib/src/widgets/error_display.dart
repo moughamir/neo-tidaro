@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:ui_kit/src/design_system/design_system.dart';
-
 import 'package:shared/utils/failures/failure.dart' show Failure;
+import 'package:ui_kit/src/design_system/design_system.dart';
 
 /// A standardized error display component using Material UI
 /// with Neumorphic styling error messages
 ///
 /// Provides consistent error presentation across the application
 class ErrorDisplay extends StatelessWidget {
+
+  const ErrorDisplay({
+    super.key,
+    required this.failure,
+    this.onRetry,
+    this.details,
+    this.icon = Icons.error_outline,
+  });
   /// The failure to display
   final Failure failure;
 
@@ -19,14 +26,6 @@ class ErrorDisplay extends StatelessWidget {
 
   /// Icon to display with the error
   final IconData icon;
-
-  const ErrorDisplay({
-    super.key,
-    required this.failure,
-    this.onRetry,
-    this.details,
-    this.icon = Icons.error_outline,
-  });
 
   @override
   Widget build(BuildContext context) {

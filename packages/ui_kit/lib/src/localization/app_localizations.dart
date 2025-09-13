@@ -7,11 +7,11 @@ import 'package:languist/languist.dart';
 /// This wrapper around the Languist package makes it easier to use
 /// localization in UI components.
 class AppLocalizations {
-  /// The BuildContext used to access Languist
-  final BuildContext context;
 
   /// Create an instance with the current BuildContext
   AppLocalizations(this.context);
+  /// The BuildContext used to access Languist
+  final BuildContext context;
 
   /// Returns the IntlLocalizations instance for the current context
   IntlLocalizations get _localizations => Languist.of(context);

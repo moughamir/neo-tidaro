@@ -2,9 +2,9 @@ import 'package:core/core.dart';
 import 'package:tidash/get_app_config.dart';
 import 'package:tidash/initialize_platform.dart';
 import 'package:tidash/initialize_services.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 import 'app/app.dart';
-import 'package:ui_kit/ui_kit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

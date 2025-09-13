@@ -1,18 +1,15 @@
 import 'dart:async';
 
 import 'package:core/utils/logger.dart';
-import 'package:domain/entities/user/user.dart';
-
 import 'package:domain/dto/booking_dto.dart' show UpdateBookingStatusDto;
+import 'package:domain/entities/user/user.dart';
 import 'package:domain/enums/enums.dart';
-
 import 'package:shared/redux/redux.dart';
 import 'package:shared/repositories/supabase_booking_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy, User;
 
 /// Booking middleware for handling async operations with Supabase
 class BookingMiddleware extends MiddlewareClass<AppState> {
-  final SupabaseBookingRepository _bookingRepository;
 
   /// Creates a new [BookingMiddleware] with the given [SupabaseClient].
   /// If no client is provided, it will use the default Supabase client.
@@ -20,6 +17,7 @@ class BookingMiddleware extends MiddlewareClass<AppState> {
     : _bookingRepository = SupabaseBookingRepository(
         client ?? Supabase.instance.client,
       );
+  final SupabaseBookingRepository _bookingRepository;
 
   @override
   void call(Store<AppState> store, dynamic action, NextDispatcher next) {

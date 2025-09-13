@@ -1,22 +1,23 @@
 import 'package:redux/redux.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-import '../states/app_state.dart';
+
 import '../actions/dashboard/dashboard_auth_actions.dart';
+import '../states/app_state.dart';
 
 List<Middleware<AppState>> createDashboardAuthMiddleware() {
   return [
-    TypedMiddleware<AppState, DashboardLoginAction>(_handleLogin),
+    TypedMiddleware<AppState, DashboardLoginAction>(_handleLogin).call,
     TypedMiddleware<AppState, DashboardLoginWithProviderAction>(
       _handleSocialLogin,
-    ),
-    TypedMiddleware<AppState, DashboardSignUpAction>(_handleSignUp),
+    ).call,
+    TypedMiddleware<AppState, DashboardSignUpAction>(_handleSignUp).call,
     TypedMiddleware<AppState, DashboardForgotPasswordAction>(
       _handleForgotPassword,
-    ),
+    ).call,
     TypedMiddleware<AppState, DashboardResetPasswordAction>(
       _handleResetPassword,
-    ),
-    TypedMiddleware<AppState, DashboardLogoutAction>(_handleLogout),
+    ).call,
+    TypedMiddleware<AppState, DashboardLogoutAction>(_handleLogout).call,
   ];
 }
 

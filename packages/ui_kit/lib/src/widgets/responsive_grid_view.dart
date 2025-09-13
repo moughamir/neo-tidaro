@@ -5,6 +5,16 @@ import 'package:flutter/material.dart';
 /// This widget automatically adjusts the number of columns based on the available width,
 /// making it perfect for item lists that need to adapt to different device sizes.
 class ResponsiveGridView extends StatelessWidget {
+
+  const ResponsiveGridView({
+    super.key,
+    required this.children,
+    this.minItemWidth = 300,
+    this.horizontalSpacing = 16,
+    this.verticalSpacing = 16,
+    this.padding,
+    this.mainAxisScroll = true,
+  });
   /// List of items to display in the grid
   final List<Widget> children;
   
@@ -22,16 +32,6 @@ class ResponsiveGridView extends StatelessWidget {
   
   /// Whether to scroll in the main axis direction
   final bool mainAxisScroll;
-
-  const ResponsiveGridView({
-    super.key,
-    required this.children,
-    this.minItemWidth = 300,
-    this.horizontalSpacing = 16,
-    this.verticalSpacing = 16,
-    this.padding,
-    this.mainAxisScroll = true,
-  });
 
   @override
   Widget build(BuildContext context) {

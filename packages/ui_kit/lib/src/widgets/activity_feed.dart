@@ -107,7 +107,7 @@ class ActivityFeed<T, E> extends StatelessWidget {
                 child: Column(
                   children: <Widget>[
                     ListTile(
-                      leading: CircleAvatar(
+                      leading: const CircleAvatar(
                         backgroundColor: Colors.grey,
                         child: Icon(
                           Icons.info_outline,

@@ -1,22 +1,9 @@
+import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared/redux/core/core.dart';
 
-import 'package:domain/domain.dart';
-
 /// Dashboard state following functional programming patterns
 class DashboardState extends BaseAsyncState<DashboardMetrics> {
-  const DashboardState({
-    required super.isLoading,
-    required super.data,
-    required super.error,
-    required this.metricsLoading,
-    required this.activitiesLoading,
-    required this.lastRefresh,
-  });
-
-  final bool metricsLoading;
-  final bool activitiesLoading;
-  final Option<DateTime> lastRefresh;
 
   /// Initial state factory
   factory DashboardState.initial() {
@@ -65,6 +52,18 @@ class DashboardState extends BaseAsyncState<DashboardMetrics> {
       lastRefresh: const None(),
     );
   }
+  const DashboardState({
+    required super.isLoading,
+    required super.data,
+    required super.error,
+    required this.metricsLoading,
+    required this.activitiesLoading,
+    required this.lastRefresh,
+  });
+
+  final bool metricsLoading;
+  final bool activitiesLoading;
+  final Option<DateTime> lastRefresh;
 
   /// Copy with method for immutable updates
   DashboardState copyWith({

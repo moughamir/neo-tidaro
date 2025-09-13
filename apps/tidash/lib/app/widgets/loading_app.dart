@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tidash/app/widgets/loading_screen.dart';
 
 class LoadingApp extends StatelessWidget {
-  final String message;
-  final String? subtitle;
 
   const LoadingApp({super.key, required this.message, this.subtitle});
+  final String message;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {

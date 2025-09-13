@@ -1,4 +1,4 @@
-library shared.redux.selectors.professional_selectors;
+library;
 
 import 'package:domain/domain.dart' hide AppState, ProfessionalState;
 

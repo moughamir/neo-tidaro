@@ -3,23 +3,6 @@
 /// This class is designed to be initialized at app startup with the
 /// appropriate configuration for the current environment.
 class AppConfig {
-  /// The application name
-  final String appName;
-  
-  /// The Supabase URL
-  final String supabaseUrl;
-  
-  /// The Supabase anonymous key
-  final String supabaseAnonKey;
-  
-  /// Whether the app is in debug mode
-  final bool isDebug;
-  
-  /// The API base URL
-  final String apiBaseUrl;
-  
-  /// Additional custom configuration values
-  final Map<String, dynamic> _values;
 
   /// Creates an instance of [AppConfig] with the provided values.
   AppConfig({
@@ -30,9 +13,6 @@ class AppConfig {
     this.apiBaseUrl = '',
     Map<String, dynamic>? values,
   }) : _values = values ?? {};
-
-  /// Gets a custom configuration value by key.
-  T? get<T>(String key) => _values[key] as T?;
 
   /// Factory constructor for development environment
   factory AppConfig.development() {
@@ -68,6 +48,26 @@ class AppConfig {
       apiBaseUrl: 'https://api.example.com',
     );
   }
+  /// The application name
+  final String appName;
+  
+  /// The Supabase URL
+  final String supabaseUrl;
+  
+  /// The Supabase anonymous key
+  final String supabaseAnonKey;
+  
+  /// Whether the app is in debug mode
+  final bool isDebug;
+  
+  /// The API base URL
+  final String apiBaseUrl;
+  
+  /// Additional custom configuration values
+  final Map<String, dynamic> _values;
+
+  /// Gets a custom configuration value by key.
+  T? get<T>(String key) => _values[key] as T?;
 }
 
 /// Global instance of the app configuration.

@@ -1,10 +1,11 @@
 import 'package:fpdart/fpdart.dart' hide State;
+import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
-import 'package:languist/languist.dart';
-import '../../widgets/dialogs/create_booking_dialog.dart';
-import '../../widgets/dialogs/booking_filter_dialog.dart';
+
 import '../../widgets/dialogs/booking_details_dialog.dart';
+import '../../widgets/dialogs/booking_filter_dialog.dart';
+import '../../widgets/dialogs/create_booking_dialog.dart';
 
 /// Bookings management page for TiDash
 class BookingsPage extends StatefulWidget {

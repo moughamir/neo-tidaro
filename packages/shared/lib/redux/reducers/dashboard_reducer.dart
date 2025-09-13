@@ -1,8 +1,9 @@
-import 'package:fpdart/fpdart.dart';
-import '../core/core.dart';
-import '../actions/dashboard_actions.dart';
-import '../states/dashboard_state.dart';
 import 'package:domain/domain.dart' hide DashboardState;
+import 'package:fpdart/fpdart.dart';
+
+import '../actions/dashboard_actions.dart';
+import '../core/core.dart';
+import '../states/dashboard_state.dart';
 
 /// Dashboard reducer following Clean Architecture and functional programming principles
 class DashboardReducer

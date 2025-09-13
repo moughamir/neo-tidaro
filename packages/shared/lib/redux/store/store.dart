@@ -1,14 +1,14 @@
+import 'package:core/network/supabase_service.dart';
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:redux/redux.dart';
 
-import '../states/app_state.dart';
-import '../middleware/logging_middleware.dart';
+import '../core/base_action.dart';
 import '../middleware/dashboard_middleware.dart';
+import '../middleware/kyc_middleware.dart';
+import '../middleware/logging_middleware.dart';
 // housekeeping_middleware.dart removed due to domain model conflicts
 import '../reducers/app_reducer.dart';
-import '../core/base_action.dart';
-import '../middleware/kyc_middleware.dart';
-import 'package:core/network/supabase_service.dart';
+import '../states/app_state.dart';
 
 /// Creates and configures the Redux store
 Store<AppState> createStore({

@@ -1,5 +1,5 @@
-import 'package:get_it/get_it.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
 
 import '../config/app_config.dart';
 import '../network/supabase_service.dart';

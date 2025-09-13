@@ -1,25 +1,12 @@
-library shared.redux.states.professional_state;
+library;
 
-import 'package:fpdart/fpdart.dart';
 import 'package:domain/domain.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:shared/redux/actions/professional_actions.dart';
 import 'package:shared/redux/core/core.dart';
 
 /// Professional state for Redux store
 class ProfessionalState extends BaseState {
-  const ProfessionalState({
-    required this.professionals,
-    required this.isLoading,
-    required this.error,
-    required this.filters,
-    this.selectedProfessionalId,
-  });
-
-  final List<ProfessionalProfile> professionals;
-  final bool isLoading;
-  final Option<Exception> error;
-  final dynamic filters;
-  final String? selectedProfessionalId;
 
   /// Initial state factory
   factory ProfessionalState.initial() {
@@ -73,6 +60,19 @@ class ProfessionalState extends BaseState {
       selectedProfessionalId: selectedProfessionalId,
     );
   }
+  const ProfessionalState({
+    required this.professionals,
+    required this.isLoading,
+    required this.error,
+    required this.filters,
+    this.selectedProfessionalId,
+  });
+
+  final List<ProfessionalProfile> professionals;
+  final bool isLoading;
+  final Option<Exception> error;
+  final dynamic filters;
+  final String? selectedProfessionalId;
 
   /// Copy with method
   ProfessionalState copyWith({

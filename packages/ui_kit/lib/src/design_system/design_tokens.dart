@@ -118,43 +118,6 @@ class DesignTokens {
 
 /// Semantic color tokens for consistent theming
 class DesignColorTokens {
-  final Color background;
-  final Color backgroundVariant;
-  final Color error;
-  final Color focusColor;
-  final Color glassBorder;
-  final Color glassOverlay;
-  final Color hoverColor;
-  final Color info;
-  final Color inverseSurface;
-  final Color neuHighlight;
-  final Color neuShadowDark;
-  final Color neuShadowLight;
-  final Color onBackground;
-  final Color onError;
-  final Color onInfo;
-  final Color onInverseSurface;
-  final Color onPrimary;
-  final Color onSecondary;
-  final Color onSuccess;
-  final Color onSurface;
-  final Color onSurfaceVariant;
-  final Color onTertiary;
-  final Color onWarning;
-  final Color outline;
-  final Color outlineVariant;
-  final Color pressedColor;
-  final Color primary;
-  final Color primaryVariant;
-  final Color scrim;
-  final Color secondary;
-  final Color secondaryVariant;
-  final Color shadow;
-  final Color success;
-  final Color surface;
-  final Color surfaceVariant;
-  final Color tertiary;
-  final Color warning;
 
   const DesignColorTokens({
     required this.background,
@@ -298,6 +261,43 @@ class DesignColorTokens {
 
         pressedColor: const Color(0x1FFFFFFF),
       );
+  final Color background;
+  final Color backgroundVariant;
+  final Color error;
+  final Color focusColor;
+  final Color glassBorder;
+  final Color glassOverlay;
+  final Color hoverColor;
+  final Color info;
+  final Color inverseSurface;
+  final Color neuHighlight;
+  final Color neuShadowDark;
+  final Color neuShadowLight;
+  final Color onBackground;
+  final Color onError;
+  final Color onInfo;
+  final Color onInverseSurface;
+  final Color onPrimary;
+  final Color onSecondary;
+  final Color onSuccess;
+  final Color onSurface;
+  final Color onSurfaceVariant;
+  final Color onTertiary;
+  final Color onWarning;
+  final Color outline;
+  final Color outlineVariant;
+  final Color pressedColor;
+  final Color primary;
+  final Color primaryVariant;
+  final Color scrim;
+  final Color secondary;
+  final Color secondaryVariant;
+  final Color shadow;
+  final Color success;
+  final Color surface;
+  final Color surfaceVariant;
+  final Color tertiary;
+  final Color warning;
 
   /// Convert to Flutter ColorScheme
   ColorScheme toColorScheme() {

@@ -3,10 +3,10 @@ import 'base_app.dart';
 import 'loading_screen.dart';
 
 class LoadingApp extends StatelessWidget {
-  final String message;
-  final String? subtitle;
 
   const LoadingApp({super.key, required this.message, this.subtitle});
+  final String message;
+  final String? subtitle;
 
   @override
   Widget build(BuildContext context) {

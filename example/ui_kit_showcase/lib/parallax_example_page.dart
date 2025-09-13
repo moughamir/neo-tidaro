@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:device_sensors/device_sensors.dart';
+import 'package:flutter/material.dart';
 import 'package:languist/languist.dart';
 
 class ParallaxExamplePage extends StatefulWidget {

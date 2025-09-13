@@ -349,7 +349,7 @@ class _GradientOverlay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -377,7 +377,7 @@ class _ControlContainer extends StatelessWidget {
     return Container(
       padding: padding,
       decoration: BoxDecoration(
-        color: Color(0xFF07D4E7),
+        color: const Color(0xFF07D4E7),
         borderRadius: BorderRadius.circular(8),
         border: Border.all(width: 1),
       ),

@@ -20,6 +20,15 @@ enum ScreenSize {
 /// This widget provides a convenient way to build responsive UIs by specifying
 /// different layouts for different screen sizes.
 class ResponsiveLayout extends StatelessWidget {
+
+  const ResponsiveLayout({
+    super.key,
+    this.smallBuilder,
+    this.mediumBuilder,
+    this.largeBuilder,
+    this.extraLargeBuilder,
+    required this.defaultBuilder,
+  });
   /// Builder for small screens (< 600px)
   final WidgetBuilder? smallBuilder;
 
@@ -34,15 +43,6 @@ class ResponsiveLayout extends StatelessWidget {
 
   /// Default builder if no specific builder is provided for current screen size
   final WidgetBuilder defaultBuilder;
-
-  const ResponsiveLayout({
-    super.key,
-    this.smallBuilder,
-    this.mediumBuilder,
-    this.largeBuilder,
-    this.extraLargeBuilder,
-    required this.defaultBuilder,
-  });
 
   @override
   Widget build(BuildContext context) {

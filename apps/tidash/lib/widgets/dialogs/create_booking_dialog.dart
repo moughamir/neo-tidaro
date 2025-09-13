@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared/shared.dart' hide TimeOfDay;
 import 'package:languist/languist.dart';
+import 'package:shared/shared.dart' hide TimeOfDay;
 import 'package:ui_kit/ui_kit.dart' hide TimeOfDay;
 
 /// Dialog for creating a new booking

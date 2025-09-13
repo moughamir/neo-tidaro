@@ -5,6 +5,17 @@ import 'package:ui_kit/src/design_system/design_system.dart';
 ///
 /// Provides consistent dialog presentation across the app
 class GenericDialog extends StatelessWidget {
+
+  const GenericDialog({
+    super.key,
+    required this.title,
+    required this.content,
+    required this.primaryButtonText,
+    this.onPrimaryButtonPressed,
+    this.secondaryButtonText,
+    this.onSecondaryButtonPressed,
+    this.showCloseButton = true,
+  });
   /// Dialog title
   final String title;
 
@@ -25,17 +36,6 @@ class GenericDialog extends StatelessWidget {
 
   /// Optional close button visibility
   final bool showCloseButton;
-
-  const GenericDialog({
-    super.key,
-    required this.title,
-    required this.content,
-    required this.primaryButtonText,
-    this.onPrimaryButtonPressed,
-    this.secondaryButtonText,
-    this.onSecondaryButtonPressed,
-    this.showCloseButton = true,
-  });
 
   /// Shows a generic dialog with the provided configuration
   static Future<T?> show<T>({

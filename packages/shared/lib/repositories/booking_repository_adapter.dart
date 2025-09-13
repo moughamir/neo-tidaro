@@ -8,9 +8,9 @@ import 'supabase_booking_repository.dart';
 /// BaseRepository methods return RepositoryResult<T> as required by domain.
 class BookingRepositoryAdapter
     implements BookingRepository, BaseRepository<Booking> {
-  final SupabaseBookingRepository _supabase;
 
   BookingRepositoryAdapter(this._supabase);
+  final SupabaseBookingRepository _supabase;
 
   // ---------------- BaseRepository<Booking> ----------------
   @override

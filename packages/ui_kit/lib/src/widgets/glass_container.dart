@@ -6,12 +6,6 @@ import 'package:ui_kit/src/widgets/card.dart';
 /// This component is maintained for backward compatibility but delegates
 /// to the unified KuiCard to follow DRY principles.
 class GlassContainer extends StatelessWidget {
-  final Widget child;
-  final double borderRadius;
-  final Color backgroundColor;
-  final Color borderColor;
-  final double borderWidth;
-  final double blurAmount;
 
   const GlassContainer({
     super.key,
@@ -22,6 +16,12 @@ class GlassContainer extends StatelessWidget {
     this.borderWidth = 1.0,
     this.blurAmount = 5.0,
   });
+  final Widget child;
+  final double borderRadius;
+  final Color backgroundColor;
+  final Color borderColor;
+  final double borderWidth;
+  final double blurAmount;
 
   @override
   Widget build(BuildContext context) {

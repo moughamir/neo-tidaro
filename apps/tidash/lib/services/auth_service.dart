@@ -1,15 +1,15 @@
 // ignore_for_file: always_specify_types
 
 import 'package:core/core.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Authentication service for TiDash application
 /// Provides authentication functionality using Supabase
 class TiDashAuthService {
-  final SupabaseService _supabaseService;
 
   TiDashAuthService(this._supabaseService);
+  final SupabaseService _supabaseService;
 
   /// Get the current authenticated user
   User? get currentUser => _supabaseService.currentUser;

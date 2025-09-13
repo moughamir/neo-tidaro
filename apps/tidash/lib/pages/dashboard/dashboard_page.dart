@@ -1,6 +1,6 @@
+import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
-import 'package:languist/languist.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -139,6 +139,17 @@ class _DashboardPageState extends State<DashboardPage> {
 }
 
 class DashboardViewModel {
+
+  factory DashboardViewModel.fromStore(Store<AppState> store) {
+    return DashboardViewModel(
+      isLoading: DashboardSelectors.isLoading(store.state),
+      isRefreshing: false, // TODO: Add isRefreshing to selectors
+      dashboardMetrics: DashboardSelectors.getMetrics(store.state),
+      error: DashboardSelectors.getError(store.state),
+      lastUpdated: DashboardSelectors.getLastRefresh(store.state),
+      onRefresh: () => store.dispatch(const LoadDashboardAction()),
+    );
+  }
   const DashboardViewModel({
     required this.isLoading,
     required this.isRefreshing,
@@ -154,15 +165,4 @@ class DashboardViewModel {
   final String? error;
   final DateTime? lastUpdated;
   final VoidCallback onRefresh;
-
-  factory DashboardViewModel.fromStore(Store<AppState> store) {
-    return DashboardViewModel(
-      isLoading: DashboardSelectors.isLoading(store.state),
-      isRefreshing: false, // TODO: Add isRefreshing to selectors
-      dashboardMetrics: DashboardSelectors.getMetrics(store.state),
-      error: DashboardSelectors.getError(store.state),
-      lastUpdated: DashboardSelectors.getLastRefresh(store.state),
-      onRefresh: () => store.dispatch(const LoadDashboardAction()),
-    );
-  }
 }

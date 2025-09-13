@@ -148,7 +148,7 @@ class _ExampleHomePageState extends State<ExampleHomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text('Hello World! - Simple greeting'),
-                    Text('Hello Developer! - Parameterized greeting'),
+                    const Text('Hello Developer! - Parameterized greeting'),
                     Text('Counter value: $_counter'),
                     const Text('This is a basic Flutter app example'),
                   ],

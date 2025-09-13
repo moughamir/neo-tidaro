@@ -1,11 +1,22 @@
-import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 import 'package:domain/domain.dart';
-
-import 'package:shared/utils/logger.dart';
 import 'package:shared/utils/failures/failure.dart';
+import 'package:shared/utils/logger.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 
 /// Implementation of [BookingRepository] using Supabase as the backend.
 class SupabaseBookingRepository implements BookingRepository {
+
+  /// Creates a new [SupabaseBookingRepository] with the given [SupabaseClient].
+  /// If no client is provided, it will use the default Supabase client.
+  SupabaseBookingRepository([SupabaseClient? client])
+    : _client = client ?? Supabase.instance.client {
+    // Initialize logger if not already initialized
+    try {
+      CoreLogger.initialize();
+    } catch (e) {
+      // Ignore if logger is already initialized
+    }
+  }
   // Table name for bookings
   static const String _bookingsTable = 'bookings';
   final SupabaseClient _client;
@@ -95,18 +106,6 @@ class SupabaseBookingRepository implements BookingRepository {
   String _bookingStatusToString(BookingActivityStatus status) =>
       status.toString().split('.').last;
 
-  /// Creates a new [SupabaseBookingRepository] with the given [SupabaseClient].
-  /// If no client is provided, it will use the default Supabase client.
-  SupabaseBookingRepository([SupabaseClient? client])
-    : _client = client ?? Supabase.instance.client {
-    // Initialize logger if not already initialized
-    try {
-      CoreLogger.initialize();
-    } catch (e) {
-      // Ignore if logger is already initialized
-    }
-  }
-
   @override
   Future<Booking> findById(String id) async {
     CoreLogger.database('Fetching booking by id: $id');
@@ -158,7 +157,7 @@ class SupabaseBookingRepository implements BookingRepository {
           .filter('client_id', 'eq', clientId)
           .order('scheduled_date', ascending: false);
 
-      final data = await response as List<dynamic>;
+      final data = response as List<dynamic>;
       final bookings = data
           .map((json) => _mapToBooking(json as Map<String, dynamic>))
           .toList();
@@ -344,11 +343,13 @@ class SupabaseBookingRepository implements BookingRepository {
     throw UnimplementedError();
   }
 
+  @override
   Future<RepositoryResult<Booking>> create(Booking entity) {
     // TODO: implement create
     throw UnimplementedError();
   }
 
+  @override
   Future<RepositoryResult<List<Booking>>> createBatch(List<Booking> entities) {
     // TODO: implement createBatch
     throw UnimplementedError();
@@ -360,11 +361,13 @@ class SupabaseBookingRepository implements BookingRepository {
     throw UnimplementedError();
   }
 
+  @override
   Future<RepositoryResult<bool>> delete(String id) {
     // TODO: implement delete
     throw UnimplementedError();
   }
 
+  @override
   Future<RepositoryResult<bool>> deleteBatch(List<String> ids) {
     // TODO: implement deleteBatch
     throw UnimplementedError();
@@ -594,6 +597,7 @@ class SupabaseBookingRepository implements BookingRepository {
     }
   }
 
+  @override
   Future<RepositoryResult<Booking>> update(Booking entity) {
     // TODO: implement update
     throw UnimplementedError();

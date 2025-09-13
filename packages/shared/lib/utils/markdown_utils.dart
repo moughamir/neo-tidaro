@@ -194,10 +194,6 @@ class MarkdownUtils {
 
 /// Represents a markdown link
 class MarkdownLink {
-  final String text;
-  final String url;
-  final int startIndex;
-  final int endIndex;
 
   const MarkdownLink({
     required this.text,
@@ -205,6 +201,10 @@ class MarkdownLink {
     required this.startIndex,
     required this.endIndex,
   });
+  final String text;
+  final String url;
+  final int startIndex;
+  final int endIndex;
 
   @override
   String toString() => '[$text]($url)';
@@ -223,10 +223,6 @@ class MarkdownLink {
 
 /// Represents a markdown header
 class MarkdownHeader {
-  final int level;
-  final String text;
-  final int startIndex;
-  final int endIndex;
 
   const MarkdownHeader({
     required this.level,
@@ -234,6 +230,10 @@ class MarkdownHeader {
     required this.startIndex,
     required this.endIndex,
   });
+  final int level;
+  final String text;
+  final int startIndex;
+  final int endIndex;
 
   @override
   String toString() => '${'#' * level} $text';

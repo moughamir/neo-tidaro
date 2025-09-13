@@ -1,7 +1,8 @@
 import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
-import '../core/core.dart';
+
 import '../actions/auth_actions.dart';
+import '../core/core.dart';
 import '../states/auth_state.dart';
 
 /// Authentication reducer following functional programming patterns

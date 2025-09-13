@@ -2,19 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ui_kit/src/design_system/design_system.dart';
 
 class NeumorphicInputField extends StatefulWidget {
-  final TextEditingController? controller;
-  final String? hintText;
-  final String? labelText;
-  final bool obscureText;
-  final TextInputType? keyboardType;
-  final ValueChanged<String>? onChanged;
-  final FormFieldValidator<String>? validator;
-  final double borderRadius;
-  final double blurRadius;
-  final double distance;
-  final Color? backgroundColor;
-  final Color? textColor;
-  final Color? hintColor;
 
   const NeumorphicInputField({
     super.key,
@@ -32,6 +19,19 @@ class NeumorphicInputField extends StatefulWidget {
     this.textColor,
     this.hintColor,
   });
+  final TextEditingController? controller;
+  final String? hintText;
+  final String? labelText;
+  final bool obscureText;
+  final TextInputType? keyboardType;
+  final ValueChanged<String>? onChanged;
+  final FormFieldValidator<String>? validator;
+  final double borderRadius;
+  final double blurRadius;
+  final double distance;
+  final Color? backgroundColor;
+  final Color? textColor;
+  final Color? hintColor;
 
   @override
   State<NeumorphicInputField> createState() => _NeumorphicInputFieldState();

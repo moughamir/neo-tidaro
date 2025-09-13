@@ -1,18 +1,18 @@
-import 'package:redux/redux.dart';
 import 'package:core/network/supabase_service.dart';
+import 'package:redux/redux.dart';
 
-import '../states/app_state.dart';
 import '../actions/kyc_actions.dart';
+import '../states/app_state.dart';
 import '../states/kyc_queue_state.dart';
 
 List<Middleware<AppState>> createKycMiddleware(SupabaseService supabase) {
   return [
     TypedMiddleware<AppState, LoadKycQueueRequest>(
       _handleLoadKycQueue(supabase),
-    ),
+    ).call,
     TypedMiddleware<AppState, VerifyKycRequest>(
       _handleVerifyKyc(supabase),
-    ),
+    ).call,
   ];
 }
 

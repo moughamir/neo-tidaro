@@ -909,5 +909,29 @@
   "poor": "Mauvais",
   "@poor": {
     "description": "Poor rating"
+  },
+  "selectUserRole": "Sélectionnez votre rôle",
+  "@selectUserRole": {
+    "description": "Header for role selection during registration"
+  },
+  "selectUserRoleDescription": "Choisissez comment vous comptez utiliser Tidaro",
+  "@selectUserRoleDescription": {
+    "description": "Description for role selection"
+  },
+  "roleClientConsumer": "J'ai besoin de services",
+  "@roleClientConsumer": {
+    "description": "Role for customers who book services"
+  },
+  "roleClientConsumerDescription": "Réservez des services de ménage pour votre domicile",
+  "@roleClientConsumerDescription": {
+    "description": "Description for client consumer role"
+  },
+  "roleClientProfessional": "Je fournis des services",
+  "@roleClientProfessional": {
+    "description": "Role for service providers"
+  },
+  "roleClientProfessionalDescription": "Offrez des services de ménage aux clients",
+  "@roleClientProfessionalDescription": {
+    "description": "Description for client professional role"
   }
 }

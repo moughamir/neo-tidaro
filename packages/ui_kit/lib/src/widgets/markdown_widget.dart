@@ -4,15 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// Configuration class for markdown styling
 class MarkdownConfig {
-  final TextStyle? headingStyle;
-  final TextStyle? bodyStyle;
-  final TextStyle? codeStyle;
-  final Color? linkColor;
-  final EdgeInsetsGeometry? padding;
-  final bool selectable;
-  final bool shrinkWrap;
-  final ScrollPhysics? physics;
-  final MarkdownStyleSheet? customStyleSheet;
 
   const MarkdownConfig({
     this.headingStyle,
@@ -25,6 +16,15 @@ class MarkdownConfig {
     this.physics,
     this.customStyleSheet,
   });
+  final TextStyle? headingStyle;
+  final TextStyle? bodyStyle;
+  final TextStyle? codeStyle;
+  final Color? linkColor;
+  final EdgeInsetsGeometry? padding;
+  final bool selectable;
+  final bool shrinkWrap;
+  final ScrollPhysics? physics;
+  final MarkdownStyleSheet? customStyleSheet;
 
   /// Creates a copy of this configuration with the given fields replaced with new values
   MarkdownConfig copyWith({
@@ -110,35 +110,6 @@ class MarkdownConfig {
 /// A functional, DRY markdown widget wrapper that provides consistent styling
 /// and behavior across the application.
 class MarkdownWidget extends StatelessWidget {
-  /// The markdown content to display
-  final String data;
-
-  /// Configuration for styling and behavior
-  final MarkdownConfig config;
-
-  /// Optional callback for link taps
-  final MarkdownTapLinkCallback? onTapLink;
-
-  /// Optional callback for image building with size information
-  final MarkdownSizedImageBuilder? sizedImageBuilder;
-
-  /// Optional controller for scrolling
-  final ScrollController? controller;
-
-  /// Optional error widget builder
-  final Widget Function(String error)? errorBuilder;
-
-  /// Optional loading widget
-  final Widget? loadingWidget;
-
-  /// Whether to show a loading state
-  final bool isLoading;
-
-  /// Optional maximum height constraint
-  final double? maxHeight;
-
-  /// Optional minimum height constraint
-  final double? minHeight;
 
   const MarkdownWidget({
     super.key,
@@ -238,6 +209,35 @@ class MarkdownWidget extends StatelessWidget {
       loadingWidget: loadingWidget,
     );
   }
+  /// The markdown content to display
+  final String data;
+
+  /// Configuration for styling and behavior
+  final MarkdownConfig config;
+
+  /// Optional callback for link taps
+  final MarkdownTapLinkCallback? onTapLink;
+
+  /// Optional callback for image building with size information
+  final MarkdownSizedImageBuilder? sizedImageBuilder;
+
+  /// Optional controller for scrolling
+  final ScrollController? controller;
+
+  /// Optional error widget builder
+  final Widget Function(String error)? errorBuilder;
+
+  /// Optional loading widget
+  final Widget? loadingWidget;
+
+  /// Whether to show a loading state
+  final bool isLoading;
+
+  /// Optional maximum height constraint
+  final double? maxHeight;
+
+  /// Optional minimum height constraint
+  final double? minHeight;
 
   @override
   Widget build(BuildContext context) {
