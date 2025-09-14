@@ -9,9 +9,7 @@ import '../utils/logger.dart';
 final getIt = GetIt.instance;
 
 /// Initializes the service locator with all required dependencies.
-Future<void> initServiceLocator({
-  AppConfig? config,
-}) async {
+Future<void> initServiceLocator({AppConfig? config}) async {
   CoreLogger.initialization('Initializing service locator');
 
   try {
@@ -20,13 +18,19 @@ Future<void> initServiceLocator({
       await dotenv.load(fileName: '.env');
       CoreLogger.config('Environment variables loaded from .env file');
     } catch (e) {
-      CoreLogger.warning('No .env file found, using default configuration', tag: 'CONFIG');
+      CoreLogger.warning(
+        'No .env file found, using default configuration',
+        tag: 'CONFIG',
+      );
     }
 
     // Register the app configuration
     if (config != null) {
       getIt.registerSingleton<AppConfig>(config);
-      CoreLogger.config('App configuration registered', details: config.appName);
+      CoreLogger.config(
+        'App configuration registered',
+        details: config.appName,
+      );
     } else {
       // Default to development environment if not specified
       final defaultConfig = AppConfig.development();
@@ -35,15 +39,20 @@ Future<void> initServiceLocator({
     }
 
     // Register core services as lazy singletons
-    getIt.registerLazySingleton<SupabaseService>(() => SupabaseService());
+    getIt.registerLazySingleton<SupabaseServiceInterface>(
+      () => SupabaseServiceInterface(),
+    );
     CoreLogger.initialization('SupabaseService registered as lazy singleton');
 
     // Initialize services that require async initialization
     final appConfig = getIt<AppConfig>();
-    
-    CoreLogger.network('Initializing Supabase client', details: appConfig.supabaseUrl);
-    await SupabaseService.init(
-      appConfig.supabaseUrl, 
+
+    CoreLogger.network(
+      'Initializing Supabase client',
+      details: appConfig.supabaseUrl,
+    );
+    await SupabaseServiceInterface.init(
+      appConfig.supabaseUrl,
       appConfig.supabaseAnonKey,
     );
     CoreLogger.network('Supabase client initialized successfully');

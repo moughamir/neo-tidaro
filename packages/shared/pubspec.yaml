@@ -3,7 +3,7 @@ description: "Shared utilities and widgets for TiDaro applications."
 version: 0.1.0-pre-alpha.3
 homepage: https://github.com/neo-tidaro/neo-tidaro
 repository: https://github.com/neo-tidaro/neo-tidaro
-publish_to: http://localhost:4000
+publish_to: none
 
 resolution: workspace
 
@@ -17,16 +17,19 @@ dependencies:
   domain:
     path: ../domain
 
-  equatable: any
-  fpdart: any
-  redux: any
-  core: any
-  flutter_redux: any
-  supabase_flutter: any
-  intl: any
-  languist: any
-  logging: any
+  equatable: ^2.0.5
+  fpdart: ^1.1.0
+  redux: ^5.0.0
+  core:
+    path: ../core
+  flutter_redux: ^0.10.0
+  supabase_flutter: ^2.5.8
+  postgrest: ^2.4.2
+  intl: ^0.20.2
+  languist:
+    path: ../languist
+  logging: ^1.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: any
+  flutter_lints: ^5.0.0

@@ -13,8 +13,7 @@ String paymentStatusToSql(PaymentStatus value) {
     case PaymentStatus.refunded:
       return 'refunded';
     case PaymentStatus.disputed:
-      // TODO: Handle this case.
-      throw UnimplementedError();
+      return 'disputed';
   }
 }
 

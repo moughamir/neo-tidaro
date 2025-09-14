@@ -3,7 +3,9 @@ import 'package:domain/mappers/cleaner_status_mapper.dart';
 import '../enums/enums.dart';
 import '../mappers/mappers.dart';
 
+/// Data transfer object for a Supabase user profile.
 class SupabaseProfileDto {
+  /// Creates a new instance of [SupabaseProfileDto].
   const SupabaseProfileDto({
     required this.id,
     required this.fullName,
@@ -15,6 +17,7 @@ class SupabaseProfileDto {
     this.updatedAt,
   });
 
+  /// Creates a new instance of [SupabaseProfileDto] from a map.
   factory SupabaseProfileDto.fromMap(Map<String, dynamic> map) {
     return SupabaseProfileDto(
       id: map['id'] as String,
@@ -33,15 +36,24 @@ class SupabaseProfileDto {
           : null,
     );
   }
+  /// The user's ID.
   final String id;
+  /// The user's full name.
   final String fullName;
+  /// The URL of the user's avatar.
   final String? avatarUrl;
+  /// The user's phone number.
   final String? phoneNumber;
+  /// The user's role.
   final PlatformUserRole role;
+  /// The user's professional activity status.
   final ProfessionalActivityStatus? professionalActivityStatus;
+  /// The timestamp of when the user was created.
   final DateTime? createdAt;
+  /// The timestamp of when the user was last updated.
   final DateTime? updatedAt;
 
+  /// Converts the DTO to a map.
   Map<String, dynamic> toMap() {
     return {
       'id': id,

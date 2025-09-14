@@ -6,8 +6,7 @@ class ChatReducer extends BaseReducer<ChatState> {
   @override
   ChatState reduce(ChatState state, BaseAction action) {
     return switch (action.type) {
-      // TODO: Handle this case.
-      String() => throw UnimplementedError(),
+      String() => state,
     };
   }
 }

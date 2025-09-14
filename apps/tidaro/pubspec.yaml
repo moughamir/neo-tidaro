@@ -1,6 +1,6 @@
 name: tidaro
 description: "A Tidaro Flutter app."
-publish_to: http://localhost:4000
+publish_to: none
 resolution: workspace
 version: 0.1.0-pre-alpha.3
 environment:

@@ -1,4 +1,3 @@
-import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -11,7 +10,6 @@ class BookingDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -161,7 +159,7 @@ class BookingDetailsDialog extends StatelessWidget {
                         BookingActivityStatus.cancelled,
                       ),
                       icon: const Icon(Icons.cancel),
-                      label: Text(l10n.cancel),
+                      label: Text('l10n.commonCancel'),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: theme.colorScheme.error,
                       ),

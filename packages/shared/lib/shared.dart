@@ -5,6 +5,7 @@
 library;
 
 export 'package:domain/domain.dart';
+export 'package:core/core.dart';
 
 // Redux exports
 export 'redux/redux.dart';
@@ -13,3 +14,4 @@ export 'repositories/index.dart';
 export 'utils/utils.dart';
 // Widgets exports
 export 'widgets/widgets.dart';
+export 'package:fpdart/fpdart.dart' hide State;

@@ -5,7 +5,9 @@ import '../actions/kyc_actions.dart';
 import '../states/app_state.dart';
 import '../states/kyc_queue_state.dart';
 
-List<Middleware<AppState>> createKycMiddleware(SupabaseService supabase) {
+List<Middleware<AppState>> createKycMiddleware(
+  SupabaseServiceInterface supabase,
+) {
   return [
     TypedMiddleware<AppState, LoadKycQueueRequest>(
       _handleLoadKycQueue(supabase),
@@ -16,7 +18,7 @@ List<Middleware<AppState>> createKycMiddleware(SupabaseService supabase) {
   ];
 }
 
-Middleware<AppState> _handleLoadKycQueue(SupabaseService supabase) {
+Middleware<AppState> _handleLoadKycQueue(SupabaseServiceInterface supabase) {
   return (Store<AppState> store, action, NextDispatcher next) async {
     next(action);
     try {
@@ -51,7 +53,7 @@ Middleware<AppState> _handleLoadKycQueue(SupabaseService supabase) {
   };
 }
 
-Middleware<AppState> _handleVerifyKyc(SupabaseService supabase) {
+Middleware<AppState> _handleVerifyKyc(SupabaseServiceInterface supabase) {
   return (Store<AppState> store, action, NextDispatcher next) async {
     next(action);
     final VerifyKycRequest a = action as VerifyKycRequest;

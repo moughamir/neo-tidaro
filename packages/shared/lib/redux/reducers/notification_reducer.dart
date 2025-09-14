@@ -6,8 +6,7 @@ class NotificationReducer extends BaseReducer<NotificationState> {
   @override
   NotificationState reduce(NotificationState state, BaseAction action) {
     return switch (action.type) {
-      // TODO: Handle this case.
-      String() => throw UnimplementedError(),
+      String() => state,
     };
   }
 }

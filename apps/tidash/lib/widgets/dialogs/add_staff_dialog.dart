@@ -1,4 +1,3 @@
-import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -41,7 +40,6 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -98,13 +96,13 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                             child: TextFormField(
                               controller: _firstNameController,
                               decoration: InputDecoration(
-                                labelText: l10n.firstName,
+                                labelText: 'l10n.firstName',
                                 prefixIcon: const Icon(Icons.person_outline),
                                 border: const OutlineInputBorder(),
                               ),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
-                                  return l10n.fieldRequired;
+                                  return 'l10n.fieldRequired';
                                 }
                                 return null;
                               },
@@ -115,13 +113,13 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                             child: TextFormField(
                               controller: _lastNameController,
                               decoration: InputDecoration(
-                                labelText: l10n.lastName,
+                                labelText: 'l10n.lastName',
                                 prefixIcon: const Icon(Icons.person_outline),
                                 border: const OutlineInputBorder(),
                               ),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
-                                  return l10n.fieldRequired;
+                                  return 'l10n.fieldRequired';
                                 }
                                 return null;
                               },
@@ -134,19 +132,19 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       TextFormField(
                         controller: _emailController,
                         decoration: InputDecoration(
-                          labelText: l10n.email,
+                          labelText: 'l10n.email',
                           prefixIcon: const Icon(Icons.email_outlined),
                           border: const OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.emailAddress,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return l10n.fieldRequired;
+                            return 'l10n.fieldRequired';
                           }
                           if (!RegExp(
                             r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                           ).hasMatch(value)) {
-                            return l10n.invalidEmail;
+                            return 'l10n.invalidEmail';
                           }
                           return null;
                         },
@@ -156,14 +154,14 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                       TextFormField(
                         controller: _phoneController,
                         decoration: InputDecoration(
-                          labelText: l10n.phone,
+                          labelText: 'l10n.phone',
                           prefixIcon: const Icon(Icons.phone_outlined),
                           border: const OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.phone,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return l10n.fieldRequired;
+                            return 'l10n.fieldRequired';
                           }
                           return null;
                         },
@@ -321,14 +319,14 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: Text(l10n.cancel),
+                    child: Text('l10n.commonCancel'),
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () => _addStaff(context),
-                    child: Text(l10n.add),
+                    child: Text('l10n.add'),
                   ),
                 ),
               ],

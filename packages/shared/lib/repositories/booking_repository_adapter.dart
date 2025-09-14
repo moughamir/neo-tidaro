@@ -8,7 +8,6 @@ import 'supabase_booking_repository.dart';
 /// BaseRepository methods return RepositoryResult<T> as required by domain.
 class BookingRepositoryAdapter
     implements BookingRepository, BaseRepository<Booking> {
-
   BookingRepositoryAdapter(this._supabase);
   final SupabaseBookingRepository _supabase;
 
@@ -86,7 +85,6 @@ class BookingRepositoryAdapter
   Future<RepositoryResult<List<Booking>>> createBatch(
     List<Booking> entities,
   ) async {
-    // Not implemented yet; emulate sequential creation
     try {
       final results = <Booking>[];
       for (final b in entities) {
@@ -210,7 +208,11 @@ class BookingRepositoryAdapter
     DateTime? startDate,
     DateTime? endDate,
   }) {
-    // TODO: implement findUpcomingBookings
-    throw UnimplementedError();
+    return _supabase.findUpcomingBookings(
+      clientId: clientId,
+      providerId: providerId,
+      startDate: startDate,
+      endDate: endDate,
+    );
   }
 }

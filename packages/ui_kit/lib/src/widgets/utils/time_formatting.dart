@@ -8,25 +8,25 @@ import 'package:languist/languist.dart';
 extension DateTimeFormatting on DateTime {
   /// Converts this DateTime to a localized relative time string (e.g., "5 minutes ago")
   String toRelativeTime(BuildContext context) {
-    final l10n = Languist.of(context);
+    final l10n = IntlLocalizations.of(context);
     return TimeFormatter.formatLastUpdated(this, l10n);
   }
 
   /// Converts this DateTime to a localized short format relative time (e.g., "5m ago")
   String toShortRelativeTime(BuildContext context) {
-    final l10n = Languist.of(context);
+    final l10n = IntlLocalizations.of(context);
     return TimeFormatter.formatTimestampShort(this, l10n);
   }
 
   /// Gets a calendar representation (e.g., "Today at 2:30 PM")
   String toCalendarString(BuildContext context) {
-    final l10n = Languist.of(context);
+    final l10n = IntlLocalizations.of(context);
     return TimeFormatter.formatFullTimestamp(this, l10n);
   }
 
   /// Gets a formatted time string using moment_dart through Languist
   String toFormattedString(String pattern, BuildContext context) {
-    final l10n = Languist.of(context);
+    final l10n = IntlLocalizations.of(context);
     return TimeFormatter.formatDate(this, pattern, l10n);
   }
 }
@@ -94,7 +94,7 @@ String getGreeting([dynamic l10n]) {
   if (l10n != null) {
     // Since Languist doesn't have specific time-of-day greetings,
     // we use hello with the appropriate time greeting
-    return l10n.hello;
+    return l10n.greetHello;
   }
 
   return timeBasedGreeting;

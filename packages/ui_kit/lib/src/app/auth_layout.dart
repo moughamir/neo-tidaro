@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/ui_kit.dart';
+import 'package:languist/l10n/gen/intl_localizations.dart';
 
 /// Responsive two-column authentication layout
 /// Left column: Themed gradient background with brand and quote
@@ -34,13 +35,7 @@ class AuthLayout extends StatelessWidget {
     }
   }
 
-  // DRY helper: top controls row used in both mobile header and desktop right column
-  Widget _buildControlsRow(
-    ThemeData theme,
-    {
-      bool compactBrand = false,
-    }
-  ) {
+  Widget _buildControlsRow(ThemeData theme, {bool compactBrand = false}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -56,10 +51,7 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildDesktopLayout(
-    BuildContext context,
-    ThemeData theme,
-  ) {
+  Widget _buildDesktopLayout(BuildContext context, ThemeData theme) {
     return Scaffold(
       body: Row(
         children: [
@@ -70,10 +62,7 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildMobileLayout(
-    BuildContext context,
-    ThemeData theme,
-  ) {
+  Widget _buildMobileLayout(BuildContext context, ThemeData theme) {
     return Scaffold(
       body: Column(
         children: [
@@ -87,18 +76,14 @@ class AuthLayout extends StatelessWidget {
                       fit: BoxFit.cover,
                     )
                   : null,
-              gradient: backgroundImage == null
-                  ? _buildTiDashGradient(theme)
-                  : null,
+              gradient: backgroundImage == null ? _buildGradient(theme) : null,
             ),
             child: _GradientOverlay(
               child: SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.all(20),
                   child: Column(
-                    children: [
-                      _buildControlsRow(theme, compactBrand: true),
-                    ],
+                    children: [_buildControlsRow(theme, compactBrand: true)],
                   ),
                 ),
               ),
@@ -107,10 +92,10 @@ class AuthLayout extends StatelessWidget {
           Expanded(
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(2),
               child: Center(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 400),
+                  constraints: const BoxConstraints(maxWidth: 500),
                   child: child,
                 ),
               ),
@@ -121,10 +106,7 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildLeftColumn(
-    BuildContext context,
-    ThemeData theme,
-  ) {
+  Widget _buildLeftColumn(BuildContext context, ThemeData theme) {
     return Container(
       decoration: BoxDecoration(
         image: backgroundImage != null
@@ -133,7 +115,7 @@ class AuthLayout extends StatelessWidget {
                 fit: BoxFit.cover,
               )
             : null,
-        gradient: backgroundImage == null ? _buildTiDashGradient(theme) : null,
+        gradient: backgroundImage == null ? _buildGradient(theme) : null,
       ),
       child: _GradientOverlay(
         child: Padding(
@@ -151,10 +133,7 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  Widget _buildRightColumn(
-    BuildContext context,
-    ThemeData theme,
-  ) {
+  Widget _buildRightColumn(BuildContext context, ThemeData theme) {
     return Container(
       color: theme.colorScheme.surface,
       child: Column(
@@ -184,8 +163,8 @@ class AuthLayout extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: compact ? 32 : 48,
-          height: compact ? 32 : 48,
+          width: compact ? 24 : 48,
+          height: compact ? 24 : 48,
           decoration: BoxDecoration(
             color: theme.colorScheme.onPrimaryContainer,
             borderRadius: BorderRadius.circular(12),
@@ -240,14 +219,14 @@ class AuthLayout extends StatelessWidget {
               Text(
                 'Transform your workflow with powerful analytics and intuitive design. Built for modern teams.',
                 style: theme.textTheme.bodyLarge?.copyWith(
-                  color: theme.colorScheme.onPrimaryContainer,
+                  color: Colors.black,
                   height: 1.6,
                   fontSize: 16,
                 ),
               ),
               const SizedBox(height: 16),
               Text(
-                '— TiDash Team',
+                '— TiDaro Team',
                 style: theme.textTheme.bodyMedium?.copyWith(
                   color: theme.colorScheme.primary,
                   fontWeight: FontWeight.w500,
@@ -260,7 +239,7 @@ class AuthLayout extends StatelessWidget {
     );
   }
 
-  LinearGradient _buildTiDashGradient(ThemeData theme) {
+  LinearGradient _buildGradient(ThemeData theme) {
     final isDark = theme.brightness == Brightness.dark;
     return LinearGradient(
       begin: Alignment.topLeft,
@@ -285,13 +264,15 @@ class AuthLayout extends StatelessWidget {
   Widget _buildThemeToggle(ThemeData theme) {
     return _ControlContainer(
       child: IconButton(
+        iconSize: 24.0,
+        visualDensity: VisualDensity.compact,
         onPressed: onThemeToggle,
         icon: Icon(
           isDarkMode ? Icons.light_mode : Icons.dark_mode,
           color: isDarkMode
               ? theme.colorScheme.primary
               : theme.colorScheme.onPrimaryContainer,
-          size: 20,
+          size: 24,
         ),
         tooltip: isDarkMode ? 'Light Mode' : 'Dark Mode',
       ),
@@ -299,23 +280,24 @@ class AuthLayout extends StatelessWidget {
   }
 
   Widget _buildLanguageSelector(ThemeData theme) {
-    final languages = {
-      'en': 'English',
-      'ar': 'العربية',
-      'es': 'Español',
-      'fr': 'Français',
+    // Build languages list from Languist's supported locales (DRY, single source of truth)
+    final Map<String, String> languages = <String, String>{
+      for (final Locale locale in IntlLocalizations.supportedLocales)
+        locale.languageCode: _languageEndonym(locale.languageCode),
     };
 
     return _ControlContainer(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
+          elevation: 0,
+          iconSize: 24.0,
+          isDense: true,
           value: currentLanguage,
           onChanged: (String? value) => onLanguageChanged?.call(value!),
           icon: Icon(
             Icons.language,
             color: theme.colorScheme.primary,
-            size: 16,
+            size: 24,
           ),
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.primary,
@@ -338,6 +320,21 @@ class AuthLayout extends StatelessWidget {
       ),
     );
   }
+
+  String _languageEndonym(String code) {
+    switch (code) {
+      case 'ar':
+        return 'العربية';
+      case 'en':
+        return 'English';
+      case 'es':
+        return 'Español';
+      case 'fr':
+        return 'Français';
+      default:
+        return code;
+    }
+  }
 }
 
 /// A container that applies a dark gradient overlay.
@@ -355,8 +352,9 @@ class _GradientOverlay extends StatelessWidget {
           end: Alignment.bottomRight,
           colors: [
             // TODO: Add Gradient color constants from designSystem (Glitchy//Synthwavee style red/blue)
-            Color(0xFF07D4E7),
-            Color(0xFFEA0559),
+            // Use semi-transparent colors so the background image remains visible beneath.
+            Color(0x7F07D4E7), // ~50% opacity cyan
+            Color(0x7FEA0559), // ~50% opacity magenta
           ],
         ),
       ),
@@ -367,20 +365,14 @@ class _GradientOverlay extends StatelessWidget {
 
 /// A container for the theme and language controls with a consistent style.
 class _ControlContainer extends StatelessWidget {
-  const _ControlContainer({required this.child, this.padding});
+  const _ControlContainer({required this.child});
 
   final Widget child;
-  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding,
-      decoration: BoxDecoration(
-        color: const Color(0xFF07D4E7),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(width: 1),
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
       child: child,
     );
   }

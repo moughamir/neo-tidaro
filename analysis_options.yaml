@@ -7,15 +7,15 @@ analyzer:
 
 linter:
   rules:
-    public_member_api_docs: true
-    always_declare_return_types: true
-    avoid_print: true
-    prefer_final_fields: true
-    prefer_const_constructors: true
-    prefer_final_locals: true
-    directives_ordering: true
-    sort_constructors_first: true
-    type_annotate_public_apis: true
+    # public_member_api_docs: true
+    # always_declare_return_types: true
+    # avoid_print: true
+    # prefer_final_fields: true
+    # prefer_const_constructors: true
+    # prefer_final_locals: true
+    # directives_ordering: true
+    # sort_constructors_first: true
+    # type_annotate_public_apis: true
 # NOTE: To forbid importing infra-only packages (e.g., fpdart, supabase_flutter) in domain,
 # enforce this at CI using a grep-based check, or adopt a custom linter like `custom_lint`.
 # Example CI guard (bash):

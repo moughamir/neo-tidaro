@@ -4,7 +4,7 @@ import 'auth/login_page.dart';
 import 'main/main_layout.dart';
 
 /// TiDash home page that handles authentication state routing
-/// 
+///
 /// This component follows separation of concerns by only handling
 /// authentication state routing logic, delegating to dedicated
 /// auth and dashboard components.

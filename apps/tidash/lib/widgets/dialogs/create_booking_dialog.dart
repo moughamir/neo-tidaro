@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:languist/languist.dart';
+
 import 'package:shared/shared.dart' hide TimeOfDay;
 import 'package:ui_kit/ui_kit.dart' hide TimeOfDay;
 
@@ -46,7 +46,6 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -100,13 +99,13 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                       TextFormField(
                         controller: _customerNameController,
                         decoration: InputDecoration(
-                          labelText: l10n.name,
+                          labelText: 'l10n.name',
                           prefixIcon: const Icon(Icons.person_outline),
                           border: const OutlineInputBorder(),
                         ),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return l10n.fieldRequired;
+                            return 'l10n.fieldRequired';
                           }
                           return null;
                         },
@@ -116,19 +115,19 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                       TextFormField(
                         controller: _customerEmailController,
                         decoration: InputDecoration(
-                          labelText: l10n.email,
+                          labelText: 'l10n.email',
                           prefixIcon: const Icon(Icons.email_outlined),
                           border: const OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.emailAddress,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return l10n.fieldRequired;
+                            return 'l10n.fieldRequired';
                           }
                           if (!RegExp(
                             r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                           ).hasMatch(value)) {
-                            return l10n.invalidEmail;
+                            return 'l10n.invalidEmail';
                           }
                           return null;
                         },
@@ -138,14 +137,14 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                       TextFormField(
                         controller: _customerPhoneController,
                         decoration: InputDecoration(
-                          labelText: l10n.phone,
+                          labelText: 'l10n.phone',
                           prefixIcon: const Icon(Icons.phone_outlined),
                           border: const OutlineInputBorder(),
                         ),
                         keyboardType: TextInputType.phone,
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return l10n.fieldRequired;
+                            return 'l10n.fieldRequired';
                           }
                           return null;
                         },
@@ -243,7 +242,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                         ),
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return l10n.fieldRequired;
+                            return 'l10n.fieldRequired';
                           }
                           return null;
                         },
@@ -262,7 +261,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                               ),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
-                                  return l10n.fieldRequired;
+                                  return 'l10n.fieldRequired';
                                 }
                                 return null;
                               },
@@ -278,7 +277,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                               ),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
-                                  return l10n.fieldRequired;
+                                  return 'l10n.fieldRequired';
                                 }
                                 return null;
                               },
@@ -294,7 +293,7 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                               ),
                               validator: (String? value) {
                                 if (value == null || value.isEmpty) {
-                                  return l10n.fieldRequired;
+                                  return 'l10n.fieldRequired';
                                 }
                                 return null;
                               },
@@ -362,14 +361,14 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: Text(l10n.cancel),
+                    child: Text('l10n.commonCancel'),
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () => _createBooking(context),
-                    child: Text(l10n.create),
+                    child: Text('l10n.create'),
                   ),
                 ),
               ],
@@ -383,104 +382,78 @@ class _CreateBookingDialogState extends State<CreateBookingDialog> {
   String _getServiceCategoryName(PreBookingServiceCategory category) {
     switch (category) {
       case PreBookingServiceCategory.cleaning:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Cleaning';
       case PreBookingServiceCategory.standardCleaning:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Standard Cleaning';
       case PreBookingServiceCategory.regularCleaning:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Regular Cleaning';
       case PreBookingServiceCategory.laundry:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Laundry';
       case PreBookingServiceCategory.cooking:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Cooking';
       case PreBookingServiceCategory.babysitting:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Babysitting';
       case PreBookingServiceCategory.petCare:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Pet Care';
       case PreBookingServiceCategory.gardening:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Gardening';
       case PreBookingServiceCategory.maintenance:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Maintenance';
       case PreBookingServiceCategory.organization:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Organization';
       case PreBookingServiceCategory.deepCleaning:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Deep Cleaning';
       case PreBookingServiceCategory.moveInOut:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Move In-Out';
       case PreBookingServiceCategory.postConstruction:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Post Construction';
       case PreBookingServiceCategory.commercial:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Commercial';
       case PreBookingServiceCategory.residential:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Residential';
       case PreBookingServiceCategory.specialized:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Specialized';
       case PreBookingServiceCategory.other:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Other';
     }
   }
 
   double _calculatePrice(PreBookingServiceCategory category) {
     switch (category) {
       case PreBookingServiceCategory.standardCleaning:
-        return 120.0;
+        return 80.0;
       case PreBookingServiceCategory.regularCleaning:
-        return 100.0;
+        return 60.0;
       case PreBookingServiceCategory.deepCleaning:
-        return 200.0;
+        return 150.0;
       case PreBookingServiceCategory.moveInOut:
-        return 250.0;
+        return 175.0;
       case PreBookingServiceCategory.postConstruction:
-        return 300.0;
-      case PreBookingServiceCategory.commercial:
-        return 180.0;
-      case PreBookingServiceCategory.residential:
         return 220.0;
+      case PreBookingServiceCategory.commercial:
+        return 120.0;
+      case PreBookingServiceCategory.residential:
+        return 170.0;
       case PreBookingServiceCategory.specialized:
-        return 350.0;
+        return 400.0;
       case PreBookingServiceCategory.cleaning:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 100.0;
       case PreBookingServiceCategory.laundry:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 40.0;
       case PreBookingServiceCategory.cooking:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 70.0;
       case PreBookingServiceCategory.babysitting:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 50.0;
       case PreBookingServiceCategory.petCare:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 80.0;
       case PreBookingServiceCategory.gardening:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 100.0;
       case PreBookingServiceCategory.maintenance:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 120.0;
       case PreBookingServiceCategory.organization:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 150.0;
       case PreBookingServiceCategory.other:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 200.0;
     }
   }
 

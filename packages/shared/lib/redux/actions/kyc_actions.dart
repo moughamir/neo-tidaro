@@ -31,7 +31,11 @@ class SelectKycItem extends Equatable {
 
 // Verify / Reject
 class VerifyKycRequest extends Equatable {
-  VerifyKycRequest({required this.verificationId, required this.decision, this.note});
+  VerifyKycRequest({
+    required this.verificationId,
+    required this.decision,
+    this.note,
+  });
   final String verificationId;
   final String decision; // 'verified' | 'rejected'
   final String? note;

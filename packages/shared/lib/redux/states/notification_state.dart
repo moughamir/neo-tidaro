@@ -18,10 +18,8 @@ class NotificationState extends BaseState {
   final String? error;
 
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [notifications, unreadCount, isLoading, error];
 
   @override
-  // TODO: implement stateType
-  String get stateType => throw UnimplementedError();
+  String get stateType => 'notificationState';
 }

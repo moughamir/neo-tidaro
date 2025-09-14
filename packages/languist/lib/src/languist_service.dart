@@ -13,13 +13,6 @@ class Languist {
   /// Throws an exception if the instance is not found.
   static IntlLocalizations of(BuildContext context) {
     final localizations = IntlLocalizations.of(context);
-    if (localizations == null) {
-      throw FlutterError(
-        'IntlLocalizations not found in context. '
-        'Make sure to include IntlLocalizations.localizationsDelegates '
-        'in your MaterialApp or CupertinoApp.',
-      );
-    }
     return localizations;
   }
 

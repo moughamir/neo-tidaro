@@ -4,6 +4,7 @@ import '../user/user_profile.dart';
 
 /// Professional-specific profile extending UserProfile
 class ProfessionalProfile extends UserProfile {
+  /// Creates a new instance of [ProfessionalProfile].
   const ProfessionalProfile({
     required super.id,
     required super.createdAt,
@@ -37,30 +38,53 @@ class ProfessionalProfile extends UserProfile {
     this.serviceAreas = const [],
     this.professionalSettings,
   });
+  /// The categories of services offered by the professional.
   final List<PreBookingServiceCategory> categories;
+  /// The hourly rate of the professional.
   final double hourlyRate;
+  /// The default rate type of the professional.
   final JobRateType defaultRateType;
+  /// The business name of the professional.
   final String? businessName;
+  /// The tax ID of the professional.
   final String? taxId;
+  /// The average rating of the professional.
   final double rating;
+  /// The total number of reviews for the professional.
   final int totalReviews;
+  /// The total number of completed jobs for the professional.
   final int completedJobs;
+  /// The service radius of the professional in kilometers.
   final double serviceRadius;
+  /// Whether the professional is available for new bookings.
   final bool isAvailable;
+  /// Whether the professional accepts instant bookings.
   final bool acceptsInstantBooking;
+  /// A list of portfolio image URLs for the professional.
   final List<String> portfolioImages;
+  /// A map of skills for the professional.
   final Map<String, dynamic>? skills;
+  /// The URL of the professional's avatar.
   final String? avatarUrl;
+  /// The role of the professional.
   final PlatformUserRole role;
 
   // Professional-specific fields
+  /// The KYC status of the professional.
   final ProfessionalKycStatus status;
+  /// A list of certifications for the professional.
   final List<String> certifications;
+  /// The license number of the professional.
   final String? licenseNumber;
+  /// The expiry date of the professional's license.
   final DateTime? licenseExpiry;
+  /// Whether the professional has completed a background check.
   final bool backgroundCheckCompleted;
+  /// The date of the professional's background check.
   final DateTime? backgroundCheckDate;
+  /// A list of service areas for the professional.
   final List<String> serviceAreas;
+  /// A map of professional-specific settings.
   final Map<String, dynamic>? professionalSettings;
 
   /// Calculate professional score based on rating and completion rate
@@ -79,6 +103,7 @@ class ProfessionalProfile extends UserProfile {
         status == ProfessionalKycStatus.active;
   }
 
+  /// Creates a new instance of [ProfessionalProfile] with updated values.
   ProfessionalProfile copyWith({
     String? fullName,
     PhoneVO? phone,

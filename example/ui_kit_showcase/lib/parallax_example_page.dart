@@ -46,7 +46,7 @@ class _ParallaxExamplePageState extends State<ParallaxExamplePage> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
-    final l10n = Languist.of(context);
+
     return Scaffold(
       backgroundColor: colors.surface,
       appBar: AppBar(

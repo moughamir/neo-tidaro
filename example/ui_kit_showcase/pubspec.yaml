@@ -1,6 +1,6 @@
 name: ui_kit_showcase
 description: "UI Kit showcase example demonstrating all available components"
-publish_to: http://localhost:4000
+publish_to: none
 resolution: workspace
 version: 0.1.0-pre-alpha.3
 

@@ -1,4 +1,4 @@
-import 'package:domain/domain.dart' hide DashboardState;
+import 'package:domain/domain.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../actions/dashboard_actions.dart';

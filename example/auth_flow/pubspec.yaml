@@ -1,6 +1,6 @@
 name: auth_flow_example
 description: "Authentication flow example with form validation and state management"
-publish_to: http://localhost:4000
+publish_to: none
 resolution: workspace
 version: 0.1.0-pre-alpha.3
 

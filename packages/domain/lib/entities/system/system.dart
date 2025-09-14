@@ -108,6 +108,9 @@ class DashboardMetrics extends BaseEntity {
     required this.averageRating,
     required this.recentActivities,
     this.completionRate = 0,
+    this.confirmationRate = 0,
+    this.revenue7d = 0,
+    this.revenue30d = 0,
     super.createdAt,
     super.updatedAt,
   });
@@ -121,6 +124,9 @@ class DashboardMetrics extends BaseEntity {
   final int totalCustomers;
   final double averageRating;
   final double completionRate;
+  final double confirmationRate;
+  final double revenue7d;
+  final double revenue30d;
   final List<ActivityItem> recentActivities;
 
   DashboardMetrics copyWith({
@@ -133,6 +139,9 @@ class DashboardMetrics extends BaseEntity {
     int? totalCustomers,
     double? averageRating,
     double? completionRate,
+    double? confirmationRate,
+    double? revenue7d,
+    double? revenue30d,
     List<ActivityItem>? recentActivities,
   }) {
     return DashboardMetrics(
@@ -146,6 +155,9 @@ class DashboardMetrics extends BaseEntity {
       totalCustomers: totalCustomers ?? this.totalCustomers,
       averageRating: averageRating ?? this.averageRating,
       completionRate: completionRate ?? this.completionRate,
+      confirmationRate: confirmationRate ?? this.confirmationRate,
+      revenue7d: revenue7d ?? this.revenue7d,
+      revenue30d: revenue30d ?? this.revenue30d,
       recentActivities: recentActivities ?? this.recentActivities,
       createdAt: createdAt,
       updatedAt: updatedAt,

@@ -20,12 +20,13 @@ import 'interfaces/storage_service.dart';
 ///
 /// The service implements multiple interfaces to ensure proper abstraction and
 /// adherence to SOLID principles, allowing for dependency inversion.
-class SupabaseService
+class SupabaseServiceInterface
     implements AuthService, DatabaseService, StorageService, RemoteDataSource {
-  factory SupabaseService() => _instance;
-  SupabaseService._internal();
+  factory SupabaseServiceInterface() => _instance;
+  SupabaseServiceInterface._internal();
   // --- Singleton Setup ---
-  static final SupabaseService _instance = SupabaseService._internal();
+  static final SupabaseServiceInterface _instance =
+      SupabaseServiceInterface._internal();
 
   // --- Properties ---
   late final SupabaseClient _client;
@@ -130,21 +131,24 @@ class SupabaseService
     return safeAsyncCall(
       () async {
         var query = _client.from(table).select();
-        
+
         // Apply filters first (while still PostgrestFilterBuilder)
         equals.forEach((key, value) {
           query = query.eq(key, value);
         });
-        
+
         // Apply transformations (order, limit) that change the type
         dynamic transformedQuery = query;
         if (orderBy != null) {
-          transformedQuery = transformedQuery.order(orderBy, ascending: ascending);
+          transformedQuery = transformedQuery.order(
+            orderBy,
+            ascending: ascending,
+          );
         }
         if (limit != null) {
           transformedQuery = transformedQuery.limit(limit);
         }
-        
+
         final result = await transformedQuery;
         return List<Map<String, dynamic>>.from(result);
       },
@@ -162,12 +166,12 @@ class SupabaseService
     return safeAsyncCall(
       () async {
         var query = _client.from(table).select();
-        
+
         // Apply filters (while still PostgrestFilterBuilder)
         equals.forEach((key, value) {
           query = query.eq(key, value);
         });
-        
+
         final result = await query.single();
         return Map<String, dynamic>.from(result);
       },
@@ -284,10 +288,12 @@ class SupabaseService
   ResultFuture<http.Response> queryGraphQL(String query) {
     return safeAsyncCall(
       () async {
-        // Note: GraphQL endpoint construction requires project URL and anon key
-        // These should be passed as parameters or stored during initialization
-        throw UnimplementedError(
-          'GraphQL endpoint requires project-specific configuration',
+        // Note: GraphQL endpoint construction requires project URL and anon key.
+        // These should be passed as parameters or stored during initialization.
+        // Until configured, signal a controlled failure instead of throwing an
+        // UnimplementedError to avoid crashing callers.
+        throw Exception(
+          'Supabase GraphQL endpoint is not configured. Provide project URL and anon key.',
         );
       },
       context: 'Executing GraphQL query',

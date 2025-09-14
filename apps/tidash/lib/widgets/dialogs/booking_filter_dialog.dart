@@ -1,4 +1,3 @@
-import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -32,7 +31,6 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -54,7 +52,7 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  l10n.filter,
+                  'l10n.filter',
                   style: theme.textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -179,14 +177,14 @@ class _BookingFilterDialogState extends State<BookingFilterDialog> {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () => _clearFilters(),
-                    child: Text(l10n.clear),
+                    child: Text('l10n.clear'),
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () => _applyFilters(),
-                    child: Text(l10n.apply),
+                    child: Text('l10n.apply'),
                   ),
                 ),
               ],

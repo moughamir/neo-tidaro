@@ -1,12 +1,12 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-import 'gen_localizations.dart';
+import 'intl_localizations.dart';
 
 // ignore_for_file: type=lint
 
-/// The translations for Spanish Castilian (`es`).
-class GenLocalizationsEs extends GenLocalizations {
-  GenLocalizationsEs([String locale = 'es']) : super(locale);
+/// The translations for English (`en`).
+class IntlLocalizationsEn extends IntlLocalizations {
+  IntlLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
   String get appTitle => 'TiDaro';
@@ -44,366 +44,366 @@ class GenLocalizationsEs extends GenLocalizations {
   String get commonCancel => 'Cancel';
 
   @override
-  String get save => 'Guardar';
+  String get save => 'Save';
 
   @override
-  String get delete => 'Eliminar';
+  String get delete => 'Delete';
 
   @override
-  String get edit => 'Editar';
+  String get edit => 'Edit';
 
   @override
-  String get add => 'Añadir';
+  String get add => 'Add';
 
   @override
-  String get create => 'Crear';
+  String get create => 'Create';
 
   @override
-  String get update => 'Actualizar';
+  String get update => 'Update';
 
   @override
-  String get remove => 'Quitar';
+  String get remove => 'Remove';
 
   @override
-  String get close => 'Cerrar';
+  String get close => 'Close';
 
   @override
-  String get open => 'Abrir';
+  String get open => 'Open';
 
   @override
-  String get submit => 'Enviar';
+  String get submit => 'Submit';
 
   @override
-  String get confirm => 'Confirmar';
+  String get confirm => 'Confirm';
 
   @override
-  String get yes => 'Sí';
+  String get yes => 'Yes';
 
   @override
   String get no => 'No';
 
   @override
-  String get retry => 'Reintentar';
+  String get retry => 'Retry';
 
   @override
-  String get refresh => 'Actualizar';
+  String get refresh => 'Refresh';
 
   @override
-  String get back => 'Atrás';
+  String get back => 'Back';
 
   @override
-  String get next => 'Siguiente';
+  String get next => 'Next';
 
   @override
-  String get previous => 'Anterior';
+  String get previous => 'Previous';
 
   @override
-  String get continueAction => 'Continuar';
+  String get continueAction => 'Continue';
 
   @override
-  String get skip => 'Omitir';
+  String get skip => 'Skip';
 
   @override
-  String get done => 'Hecho';
+  String get done => 'Done';
 
   @override
-  String get finish => 'Finalizar';
+  String get finish => 'Finish';
 
   @override
-  String get home => 'Inicio';
+  String get home => 'Home';
 
   @override
-  String get profile => 'Perfil';
+  String get profile => 'Profile';
 
   @override
-  String get settings => 'Ajustes';
+  String get settings => 'Settings';
 
   @override
-  String get about => 'Acerca de';
+  String get about => 'About';
 
   @override
-  String get help => 'Ayuda';
+  String get help => 'Help';
 
   @override
-  String get contact => 'Contacto';
+  String get contact => 'Contact';
 
   @override
-  String get dashboard => 'Panel de control';
+  String get dashboard => 'Dashboard';
 
   @override
-  String get notifications => 'Notificaciones';
+  String get notifications => 'Notifications';
 
   @override
-  String get search => 'Buscar';
+  String get search => 'Search';
 
   @override
-  String get filter => 'Filtrar';
+  String get filter => 'Filter';
 
   @override
-  String get sort => 'Ordenar';
+  String get sort => 'Sort';
 
   @override
-  String get themeSettings => 'Ajustes de tema';
+  String get themeSettings => 'Theme Settings';
 
   @override
-  String get languageSettings => 'Ajustes de idioma';
+  String get languageSettings => 'Language Settings';
 
   @override
-  String get darkMode => 'Modo oscuro';
+  String get darkMode => 'Dark Mode';
 
   @override
-  String get lightMode => 'Modo claro';
+  String get lightMode => 'Light Mode';
 
   @override
-  String get systemMode => 'Modo del sistema';
+  String get systemMode => 'System Mode';
 
   @override
-  String get privacy => 'Privacidad';
+  String get privacy => 'Privacy';
 
   @override
-  String get security => 'Seguridad';
+  String get security => 'Security';
 
   @override
-  String get account => 'Cuenta';
+  String get account => 'Account';
 
   @override
-  String get preferences => 'Preferencias';
+  String get preferences => 'Preferences';
 
   @override
-  String get login => 'Iniciar sesión';
+  String get login => 'Login';
 
   @override
-  String get logout => 'Cerrar sesión';
+  String get logout => 'Logout';
 
   @override
-  String get register => 'Registrarse';
+  String get register => 'Register';
 
   @override
-  String get signUp => 'Crear cuenta';
+  String get signUp => 'Sign Up';
 
   @override
-  String get signIn => 'Iniciar sesión';
+  String get signIn => 'Sign In';
 
   @override
-  String get forgotPassword => 'Olvidé mi contraseña';
+  String get forgotPassword => 'Forgot Password';
 
   @override
-  String get resetPassword => 'Restablecer contraseña';
+  String get resetPassword => 'Reset Password';
 
   @override
-  String get changePassword => 'Cambiar contraseña';
+  String get changePassword => 'Change Password';
 
   @override
-  String get email => 'Correo electrónico';
+  String get email => 'Email';
 
   @override
-  String get password => 'Contraseña';
+  String get password => 'Password';
 
   @override
-  String get username => 'Nombre de usuario';
+  String get username => 'Username';
 
   @override
-  String get name => 'Nombre';
+  String get name => 'Name';
 
   @override
-  String get firstName => 'Nombre';
+  String get firstName => 'First Name';
 
   @override
-  String get lastName => 'Apellido';
+  String get lastName => 'Last Name';
 
   @override
-  String get phone => 'Teléfono';
+  String get phone => 'Phone';
 
   @override
-  String get address => 'Dirección';
+  String get address => 'Address';
 
   @override
-  String get city => 'Ciudad';
+  String get city => 'City';
 
   @override
-  String get country => 'País';
+  String get country => 'Country';
 
   @override
-  String get dateOfBirth => 'Fecha de nacimiento';
+  String get dateOfBirth => 'Date of Birth';
 
   @override
-  String get loading => 'Cargando...';
+  String get loading => 'Loading...';
 
   @override
-  String get saving => 'Guardando...';
+  String get saving => 'Saving...';
 
   @override
-  String get processing => 'Procesando...';
+  String get processing => 'Processing...';
 
   @override
-  String get uploading => 'Subiendo...';
+  String get uploading => 'Uploading...';
 
   @override
-  String get downloading => 'Descargando...';
+  String get downloading => 'Downloading...';
 
   @override
-  String get connecting => 'Conectando...';
+  String get connecting => 'Connecting...';
 
   @override
-  String get syncing => 'Sincronizando...';
+  String get syncing => 'Syncing...';
 
   @override
-  String get success => 'Éxito';
+  String get success => 'Success';
 
   @override
   String get error => 'Error';
 
   @override
-  String get warning => 'Advertencia';
+  String get warning => 'Warning';
 
   @override
-  String get info => 'Información';
+  String get info => 'Information';
 
   @override
-  String get noData => 'No hay datos disponibles';
+  String get noData => 'No data available';
 
   @override
-  String get noResults => 'No se encontraron resultados';
+  String get noResults => 'No results found';
 
   @override
-  String get networkError => 'Error de red';
+  String get networkError => 'Network error';
 
   @override
-  String get connectionError => 'Error de conexión';
+  String get connectionError => 'Connection error';
 
   @override
-  String get serverError => 'Error del servidor';
+  String get serverError => 'Server error';
 
   @override
-  String get unknownError => 'Error desconocido';
+  String get unknownError => 'Unknown error';
 
   @override
-  String get tryAgain => 'Intentar de nuevo';
+  String get tryAgain => 'Try again';
 
   @override
-  String get required => 'Requerido';
+  String get required => 'Required';
 
   @override
-  String get invalidPhoneNumber => 'Número de teléfono inválido';
+  String get invalidPhoneNumber => 'Invalid phone number';
 
   @override
-  String get fieldRequired => 'Este campo es requerido';
+  String get fieldRequired => 'This field is required';
 
   @override
   String fromNow(Object time) {
-    return 'hace $time';
+    return '$time ago';
   }
 
   @override
-  String get justNow => 'ahora mismo';
+  String get justNow => 'just now';
 
   @override
-  String get aMinuteAgo => 'hace un minuto';
+  String get aMinuteAgo => 'a minute ago';
 
   @override
   String minutesAgo(Object minutes) {
-    return 'hace $minutes minutos';
+    return '$minutes minutes ago';
   }
 
   @override
-  String get anHourAgo => 'hace una hora';
+  String get anHourAgo => 'an hour ago';
 
   @override
   String hoursAgo(Object hours) {
-    return 'hace $hours horas';
+    return '$hours hours ago';
   }
 
   @override
-  String get aDayAgo => 'hace un día';
+  String get aDayAgo => 'a day ago';
 
   @override
   String daysAgo(Object days) {
-    return 'hace $days días';
+    return '$days days ago';
   }
 
   @override
-  String get aWeekAgo => 'hace una semana';
+  String get aWeekAgo => 'a week ago';
 
   @override
   String weeksAgo(Object weeks) {
-    return 'hace $weeks semanas';
+    return '$weeks weeks ago';
   }
 
   @override
-  String get aMonthAgo => 'hace un mes';
+  String get aMonthAgo => 'a month ago';
 
   @override
   String monthsAgo(Object months) {
-    return 'hace $months meses';
+    return '$months months ago';
   }
 
   @override
-  String get aYearAgo => 'hace un año';
+  String get aYearAgo => 'a year ago';
 
   @override
   String yearsAgo(Object years) {
-    return 'hace $years años';
+    return '$years years ago';
   }
 
   @override
-  String get today => 'Hoy';
+  String get today => 'Today';
 
   @override
-  String get yesterday => 'Ayer';
+  String get yesterday => 'Yesterday';
 
   @override
-  String get tomorrow => 'Mañana';
+  String get tomorrow => 'Tomorrow';
 
   @override
-  String get thisWeek => 'Esta semana';
+  String get thisWeek => 'This week';
 
   @override
-  String get lastWeek => 'La semana pasada';
+  String get lastWeek => 'Last week';
 
   @override
-  String get nextWeek => 'La próxima semana';
+  String get nextWeek => 'Next week';
 
   @override
-  String get thisMonth => 'Este mes';
+  String get thisMonth => 'This month';
 
   @override
-  String get lastMonth => 'El mes pasado';
+  String get lastMonth => 'Last month';
 
   @override
-  String get nextMonth => 'El próximo mes';
+  String get nextMonth => 'Next month';
 
   @override
-  String get online => 'En línea';
+  String get online => 'Online';
 
   @override
-  String get offline => 'Desconectado';
+  String get offline => 'Offline';
 
   @override
-  String get available => 'Disponible';
+  String get available => 'Available';
 
   @override
-  String get busy => 'Ocupado';
+  String get busy => 'Busy';
 
   @override
-  String get away => 'Ausente';
+  String get away => 'Away';
 
   @override
-  String get version => 'Versión';
+  String get version => 'Version';
 
   @override
-  String get buildNumber => 'Número de compilación';
+  String get buildNumber => 'Build Number';
 
   @override
-  String get copyright => 'Derechos de autor';
+  String get copyright => 'Copyright';
 
   @override
-  String get termsOfService => 'Términos de servicio';
+  String get termsOfService => 'Terms of Service';
 
   @override
-  String get privacyPolicy => 'Política de privacidad';
+  String get privacyPolicy => 'Privacy Policy';
 
   @override
-  String get licenses => 'Licencias';
+  String get licenses => 'Licenses';
 
   @override
   String get apply => 'Apply';
@@ -491,25 +491,25 @@ class GenLocalizationsEs extends GenLocalizations {
   String get userJoined => 'Joined';
 
   @override
-  String get share => 'Compartir';
+  String get share => 'Share';
 
   @override
-  String get copy => 'Copiar';
+  String get copy => 'Copy';
 
   @override
-  String get paste => 'Pegar';
+  String get paste => 'Paste';
 
   @override
-  String get cut => 'Cortar';
+  String get cut => 'Cut';
 
   @override
-  String get selectAll => 'Seleccionar todo';
+  String get selectAll => 'Select All';
 
   @override
-  String get undo => 'Deshacer';
+  String get undo => 'Undo';
 
   @override
-  String get redo => 'Rehacer';
+  String get redo => 'Redo';
 
   @override
   String get incrementAction => 'Increment';
@@ -519,12 +519,12 @@ class GenLocalizationsEs extends GenLocalizations {
 
   @override
   String itemCount(Object count) {
-    return '$count elementos';
+    return '$count items';
   }
 
   @override
   String selectedCount(Object count) {
-    return '$count seleccionados';
+    return '$count selected';
   }
 
   @override
@@ -593,10 +593,10 @@ class GenLocalizationsEs extends GenLocalizations {
   String get passwordsDontMatch => 'Passwords don\'t match';
 
   @override
-  String get invalidEmail => 'Correo electrónico inválido';
+  String get invalidEmail => 'Please enter a valid email address';
 
   @override
-  String get passwordTooShort => 'Contraseña muy corta';
+  String get passwordTooShort => 'Password must be at least 8 characters';
 
   @override
   String get bookings => 'Bookings';
@@ -1013,4 +1013,13 @@ class GenLocalizationsEs extends GenLocalizations {
   @override
   String get roleClientProfessionalDescription =>
       'Offer housekeeping services to customers';
+
+  @override
+  String get dashboardNavigationKyc => 'KYC';
+
+  @override
+  String get dashboardNavigationBookings => 'Bookings';
+
+  @override
+  String get dashboardNavigationUsers => 'Users';
 }

@@ -1,11 +1,11 @@
 library;
 
-import 'package:domain/domain.dart' hide AppState;
+import 'package:domain/domain.dart';
 import 'package:redux/redux.dart';
 
-import '../actions/professional_actions.dart';
-import '../core/core.dart';
-import '../states/app_state.dart';
+import 'package:shared/redux/actions/professional_actions.dart';
+import 'package:shared/redux/core/core.dart';
+import 'package:shared/redux/states/app_state.dart';
 
 List<Middleware<AppState>> createProfessionalMiddleware() {
   return [

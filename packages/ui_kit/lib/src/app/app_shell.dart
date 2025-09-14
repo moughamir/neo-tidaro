@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:ui_kit/src/design_system/design_system.dart';
-import 'package:ui_kit/src/localization/app_localizations.dart';
+import 'package:languist/l10n/gen/intl_localizations.dart';
 
 /// AppShell: A reusable MaterialApp wrapper that wires themes and localization.
 class AppShell extends StatelessWidget {
@@ -31,11 +32,15 @@ class AppShell extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: title,
+
+      debugShowCheckedModeBanner: false,
       theme: KuiTheme.light(),
       darkTheme: KuiTheme.dark(),
       themeMode: themeMode,
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+      // Localization wiring via Languist
+      localizationsDelegates: IntlLocalizations.localizationsDelegates,
+      supportedLocales: IntlLocalizations.supportedLocales,
+
       navigatorKey: navigatorKey,
       routes: routes ?? const <String, WidgetBuilder>{},
       onGenerateRoute: onGenerateRoute,

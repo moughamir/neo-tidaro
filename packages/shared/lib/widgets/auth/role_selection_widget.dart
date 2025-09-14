@@ -1,5 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
+import 'package:languist/languist.dart';
 
 /// A widget for selecting user roles during registration
 class RoleSelectionWidget extends StatefulWidget {
@@ -29,7 +30,7 @@ class _RoleSelectionWidgetState extends State<RoleSelectionWidget> {
 
   void _selectRole(PlatformUserRole role) {
     if (!widget.enabled) return;
-    
+
     setState(() {
       _selectedRole = role;
     });
@@ -38,43 +39,39 @@ class _RoleSelectionWidgetState extends State<RoleSelectionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          l10n.selectUserRole,
-          style: theme.textTheme.titleMedium,
-        ),
+        Text('l10n.selectUserRole', style: theme.textTheme.titleMedium),
         const SizedBox(height: 12),
         Text(
-          l10n.selectUserRoleDescription,
+          'l10n.selectUserRoleDescription',
           style: theme.textTheme.bodySmall?.copyWith(
             color: theme.colorScheme.onSurfaceVariant,
           ),
         ),
         const SizedBox(height: 16),
-        
+
         // Client Consumer Role
         _RoleOption(
           role: PlatformUserRole.clientConsumer,
-          title: l10n.roleClientConsumer,
-          subtitle: l10n.roleClientConsumerDescription,
+          title: 'l10n.roleClientConsumer',
+          subtitle: 'l10n.roleClientConsumerDescription',
           icon: Icons.person,
           isSelected: _selectedRole == PlatformUserRole.clientConsumer,
           enabled: widget.enabled,
           onTap: () => _selectRole(PlatformUserRole.clientConsumer),
         ),
-        
+
         const SizedBox(height: 12),
-        
+
         // Client Professional Role
         _RoleOption(
           role: PlatformUserRole.clientProfessional,
-          title: l10n.roleClientProfessional,
-          subtitle: l10n.roleClientProfessionalDescription,
+          title: 'l10n.roleClientProfessional',
+          subtitle: 'l10n.roleClientProfessionalDescription',
           icon: Icons.work,
           isSelected: _selectedRole == PlatformUserRole.clientProfessional,
           enabled: widget.enabled,
@@ -107,7 +104,7 @@ class _RoleOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     return InkWell(
       onTap: enabled ? onTap : null,
       borderRadius: BorderRadius.circular(12),
@@ -155,7 +152,9 @@ class _RoleOption extends StatelessWidget {
                       color: isSelected
                           ? theme.colorScheme.primary
                           : theme.colorScheme.onSurface,
-                      fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 4),

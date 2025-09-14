@@ -1,6 +1,6 @@
 name: basic_app_example
 description: "Basic Flutter app example showcasing Neo-Tidaro workspace integration"
-publish_to: http://localhost:4000
+publish_to: none
 resolution: workspace
 version: 0.1.0-pre-alpha.3
 

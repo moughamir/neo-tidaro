@@ -1,6 +1,6 @@
 library;
 
-import 'package:domain/domain.dart' hide AppState, ProfessionalState;
+import 'package:domain/domain.dart';
 
 import '../states/app_state.dart';
 import '../states/professional_state.dart';

@@ -1,12 +1,12 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-import 'gen_localizations.dart';
+import 'intl_localizations.dart';
 
 // ignore_for_file: type=lint
 
-/// The translations for French (`fr`).
-class GenLocalizationsFr extends GenLocalizations {
-  GenLocalizationsFr([String locale = 'fr']) : super(locale);
+/// The translations for Spanish Castilian (`es`).
+class IntlLocalizationsEs extends IntlLocalizations {
+  IntlLocalizationsEs([String locale = 'es']) : super(locale);
 
   @override
   String get appTitle => 'TiDaro';
@@ -44,366 +44,366 @@ class GenLocalizationsFr extends GenLocalizations {
   String get commonCancel => 'Cancel';
 
   @override
-  String get save => 'Enregistrer';
+  String get save => 'Guardar';
 
   @override
-  String get delete => 'Supprimer';
+  String get delete => 'Eliminar';
 
   @override
-  String get edit => 'Modifier';
+  String get edit => 'Editar';
 
   @override
-  String get add => 'Ajouter';
+  String get add => 'Añadir';
 
   @override
-  String get create => 'Créer';
+  String get create => 'Crear';
 
   @override
-  String get update => 'Mettre à jour';
+  String get update => 'Actualizar';
 
   @override
-  String get remove => 'Retirer';
+  String get remove => 'Quitar';
 
   @override
-  String get close => 'Fermer';
+  String get close => 'Cerrar';
 
   @override
-  String get open => 'Ouvrir';
+  String get open => 'Abrir';
 
   @override
-  String get submit => 'Soumettre';
+  String get submit => 'Enviar';
 
   @override
-  String get confirm => 'Confirmer';
+  String get confirm => 'Confirmar';
 
   @override
-  String get yes => 'Oui';
+  String get yes => 'Sí';
 
   @override
-  String get no => 'Non';
+  String get no => 'No';
 
   @override
-  String get retry => 'Réessayer';
+  String get retry => 'Reintentar';
 
   @override
-  String get refresh => 'Actualiser';
+  String get refresh => 'Actualizar';
 
   @override
-  String get back => 'Retour';
+  String get back => 'Atrás';
 
   @override
-  String get next => 'Suivant';
+  String get next => 'Siguiente';
 
   @override
-  String get previous => 'Précédent';
+  String get previous => 'Anterior';
 
   @override
-  String get continueAction => 'Continuer';
+  String get continueAction => 'Continuar';
 
   @override
-  String get skip => 'Ignorer';
+  String get skip => 'Omitir';
 
   @override
-  String get done => 'Terminé';
+  String get done => 'Hecho';
 
   @override
-  String get finish => 'Finir';
+  String get finish => 'Finalizar';
 
   @override
-  String get home => 'Accueil';
+  String get home => 'Inicio';
 
   @override
-  String get profile => 'Profil';
+  String get profile => 'Perfil';
 
   @override
-  String get settings => 'Paramètres';
+  String get settings => 'Ajustes';
 
   @override
-  String get about => 'À propos';
+  String get about => 'Acerca de';
 
   @override
-  String get help => 'Aide';
+  String get help => 'Ayuda';
 
   @override
-  String get contact => 'Contact';
+  String get contact => 'Contacto';
 
   @override
-  String get dashboard => 'Tableau de bord';
+  String get dashboard => 'Panel de control';
 
   @override
-  String get notifications => 'Notifications';
+  String get notifications => 'Notificaciones';
 
   @override
-  String get search => 'Rechercher';
+  String get search => 'Buscar';
 
   @override
-  String get filter => 'Filtrer';
+  String get filter => 'Filtrar';
 
   @override
-  String get sort => 'Trier';
+  String get sort => 'Ordenar';
 
   @override
-  String get themeSettings => 'Paramètres du thème';
+  String get themeSettings => 'Ajustes de tema';
 
   @override
-  String get languageSettings => 'Paramètres de langue';
+  String get languageSettings => 'Ajustes de idioma';
 
   @override
-  String get darkMode => 'Mode sombre';
+  String get darkMode => 'Modo oscuro';
 
   @override
-  String get lightMode => 'Mode clair';
+  String get lightMode => 'Modo claro';
 
   @override
-  String get systemMode => 'Mode système';
+  String get systemMode => 'Modo del sistema';
 
   @override
-  String get privacy => 'Confidentialité';
+  String get privacy => 'Privacidad';
 
   @override
-  String get security => 'Sécurité';
+  String get security => 'Seguridad';
 
   @override
-  String get account => 'Compte';
+  String get account => 'Cuenta';
 
   @override
-  String get preferences => 'Préférences';
+  String get preferences => 'Preferencias';
 
   @override
-  String get login => 'Se connecter';
+  String get login => 'Iniciar sesión';
 
   @override
-  String get logout => 'Se déconnecter';
+  String get logout => 'Cerrar sesión';
 
   @override
-  String get register => 'S\'inscrire';
+  String get register => 'Registrarse';
 
   @override
-  String get signUp => 'Créer un compte';
+  String get signUp => 'Crear cuenta';
 
   @override
-  String get signIn => 'Se connecter';
+  String get signIn => 'Iniciar sesión';
 
   @override
-  String get forgotPassword => 'Mot de passe oublié';
+  String get forgotPassword => 'Olvidé mi contraseña';
 
   @override
-  String get resetPassword => 'Réinitialiser le mot de passe';
+  String get resetPassword => 'Restablecer contraseña';
 
   @override
-  String get changePassword => 'Changer le mot de passe';
+  String get changePassword => 'Cambiar contraseña';
 
   @override
-  String get email => 'E-mail';
+  String get email => 'Correo electrónico';
 
   @override
-  String get password => 'Mot de passe';
+  String get password => 'Contraseña';
 
   @override
-  String get username => 'Nom d\'utilisateur';
+  String get username => 'Nombre de usuario';
 
   @override
-  String get name => 'Nom';
+  String get name => 'Nombre';
 
   @override
-  String get firstName => 'Prénom';
+  String get firstName => 'Nombre';
 
   @override
-  String get lastName => 'Nom de famille';
+  String get lastName => 'Apellido';
 
   @override
-  String get phone => 'Téléphone';
+  String get phone => 'Teléfono';
 
   @override
-  String get address => 'Adresse';
+  String get address => 'Dirección';
 
   @override
-  String get city => 'Ville';
+  String get city => 'Ciudad';
 
   @override
-  String get country => 'Pays';
+  String get country => 'País';
 
   @override
-  String get dateOfBirth => 'Date de naissance';
+  String get dateOfBirth => 'Fecha de nacimiento';
 
   @override
-  String get loading => 'Chargement...';
+  String get loading => 'Cargando...';
 
   @override
-  String get saving => 'Enregistrement...';
+  String get saving => 'Guardando...';
 
   @override
-  String get processing => 'Traitement...';
+  String get processing => 'Procesando...';
 
   @override
-  String get uploading => 'Téléchargement...';
+  String get uploading => 'Subiendo...';
 
   @override
-  String get downloading => 'Téléchargement...';
+  String get downloading => 'Descargando...';
 
   @override
-  String get connecting => 'Connexion...';
+  String get connecting => 'Conectando...';
 
   @override
-  String get syncing => 'Synchronisation...';
+  String get syncing => 'Sincronizando...';
 
   @override
-  String get success => 'Succès';
+  String get success => 'Éxito';
 
   @override
-  String get error => 'Erreur';
+  String get error => 'Error';
 
   @override
-  String get warning => 'Avertissement';
+  String get warning => 'Advertencia';
 
   @override
-  String get info => 'Information';
+  String get info => 'Información';
 
   @override
-  String get noData => 'Aucune donnée disponible';
+  String get noData => 'No hay datos disponibles';
 
   @override
-  String get noResults => 'Aucun résultat trouvé';
+  String get noResults => 'No se encontraron resultados';
 
   @override
-  String get networkError => 'Erreur réseau';
+  String get networkError => 'Error de red';
 
   @override
-  String get connectionError => 'Erreur de connexion';
+  String get connectionError => 'Error de conexión';
 
   @override
-  String get serverError => 'Erreur serveur';
+  String get serverError => 'Error del servidor';
 
   @override
-  String get unknownError => 'Erreur inconnue';
+  String get unknownError => 'Error desconocido';
 
   @override
-  String get tryAgain => 'Réessayer';
+  String get tryAgain => 'Intentar de nuevo';
 
   @override
-  String get required => 'Requis';
+  String get required => 'Requerido';
 
   @override
-  String get invalidPhoneNumber => 'Numéro de téléphone invalide';
+  String get invalidPhoneNumber => 'Número de teléfono inválido';
 
   @override
-  String get fieldRequired => 'Ce champ est requis';
+  String get fieldRequired => 'Este campo es requerido';
 
   @override
   String fromNow(Object time) {
-    return 'il y a $time';
+    return 'hace $time';
   }
 
   @override
-  String get justNow => 'à l\'instant';
+  String get justNow => 'ahora mismo';
 
   @override
-  String get aMinuteAgo => 'il y a une minute';
+  String get aMinuteAgo => 'hace un minuto';
 
   @override
   String minutesAgo(Object minutes) {
-    return 'il y a $minutes minutes';
+    return 'hace $minutes minutos';
   }
 
   @override
-  String get anHourAgo => 'il y a une heure';
+  String get anHourAgo => 'hace una hora';
 
   @override
   String hoursAgo(Object hours) {
-    return 'il y a $hours heures';
+    return 'hace $hours horas';
   }
 
   @override
-  String get aDayAgo => 'il y a un jour';
+  String get aDayAgo => 'hace un día';
 
   @override
   String daysAgo(Object days) {
-    return 'il y a $days jours';
+    return 'hace $days días';
   }
 
   @override
-  String get aWeekAgo => 'il y a une semaine';
+  String get aWeekAgo => 'hace una semana';
 
   @override
   String weeksAgo(Object weeks) {
-    return 'il y a $weeks semaines';
+    return 'hace $weeks semanas';
   }
 
   @override
-  String get aMonthAgo => 'il y a un mois';
+  String get aMonthAgo => 'hace un mes';
 
   @override
   String monthsAgo(Object months) {
-    return 'il y a $months mois';
+    return 'hace $months meses';
   }
 
   @override
-  String get aYearAgo => 'il y a un an';
+  String get aYearAgo => 'hace un año';
 
   @override
   String yearsAgo(Object years) {
-    return 'il y a $years ans';
+    return 'hace $years años';
   }
 
   @override
-  String get today => 'Aujourd\'hui';
+  String get today => 'Hoy';
 
   @override
-  String get yesterday => 'Hier';
+  String get yesterday => 'Ayer';
 
   @override
-  String get tomorrow => 'Demain';
+  String get tomorrow => 'Mañana';
 
   @override
-  String get thisWeek => 'Cette semaine';
+  String get thisWeek => 'Esta semana';
 
   @override
-  String get lastWeek => 'La semaine dernière';
+  String get lastWeek => 'La semana pasada';
 
   @override
-  String get nextWeek => 'La semaine prochaine';
+  String get nextWeek => 'La próxima semana';
 
   @override
-  String get thisMonth => 'Ce mois-ci';
+  String get thisMonth => 'Este mes';
 
   @override
-  String get lastMonth => 'Le mois dernier';
+  String get lastMonth => 'El mes pasado';
 
   @override
-  String get nextMonth => 'Le mois prochain';
+  String get nextMonth => 'El próximo mes';
 
   @override
-  String get online => 'En ligne';
+  String get online => 'En línea';
 
   @override
-  String get offline => 'Hors ligne';
+  String get offline => 'Desconectado';
 
   @override
   String get available => 'Disponible';
 
   @override
-  String get busy => 'Occupé';
+  String get busy => 'Ocupado';
 
   @override
-  String get away => 'Absent';
+  String get away => 'Ausente';
 
   @override
-  String get version => 'Version';
+  String get version => 'Versión';
 
   @override
-  String get buildNumber => 'Numéro de build';
+  String get buildNumber => 'Número de compilación';
 
   @override
-  String get copyright => 'Droits d\'auteur';
+  String get copyright => 'Derechos de autor';
 
   @override
-  String get termsOfService => 'Conditions d\'utilisation';
+  String get termsOfService => 'Términos de servicio';
 
   @override
-  String get privacyPolicy => 'Politique de confidentialité';
+  String get privacyPolicy => 'Política de privacidad';
 
   @override
-  String get licenses => 'Licences';
+  String get licenses => 'Licencias';
 
   @override
   String get apply => 'Apply';
@@ -491,25 +491,25 @@ class GenLocalizationsFr extends GenLocalizations {
   String get userJoined => 'Joined';
 
   @override
-  String get share => 'Partager';
+  String get share => 'Compartir';
 
   @override
-  String get copy => 'Copier';
+  String get copy => 'Copiar';
 
   @override
-  String get paste => 'Coller';
+  String get paste => 'Pegar';
 
   @override
-  String get cut => 'Couper';
+  String get cut => 'Cortar';
 
   @override
-  String get selectAll => 'Tout sélectionner';
+  String get selectAll => 'Seleccionar todo';
 
   @override
-  String get undo => 'Annuler';
+  String get undo => 'Deshacer';
 
   @override
-  String get redo => 'Refaire';
+  String get redo => 'Rehacer';
 
   @override
   String get incrementAction => 'Increment';
@@ -519,17 +519,17 @@ class GenLocalizationsFr extends GenLocalizations {
 
   @override
   String itemCount(Object count) {
-    return '$count éléments';
+    return '$count elementos';
   }
 
   @override
   String selectedCount(Object count) {
-    return '$count sélectionnés';
+    return '$count seleccionados';
   }
 
   @override
   String totalCount(Object count) {
-    return 'Total : $count';
+    return 'Total: $count';
   }
 
   @override
@@ -593,10 +593,10 @@ class GenLocalizationsFr extends GenLocalizations {
   String get passwordsDontMatch => 'Passwords don\'t match';
 
   @override
-  String get invalidEmail => 'E-mail invalide';
+  String get invalidEmail => 'Correo electrónico inválido';
 
   @override
-  String get passwordTooShort => 'Mot de passe trop court';
+  String get passwordTooShort => 'Contraseña muy corta';
 
   @override
   String get bookings => 'Bookings';
@@ -756,151 +756,151 @@ class GenLocalizationsFr extends GenLocalizations {
   }
 
   @override
-  String get housekeeping => 'Ménage';
+  String get housekeeping => 'Housekeeping';
 
   @override
-  String get cleaning => 'Nettoyage';
+  String get cleaning => 'Cleaning';
 
   @override
-  String get housekeeper => 'Femme de ménage';
+  String get housekeeper => 'Housekeeper';
 
   @override
-  String get cleaner => 'Agent d\'entretien';
+  String get cleaner => 'Cleaner';
 
   @override
-  String get domesticWorker => 'Employé(e) domestique';
+  String get domesticWorker => 'Domestic Worker';
 
   @override
   String get roleClient => 'Client';
 
   @override
-  String get roleProvider => 'Prestataire de services';
+  String get roleProvider => 'Service Provider';
 
   @override
-  String get roleAdmin => 'Administrateur';
+  String get roleAdmin => 'Administrator';
 
   @override
-  String get roleModerator => 'Modérateur';
+  String get roleModerator => 'Moderator';
 
   @override
-  String get selectRole => 'Sélectionnez votre rôle';
+  String get selectRole => 'Select Your Role';
 
   @override
-  String get clientDescription => 'J\'ai besoin de services de ménage';
+  String get clientDescription => 'I need housekeeping services';
 
   @override
-  String get providerDescription => 'Je fournis des services de ménage';
+  String get providerDescription => 'I provide housekeeping services';
 
   @override
-  String get regularCleaning => 'Ménage régulier';
+  String get regularCleaning => 'Regular Cleaning';
 
   @override
-  String get deepCleaning => 'Grand ménage';
+  String get deepCleaning => 'Deep Cleaning';
 
   @override
-  String get oneTimeCleaning => 'Ménage ponctuel';
+  String get oneTimeCleaning => 'One-time Cleaning';
 
   @override
-  String get moveInOutCleaning => 'Ménage de déménagement';
+  String get moveInOutCleaning => 'Move In/Out Cleaning';
 
   @override
-  String get postConstructionCleaning => 'Nettoyage après travaux';
+  String get postConstructionCleaning => 'Post-Construction Cleaning';
 
   @override
-  String get officeCleaning => 'Nettoyage de bureaux';
+  String get officeCleaning => 'Office Cleaning';
 
   @override
-  String get laundryServices => 'Services de lessive';
+  String get laundryServices => 'Laundry Services';
 
   @override
-  String get dishWashing => 'Vaisselle';
+  String get dishWashing => 'Dish Washing';
 
   @override
-  String get windowCleaning => 'Nettoyage de vitres';
+  String get windowCleaning => 'Window Cleaning';
 
   @override
-  String get carpetCleaning => 'Nettoyage de tapis';
+  String get carpetCleaning => 'Carpet Cleaning';
 
   @override
-  String get postJob => 'Publier une annonce';
+  String get postJob => 'Post a Job';
 
   @override
-  String get jobRequest => 'Demande de service';
+  String get jobRequest => 'Job Request';
 
   @override
-  String get jobDescription => 'Description du travail';
+  String get jobDescription => 'Job Description';
 
   @override
-  String get serviceNeeded => 'Service demandé';
+  String get serviceNeeded => 'Service Needed';
 
   @override
-  String get preferredDate => 'Date préférée';
+  String get preferredDate => 'Preferred Date';
 
   @override
-  String get preferredTime => 'Heure préférée';
+  String get preferredTime => 'Preferred Time';
 
   @override
-  String get estimatedDuration => 'Durée estimée';
+  String get estimatedDuration => 'Estimated Duration';
 
   @override
   String get budget => 'Budget';
 
   @override
-  String get budgetRange => 'Fourchette de prix';
+  String get budgetRange => 'Budget Range';
 
   @override
-  String get propertySize => 'Taille de la propriété';
+  String get propertySize => 'Property Size';
 
   @override
-  String get numberOfRooms => 'Nombre de pièces';
+  String get numberOfRooms => 'Number of Rooms';
 
   @override
-  String get numberOfBathrooms => 'Nombre de salles de bains';
+  String get numberOfBathrooms => 'Number of Bathrooms';
 
   @override
-  String get specialInstructions => 'Instructions spéciales';
+  String get specialInstructions => 'Special Instructions';
 
   @override
-  String get placeBid => 'Faire une offre';
+  String get placeBid => 'Place Bid';
 
   @override
-  String get yourBid => 'Votre offre';
+  String get yourBid => 'Your Bid';
 
   @override
-  String get bidAmount => 'Montant de l\'offre';
+  String get bidAmount => 'Bid Amount';
 
   @override
-  String get acceptBid => 'Accepter l\'offre';
+  String get acceptBid => 'Accept Bid';
 
   @override
-  String get rejectBid => 'Rejeter l\'offre';
+  String get rejectBid => 'Reject Bid';
 
   @override
-  String get counterOffer => 'Contre-offre';
+  String get counterOffer => 'Counter Offer';
 
   @override
-  String get bidsReceived => 'Offres reçues';
+  String get bidsReceived => 'Bids Received';
 
   @override
-  String get averageBid => 'Offre moyenne';
+  String get averageBid => 'Average Bid';
 
   @override
-  String get lowestBid => 'Offre la plus basse';
+  String get lowestBid => 'Lowest Bid';
 
   @override
-  String get highestBid => 'Offre la plus haute';
+  String get highestBid => 'Highest Bid';
 
   @override
-  String get bidMessage => 'Message d\'offre';
+  String get bidMessage => 'Bid Message';
 
   @override
-  String get negotiating => 'En négociation';
+  String get negotiating => 'Negotiating';
 
   @override
-  String get location => 'Localisation';
+  String get location => 'Location';
 
   @override
-  String get serviceArea => 'Zone de service';
+  String get serviceArea => 'Service Area';
 
   @override
   String get bouskoura => 'Bouskoura';
@@ -909,109 +909,117 @@ class GenLocalizationsFr extends GenLocalizations {
   String get casablanca => 'Casablanca';
 
   @override
-  String get nearbyProviders => 'Prestataires à proximité';
+  String get nearbyProviders => 'Nearby Providers';
 
   @override
   String kmAway(double distance) {
-    return 'À $distance km';
+    return '$distance km away';
   }
 
   @override
-  String get cashOnDelivery => 'Paiement à la livraison';
+  String get cashOnDelivery => 'Cash on Delivery';
 
   @override
-  String get payInCash => 'Payer en espèces';
+  String get payInCash => 'Pay in Cash';
 
   @override
-  String get paymentMethod => 'Mode de paiement';
+  String get paymentMethod => 'Payment Method';
 
   @override
-  String get pricePerHour => 'Prix par heure';
+  String get pricePerHour => 'Price per Hour';
 
   @override
-  String get totalPrice => 'Prix total';
+  String get totalPrice => 'Total Price';
 
   @override
-  String get moroccanDirham => 'Dirham Marocain (MAD)';
+  String get moroccanDirham => 'Moroccan Dirham (MAD)';
 
   @override
   String get mad => 'MAD';
 
   @override
-  String get providerProfile => 'Profil du prestataire';
+  String get providerProfile => 'Provider Profile';
 
   @override
-  String get yearsOfExperience => 'Années d\'expérience';
+  String get yearsOfExperience => 'Years of Experience';
 
   @override
-  String get verified => 'Vérifié';
+  String get verified => 'Verified';
 
   @override
-  String get unverified => 'Non vérifié';
+  String get unverified => 'Unverified';
 
   @override
-  String get verificationPending => 'Vérification en cours';
+  String get verificationPending => 'Verification Pending';
 
   @override
-  String get idVerification => 'Vérification d\'identité';
+  String get idVerification => 'ID Verification';
 
   @override
-  String get uploadId => 'Télécharger une pièce d\'identité';
+  String get uploadId => 'Upload ID Document';
 
   @override
-  String get cnie => 'CNIE (Carte d\'identité nationale)';
+  String get cnie => 'CNIE (National ID)';
 
   @override
-  String get passport => 'Passeport';
+  String get passport => 'Passport';
 
   @override
-  String get rating => 'Note';
+  String get rating => 'Rating';
 
   @override
-  String get reviews => 'Avis';
+  String get reviews => 'Reviews';
 
   @override
-  String get rateService => 'Noter ce service';
+  String get rateService => 'Rate this Service';
 
   @override
-  String get writeReview => 'Écrire un avis';
+  String get writeReview => 'Write a Review';
 
   @override
-  String get serviceRating => 'Note du service';
+  String get serviceRating => 'Service Rating';
 
   @override
-  String get wouldRecommend => 'Recommanderait';
+  String get wouldRecommend => 'Would Recommend';
 
   @override
   String get excellent => 'Excellent';
 
   @override
-  String get good => 'Bon';
+  String get good => 'Good';
 
   @override
-  String get average => 'Moyen';
+  String get average => 'Average';
 
   @override
-  String get poor => 'Mauvais';
+  String get poor => 'Poor';
 
   @override
-  String get selectUserRole => 'Sélectionnez votre rôle';
+  String get selectUserRole => 'Select Your Role';
 
   @override
-  String get selectUserRoleDescription =>
-      'Choisissez comment vous comptez utiliser Tidaro';
+  String get selectUserRoleDescription => 'Choose how you plan to use Tidaro';
 
   @override
-  String get roleClientConsumer => 'J\'ai besoin de services';
+  String get roleClientConsumer => 'I Need Services';
 
   @override
   String get roleClientConsumerDescription =>
-      'Réservez des services de ménage pour votre domicile';
+      'Book housekeeping services for your home';
 
   @override
-  String get roleClientProfessional => 'Je fournis des services';
+  String get roleClientProfessional => 'I Provide Services';
 
   @override
   String get roleClientProfessionalDescription =>
-      'Offrez des services de ménage aux clients';
+      'Offer housekeeping services to customers';
+
+  @override
+  String get dashboardNavigationKyc => 'KYC';
+
+  @override
+  String get dashboardNavigationBookings => 'Bookings';
+
+  @override
+  String get dashboardNavigationUsers => 'Users';
 }

@@ -18,7 +18,8 @@ export 'package:material_color_utilities/material_color_utilities.dart';
 export 'src/app/app_n_layouts.dart';
 // Unified design system (NEW - replaces old theme system)
 export 'src/design_system/design_system.dart';
-// Localization wrapper
-export 'src/localization/app_localizations.dart';
+// Utilities
+export 'src/utils/auth_validators.dart';
+
 // Widget components
 export 'src/widgets/widgets.dart';

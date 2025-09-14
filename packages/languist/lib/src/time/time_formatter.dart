@@ -48,21 +48,21 @@ class TimeFormatter {
   /// Convert a Duration to a human-readable string with localization
   static String formatDuration(Duration duration, IntlLocalizations l10n) {
     MomentBridge.setMomentLocalizationFromLanguist(l10n);
-    
+
     if (duration.inDays > 0) {
-      return duration.inDays == 1 
+      return duration.inDays == 1
           ? l10n.durationDays(duration.inDays)
           : l10n.durationDaysPlural(duration.inDays);
     } else if (duration.inHours > 0) {
-      return duration.inHours == 1 
+      return duration.inHours == 1
           ? l10n.durationHours(duration.inHours)
           : l10n.durationHoursPlural(duration.inHours);
     } else if (duration.inMinutes > 0) {
-      return duration.inMinutes == 1 
+      return duration.inMinutes == 1
           ? l10n.durationMinutes(duration.inMinutes)
           : l10n.durationMinutesPlural(duration.inMinutes);
     } else {
-      return duration.inSeconds == 1 
+      return duration.inSeconds == 1
           ? l10n.durationSeconds(duration.inSeconds)
           : l10n.durationSecondsPlural(duration.inSeconds);
     }

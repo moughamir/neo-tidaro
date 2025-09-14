@@ -7,9 +7,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 /// Authentication service for TiDash application
 /// Provides authentication functionality using Supabase
 class TiDashAuthService {
-
   TiDashAuthService(this._supabaseService);
-  final SupabaseService _supabaseService;
+  final SupabaseServiceInterface _supabaseService;
 
   /// Get the current authenticated user
   User? get currentUser => _supabaseService.currentUser;

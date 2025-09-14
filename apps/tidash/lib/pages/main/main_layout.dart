@@ -6,6 +6,8 @@ import '../bookings/bookings_page.dart';
 // Pages
 import '../dashboard/dashboard_page.dart';
 import '../staff/staff_page.dart';
+import '../admin/admin_bookings_page.dart';
+import '../admin/admin_users_page.dart';
 
 /// Main layout with navigation for TiDash
 class MainLayout extends StatefulWidget {
@@ -23,13 +25,14 @@ class _MainLayoutState extends State<MainLayout> {
     const BookingsPage(),
     const StaffPage(),
     const KycReviewPage(),
+    const AdminBookingsPage(),
+    const AdminUsersPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    final l10n = Languist.of(context);
     final ThemeData theme = Theme.of(context);
-
+    final l10n = Languist.of(context);
     return Scaffold(
       body: Row(
         children: <Widget>[
@@ -59,10 +62,20 @@ class _MainLayoutState extends State<MainLayout> {
                 selectedIcon: const Icon(Icons.people),
                 label: Text(l10n.staff),
               ),
-              const NavigationRailDestination(
-                icon: Icon(Icons.verified_user_outlined),
-                selectedIcon: Icon(Icons.verified_user),
-                label: Text('KYC'),
+              NavigationRailDestination(
+                icon: const Icon(Icons.verified_user_outlined),
+                selectedIcon: const Icon(Icons.verified_user),
+                label: Text(l10n.dashboardNavigationKyc),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.fact_check_outlined),
+                selectedIcon: const Icon(Icons.fact_check),
+                label: Text(l10n.dashboardNavigationBookings),
+              ),
+              NavigationRailDestination(
+                icon: const Icon(Icons.supervised_user_circle_outlined),
+                selectedIcon: const Icon(Icons.supervised_user_circle),
+                label: Text(l10n.dashboardNavigationUsers),
               ),
             ],
           ),

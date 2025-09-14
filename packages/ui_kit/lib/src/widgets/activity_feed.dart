@@ -70,7 +70,6 @@ class ActivityFeed<T, E> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
     final displayItems = maxItems != null && activities.length > maxItems!
         ? activities.take(maxItems!).toList()
         : activities;
@@ -116,7 +115,7 @@ class ActivityFeed<T, E> extends StatelessWidget {
                         ),
                       ),
                       title: Text(
-                        emptyText ?? l10n.noData,
+                        emptyText ?? 'l10n.noData',
                         style: theme.textTheme.bodyLarge?.copyWith(
                           color: theme.colorScheme.onSurface.withValues(
                             alpha: 0.6,
@@ -376,11 +375,10 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final l10n = Languist.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.activityLog),
+        title: Text('10n.activityLog'),
         backgroundColor: theme.colorScheme.surface,
         elevation: 0,
         scrolledUnderElevation: 1,
@@ -388,7 +386,7 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
           IconButton(
             icon: const Icon(Icons.filter_list),
             onPressed: _showFilterDialog,
-            tooltip: l10n.filter,
+            tooltip: 'l10n.filter',
           ),
         ],
       ),
@@ -411,7 +409,7 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
               controller: _searchController,
               onChanged: _filterActivities,
               decoration: InputDecoration(
-                hintText: l10n.searchActivities,
+                hintText: 'l10n.searchActivities',
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: _searchController.text.isNotEmpty
                     ? IconButton(
@@ -470,11 +468,10 @@ class _ActivityLogPageState extends State<ActivityLogPage> {
   }
 
   Widget _buildEmptyState(BuildContext context) {
-    final l10n = Languist.of(context);
     return EmptyState(
       icon: Icons.timeline,
-      title: l10n.noActivitiesFound,
-      description: l10n.noActivitiesFoundDescription,
+      title: 'l10n.noActivitiesFound',
+      description: 'l10n.noActivitiesFoundDescription',
     );
   }
 
@@ -636,17 +633,15 @@ class _FilterDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = Languist.of(context);
-
     return AlertDialog(
-      title: Text(l10n.filterActivities),
+      title: Text('10n.filterActivities'),
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
               leading: const Icon(Icons.clear_all),
-              title: Text(l10n.allActivities),
+              title: Text('l10n.allActivities'),
               selected: selectedFilter == null,
               onTap: () {
                 onFilterSelected(null);
@@ -671,7 +666,7 @@ class _FilterDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(l10n.cancel),
+          child: Text('l10n.commonCancel'),
         ),
       ],
     );

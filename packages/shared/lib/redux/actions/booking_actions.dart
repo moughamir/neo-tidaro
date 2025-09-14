@@ -31,7 +31,7 @@ class LoadBookingsAction extends BaseAsyncAction<List<Booking>> {
 
   @override
   Future<Either<Exception, List<Booking>>> execute() async {
-    throw UnimplementedError('Execute should be handled by middleware');
+    return Left(Exception('Execute should be handled by middleware'));
   }
 
   @override
@@ -99,7 +99,7 @@ class UpdateBookingAction extends BaseAsyncAction<Booking> {
 
   @override
   Future<Either<Exception, Booking>> execute() async {
-    throw UnimplementedError('Execute should be handled by middleware');
+    return Left(Exception('Execute should be handled by middleware'));
   }
 
   @override

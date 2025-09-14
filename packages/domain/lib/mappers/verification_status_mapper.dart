@@ -11,7 +11,7 @@ String verificationStatusToSql(VerificationStatus value) {
     case VerificationStatus.expired:
       return 'expired';
     case VerificationStatus.unverified:
-      throw UnimplementedError();
+      return 'unverified';
   }
 }
 

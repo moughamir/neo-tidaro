@@ -5,26 +5,26 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
-import 'gen_localizations_ar.dart';
-import 'gen_localizations_en.dart';
-import 'gen_localizations_es.dart';
-import 'gen_localizations_fr.dart';
+import 'intl_localizations_ar.dart';
+import 'intl_localizations_en.dart';
+import 'intl_localizations_es.dart';
+import 'intl_localizations_fr.dart';
 
 // ignore_for_file: type=lint
 
-/// Callers can lookup localized strings with an instance of GenLocalizations
-/// returned by `GenLocalizations.of(context)`.
+/// Callers can lookup localized strings with an instance of IntlLocalizations
+/// returned by `IntlLocalizations.of(context)`.
 ///
-/// Applications need to include `GenLocalizations.delegate()` in their app's
+/// Applications need to include `IntlLocalizations.delegate()` in their app's
 /// `localizationDelegates` list, and the locales they support in the app's
 /// `supportedLocales` list. For example:
 ///
 /// ```dart
-/// import 'gen/gen_localizations.dart';
+/// import 'gen/intl_localizations.dart';
 ///
 /// return MaterialApp(
-///   localizationsDelegates: GenLocalizations.localizationsDelegates,
-///   supportedLocales: GenLocalizations.supportedLocales,
+///   localizationsDelegates: IntlLocalizations.localizationsDelegates,
+///   supportedLocales: IntlLocalizations.supportedLocales,
 ///   home: MyApplicationHome(),
 /// );
 /// ```
@@ -61,20 +61,20 @@ import 'gen_localizations_fr.dart';
 /// Select and expand the newly-created Localizations item then, for each
 /// locale your application supports, add a new item and select the locale
 /// you wish to add from the pop-up menu in the Value field. This list should
-/// be consistent with the languages listed in the GenLocalizations.supportedLocales
+/// be consistent with the languages listed in the IntlLocalizations.supportedLocales
 /// property.
-abstract class GenLocalizations {
-  GenLocalizations(String locale)
+abstract class IntlLocalizations {
+  IntlLocalizations(String locale)
     : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
-  static GenLocalizations? of(BuildContext context) {
-    return Localizations.of<GenLocalizations>(context, GenLocalizations);
+  static IntlLocalizations of(BuildContext context) {
+    return Localizations.of<IntlLocalizations>(context, IntlLocalizations)!;
   }
 
-  static const LocalizationsDelegate<GenLocalizations> delegate =
-      _GenLocalizationsDelegate();
+  static const LocalizationsDelegate<IntlLocalizations> delegate =
+      _IntlLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -2015,15 +2015,35 @@ abstract class GenLocalizations {
   /// In en, this message translates to:
   /// **'Offer housekeeping services to customers'**
   String get roleClientProfessionalDescription;
+
+  /// KYC navigation label
+  ///
+  /// In en, this message translates to:
+  /// **'KYC'**
+  String get dashboardNavigationKyc;
+
+  /// Bookings navigation label
+  ///
+  /// In en, this message translates to:
+  /// **'Bookings'**
+  String get dashboardNavigationBookings;
+
+  /// Users navigation label
+  ///
+  /// In en, this message translates to:
+  /// **'Users'**
+  String get dashboardNavigationUsers;
 }
 
-class _GenLocalizationsDelegate
-    extends LocalizationsDelegate<GenLocalizations> {
-  const _GenLocalizationsDelegate();
+class _IntlLocalizationsDelegate
+    extends LocalizationsDelegate<IntlLocalizations> {
+  const _IntlLocalizationsDelegate();
 
   @override
-  Future<GenLocalizations> load(Locale locale) {
-    return SynchronousFuture<GenLocalizations>(lookupGenLocalizations(locale));
+  Future<IntlLocalizations> load(Locale locale) {
+    return SynchronousFuture<IntlLocalizations>(
+      lookupIntlLocalizations(locale),
+    );
   }
 
   @override
@@ -2031,24 +2051,24 @@ class _GenLocalizationsDelegate
       <String>['ar', 'en', 'es', 'fr'].contains(locale.languageCode);
 
   @override
-  bool shouldReload(_GenLocalizationsDelegate old) => false;
+  bool shouldReload(_IntlLocalizationsDelegate old) => false;
 }
 
-GenLocalizations lookupGenLocalizations(Locale locale) {
+IntlLocalizations lookupIntlLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'ar':
-      return GenLocalizationsAr();
+      return IntlLocalizationsAr();
     case 'en':
-      return GenLocalizationsEn();
+      return IntlLocalizationsEn();
     case 'es':
-      return GenLocalizationsEs();
+      return IntlLocalizationsEs();
     case 'fr':
-      return GenLocalizationsFr();
+      return IntlLocalizationsFr();
   }
 
   throw FlutterError(
-    'GenLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'IntlLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
     'an issue with the localizations generation tool. Please file an issue '
     'on GitHub with a reproducible sample app and the gen-l10n configuration '
     'that was used.',

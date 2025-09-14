@@ -1,7 +1,8 @@
-import 'package:core/core.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 
+import '../pages/auth/login_page.dart';
+import '../pages/auth/signup_page.dart';
 import '../pages/home_page.dart';
 
 class TiDashApp extends StatelessWidget {
@@ -22,10 +23,14 @@ class TiDashApp extends StatelessWidget {
         ),
         catchErrors: true,
       ),
-      child: const AppShell(
+      child: AppShell(
         title: 'TiDash',
-        home: TiDashHome(),
+        home: const TiDashHome(),
         themeMode: ThemeMode.system,
+        routes: {
+          '/login': (context) => const LoginPage(),
+          '/signup': (context) => const SignUpPage(),
+        },
       ),
     );
   }

@@ -49,8 +49,8 @@ class SignInAction extends BaseAsyncAction<User> {
 
   @override
   Future<Either<Exception, User>> execute() async {
-    // Implementation will be handled by middleware
-    throw UnimplementedError('Execute should be handled by middleware');
+    // Implementation should be handled by middleware
+    return Left(Exception('Execute should be handled by middleware'));
   }
 
   @override
@@ -84,8 +84,8 @@ class SignUpAction extends BaseAsyncAction<User> {
 
   @override
   Future<Either<Exception, User>> execute() async {
-    // Implementation will be handled by middleware
-    throw UnimplementedError('Execute should be handled by middleware');
+    // Implementation should be handled by middleware
+    return Left(Exception('Execute should be handled by middleware'));
   }
 
   @override
@@ -101,8 +101,8 @@ class SignOutAction extends BaseAsyncAction<void> {
 
   @override
   Future<Either<Exception, void>> execute() async {
-    // Implementation will be handled by middleware
-    throw UnimplementedError('Execute should be handled by middleware');
+    // Implementation should be handled by middleware
+    return Left(Exception('Execute should be handled by middleware'));
   }
 
   @override
@@ -123,8 +123,8 @@ class ResetPasswordAction extends BaseAsyncAction<void> {
 
   @override
   Future<Either<Exception, void>> execute() async {
-    // Implementation will be handled by middleware
-    throw UnimplementedError('Execute should be handled by middleware');
+    // Implementation should be handled by middleware
+    return Left(Exception('Execute should be handled by middleware'));
   }
 
   @override
@@ -171,8 +171,8 @@ class SocialSignInAction extends BaseAsyncAction<User> {
 
   @override
   Future<Either<Exception, User>> execute() async {
-    // Implementation will be handled by middleware
-    throw UnimplementedError('Execute should be handled by middleware');
+    // Implementation should be handled by middleware
+    return Left(Exception('Execute should be handled by middleware'));
   }
 
   @override
@@ -193,8 +193,8 @@ class PhoneSignInAction extends BaseAsyncAction<void> {
 
   @override
   Future<Either<Exception, void>> execute() async {
-    // Implementation will be handled by middleware
-    throw UnimplementedError('Execute should be handled by middleware');
+    // Implementation should be handled by middleware
+    return Left(Exception('Execute should be handled by middleware'));
   }
 
   @override

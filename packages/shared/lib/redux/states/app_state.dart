@@ -1,4 +1,5 @@
 import 'package:shared/redux/core/core.dart';
+import 'package:shared/redux/states/admin_users_state.dart';
 import 'states.dart';
 
 class AppState extends BaseState {
@@ -11,6 +12,7 @@ class AppState extends BaseState {
     notificationState: NotificationState.initial(),
     professionalState: ProfessionalState.initial(),
     kycQueueState: KycQueueState.empty,
+    adminUsersState: AdminUsersState.empty,
     uiState: UiState.initial(),
     userState: UserState.initial(),
   );
@@ -23,6 +25,7 @@ class AppState extends BaseState {
     required this.notificationState,
     required this.professionalState,
     required this.kycQueueState,
+    required this.adminUsersState,
     required this.uiState,
     required this.userState,
   });
@@ -34,6 +37,7 @@ class AppState extends BaseState {
   final NotificationState notificationState;
   final ProfessionalState professionalState;
   final KycQueueState kycQueueState;
+  final AdminUsersState adminUsersState;
   final UiState uiState;
   final UserState userState;
   AppState copyWith({
@@ -45,6 +49,7 @@ class AppState extends BaseState {
     NotificationState? notificationState,
     ProfessionalState? professionalState,
     KycQueueState? kycQueueState,
+    AdminUsersState? adminUsersState,
     UiState? uiState,
     UserState? userState,
   }) {
@@ -57,6 +62,7 @@ class AppState extends BaseState {
       notificationState: notificationState ?? this.notificationState,
       professionalState: professionalState ?? this.professionalState,
       kycQueueState: kycQueueState ?? this.kycQueueState,
+      adminUsersState: adminUsersState ?? this.adminUsersState,
       uiState: uiState ?? this.uiState,
       userState: userState ?? this.userState,
     );
@@ -77,6 +83,7 @@ class AppState extends BaseState {
     professionalState,
     professionalState,
     kycQueueState,
+    adminUsersState,
     uiState,
     uiState,
     userState,
@@ -95,6 +102,7 @@ class AppState extends BaseState {
       'notificationState: ${notificationState.stateType}'
       'professionalState: ${professionalState.stateType},'
       'kycQueueState: ${kycQueueState.stateType}'
+      'adminUsersState: ${adminUsersState.stateType}'
       'uiState: ${uiState.stateType}'
       'userState: ${userState.stateType}'
       ')';

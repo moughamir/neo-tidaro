@@ -18,7 +18,6 @@ class DashboardHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
 
     return Padding(
       padding: const EdgeInsets.all(24),
@@ -29,7 +28,7 @@ class DashboardHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  l10n.dashboard,
+                  'l10n.dashboard',
                   style: theme.textTheme.headlineLarge?.copyWith(
                     fontWeight: FontWeight.bold,
                     color: theme.colorScheme.onSurface,
@@ -69,7 +68,7 @@ class DashboardHeader extends StatelessWidget {
                       ),
                     )
                   : const Icon(Icons.refresh),
-              tooltip: l10n.refresh,
+              tooltip: 'l10n.refresh',
             ),
         ],
       ),

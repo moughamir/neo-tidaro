@@ -1,5 +1,3 @@
-import 'package:fpdart/fpdart.dart' hide State;
-import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -32,24 +30,23 @@ class _BookingsPageState extends State<BookingsPage> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surface,
       appBar: AppBar(
-        title: Text(l10n.bookings),
+        title: Text('l10n.bookings'),
         backgroundColor: Colors.transparent,
         elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.add),
             onPressed: () => _showCreateBookingDialog(context),
-            tooltip: l10n.add,
+            tooltip: 'l10n.add',
           ),
           IconButton(
             icon: const Icon(Icons.filter_list),
             onPressed: () => _showFilterDialog(context),
-            tooltip: l10n.filter,
+            tooltip: 'l10n.filter',
           ),
         ],
       ),
@@ -64,12 +61,12 @@ class _BookingsPageState extends State<BookingsPage> {
           if (viewModel.bookings.isEmpty) {
             return EmptyState(
               icon: Icons.calendar_today_outlined,
-              title: l10n.noBookings,
-              description: l10n.noBookingsDescription,
+              title: 'l10n.noBookings',
+              description: 'l10n.noBookingsDescription',
               action: ElevatedButton.icon(
                 onPressed: () => _showCreateBookingDialog(context),
                 icon: const Icon(Icons.add),
-                label: Text(l10n.createBooking),
+                label: Text('l10n.createBooking'),
               ),
             );
           }

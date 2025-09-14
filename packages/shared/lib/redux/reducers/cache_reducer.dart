@@ -6,8 +6,7 @@ class CacheReducer extends BaseReducer<CacheState> {
   @override
   CacheState reduce(CacheState state, BaseAction action) {
     return switch (action.type) {
-      // TODO: Handle this case.
-      String() => throw UnimplementedError(),
+      String() => state,
     };
   }
 }

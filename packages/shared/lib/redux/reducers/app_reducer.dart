@@ -10,6 +10,7 @@ import 'kyc_reducer.dart';
 import 'notification_reducer.dart';
 import 'professional_reducer.dart';
 import 'ui_reducer.dart';
+import 'admin_users_reducer.dart';
 
 /// Main app reducer that combines all feature reducers
 AppState appReducer(AppState state, dynamic action) {
@@ -27,5 +28,6 @@ AppState appReducer(AppState state, dynamic action) {
     ),
     userState: userReducer.reduce(state.userState, action),
     kycQueueState: kycReducer(state.kycQueueState, action),
+    adminUsersState: adminUsersReducer(state.adminUsersState, action),
   );
 }

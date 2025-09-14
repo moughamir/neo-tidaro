@@ -85,10 +85,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(l10n.hello),
+            Text(l10n.greetHello),
             const SizedBox(height: 20),
             // Using localized string with parameter
-            Text(l10n.helloUser('Tidaro Mini User')),
+            Text(l10n.greetHelloUser('TiDev')),
             const SizedBox(height: 20),
             Text(l10n.minutesAgo(_counter)),
             Text(

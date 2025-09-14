@@ -1,12 +1,12 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-import 'gen_localizations.dart';
+import 'intl_localizations.dart';
 
 // ignore_for_file: type=lint
 
 /// The translations for Arabic (`ar`).
-class GenLocalizationsAr extends GenLocalizations {
-  GenLocalizationsAr([String locale = 'ar']) : super(locale);
+class IntlLocalizationsAr extends IntlLocalizations {
+  IntlLocalizationsAr([String locale = 'ar']) : super(locale);
 
   @override
   String get appTitle => 'تيدارو';
@@ -1010,4 +1010,13 @@ class GenLocalizationsAr extends GenLocalizations {
 
   @override
   String get roleClientProfessionalDescription => 'قدم خدمات التنظيف للعملاء';
+
+  @override
+  String get dashboardNavigationKyc => 'KYC';
+
+  @override
+  String get dashboardNavigationBookings => 'Bookings';
+
+  @override
+  String get dashboardNavigationUsers => 'Users';
 }

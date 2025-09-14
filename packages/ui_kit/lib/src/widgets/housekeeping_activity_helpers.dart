@@ -64,31 +64,30 @@ String getActivityTypeName(
   BuildContext context,
   HousekeepingActivityType type,
 ) {
-  final l10n = Languist.of(context);
   switch (type) {
     case HousekeepingActivityType.bookingCreated:
-      return l10n.bookingCreated;
+      return 'l10n.bookingCreated';
     case HousekeepingActivityType.bookingConfirmed:
-      return l10n.bookingConfirmed;
+      return 'l10n.bookingConfirmed';
     case HousekeepingActivityType.bookingStarted:
-      return l10n.bookingStarted;
+      return 'l10n.bookingStarted';
     case HousekeepingActivityType.bookingCompleted:
-      return l10n.bookingCompleted;
+      return 'l10n.bookingCompleted';
     case HousekeepingActivityType.bookingCancelled:
-      return l10n.bookingCancelled;
+      return 'l10n.bookingCancelled';
     case HousekeepingActivityType.bookingRescheduled:
-      return l10n.bookingRescheduled;
+      return 'l10n.bookingRescheduled';
     case HousekeepingActivityType.professionalAssigned:
-      return l10n.professionalAssigned;
+      return 'l10n.professionalAssigned';
     case HousekeepingActivityType.professionalUnassigned:
-      return l10n.professionalUnassigned;
+      return 'l10n.professionalUnassigned';
     case HousekeepingActivityType.paymentReceived:
-      return l10n.paymentReceived;
+      return 'l10n.paymentReceived';
     case HousekeepingActivityType.reviewSubmitted:
-      return l10n.reviewSubmitted;
+      return 'l10n.reviewSubmitted';
     case HousekeepingActivityType.customerRegistered:
-      return l10n.customerRegistered;
+      return 'l10n.customerRegistered';
     case HousekeepingActivityType.professionalRegistered:
-      return l10n.professionalRegistered;
+      return 'l10n.professionalRegistered';
   }
 }

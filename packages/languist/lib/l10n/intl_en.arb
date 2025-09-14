@@ -1350,5 +1350,17 @@
   "roleClientProfessionalDescription": "Offer housekeeping services to customers",
   "@roleClientProfessionalDescription": {
     "description": "Description for client professional role"
+  },
+  "dashboardNavigationKyc": "KYC",
+  "@dashboardNavigationKyc": {
+    "description": "KYC navigation label"
+  },
+  "dashboardNavigationBookings": "Bookings",
+  "@dashboardNavigationBookings": {
+    "description": "Bookings navigation label"
+  },
+  "dashboardNavigationUsers": "Users",
+  "@dashboardNavigationUsers": {
+    "description": "Users navigation label"
   }
 }

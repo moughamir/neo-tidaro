@@ -5,7 +5,6 @@ import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 
 /// Implementation of [BookingRepository] using Supabase as the backend.
 class SupabaseBookingRepository implements BookingRepository {
-
   /// Creates a new [SupabaseBookingRepository] with the given [SupabaseClient].
   /// If no client is provided, it will use the default Supabase client.
   SupabaseBookingRepository([SupabaseClient? client])
@@ -316,9 +315,14 @@ class SupabaseBookingRepository implements BookingRepository {
   }
 
   @override
-  Future<bool> cancelBooking(String bookingId, String reason) {
-    // TODO: implement cancelBooking
-    throw UnimplementedError();
+  Future<bool> cancelBooking(String bookingId, String reason) async {
+    try {
+      await cancel(bookingId, reason);
+      return true;
+    } catch (e) {
+      CoreLogger.error('cancelBooking failed for $bookingId: $e');
+      return false;
+    }
   }
 
   @override
@@ -326,51 +330,199 @@ class SupabaseBookingRepository implements BookingRepository {
     required String professionalId,
     required DateTime date,
     required TimeSlot timeSlot,
-  }) {
-    // TODO: implement checkAvailability
-    throw UnimplementedError();
+  }) async {
+    try {
+      // Build start/end DateTime from date and HH:mm times
+      DateTime combine(DateTime d, String hhmm) {
+        final parts = hhmm.split(':');
+        final h = int.tryParse(parts[0]) ?? 0;
+        final m = int.tryParse(parts[1]) ?? 0;
+        return DateTime(d.year, d.month, d.day, h, m);
+      }
+
+      final start = combine(date, timeSlot.startTime);
+      final end = combine(date, timeSlot.endTime);
+
+      // Consider overlapping bookings for this provider in active statuses
+      final activeStatuses = [
+        'pending',
+        'confirmed',
+        'inProgress',
+        'in_progress',
+      ];
+      final orStatuses = activeStatuses.map((s) => 'status.eq.$s').join(',');
+
+      final rows =
+          await _client
+                  .from(_bookingsTable)
+                  .select(
+                    'id, scheduled_start_time, scheduled_end_time, status',
+                  )
+                  .eq('provider_id', professionalId)
+                  .or(orStatuses)
+                  // Overlap condition: existing.start < end AND existing.end > start
+                  .lt('scheduled_start_time', end.toIso8601String())
+                  .gt('scheduled_end_time', start.toIso8601String())
+              as List<dynamic>;
+
+      return rows.isEmpty;
+    } on PostgrestException catch (e) {
+      CoreLogger.error('checkAvailability failed: ${e.message}');
+      return false;
+    } catch (e) {
+      CoreLogger.error('checkAvailability unexpected error: $e');
+      return false;
+    }
   }
 
   @override
-  Future<bool> completeBooking(String bookingId) {
-    // TODO: implement completeBooking
-    throw UnimplementedError();
+  Future<bool> completeBooking(String bookingId) async {
+    try {
+      final now = DateTime.now().toIso8601String();
+      final res = await _client
+          .from(_bookingsTable)
+          .update({
+            'status': 'completed',
+            'actual_end_time': now,
+            'updated_at': now,
+          })
+          .eq('id', bookingId)
+          .select('id')
+          .single();
+      return res != null;
+    } on PostgrestException catch (e) {
+      CoreLogger.error('completeBooking failed: ${e.message}');
+      return false;
+    } catch (e) {
+      CoreLogger.error('completeBooking unexpected error: $e');
+      return false;
+    }
   }
 
   @override
-  Future<bool> confirmBooking(String bookingId) {
-    // TODO: implement confirmBooking
-    throw UnimplementedError();
+  Future<bool> confirmBooking(String bookingId) async {
+    try {
+      final now = DateTime.now().toIso8601String();
+      final res = await _client
+          .from(_bookingsTable)
+          .update({'status': 'confirmed', 'updated_at': now})
+          .eq('id', bookingId)
+          .select('id')
+          .single();
+      return res != null;
+    } on PostgrestException catch (e) {
+      CoreLogger.error('confirmBooking failed: ${e.message}');
+      return false;
+    } catch (e) {
+      CoreLogger.error('confirmBooking unexpected error: $e');
+      return false;
+    }
   }
 
   @override
-  Future<RepositoryResult<Booking>> create(Booking entity) {
-    // TODO: implement create
-    throw UnimplementedError();
+  Future<RepositoryResult<Booking>> create(Booking entity) async {
+    try {
+      final saved = await save(entity);
+      return RepositoryResult.success(saved);
+    } catch (e) {
+      CoreLogger.error('create failed: $e');
+      return RepositoryResult.failure(e.toString());
+    }
   }
 
   @override
-  Future<RepositoryResult<List<Booking>>> createBatch(List<Booking> entities) {
-    // TODO: implement createBatch
-    throw UnimplementedError();
+  Future<RepositoryResult<List<Booking>>> createBatch(
+    List<Booking> entities,
+  ) async {
+    final List<Booking> created = [];
+    try {
+      for (final b in entities) {
+        created.add(await save(b));
+      }
+      return RepositoryResult.success(created);
+    } catch (e) {
+      CoreLogger.error('createBatch failed: $e');
+      return RepositoryResult.failure(e.toString());
+    }
   }
 
   @override
-  Future<Booking> createBooking(CreateBookingDto dto) {
-    // TODO: implement createBooking
-    throw UnimplementedError();
+  Future<Booking> createBooking(CreateBookingDto dto) async {
+    try {
+      // Combine scheduled date with provided time slot
+      DateTime combine(DateTime d, String hhmm) {
+        final parts = hhmm.split(':');
+        final h = int.tryParse(parts[0]) ?? 0;
+        final m = int.tryParse(parts[1]) ?? 0;
+        return DateTime(d.year, d.month, d.day, h, m);
+      }
+
+      final start = combine(dto.scheduledDate, dto.timeSlot.startTime);
+      final end = combine(dto.scheduledDate, dto.timeSlot.endTime);
+
+      final payload = {
+        'client_id': dto.clientId,
+        // Table uses provider_id for professional
+        'provider_id': dto.professionalId,
+        'service_id': dto.serviceId,
+        'address_id': dto.addressId,
+        'scheduled_start_time': start.toIso8601String(),
+        'scheduled_end_time': end.toIso8601String(),
+        'total_amount': dto.totalPrice,
+        'special_instructions': dto.specialInstructions,
+        'status': 'pending',
+        'created_at': DateTime.now().toIso8601String(),
+        'updated_at': DateTime.now().toIso8601String(),
+        // Keep original extras for analytics/audit if columns exist
+        'payment_method': dto.paymentMethod.name,
+        'recurrence': dto.recurrence.name,
+        'attachments': dto.attachments,
+        'duration_minutes': dto.durationMinutes,
+      };
+
+      final inserted = await _client
+          .from(_bookingsTable)
+          .insert(payload)
+          .select()
+          .single();
+
+      return _mapToBooking(inserted);
+    } on PostgrestException catch (e) {
+      CoreLogger.error('createBooking failed: ${e.message}');
+      throw Failure.database(e.message);
+    } catch (e, st) {
+      CoreLogger.error('createBooking unexpected error: $e', st);
+      throw Failure.unexpected(e.toString());
+    }
   }
 
   @override
-  Future<RepositoryResult<bool>> delete(String id) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<RepositoryResult<bool>> delete(String id) async {
+    try {
+      await _client.from(_bookingsTable).delete().eq('id', id);
+      return RepositoryResult.success(true);
+    } on PostgrestException catch (e) {
+      CoreLogger.error('delete failed: ${e.message}');
+      return RepositoryResult.failure(e.message);
+    } catch (e) {
+      CoreLogger.error('delete unexpected error: $e');
+      return RepositoryResult.failure(e.toString());
+    }
   }
 
   @override
-  Future<RepositoryResult<bool>> deleteBatch(List<String> ids) {
-    // TODO: implement deleteBatch
-    throw UnimplementedError();
+  Future<RepositoryResult<bool>> deleteBatch(List<String> ids) async {
+    try {
+      if (ids.isEmpty) return RepositoryResult.success(true);
+      await _client.from(_bookingsTable).delete().inFilter('id', ids);
+      return RepositoryResult.success(true);
+    } on PostgrestException catch (e) {
+      CoreLogger.error('deleteBatch failed: ${e.message}');
+      return RepositoryResult.failure(e.message);
+    } catch (e) {
+      CoreLogger.error('deleteBatch unexpected error: $e');
+      return RepositoryResult.failure(e.toString());
+    }
   }
 
   @override
@@ -423,9 +575,25 @@ class SupabaseBookingRepository implements BookingRepository {
   }
 
   @override
-  Future<List<Booking>> getBookingHistory(String userId) {
-    // TODO: implement getBookingHistory
-    throw UnimplementedError();
+  Future<List<Booking>> getBookingHistory(String userId) async {
+    CoreLogger.database('Fetching booking history for user: $userId');
+    try {
+      final q = _client
+          .from(_bookingsTable)
+          .select()
+          .or('client_id.eq.$userId,provider_id.eq.$userId')
+          .inFilter('status', ['completed', 'cancelled', 'canceled'])
+          .order('scheduled_start_time', ascending: false);
+
+      final rows = await q as List<dynamic>;
+      return rows.map((e) => _mapToBooking(e as Map<String, dynamic>)).toList();
+    } on PostgrestException catch (e) {
+      CoreLogger.error('getBookingHistory failed: ${e.message}');
+      throw Failure.database(e.message);
+    } catch (e, st) {
+      CoreLogger.error('Unexpected getBookingHistory error: $e', st);
+      throw Failure.unexpected(e.toString());
+    }
   }
 
   @override
@@ -598,15 +766,57 @@ class SupabaseBookingRepository implements BookingRepository {
   }
 
   @override
-  Future<RepositoryResult<Booking>> update(Booking entity) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<RepositoryResult<Booking>> update(Booking entity) async {
+    try {
+      final data = _bookingToJson(entity);
+      final updated = await _client
+          .from(_bookingsTable)
+          .update(data)
+          .eq('id', entity.id)
+          .select()
+          .single();
+      return RepositoryResult.success(
+        _mapToBooking(updated as Map<String, dynamic>),
+      );
+    } on PostgrestException catch (e) {
+      CoreLogger.error('update failed: ${e.message}');
+      return RepositoryResult.failure(e.message);
+    } catch (e) {
+      CoreLogger.error('update unexpected error: $e');
+      return RepositoryResult.failure(e.toString());
+    }
   }
 
   @override
-  Future<Booking> updateStatus(UpdateBookingStatusDto dto) {
-    // TODO: implement updateStatus
-    throw UnimplementedError();
+  Future<Booking> updateStatus(UpdateBookingStatusDto dto) async {
+    try {
+      final patch = <String, dynamic>{
+        'status': dto.status.name,
+        'updated_at': DateTime.now().toIso8601String(),
+      };
+      if (dto.reason != null) {
+        patch['cancellation_reason'] = dto.reason;
+      }
+      // Optionally persist metadata if a jsonb column exists
+      if (dto.metadata != null) {
+        patch['status_metadata'] = dto.metadata;
+      }
+
+      final updated = await _client
+          .from(_bookingsTable)
+          .update(patch)
+          .eq('id', dto.bookingId)
+          .select()
+          .single();
+
+      return _mapToBooking(updated as Map<String, dynamic>);
+    } on PostgrestException catch (e) {
+      CoreLogger.error('updateStatus failed: ${e.message}');
+      throw Failure.database(e.message);
+    } catch (e, st) {
+      CoreLogger.error('updateStatus unexpected error: $e', st);
+      throw Failure.unexpected(e.toString());
+    }
   }
 
   @override

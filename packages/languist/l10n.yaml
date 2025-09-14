@@ -1,5 +1,8 @@
 arb-dir: lib/l10n
 template-arb-file: intl_en.arb
-output-localization-file: gen_localizations.dart
-output-class: GenLocalizations
+output-localization-file: intl_localizations.dart
+output-class: IntlLocalizations
+
+nullable-getter: false
+
 output-dir: lib/l10n/gen

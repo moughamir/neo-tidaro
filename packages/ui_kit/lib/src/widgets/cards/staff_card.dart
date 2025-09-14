@@ -1,6 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_kit/src/localization/app_localizations.dart';
+import 'package:languist/languist.dart';
 import 'package:ui_kit/src/widgets/cards/profile_card.dart';
 
 /// Card component for displaying staff/professional information
@@ -77,19 +77,13 @@ class StaffCard extends StatelessWidget {
   ) {
     switch (status) {
       case ProfessionalKycStatus.active:
-        return (
-          label: AppLocalizations.of(context).available,
-          color: Colors.green,
-        );
+        return (label: 'l10n.available', color: Colors.green);
       case ProfessionalKycStatus.pending:
-        return (label: 'Pending', color: Colors.orange);
+        return (label: 'l10n.verificationPending', color: Colors.orange);
       case ProfessionalKycStatus.inactive:
-        return (
-          label: AppLocalizations.of(context).offline,
-          color: Colors.grey,
-        );
+        return (label: 'l10n.offline', color: Colors.grey);
       case ProfessionalKycStatus.suspended:
-        return (label: 'Suspended', color: Colors.red);
+        return (label: 'l10n.dishWashing', color: Colors.red);
       case ProfessionalKycStatus.rejected:
         return (label: 'Rejected', color: Colors.red);
       case ProfessionalKycStatus.underReview:

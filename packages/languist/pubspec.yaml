@@ -2,7 +2,7 @@ name: languist
 description: Internationalization and localization support for Neo Tidaro
 version: 0.1.0-pre-alpha.4
 homepage: https://github.com/neo-tidaro/languist
-publish_to: http://localhost:4000
+publish_to: none
 resolution: workspace
 
 environment:
@@ -12,7 +12,7 @@ environment:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: any
+  flutter_lints: ^5.0.0
 
 flutter:
   generate: true
@@ -20,8 +20,10 @@ flutter:
 executables:
   generate_l10n: generate_l10n
 dependencies:
-  flutter: any
-  flutter_localizations: any
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   intl: any
   moment_dart: any
   yaml: any

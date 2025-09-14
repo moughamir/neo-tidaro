@@ -1,4 +1,3 @@
-import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart';
 
@@ -34,7 +33,6 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -56,7 +54,7 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                 ),
                 const SizedBox(width: 12),
                 Text(
-                  l10n.filter,
+                  'l10n.filter',
                   style: theme.textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -119,7 +117,7 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                     const SizedBox(height: 16),
 
                     Text(
-                      l10n.staffFilterByServiceSpecialties,
+                      'l10n.staffFilterByServiceSpecialties',
                       style: theme.textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 8),
@@ -155,13 +153,13 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
 
                     // Rating Range Filter
                     SectionHeader(
-                      title: Languist.of(context).staffFilterRatingRange,
+                      title: 'staffFilterRatingRange',
                       icon: Icons.star_rate,
                     ),
                     const SizedBox(height: 16),
 
                     Text(
-                      '${Languist.of(context).staffFilterRating}: ${_minRating.toStringAsFixed(1)} - ${_maxRating.toStringAsFixed(1)} ${Languist.of(context).staffFilterStar}',
+                      '${'staffFilterRating'}: ${_minRating.toStringAsFixed(1)} - ${_maxRating.toStringAsFixed(1)} ${'staffFilterStar'}',
                       style: theme.textTheme.titleMedium,
                     ),
                     const SizedBox(height: 8),
@@ -195,14 +193,14 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () => _clearFilters(),
-                    child: Text(Languist.of(context).clear),
+                    child: Text('clear'),
                   ),
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () => _applyFilters(),
-                    child: Text(Languist.of(context).apply),
+                    child: Text('apply'),
                   ),
                 ),
               ],
@@ -250,67 +248,57 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
   }
 
   String _getStatusName(ProfessionalActivityStatus status) {
-    final IntlLocalizations l10n = Languist.of(context);
     switch (status) {
       case ProfessionalActivityStatus.available:
-        return l10n.professionalStatusAvailable;
+        return 'l10n.professionalStatusAvailable';
       case ProfessionalActivityStatus.onJob:
-        return l10n.professionalStatusOnJob;
+        return 'l10n.professionalStatusOnJob';
       case ProfessionalActivityStatus.offline:
-        return l10n.professionalStatusOffline;
+        return 'l10n.professionalStatusOffline';
       case ProfessionalActivityStatus.onBreak:
-        return l10n.professionalStatusOnBreak;
+        return 'l10n.professionalStatusOnBreak';
     }
   }
 
   String _getServiceCategoryName(PreBookingServiceCategory category) {
-    final IntlLocalizations l10n = Languist.of(context);
     switch (category) {
       case PreBookingServiceCategory.regularCleaning:
-        return l10n.serviceCategoryRegularCleaning;
+        return 'l10n.serviceCategoryRegularCleaning';
       case PreBookingServiceCategory.deepCleaning:
-        return l10n.serviceCategoryDeepCleaning;
+        return 'l10n.serviceCategoryDeepCleaning';
       case PreBookingServiceCategory.moveInOut:
-        return l10n.serviceCategoryMoveInOut;
+        return 'l10n.serviceCategoryMoveInOut';
       case PreBookingServiceCategory.postConstruction:
-        return l10n.serviceCategoryPostConstruction;
+        return 'l10n.serviceCategoryPostConstruction';
       case PreBookingServiceCategory.commercial:
-        return l10n.serviceCategoryCommercial;
+        return 'l10n.serviceCategoryCommercial';
       case PreBookingServiceCategory.specialized:
         // Fallback: Languist currently has no `serviceCategorySpecialized` key.
         // Consider adding it to Languist ARB files. Using a safe English fallback meanwhile.
         return 'Specialized';
       case PreBookingServiceCategory.standardCleaning:
-        return l10n.serviceCategoryStandardCleaning;
+        return 'l10n.serviceCategoryStandardCleaning';
       case PreBookingServiceCategory.residential:
-        return l10n.serviceCategoryResidential;
+        return 'l10n.serviceCategoryResidential';
       case PreBookingServiceCategory.cleaning:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        // Generic cleaning category.
+        return 'Cleaning';
       case PreBookingServiceCategory.laundry:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Laundry';
       case PreBookingServiceCategory.cooking:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Cooking';
       case PreBookingServiceCategory.babysitting:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Babysitting';
       case PreBookingServiceCategory.petCare:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Pet Care';
       case PreBookingServiceCategory.gardening:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Gardening';
       case PreBookingServiceCategory.maintenance:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Maintenance';
       case PreBookingServiceCategory.organization:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Organization';
       case PreBookingServiceCategory.other:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Other';
     }
   }
 
@@ -331,7 +319,7 @@ class _StaffFilterDialogState extends State<StaffFilterDialog> {
     // Show confirmation
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text(Languist.of(context).staffFiltersAppliedSuccessfully),
+        content: Text('staffFiltersAppliedSuccessfully'),
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
     );

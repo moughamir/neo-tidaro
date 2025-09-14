@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:languist/languist.dart';
+
 import 'package:shared/shared.dart';
 import 'package:ui_kit/ui_kit.dart' as ui;
 
@@ -12,7 +12,6 @@ class StaffDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
 
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -35,25 +34,25 @@ class StaffDetailsDialog extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     ui.InfoCard(
-                      title: l10n.personalInformation,
+                      title: 'l10n.personalInformation',
                       icon: Icons.person,
                       children: <Widget>[
                         ui.InfoRow(
-                          label: l10n.userfullName,
+                          label: 'l10n.userfullName',
                           value: professional.fullName!,
                         ),
                         ui.InfoRow(
-                          label: l10n.userEmail,
+                          label: 'l10n.userEmail',
                           value: professional.email.toString(),
                         ),
                         ui.InfoRow(
-                          label: l10n.userPhone,
+                          label: 'l10n.userPhone',
                           value: professional.phone.toString(),
                         ),
 
                         if (professional.createdAt != null)
                           ui.InfoRow(
-                            label: l10n.userJoined,
+                            label: 'l10n.userJoined',
                             value: _formatDate(professional.createdAt!),
                           ),
                       ],
@@ -129,8 +128,8 @@ class StaffDetailsDialog extends StatelessWidget {
                       // ignore: unrelated_type_equality_checks
                       professional.status ==
                               ProfessionalActivityStatus.available
-                          ? l10n.makeUnavailableButtonLabel
-                          : l10n.makeAvailableButtonLabel,
+                          ? 'l10n.makeUnavailableButtonLabel'
+                          : 'l10n.makeAvailableButtonLabel',
                     ),
                   ),
                 ),
@@ -272,32 +271,23 @@ class StaffDetailsDialog extends StatelessWidget {
       case PreBookingServiceCategory.residential:
         return 'Residential';
       case PreBookingServiceCategory.cleaning:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Cleaning';
       case PreBookingServiceCategory.laundry:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Laundry';
       case PreBookingServiceCategory.cooking:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Cooking';
       case PreBookingServiceCategory.babysitting:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Babysitting';
       case PreBookingServiceCategory.petCare:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Pet Care';
       case PreBookingServiceCategory.gardening:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Gardening';
       case PreBookingServiceCategory.maintenance:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Maintenance';
       case PreBookingServiceCategory.organization:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Organization';
       case PreBookingServiceCategory.other:
-        // TODO: Handle this case.
-        throw UnimplementedError();
+        return 'Other';
     }
   }
 

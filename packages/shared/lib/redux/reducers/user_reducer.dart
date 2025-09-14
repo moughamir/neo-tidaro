@@ -6,8 +6,7 @@ class UserReducer extends BaseReducer<UserState> {
   @override
   UserState reduce(UserState state, BaseAction action) {
     return switch (action.type) {
-      // TODO: Handle this case.
-      String() => throw UnimplementedError(),
+      String() => state,
     };
   }
 }

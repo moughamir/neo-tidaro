@@ -7,9 +7,8 @@ import '../states/app_state.dart';
 
 /// Auth middleware for handling async authentication operations
 class AuthMiddleware extends MiddlewareClass<AppState> {
-
   AuthMiddleware(this.supabaseService);
-  final SupabaseService supabaseService;
+  final SupabaseServiceInterface supabaseService;
 
   @override
   void call(Store<AppState> store, dynamic action, NextDispatcher next) {

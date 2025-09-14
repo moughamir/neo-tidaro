@@ -1,7 +1,7 @@
 name: neo_tidaro
 description: Neo Tidaro Workspace
 version: 0.1.0-pre-alpha.4
-publish_to: http://localhost:4000
+publish_to: none
 homepage: https://github.com/odinn-s/neo-tidaro
 repository: https://github.com/odinn-s/neo-tidaro
 environment:
@@ -22,6 +22,7 @@ workspace:
   # Examples
   - example/basic_app # Basic integration example
   - example/auth_flow # Authentication flow example
+  - example/auth_flow_redux # Enhanced auth flow with Redux
   - example/ui_kit_showcase # UI Kit components showcase
 
 dependencies:
@@ -160,6 +161,10 @@ melos:
     run:auth_flow:
       run: melos exec -c 8 --scope="auth_flow_example" -- flutter run -d linux
       description: Run the authentication flow example on Linux desktop.
+
+    run:auth_flow_redux:
+      run: melos exec -c 8 --scope="auth_flow_redux" -- flutter run -d linux
+      description: Run the enhanced auth flow with Redux example on Linux desktop.
 
     run:ui_kit_showcase:
       run: melos exec -c 8 --scope="ui_kit_showcase" -- flutter run -d linux

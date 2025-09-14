@@ -1,6 +1,5 @@
 // ignore_for_file: unrelated_type_equality_checks
 
-import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
 import 'package:tidash/widgets/dialogs/add_staff_dialog.dart';
 import 'package:tidash/widgets/dialogs/staff_details_dialog.dart';
@@ -32,7 +31,6 @@ class _StaffPageState extends State<StaffPage> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final IntlLocalizations l10n = Languist.of(context);
 
     return StoreConnector<AppState, ProfessionalState>(
       converter: (Store<AppState> store) => store.state.professionalState,
@@ -40,19 +38,19 @@ class _StaffPageState extends State<StaffPage> {
         return Scaffold(
           backgroundColor: theme.colorScheme.surface,
           appBar: AppBar(
-            title: Text(l10n.staff),
+            title: Text('l10n.staff'),
             backgroundColor: Colors.transparent,
             elevation: 0,
             actions: <Widget>[
               IconButton(
                 icon: const Icon(Icons.person_add),
                 onPressed: () => _showAddStaffDialog(context),
-                tooltip: l10n.add,
+                tooltip: 'l10n.add',
               ),
               IconButton(
                 icon: const Icon(Icons.filter_list),
                 onPressed: () => _showFilterDialog(context),
-                tooltip: l10n.filter,
+                tooltip: 'l10n.filter',
               ),
             ],
           ),
@@ -66,7 +64,7 @@ class _StaffPageState extends State<StaffPage> {
                     Expanded(
                       child: TextField(
                         decoration: InputDecoration(
-                          hintText: l10n.search,
+                          hintText: 'l10n.search',
                           prefixIcon: const Icon(Icons.search),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -92,9 +90,7 @@ class _StaffPageState extends State<StaffPage> {
                     ),
                     const SizedBox(width: 16),
                     FilterChip(
-                      label: Text(
-                        _getFilterLabel(professionalState.filters, l10n),
-                      ),
+                      label: Text(_getFilterLabel(professionalState.filters)),
                       selected: _hasActiveFilters(professionalState.filters),
                       onSelected: (bool selected) {
                         if (!selected) {
@@ -130,15 +126,14 @@ class _StaffPageState extends State<StaffPage> {
         }
 
         if (viewModel.professionals.isEmpty) {
-          final IntlLocalizations l10n = Languist.of(context);
           return EmptyState(
             icon: Icons.people_outline,
-            title: l10n.noStaff,
-            description: l10n.noStaffDescription,
+            title: 'l10n.noStaff',
+            description: 'l10n.noStaffDescription',
             action: ElevatedButton.icon(
               onPressed: () => _showAddStaffDialog(context),
               icon: const Icon(Icons.person_add),
-              label: Text(l10n.addStaff),
+              label: Text('l10n.addStaff'),
             ),
           );
         }
@@ -171,7 +166,7 @@ class _StaffPageState extends State<StaffPage> {
     );
   }
 
-  String _getFilterLabel(filters, IntlLocalizations l10n) {
+  String _getFilterLabel(filters) {
     if (filters.status != null) {
       return filters.status!.name;
     }
