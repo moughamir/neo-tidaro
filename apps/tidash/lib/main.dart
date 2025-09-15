@@ -37,7 +37,7 @@ class _TiDashBootstrapState extends State<TiDashBootstrap> {
       // Ensure minimum loading time for better UX
       final Future<void> initializationFuture = _performInitialization();
       final Future<void> minimumLoadingTime = Future.delayed(
-        const Duration(milliseconds: 15000),
+        const Duration(milliseconds: 3000),
       );
 
       await Future.wait([initializationFuture, minimumLoadingTime]);

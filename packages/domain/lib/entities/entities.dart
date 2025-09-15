@@ -12,7 +12,7 @@ export 'booking/review.dart';
 export 'communication/communication.dart';
 export 'professional/availability.dart';
 // Professional domain
-export 'professional/professional_profile.dart';
+export 'user/professional_profile.dart';
 export 'professional/service.dart';
 // Shared domain
 export 'shared/location.dart';

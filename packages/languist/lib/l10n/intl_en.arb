@@ -1152,7 +1152,23 @@
   },
   "yourBid": "Your Bid",
   "@yourBid": {
-    "description": "Provider's bid amount"
+    "description": "Label for bid amount input"
+  },
+  "rememberMe": "Remember me",
+  "@rememberMe": {
+    "description": "Remember me checkbox label"
+  },
+  "commonOr": "or",
+  "@commonOr": {
+    "description": "Common 'or' text for separating options"
+  },
+  "signUpWithGoogle": "Sign up with Google",
+  "@signUpWithGoogle": {
+    "description": "Sign up with Google button text"
+  },
+  "signInWithGoogle": "Sign in with Google",
+  "@signInWithGoogle": {
+    "description": "Sign in with Google button text"
   },
   "bidAmount": "Bid Amount",
   "@bidAmount": {
@@ -1362,5 +1378,9 @@
   "dashboardNavigationUsers": "Users",
   "@dashboardNavigationUsers": {
     "description": "Users navigation label"
+  },
+  "logoutConfirmation": "Are you sure you want to logout?",
+  "@logoutConfirmation": {
+    "description": "Logout confirmation message"
   }
 }

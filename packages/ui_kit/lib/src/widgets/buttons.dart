@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ui_kit/src/design_system/design_system.dart';
 
+// TODO: DRY to the max
 class AuthButton extends StatelessWidget {
   const AuthButton({
     super.key,
@@ -103,7 +104,6 @@ enum SocialAuthProvider { github, google, apple }
 /// Replaces NeomorphicButton, PrimaryButton, and other button duplicates
 /// with a single, consistent implementation using the unified design system
 class KuiButton extends StatefulWidget {
-
   const KuiButton({
     super.key,
     required this.child,

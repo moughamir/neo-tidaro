@@ -25,16 +25,3 @@ abstract class BaseEntity {
   @override
   String toString() => '$runtimeType(id: $id)';
 }
-
-/// Enhanced entity with required timestamps for strict domain modeling
-abstract class Entity extends BaseEntity {
-  const Entity({
-    required super.id,
-    required this.createdAt,
-    required this.updatedAt,
-  }) : super(createdAt: createdAt, updatedAt: updatedAt);
-  @override
-  final DateTime createdAt;
-  @override
-  final DateTime updatedAt;
-}

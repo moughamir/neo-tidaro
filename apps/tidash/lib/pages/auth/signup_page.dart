@@ -18,7 +18,8 @@ class _SignUpForm extends StatefulWidget {
   State<_SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignUpFormState extends State<_SignUpForm> {
+class _SignUpFormState extends State<_SignUpForm>
+    with TickerProviderStateMixin {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -26,12 +27,34 @@ class _SignUpFormState extends State<_SignUpForm> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
+
+  late AnimationController _buttonAnimationController;
+  late Animation<double> _buttonScaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _buttonAnimationController = AnimationController(
+      duration: const Duration(milliseconds: 150),
+      vsync: this,
+    );
+    _buttonScaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
+      CurvedAnimation(
+        parent: _buttonAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+  }
+
   @override
   void dispose() {
     _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
+    _buttonAnimationController.dispose();
     super.dispose();
   }
 
@@ -43,12 +66,12 @@ class _SignUpFormState extends State<_SignUpForm> {
     return StoreConnector<AppState, SignUpViewModel>(
       converter: (Store<AppState> store) => SignUpViewModel.fromStore(store),
       builder: (BuildContext context, SignUpViewModel viewModel) {
-        return _formBuilder(l10n, theme, viewModel, context);
+        return _buildModernSignUpForm(l10n, theme, viewModel, context);
       },
     );
   }
 
-  Form _formBuilder(
+  Widget _buildModernSignUpForm(
     IntlLocalizations l10n,
     ThemeData theme,
     SignUpViewModel viewModel,
@@ -78,68 +101,228 @@ class _SignUpFormState extends State<_SignUpForm> {
           const SizedBox(height: 32),
 
           // Name field
-          AuthInputField(
-            label: l10n.name,
-            hint: l10n.nameHint,
+          TextFormField(
             controller: _nameController,
             keyboardType: TextInputType.name,
-            prefixIcon: const Icon(Icons.person_outlined),
-            validator: AuthValidators.required(l10n),
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(
+              labelText: l10n.name,
+              hintText: l10n.nameHint,
+              prefixIcon: Icon(
+                Icons.person_outlined,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+              filled: true,
+              fillColor: theme.colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.5,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.primary,
+                  width: 2,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.error,
+                  width: 1,
+                ),
+              ),
+            ),
+            validator: (String? value) {
+              if (value == null || value.trim().isEmpty) {
+                return l10n.fieldRequired;
+              }
+              return null;
+            },
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 4),
 
           // Email field
-          AuthInputField(
-            label: l10n.email,
-            hint: l10n.emailHint,
+          TextFormField(
             controller: _emailController,
             keyboardType: TextInputType.emailAddress,
-            prefixIcon: const Icon(Icons.email_outlined),
-            validator: AuthValidators.email(l10n),
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(
+              labelText: l10n.email,
+              hintText: l10n.emailHint,
+              prefixIcon: Icon(
+                Icons.email_outlined,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+              filled: true,
+              fillColor: theme.colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.5,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.primary,
+                  width: 2,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.error,
+                  width: 1,
+                ),
+              ),
+            ),
+            validator: (String? value) {
+              if (value == null || value.trim().isEmpty) {
+                return l10n.fieldRequired;
+              }
+              if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value.trim())) {
+                return l10n.invalidEmail;
+              }
+              return null;
+            },
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 4),
 
           // Password field
-          AuthInputField(
-            label: l10n.password,
-            hint: l10n.passwordHint,
+          TextFormField(
             controller: _passwordController,
-            obscureText: true,
-            prefixIcon: const Icon(Icons.lock_outlined),
-            validator: AuthValidators.minLength(
-              l10n,
-              8,
-              message: (IntlLocalizations l) => l.passwordTooShort,
+            obscureText: _obscurePassword,
+            textInputAction: TextInputAction.next,
+            decoration: InputDecoration(
+              labelText: l10n.password,
+              hintText: l10n.createPasswordHint,
+              prefixIcon: Icon(
+                Icons.lock_outlined,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _obscurePassword
+                      ? Icons.visibility_outlined
+                      : Icons.visibility_off_outlined,
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscurePassword = !_obscurePassword;
+                  });
+                },
+              ),
+              filled: true,
+              fillColor: theme.colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.5,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.primary,
+                  width: 2,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.error,
+                  width: 1,
+                ),
+              ),
             ),
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return l10n.fieldRequired;
+              }
+              if (value.length < 8) {
+                return l10n.passwordTooShort;
+              }
+              return null;
+            },
           ),
 
-          const SizedBox(height: 20),
+          const SizedBox(height: 4),
 
           // Confirm password field
-          AuthInputField(
-            label: l10n.confirmPasswordLabel,
-            hint: l10n.confirmPasswordHint,
+          TextFormField(
             controller: _confirmPasswordController,
-            obscureText: true,
-            prefixIcon: const Icon(Icons.lock_outlined),
-            validator: AuthValidators.confirmPassword(
-              l10n,
-              _passwordController,
+            obscureText: _obscureConfirmPassword,
+            textInputAction: TextInputAction.done,
+            decoration: InputDecoration(
+              labelText: l10n.confirmPasswordLabel,
+              hintText: l10n.confirmPasswordHint,
+              prefixIcon: Icon(
+                Icons.lock_outlined,
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  _obscureConfirmPassword
+                      ? Icons.visibility_outlined
+                      : Icons.visibility_off_outlined,
+                  color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                ),
+                onPressed: () {
+                  setState(() {
+                    _obscureConfirmPassword = !_obscureConfirmPassword;
+                  });
+                },
+              ),
+              filled: true,
+              fillColor: theme.colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.5,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide.none,
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.primary,
+                  width: 2,
+                ),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: theme.colorScheme.error,
+                  width: 1,
+                ),
+              ),
             ),
+            validator: (String? value) {
+              if (value == null || value.isEmpty) {
+                return l10n.fieldRequired;
+              }
+              if (value != _passwordController.text) {
+                return l10n.passwordsDontMatch;
+              }
+              return null;
+            },
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 4),
 
           // Error message
           if (viewModel.error.isSome()) ...<Widget>[
             Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: theme.colorScheme.error.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: theme.colorScheme.error.withValues(alpha: 0.3),
                 ),
@@ -151,7 +334,7 @@ class _SignUpFormState extends State<_SignUpForm> {
                     color: theme.colorScheme.error,
                     size: 20,
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: Text(
                       viewModel.error.fold(
@@ -166,28 +349,106 @@ class _SignUpFormState extends State<_SignUpForm> {
                 ],
               ),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 4),
           ],
 
           // Sign up button
-          AuthButton(
-            onPressed: () => _handleSignUp(viewModel),
-            text: l10n.signUp,
-            isLoading: viewModel.isLoading,
+          AnimatedBuilder(
+            animation: _buttonScaleAnimation,
+            builder: (context, child) {
+              return Transform.scale(
+                scale: _buttonScaleAnimation.value,
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: viewModel.isLoading
+                        ? null
+                        : () => _handleSignUp(viewModel),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.colorScheme.primary,
+                      foregroundColor: theme.colorScheme.onPrimary,
+                      disabledBackgroundColor: theme.colorScheme.onSurface
+                          .withValues(alpha: 0.12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      elevation: 2,
+                    ),
+                    child: viewModel.isLoading
+                        ? SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                theme.colorScheme.onPrimary,
+                              ),
+                            ),
+                          )
+                        : Text(
+                            l10n.signUp,
+                            style: theme.textTheme.titleMedium?.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: theme.colorScheme.onPrimary,
+                            ),
+                          ),
+                  ),
+                ),
+              );
+            },
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 4),
 
           // Terms and privacy
-          Text(
-            l10n.termsAgreement,
-            style: theme.textTheme.bodySmall?.copyWith(
-              color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: theme.colorScheme.surfaceContainerHighest.withValues(
+                alpha: 0.3,
+              ),
+              borderRadius: BorderRadius.circular(12),
             ),
-            textAlign: TextAlign.center,
+            child: Text(
+              l10n.termsAgreement,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+              ),
+              textAlign: TextAlign.center,
+            ),
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
+
+          // Divider with "or"
+          // Row(
+          //   children: [
+          //     Expanded(
+          //       child: Divider(
+          //         color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
+          //         thickness: 1,
+          //       ),
+          //     ),
+          //     Padding(
+          //       padding: const EdgeInsets.symmetric(horizontal: 16),
+          //       child: Text(
+          //         l10n.commonOr,
+          //         style: theme.textTheme.bodySmall?.copyWith(
+          //           color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+          //           fontWeight: FontWeight.w500,
+          //         ),
+          //       ),
+          //     ),
+          //     Expanded(
+          //       child: Divider(
+          //         color: theme.colorScheme.onSurface.withValues(alpha: 0.2),
+          //         thickness: 1,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          // const SizedBox(height: 4),
 
           // Login link
           Row(
@@ -199,12 +460,18 @@ class _SignUpFormState extends State<_SignUpForm> {
                   color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
                 ),
               ),
-              AuthButton(
-                onPressed: () =>
-                    Navigator.pushReplacementNamed(context, '/login'),
-                text: l10n.login,
-                variant: AuthButtonVariant.ghost,
-                width: 60,
+              const SizedBox(width: 8),
+              GestureDetector(
+                onTap: () => Navigator.pop(context),
+                child: Text(
+                  l10n.login,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.w600,
+                    decoration: TextDecoration.underline,
+                    decorationColor: theme.colorScheme.primary,
+                  ),
+                ),
               ),
             ],
           ),
@@ -214,11 +481,15 @@ class _SignUpFormState extends State<_SignUpForm> {
   }
 
   void _handleSignUp(SignUpViewModel viewModel) {
+    _buttonAnimationController.forward().then((_) {
+      _buttonAnimationController.reverse();
+    });
+
     if (_formKey.currentState!.validate()) {
       viewModel.signUp(
         _emailController.text.trim(),
         _passwordController.text,
-        _confirmPasswordController.text,
+        _nameController.text.trim(),
       );
     }
   }

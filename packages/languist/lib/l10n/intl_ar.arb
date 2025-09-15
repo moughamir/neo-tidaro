@@ -972,5 +972,9 @@
   "roleClientProfessionalDescription": "قدم خدمات التنظيف للعملاء",
   "@roleClientProfessionalDescription": {
     "description": "Description for client professional role"
+  },
+  "logoutConfirmation": "هل أنت متأكد من أنك تريد تسجيل الخروج؟",
+  "@logoutConfirmation": {
+    "description": "Logout confirmation message"
   }
 }

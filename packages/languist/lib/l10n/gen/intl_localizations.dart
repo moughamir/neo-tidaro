@@ -1722,11 +1722,35 @@ abstract class IntlLocalizations {
   /// **'Place Bid'**
   String get placeBid;
 
-  /// Provider's bid amount
+  /// Label for bid amount input
   ///
   /// In en, this message translates to:
   /// **'Your Bid'**
   String get yourBid;
+
+  /// Remember me checkbox label
+  ///
+  /// In en, this message translates to:
+  /// **'Remember me'**
+  String get rememberMe;
+
+  /// Common 'or' text for separating options
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get commonOr;
+
+  /// Sign up with Google button text
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up with Google'**
+  String get signUpWithGoogle;
+
+  /// Sign in with Google button text
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get signInWithGoogle;
 
   /// Amount being offered for the job
   ///
@@ -2033,6 +2057,12 @@ abstract class IntlLocalizations {
   /// In en, this message translates to:
   /// **'Users'**
   String get dashboardNavigationUsers;
+
+  /// Logout confirmation message
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to logout?'**
+  String get logoutConfirmation;
 }
 
 class _IntlLocalizationsDelegate

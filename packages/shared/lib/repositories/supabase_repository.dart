@@ -1,4 +1,3 @@
-import 'package:domain/entities/base_entity.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared/utils/failures/failure.dart';
 import 'package:shared/utils/logger.dart';
@@ -10,10 +9,10 @@ import 'package:supabase_flutter/supabase_flutter.dart' hide SortBy;
 /// [T] is the entity type
 /// [C] is the create DTO type
 /// [U] is the update DTO type
-abstract class SupabaseRepository<T extends BaseEntity, C, U> {
-
+abstract class SupabaseRepository<T, C, U> {
   /// Creates a new Supabase repository
   SupabaseRepository(this.tableName, SupabaseClient client) : _client = client;
+
   /// The table name in Supabase
   final String tableName;
 

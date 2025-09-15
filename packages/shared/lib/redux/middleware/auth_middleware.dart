@@ -1,5 +1,6 @@
 import 'package:core/core.dart';
 import 'package:redux/redux.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' hide User;
 
 import '../actions/auth_actions.dart';
 import '../core/core.dart';
@@ -22,6 +23,10 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
       _handleResetPassword(store, action);
     } else if (action is CheckAuthStatusAction) {
       _handleCheckAuthStatus(store);
+    } else if (action is SocialSignInAction) {
+      _handleSocialSignIn(store, action);
+    } else if (action is PhoneSignInAction) {
+      _handlePhoneSignIn(store, action);
     }
 
     next(action);
@@ -150,6 +155,66 @@ class AuthMiddleware extends MiddlewareClass<AppState> {
     } catch (e) {
       // On any unexpected error, default to logged-out state
       store.dispatch(ActionCreators.success(AuthActionTypes.userChanged, null));
+    }
+  }
+
+  Future<void> _handleSocialSignIn(
+    Store<AppState> store,
+    SocialSignInAction action,
+  ) async {
+    try {
+      final result = await supabaseService.signInWithProvider(
+        action.provider.name,
+      );
+
+      result.fold(
+        (failure) => store.dispatch(
+          ActionCreators.failure(
+            AuthActionTypes.socialSignIn,
+            Exception(failure.toString()),
+          ),
+        ),
+        (user) => store.dispatch(
+          ActionCreators.success(AuthActionTypes.socialSignIn, user),
+        ),
+      );
+    } catch (e) {
+      store.dispatch(
+        ActionCreators.failure(
+          AuthActionTypes.socialSignIn,
+          Exception(e.toString()),
+        ),
+      );
+    }
+  }
+
+  Future<void> _handlePhoneSignIn(
+    Store<AppState> store,
+    PhoneSignInAction action,
+  ) async {
+    try {
+      // Phone authentication with Supabase requires OTP flow
+      final result = await supabaseService.client.auth.signInWithOtp(
+        phone: action.phoneNumber,
+      );
+
+      store.dispatch(
+        ActionCreators.success(AuthActionTypes.phoneSignIn, null),
+      );
+    } on AuthException catch (e) {
+      store.dispatch(
+        ActionCreators.failure(
+          AuthActionTypes.phoneSignIn,
+          Exception(e.message),
+        ),
+      );
+    } catch (e) {
+      store.dispatch(
+        ActionCreators.failure(
+          AuthActionTypes.phoneSignIn,
+          Exception(e.toString()),
+        ),
+      );
     }
   }
 }

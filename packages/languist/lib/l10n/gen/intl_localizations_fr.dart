@@ -867,6 +867,18 @@ class IntlLocalizationsFr extends IntlLocalizations {
   String get yourBid => 'Votre offre';
 
   @override
+  String get rememberMe => 'Remember me';
+
+  @override
+  String get commonOr => 'or';
+
+  @override
+  String get signUpWithGoogle => 'Sign up with Google';
+
+  @override
+  String get signInWithGoogle => 'Sign in with Google';
+
+  @override
   String get bidAmount => 'Montant de l\'offre';
 
   @override
@@ -1023,4 +1035,7 @@ class IntlLocalizationsFr extends IntlLocalizations {
 
   @override
   String get dashboardNavigationUsers => 'Users';
+
+  @override
+  String get logoutConfirmation => 'Êtes-vous sûr de vouloir vous déconnecter?';
 }

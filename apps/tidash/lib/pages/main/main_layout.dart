@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:languist/languist.dart';
+import 'package:shared/shared.dart';
 
 import '../admin/kyc_review_page.dart';
 import '../bookings/bookings_page.dart';
@@ -46,6 +47,8 @@ class _MainLayoutState extends State<MainLayout> {
             },
             labelType: NavigationRailLabelType.all,
             backgroundColor: theme.colorScheme.surface,
+            leading: _buildUserProfile(context, theme, l10n),
+            trailing: _buildLogoutButton(context, theme, l10n),
             destinations: <NavigationRailDestination>[
               NavigationRailDestination(
                 icon: const Icon(Icons.dashboard_outlined),
@@ -87,6 +90,74 @@ class _MainLayoutState extends State<MainLayout> {
           ),
           // Main content
           Expanded(child: _pages[_selectedIndex]),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildUserProfile(BuildContext context, ThemeData theme, IntlLocalizations l10n) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        children: [
+          CircleAvatar(
+            radius: 24,
+            backgroundColor: theme.colorScheme.primary,
+            child: Icon(
+              Icons.person,
+              color: theme.colorScheme.onPrimary,
+              size: 24,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Admin',
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: theme.colorScheme.onSurface,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLogoutButton(BuildContext context, ThemeData theme, IntlLocalizations l10n) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      child: IconButton(
+        onPressed: () => _showLogoutDialog(context, l10n),
+        icon: Icon(
+          Icons.logout,
+          color: theme.colorScheme.error,
+        ),
+        tooltip: l10n.logout,
+      ),
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context, IntlLocalizations l10n) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(l10n.logout),
+        content: Text(l10n.logoutConfirmation),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.commonCancel),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              StoreProvider.of<AppState>(context, listen: false)
+                  .dispatch(const SignOutAction());
+            },
+            child: Text(
+              l10n.logout,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          ),
         ],
       ),
     );

@@ -582,5 +582,9 @@
     "placeholders": {
       "count": {}
     }
+  },
+  "logoutConfirmation": "¿Estás seguro de que quieres cerrar sesión?",
+  "@logoutConfirmation": {
+    "description": "Logout confirmation message"
   }
 }

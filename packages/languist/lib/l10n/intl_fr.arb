@@ -933,5 +933,9 @@
   "roleClientProfessionalDescription": "Offrez des services de ménage aux clients",
   "@roleClientProfessionalDescription": {
     "description": "Description for client professional role"
+  },
+  "logoutConfirmation": "Êtes-vous sûr de vouloir vous déconnecter?",
+  "@logoutConfirmation": {
+    "description": "Logout confirmation message"
   }
 }
