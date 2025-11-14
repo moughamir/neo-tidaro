@@ -1,4 +1,4 @@
-import 'package:domain/entities/user/user.dart' show User;
+import 'package:core/core.dart' hide AuthState;
 import 'package:shared/redux/core/core.dart';
 import 'package:shared/redux/states/auth_state.dart';
 
@@ -35,34 +35,18 @@ class AuthSelectors {
     (state) => state.authToken.isSome() && state.isAuthenticated,
   );
 
-  /// Select user email (if available)
-  static final userEmail = SelectorUtils.create<AuthState, String?>(
-    (state) => state.dataOrNull?.email.value,
-  );
-
-  /// Select user name (if available)
-  static final userName = SelectorUtils.create<AuthState, String?>(
-    (state) => state.dataOrNull?.fullName,
-  );
-
-  /// Select if user email is verified
-  static final isEmailVerified = SelectorUtils.create<AuthState, bool>(
-    (state) => state.dataOrNull?.isEmailVerified ?? false,
-  );
-
   /// Memoized selector for user profile data
   static final userProfile =
-      SelectorUtils.createMemoized<AuthState, Map<String, dynamic>?>(
-          (state) {
-    final user = state.dataOrNull;
-    if (user == null) return null;
+      SelectorUtils.createMemoized<AuthState, Map<String, dynamic>?>((state) {
+        final user = state.dataOrNull;
+        if (user == null) return null;
 
-    return {
-      'id': user.id,
-      'email': user.email.value,
-      'name': user.fullName,
-      'phone': user.phone?.value,
-      'emailVerified': user.isEmailVerified,
-    };
-  });
+        return {
+          'id': user.id,
+          'email': user.email,
+          'name': user.userMetadata?['full_name'],
+          'phone': user.userMetadata?['phone'],
+          'emailVerified': user.emailConfirmedAt != null,
+        };
+      });
 }

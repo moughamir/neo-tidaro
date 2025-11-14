@@ -38,6 +38,33 @@ class ProfessionalSearchDto {
   /// The number of items to fetch per page.
   final int limit;
 
+  /// Creates a copy of this DTO with the given fields replaced with new values.
+  ProfessionalSearchDto copyWith({
+    List<PreBookingServiceCategory>? categories,
+    GeoLocationDto? location,
+    double? maxDistance,
+    double? minRating,
+    double? maxHourlyRate,
+    bool? instantBooking,
+    String? searchQuery,
+    PreBookingSortBy? sortBy,
+    int? page,
+    int? limit,
+  }) {
+    return ProfessionalSearchDto(
+      categories: categories ?? this.categories,
+      location: location ?? this.location,
+      maxDistance: maxDistance ?? this.maxDistance,
+      minRating: minRating ?? this.minRating,
+      maxHourlyRate: maxHourlyRate ?? this.maxHourlyRate,
+      instantBooking: instantBooking ?? this.instantBooking,
+      searchQuery: searchQuery ?? this.searchQuery,
+      sortBy: sortBy ?? this.sortBy,
+      page: page ?? this.page,
+      limit: limit ?? this.limit,
+    );
+  }
+
   /// Converts the DTO to a JSON object.
   Map<String, dynamic> toJson() => {
     if (categories != null)

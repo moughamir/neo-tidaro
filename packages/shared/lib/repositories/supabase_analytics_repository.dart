@@ -1,5 +1,5 @@
 import 'package:domain/domain.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' hide User;
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'supabase_repository.dart';
 
@@ -268,7 +268,7 @@ class SupabaseActivityRepository extends SupabaseRepository<ActivityItem, Create
         .order('timestamp', ascending: false)
         .limit(20)
         .map((data) => data
-            .map((json) => fromJson(json as Map<String, dynamic>))
+            .map((json) => fromJson(json))
             .toList());
   }
 }

@@ -1,7 +1,6 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
 
-import 'package:languist/languist.dart';
 import 'package:ui_kit/src/widgets/card.dart';
 import 'package:ui_kit/src/widgets/empty_state.dart';
 import 'package:ui_kit/src/widgets/housekeeping_activity_helpers.dart';

@@ -11,7 +11,8 @@ environment:
   sdk: "^3.9.0"
 
 dependencies:
-
+  core:
+    path: ../core
 dev_dependencies:
   test: any
   lints: any

@@ -22,5 +22,6 @@ export 'support/ticket.dart';
 // System domain
 export 'system/system.dart';
 // User domain
-export 'user/user.dart';
-export 'user/user_profile.dart';
+export 'user/profile.dart';
+export 'user/client_profile.dart';
+

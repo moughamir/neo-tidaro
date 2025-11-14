@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:languist/languist.dart';
 import 'package:ui_kit/src/widgets/utils/time_formatting.dart';
 
 class DashboardHeader extends StatelessWidget {

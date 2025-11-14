@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:languist/languist.dart';
 import 'package:ui_kit/src/widgets/cards/profile_card.dart';
 
 /// Card component for displaying staff/professional information
@@ -25,7 +24,7 @@ class StaffCard extends StatelessWidget {
       status: professional.status,
       profileImageUrl: professional.avatarUrl,
       phone: professional.phone?.value,
-      email: professional.email.value,
+      email: professional.email?.value,
       rating: professional.rating,
       totalItems: professional.completedJobs,
       itemsLabel: 'jobs',

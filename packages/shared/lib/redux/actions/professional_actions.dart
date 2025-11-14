@@ -63,7 +63,7 @@ class LoadProfessionalsFailureAction extends BaseAction {
 class UpdateProfessionalsFiltersAction extends BaseAction {
   const UpdateProfessionalsFiltersAction({required this.filters});
 
-  final ProfessionalActionTypes? filters;
+  final ProfessionalSearchDto? filters;
 
   @override
   List<Object?> get props => [filters];

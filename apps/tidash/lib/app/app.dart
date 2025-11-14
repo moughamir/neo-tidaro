@@ -1,4 +1,5 @@
-import 'package:shared/shared.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:shared/redux/app_state.dart';
 import 'package:ui_kit/ui_kit.dart';
 
 import '../pages/auth/login_page.dart';
@@ -10,28 +11,19 @@ class TiDashApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StoreProvider<AppState>(
-      store: createStore(
-        enableLogging: true,
-        logger: (String message) =>
-            CoreLogger.debug(message, tag: 'REDUX', showLevel: true),
-        onError: (Exception error, BaseAction action) => CoreLogger.error(
-          'Redux error on action ${action.type}',
-          error: error,
-          tag: 'REDUX',
-          showLevel: true,
-        ),
-        catchErrors: true,
-      ),
-      child: AppShell(
-        title: 'TiDash',
-        home: const TiDashHome(),
-        themeMode: ThemeMode.system,
-        routes: {
-          '/login': (context) => const LoginPage(),
-          '/signup': (context) => const SignUpPage(),
-        },
-      ),
+    return StoreBuilder<AppState>(
+      builder: (context, store) {
+        return AppShell(
+          title: 'TiDash',
+          home: const TiDashHome(),
+          theme: kuiTheme,
+          themeMode: ThemeMode.system,
+          routes: {
+            '/login': (context) => const LoginPage(),
+            '/signup': (context) => const SignUpPage(),
+          },
+        );
+      },
     );
   }
 }

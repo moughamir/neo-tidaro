@@ -1,6 +1,5 @@
 import 'package:domain/domain.dart';
 import 'package:flutter/material.dart';
-import 'package:languist/languist.dart';
 
 Color getActivityColor(HousekeepingActivityType type) {
   switch (type) {

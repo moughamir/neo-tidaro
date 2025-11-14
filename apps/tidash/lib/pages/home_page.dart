@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
+import 'package:ui_kit/ui_kit.dart';
+
 import 'auth/login_page.dart';
 import 'main/main_layout.dart';
 
@@ -30,8 +32,12 @@ class _TiDashHomeState extends State<TiDashHome> {
       },
       builder: (BuildContext context, AuthState authState) {
         if (authState.isLoading) {
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+          return const PageScaffold(
+            body: Center(
+              child: LoadingIndicator(
+                message: 'Checking authentication...',
+              ),
+            ),
           );
         }
 
@@ -76,15 +82,11 @@ class _TiDashHomeState extends State<TiDashHome> {
       newState.error.fold(
         () => null,
         (Exception error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(error.toString()),
-              backgroundColor: Theme.of(context).colorScheme.error,
-              behavior: SnackBarBehavior.floating,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
+          showInfo(
+            context,
+            title: 'Authentication Error',
+            message: error.toString(),
+            type: InfoType.error,
           );
         },
       );

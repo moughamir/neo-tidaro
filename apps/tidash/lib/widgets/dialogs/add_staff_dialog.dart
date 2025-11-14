@@ -379,12 +379,11 @@ class _AddStaffDialogState extends State<AddStaffDialog> {
 
       final ProfessionalProfile professional = ProfessionalProfile(
         id: DateTime.now().millisecondsSinceEpoch.toString(),
-
+        userId: DateTime.now().millisecondsSinceEpoch.toString(), // Temporary user ID
         createdAt: DateTime.now(),
         updatedAt: DateTime.now(),
         hourlyRate: 350,
         defaultRateType: JobRateType.perService,
-        email: EmailVO(_emailController.text.trim()),
       );
 
       // Dispatch action to create professional

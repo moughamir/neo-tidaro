@@ -1,19 +1,22 @@
+import 'package:core/core.dart';
+
 import '../../enums/enums.dart';
-import '../../value_objects/value_objects.dart';
-import 'user_profile.dart';
+import 'profile.dart';
 
 /// Professional-specific profile extending UserProfile
-class ProfessionalProfile extends UserProfile {
+class ProfessionalProfile extends Profile {
   /// Creates a new instance of [ProfessionalProfile].
   const ProfessionalProfile({
     required super.id,
     required super.createdAt,
     required super.updatedAt,
-    required super.email,
-    super.fullName,
-    super.phone,
+    required super.userId,
     super.isPublic = true,
-    super.isVerified,
+    this.isVerified = false,
+    super.bio,
+    super.dateOfBirth,
+    super.preferredLanguage,
+    super.profileSettings,
     this.categories = const [],
     required this.hourlyRate,
     required this.defaultRateType,
@@ -37,6 +40,9 @@ class ProfessionalProfile extends UserProfile {
     this.backgroundCheckDate,
     this.serviceAreas = const [],
     this.professionalSettings,
+
+    // Associated user entity for accessing user data
+    this.user,
   });
 
   /// The categories of services offered by the professional.
@@ -109,6 +115,10 @@ class ProfessionalProfile extends UserProfile {
   /// A map of professional-specific settings.
   final Map<String, dynamic>? professionalSettings;
 
+  /// Associated user entity for accessing user data.
+  final User? user;
+  final bool isVerified;
+
   /// Calculate professional score based on rating and completion rate
   double get professionalScore {
     if (totalReviews == 0) return 0.0;
@@ -127,10 +137,11 @@ class ProfessionalProfile extends UserProfile {
 
   /// Creates a new instance of [ProfessionalProfile] with updated values.
   ProfessionalProfile copyWith({
-    String? fullName,
-    PhoneVO? phone,
     bool? isPublic,
-    bool? isVerified,
+    String? bio,
+    DateTime? dateOfBirth,
+    String? preferredLanguage,
+    Map<String, dynamic>? profileSettings,
     List<PreBookingServiceCategory>? categories,
     double? hourlyRate,
     JobRateType? defaultRateType,
@@ -154,16 +165,18 @@ class ProfessionalProfile extends UserProfile {
     DateTime? backgroundCheckDate,
     List<String>? serviceAreas,
     Map<String, dynamic>? professionalSettings,
+    User? user,
   }) {
     return ProfessionalProfile(
       id: id,
       createdAt: createdAt!,
       updatedAt: DateTime.now(),
-      email: email,
-      fullName: fullName ?? this.fullName,
-      phone: phone ?? this.phone,
+      userId: userId,
       isPublic: isPublic ?? this.isPublic,
-      isVerified: isVerified ?? this.isVerified,
+      bio: bio ?? this.bio,
+      dateOfBirth: dateOfBirth ?? this.dateOfBirth,
+      preferredLanguage: preferredLanguage ?? this.preferredLanguage,
+      profileSettings: profileSettings ?? this.profileSettings,
       categories: categories ?? this.categories,
       hourlyRate: hourlyRate ?? this.hourlyRate,
       defaultRateType: defaultRateType ?? this.defaultRateType,
@@ -189,6 +202,7 @@ class ProfessionalProfile extends UserProfile {
       backgroundCheckDate: backgroundCheckDate ?? this.backgroundCheckDate,
       serviceAreas: serviceAreas ?? this.serviceAreas,
       professionalSettings: professionalSettings ?? this.professionalSettings,
+      user: user ?? this.user,
     );
   }
 }

@@ -24,6 +24,9 @@ abstract class Failure extends Equatable {
   
   /// Creates a not found failure
   factory Failure.notFound(String message, {Map<String, dynamic>? details}) = NotFoundFailure;
+  
+  /// Creates a storage failure for file/storage operations
+  factory Failure.storage(String message, {int? code, Map<String, dynamic>? details}) = StorageFailure;
   final String message;
   final int? code;
   final Map<String, dynamic>? details;
@@ -47,7 +50,9 @@ abstract class Failure extends Equatable {
                     ? Failure.database(message ?? this.message, code: code ?? this.code, details: details ?? this.details)
                     : runtimeType == NotFoundFailure
                         ? Failure.notFound(message ?? this.message, details: details ?? this.details)
-                        : Failure.unexpected(message ?? this.message, details: details ?? this.details);
+                        : runtimeType == StorageFailure
+                            ? Failure.storage(message ?? this.message, code: code ?? this.code, details: details ?? this.details)
+                            : Failure.unexpected(message ?? this.message, details: details ?? this.details);
   }
 }
 
@@ -79,4 +84,9 @@ class DatabaseFailure extends Failure {
 /// Failure for when a requested resource is not found
 class NotFoundFailure extends Failure {
   const NotFoundFailure(super.message, {super.details}) : super(code: 404);
+}
+
+/// Failure related to storage operations
+class StorageFailure extends Failure {
+  const StorageFailure(super.message, {super.code, super.details});
 }

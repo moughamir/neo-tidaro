@@ -1,10 +1,9 @@
-import 'package:domain/domain.dart';
+import 'package:core/core.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:shared/redux/core/core.dart';
 
 /// Authentication state following functional programming patterns
 class AuthState extends BaseAsyncState<User> {
-
   /// Initial state factory
   factory AuthState.initial() {
     return const AuthState(

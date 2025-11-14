@@ -1,20 +1,11 @@
 -- Housekeeping MVP Schema Extension for TiDaro Platform
 -- Extends existing schema for housekeeping service booking with bidding system
 
--- Service types for housekeeping (extending existing service_category_enum)
-CREATE TYPE housekeeping_service_type AS ENUM (
-  'regular_cleaning', 'deep_cleaning', 'one_time_cleaning',
-  'move_in_out_cleaning', 'office_cleaning', 'laundry_services'
-);
+-- NOTE: Use canonical public.service_category_enum defined in consolidated schema
 
--- Job/Booking status for housekeeping workflow
-CREATE TYPE job_status AS ENUM (
-  'draft', 'posted', 'receiving_bids', 'in_negotiation', 
-  'booked', 'in_progress', 'completed', 'cancelled'
-);
+-- NOTE: Use canonical public.job_status defined in consolidated schema
 
--- Bid status
-CREATE TYPE bid_status AS ENUM ('pending', 'accepted', 'rejected', 'expired');
+-- NOTE: Use canonical public.bid_status defined in consolidated schema
 
 -- Extend existing profiles table with housekeeping fields
 ALTER TABLE profiles ADD COLUMN IF NOT EXISTS email TEXT;
@@ -32,7 +23,7 @@ CREATE TABLE housekeeping_provider_profiles (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   user_id UUID REFERENCES profiles(id) ON DELETE CASCADE UNIQUE,
   years_experience INTEGER DEFAULT 0,
-  service_types housekeeping_service_type[] DEFAULT '{}',
+  service_types public.service_category_enum[] DEFAULT '{}',
   hourly_rate_mad DECIMAL(10,2),
   service_radius_km INTEGER DEFAULT 10,
   bio TEXT,
@@ -57,7 +48,7 @@ CREATE TABLE housekeeping_jobs (
   service_id UUID REFERENCES services(id),
   title TEXT NOT NULL,
   description TEXT,
-  service_type housekeeping_service_type NOT NULL,
+  service_type public.service_category_enum NOT NULL,
   address_text TEXT NOT NULL,
   latitude DECIMAL(10,8),
   longitude DECIMAL(11,8),
@@ -68,7 +59,7 @@ CREATE TABLE housekeeping_jobs (
   estimated_duration_hours DECIMAL(4,2) DEFAULT 2.0,
   budget_min_mad DECIMAL(10,2),
   budget_max_mad DECIMAL(10,2),
-  status job_status DEFAULT 'draft',
+  status public.job_status DEFAULT 'draft',
   accepted_bid_id UUID,
   assigned_provider_id UUID REFERENCES profiles(id),
   special_instructions TEXT,
@@ -87,7 +78,7 @@ CREATE TABLE housekeeping_bids (
   amount_mad DECIMAL(10,2) NOT NULL,
   message TEXT,
   estimated_duration_hours DECIMAL(4,2),
-  status bid_status DEFAULT 'pending',
+  status public.bid_status DEFAULT 'pending',
   expires_at TIMESTAMP WITH TIME ZONE DEFAULT (NOW() + INTERVAL '24 hours'),
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),

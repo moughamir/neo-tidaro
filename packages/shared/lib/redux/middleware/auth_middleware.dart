@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
 import 'package:redux/redux.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' hide User;
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../actions/auth_actions.dart';
 import '../core/core.dart';

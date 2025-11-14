@@ -1,4 +1,8 @@
 import 'package:core/core.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:redux/redux.dart';
+import 'package:shared/redux/app_state.dart';
+import 'package:shared/redux/store.dart';
 import 'package:tidash/get_app_config.dart';
 import 'package:tidash/initialize_platform.dart';
 import 'package:tidash/initialize_services.dart';
@@ -9,11 +13,15 @@ import 'app/app.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  runApp(const TiDashBootstrap());
+  final store = await createStore();
+
+  runApp(TiDashBootstrap(store: store));
 }
 
 class TiDashBootstrap extends StatefulWidget {
-  const TiDashBootstrap({super.key});
+  const TiDashBootstrap({super.key, required this.store});
+
+  final Store<AppState> store;
 
   @override
   State<TiDashBootstrap> createState() => _TiDashBootstrapState();
@@ -89,6 +97,9 @@ class _TiDashBootstrapState extends State<TiDashBootstrap> {
       );
     }
 
-    return const TiDashApp();
+    return StoreProvider<AppState>(
+      store: widget.store,
+      child: const TiDashApp(),
+    );
   }
 }

@@ -5,7 +5,7 @@
 library;
 
 export 'package:domain/domain.dart';
-export 'package:core/core.dart';
+export 'package:core/core.dart' hide User, AuthState, AuthUser;
 
 // Redux exports
 export 'redux/redux.dart';

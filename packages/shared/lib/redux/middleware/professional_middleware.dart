@@ -10,6 +10,8 @@ import 'package:shared/redux/states/app_state.dart';
 List<Middleware<AppState>> createProfessionalMiddleware() {
   return [
     TypedMiddleware<AppState, LoadProfessionalsAction>(_loadProfessionals).call,
+    TypedMiddleware<AppState, CreateProfessionalAction>(_createProfessional).call,
+    TypedMiddleware<AppState, UpdateProfessionalStatusAction>(_updateProfessionalStatus).call,
   ];
 }
 
@@ -21,50 +23,12 @@ void _loadProfessionals(
   next(action);
 
   try {
-    // Simulate API call - replace with actual Supabase calls
-    await Future.delayed(const Duration(seconds: 1));
-
-    final sampleProfessionals = [
-      ProfessionalProfile(
-        id: '1',
-        fullName: 'Sarah Johnson',
-        email: const EmailVO('sarah.johnson@example.com'),
-        phone: const PhoneVO('+1234567890'),
-        categories: [
-          PreBookingServiceCategory.regularCleaning,
-          PreBookingServiceCategory.deepCleaning,
-        ],
-        rating: 4.8,
-        completedJobs: 156,
-        createdAt: DateTime.now().subtract(const Duration(days: 365)),
-        isVerified: true,
-        hourlyRate: 25,
-        defaultRateType: JobRateType.hourly,
-        updatedAt: DateTime.now().subtract(const Duration(days: 365)),
-      ),
-      ProfessionalProfile(
-        id: '2',
-        fullName: 'Michael Chen',
-        email: const EmailVO('michael.chen@example.com'),
-        phone: const PhoneVO('+1234567891'),
-        categories: [
-          PreBookingServiceCategory.commercial,
-          PreBookingServiceCategory.postConstruction,
-        ],
-        rating: 4.6,
-        completedJobs: 89,
-        createdAt: DateTime.now().subtract(const Duration(days: 180)),
-        isVerified: true,
-        hourlyRate: 30,
-        defaultRateType: JobRateType.hourly,
-        updatedAt: DateTime.now().subtract(const Duration(days: 180)),
-      ),
-    ];
-
+    // TODO: Replace with actual repository calls when ready
+    // For now, dispatch success with empty list to prevent errors
     store.dispatch(
       ActionCreators.success(
         ProfessionalActionTypes.loadProfessionals,
-        sampleProfessionals,
+        <ProfessionalProfile>[],
       ),
     );
   } catch (e) {
@@ -72,6 +36,58 @@ void _loadProfessionals(
       ActionCreators.failure(
         ProfessionalActionTypes.loadProfessionals,
         Exception('Failed to load professionals: $e'),
+      ),
+    );
+  }
+}
+
+void _createProfessional(
+  Store<AppState> store,
+  CreateProfessionalAction action,
+  NextDispatcher next,
+) async {
+  next(action);
+
+  try {
+    // TODO: Replace with actual repository calls when ready
+    // For now, dispatch success with the provided professional
+    store.dispatch(
+      ActionCreators.success(
+        ProfessionalActionTypes.createProfessional,
+        action.professional,
+      ),
+    );
+  } catch (e) {
+    store.dispatch(
+      ActionCreators.failure(
+        ProfessionalActionTypes.createProfessional,
+        Exception('Failed to create professional: $e'),
+      ),
+    );
+  }
+}
+
+void _updateProfessionalStatus(
+  Store<AppState> store,
+  UpdateProfessionalStatusAction action,
+  NextDispatcher next,
+) async {
+  next(action);
+
+  try {
+    // TODO: Replace with actual repository calls when ready
+    // For now, dispatch success with the updated status
+    store.dispatch(
+      ActionCreators.success(
+        ProfessionalActionTypes.updateProfessionalStatus,
+        action.status,
+      ),
+    );
+  } catch (e) {
+    store.dispatch(
+      ActionCreators.failure(
+        ProfessionalActionTypes.updateProfessionalStatus,
+        Exception('Failed to update professional status: $e'),
       ),
     );
   }

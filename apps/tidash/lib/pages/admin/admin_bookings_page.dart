@@ -1,78 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:shared/shared.dart';
+import 'package:ui_kit/ui_kit.dart';
 
-/// Minimal admin bookings oversight page
-/// - Lists bookings
-/// - Allows status updates via UpdateBookingAction({ status })
+import 'admin_bookings_view_model.dart';
+
 class AdminBookingsPage extends StatelessWidget {
   const AdminBookingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, _Vm>(
-      converter: (store) => _Vm.fromStore(store),
+    return StoreConnector<AppState, AdminBookingsViewModel>(
+      converter: (store) => AdminBookingsViewModel.fromStore(store),
       onInit: (store) => store.dispatch(const LoadBookingsAction()),
       builder: (context, vm) {
-        final theme = Theme.of(context);
-        return Scaffold(
-          appBar: AppBar(title: const Text('Bookings Oversight')),
+        return PageScaffold(
+          header: const Header(title: 'Bookings Oversight'),
           body: vm.isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : ListView.separated(
+              ? const LoadingIndicator(message: 'Loading bookings...')
+              : ListView.builder(
                   padding: const EdgeInsets.all(16),
                   itemCount: vm.bookings.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
                   itemBuilder: (context, index) {
-                    final b = vm.bookings[index];
-                    return Card(
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        side: BorderSide(
-                          color: theme.colorScheme.outline.withValues(alpha: 0.2),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Booking #${b.id.substring(0, 6)}',
-                                    style: theme.textTheme.titleSmall?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    'Client: ${b.clientId} · Pro: ${b.professionalId}',
-                                    style: theme.textTheme.bodySmall,
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    'When: ${b.scheduledStartTime.toLocal()} — ${b.scheduledEndTime.toLocal()}',
-                                    style: theme.textTheme.bodySmall?.copyWith(
-                                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            _StatusDropdown(
-                              value: b.status,
-                              onChanged: (newStatus) {
-                                if (newStatus == null) return;
-                                vm.updateStatus(b.id, newStatus);
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
+                    final booking = vm.bookings[index];
+                    return BookingCard(
+                      booking: booking,
+                      onStatusChanged: (status) {
+                        vm.updateStatus(booking.id, status);
+                      },
                     );
                   },
                 ),
@@ -82,47 +36,65 @@ class AdminBookingsPage extends StatelessWidget {
   }
 }
 
-class _StatusDropdown extends StatelessWidget {
-  const _StatusDropdown({required this.value, required this.onChanged});
+class BookingCard extends StatelessWidget {
+  const BookingCard({
+    super.key,
+    required this.booking,
+    required this.onStatusChanged,
+  });
 
-  final BookingActivityStatus value;
-  final ValueChanged<BookingActivityStatus?> onChanged;
+  final Booking booking;
+  final ValueChanged<BookingActivityStatus> onStatusChanged;
 
   @override
   Widget build(BuildContext context) {
-    return DropdownButton<BookingActivityStatus>(
-      value: value,
-      onChanged: onChanged,
-      items: BookingActivityStatus.values.map((s) {
-        final label = s.toString().split('.').last;
-        return DropdownMenuItem(
-          value: s,
-          child: Text(label),
-        );
-      }).toList(),
-    );
-  }
-}
-
-class _Vm {
-  _Vm({
-    required this.isLoading,
-    required this.bookings,
-    required this.updateStatus,
-  });
-
-  final bool isLoading;
-  final List<Booking> bookings;
-  final void Function(String bookingId, BookingActivityStatus status) updateStatus;
-
-  static _Vm fromStore(Store<AppState> store) {
-    final s = store.state.bookingState;
-    final list = s.data.fold(() => <Booking>[], (b) => b);
-    return _Vm(
-      isLoading: s.isLoading,
-      bookings: list,
-      updateStatus: (id, status) => store.dispatch(
-        UpdateBookingAction(bookingId: id, updates: {'status': status}),
+    final theme = Theme.of(context);
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Booking #${booking.id.substring(0, 6)}',
+                  style: theme.textTheme.titleMedium,
+                ),
+                Select<BookingActivityStatus>(
+                  value: booking.status,
+                  onChanged: (value) {
+                    if (value != null) {
+                      onStatusChanged(value);
+                    }
+                  },
+                  items: BookingActivityStatus.values
+                      .map((status) => SelectOption(
+                            value: status,
+                            label: status.name,
+                          ))
+                      .toList(),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Client: ${booking.clientId.substring(0, 6)}...',
+              style: theme.textTheme.bodySmall,
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Professional: ${booking.professionalId.substring(0, 6)}...',
+              style: theme.textTheme.bodySmall,
+            ),
+            const SizedBox(height: 8),
+            Text(
+              'Scheduled: ${booking.scheduledStartTime.toLocal()} - ${booking.scheduledEndTime.toLocal()}',
+              style: theme.textTheme.bodySmall,
+            ),
+          ],
+        ),
       ),
     );
   }

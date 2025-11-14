@@ -1,56 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:shared/redux/redux.dart';
+import 'package:shared/shared.dart';
+import 'package:ui_kit/ui_kit.dart';
 
-/// KYC Review Page for TiDash backoffice
+import 'kyc_review_view_model.dart';
+
 class KycReviewPage extends StatelessWidget {
   const KycReviewPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, _Vm>(
-      converter: (store) => _Vm.fromStore(store),
+    return StoreConnector<AppState, KycReviewViewModel>(
+      converter: (store) => KycReviewViewModel.fromStore(store),
       onInit: (store) => store.dispatch(LoadKycQueueRequest()),
       builder: (context, vm) {
-        final theme = Theme.of(context);
-        return Scaffold(
-          appBar: AppBar(title: const Text('KYC Review')),
+        return PageScaffold(
+          header: const Header(title: 'KYC Review'),
           body: vm.isLoading
-              ? const Center(child: CircularProgressIndicator())
+              ? const LoadingIndicator(message: 'Loading KYC queue...')
               : Row(
                   children: [
                     Expanded(
                       flex: 2,
-                      child: ListView.separated(
-                        padding: const EdgeInsets.all(16),
-                        itemCount: vm.items.length,
-                        separatorBuilder: (_, __) => const SizedBox(height: 8),
-                        itemBuilder: (context, index) {
-                          final item = vm.items[index];
-                          final isSelected = vm.selected?.verificationId == item.verificationId;
-                          return ListTile(
-                            selected: isSelected,
-                            leading: CircleAvatar(child: Text(item.fullName?.substring(0, 1) ?? '?')),
-                            title: Text(item.fullName ?? item.profileId),
-                            subtitle: Text('${item.documentType} • ${item.uploadDate.toLocal()}'),
-                            trailing: Text(item.status, style: theme.textTheme.bodySmall),
-                            onTap: () => vm.select(item),
-                          );
-                        },
-                      ),
+                      child: KycItemList(vm: vm),
                     ),
                     const VerticalDivider(width: 1),
                     Expanded(
                       flex: 3,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: vm.selected == null
-                            ? const Center(child: Text('Select a KYC entry to review'))
-                            : _DetailPanel(
-                                item: vm.selected!,
-                                onDecision: (decision, note) => vm.verify(vm.selected!.verificationId, decision, note),
-                              ),
-                      ),
-                    )
+                      child: KycDetailPanel(vm: vm),
+                    ),
                   ],
                 ),
         );
@@ -59,45 +36,89 @@ class KycReviewPage extends StatelessWidget {
   }
 }
 
-class _Vm {
-  _Vm({
-    required this.items,
-    required this.isLoading,
-    required this.selected,
-    required this.select,
-    required this.verify,
+class KycItemList extends StatelessWidget {
+  const KycItemList({super.key, required this.vm});
+
+  final KycReviewViewModel vm;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: vm.items.length,
+      itemBuilder: (context, index) {
+        final item = vm.items[index];
+        return KycItemCard(
+          item: item,
+          isSelected: vm.selected?.verificationId == item.verificationId,
+          onTap: () => vm.select(item),
+        );
+      },
+    );
+  }
+}
+
+class KycItemCard extends StatelessWidget {
+  const KycItemCard({
+    super.key,
+    required this.item,
+    required this.isSelected,
+    required this.onTap,
   });
 
-  final List<KycItem> items;
-  final bool isLoading;
-  final KycItem? selected;
-  final void Function(KycItem?) select;
-  final void Function(String verificationId, String decision, String? note) verify;
+  final KycItem item;
+  final bool isSelected;
+  final VoidCallback onTap;
 
-  static _Vm fromStore(Store<AppState> store) {
-    final s = store.state.kycQueueState;
-    return _Vm(
-      items: s.items,
-      isLoading: s.isLoading,
-      selected: s.selected,
-      select: (item) => store.dispatch(SelectKycItem(item)),
-      verify: (id, decision, note) => store.dispatch(
-        VerifyKycRequest(verificationId: id, decision: decision, note: note),
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Card(
+      color: isSelected ? theme.colorScheme.primary.withOpacity(0.1) : null,
+      child: ListTile(
+        leading: CircleAvatar(child: Text(item.fullName?.substring(0, 1) ?? '?')),
+        title: Text(item.fullName ?? item.profileId),
+        subtitle: Text('${item.documentType} • ${item.uploadDate.toLocal()}'),
+        trailing: Text(item.status, style: theme.textTheme.bodySmall),
+        onTap: onTap,
       ),
     );
   }
 }
 
-class _DetailPanel extends StatefulWidget {
-  const _DetailPanel({required this.item, required this.onDecision});
+class KycDetailPanel extends StatelessWidget {
+  const KycDetailPanel({super.key, required this.vm});
+
+  final KycReviewViewModel vm;
+
+  @override
+  Widget build(BuildContext context) {
+    if (vm.selected == null) {
+      return const Center(child: Text('Select a KYC entry to review'));
+    }
+    return KycDetailContent(
+      item: vm.selected!,
+      onDecision: (decision, note) =>
+          vm.verify(vm.selected!.verificationId, decision, note),
+    );
+  }
+}
+
+class KycDetailContent extends StatefulWidget {
+  const KycDetailContent({
+    super.key,
+    required this.item,
+    required this.onDecision,
+  });
+
   final KycItem item;
   final void Function(String decision, String? note) onDecision;
 
   @override
-  State<_DetailPanel> createState() => _DetailPanelState();
+  State<KycDetailContent> createState() => _KycDetailContentState();
 }
 
-class _DetailPanelState extends State<_DetailPanel> {
+class _KycDetailContentState extends State<KycDetailContent> {
   final _noteController = TextEditingController();
 
   @override
@@ -109,43 +130,52 @@ class _DetailPanelState extends State<_DetailPanel> {
   @override
   Widget build(BuildContext context) {
     final item = widget.item;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(item.fullName ?? item.profileId, style: Theme.of(context).textTheme.titleLarge),
-        const SizedBox(height: 8),
-        Text('Document: ${item.documentType}')
-            ,
-        const SizedBox(height: 8),
-        Text('Status: ${item.status}')
-            ,
-        const SizedBox(height: 12),
-        TextField(
-          controller: _noteController,
-          decoration: const InputDecoration(
-            labelText: 'Review note (optional)',
-            border: OutlineInputBorder(),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(item.fullName ?? item.profileId, style: Theme.of(context).textTheme.headlineSmall),
+          const SizedBox(height: 16),
+          Text('Document: ${item.documentType}'),
+          const SizedBox(height: 8),
+          Text('Status: ${item.status}'),
+          const SizedBox(height: 16),
+          // TODO: Display document image
+          const Expanded(
+            child: Center(
+              child: Text('Document image viewer placeholder'),
+            ),
           ),
-          minLines: 2,
-          maxLines: 4,
-        ),
-        const SizedBox(height: 12),
-        Row(
-          children: [
-            ElevatedButton.icon(
-              onPressed: () => widget.onDecision('verified', _noteController.text.isEmpty ? null : _noteController.text),
-              icon: const Icon(Icons.check_circle),
-              label: const Text('Approve'),
-            ),
-            const SizedBox(width: 12),
-            OutlinedButton.icon(
-              onPressed: () => widget.onDecision('rejected', _noteController.text.isEmpty ? null : _noteController.text),
-              icon: const Icon(Icons.cancel),
-              label: const Text('Reject'),
-            ),
-          ],
-        )
-      ],
+          const SizedBox(height: 16),
+          InputField(
+            controller: _noteController,
+            labelText: 'Review note (optional)',
+            minLines: 2,
+            maxLines: 4,
+          ),
+          const SizedBox(height: 16),
+          Row(
+            children: [
+              Button(
+                label: 'Approve',
+                onPressed: () =>
+                    widget.onDecision('verified', _noteController.text.isEmpty ? null : _noteController.text),
+                type: ButtonType.primary,
+                icon: Icons.check_circle,
+              ),
+              const SizedBox(width: 16),
+              Button(
+                label: 'Reject',
+                onPressed: () =>
+                    widget.onDecision('rejected', _noteController.text.isEmpty ? null : _noteController.text),
+                type: ButtonType.danger,
+                icon: Icons.cancel,
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

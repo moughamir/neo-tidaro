@@ -2,6 +2,7 @@ import '../dto/auth_dto.dart';
 import '../entities/entities.dart';
 import '../enums/enums.dart';
 import 'base_repository.dart';
+import 'package:core/core.dart';
 
 /// Domain-pure authentication repository interface
 abstract class AuthRepository {

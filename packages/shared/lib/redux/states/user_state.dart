@@ -1,8 +1,8 @@
+import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:shared/redux/core/core.dart';
 
 class UserState extends BaseState {
-
   const UserState({
     this.user,
     this.profile,
@@ -14,7 +14,7 @@ class UserState extends BaseState {
 
   factory UserState.initial() => const UserState(isLoading: true);
   final User? user;
-  final UserProfile? profile;
+  final Profile? profile;
   final List<Address> addresses;
   final KycDocument? kycDocument;
   final bool isLoading;

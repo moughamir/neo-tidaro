@@ -39,15 +39,15 @@ class StaffDetailsDialog extends StatelessWidget {
                       children: <Widget>[
                         ui.InfoRow(
                           label: 'l10n.userfullName',
-                          value: professional.fullName!,
+                          value: professional.fullName ?? 'N/A',
                         ),
                         ui.InfoRow(
                           label: 'l10n.userEmail',
-                          value: professional.email.toString(),
+                          value: professional.email?.value ?? 'N/A',
                         ),
                         ui.InfoRow(
                           label: 'l10n.userPhone',
-                          value: professional.phone.toString(),
+                          value: professional.phone?.value ?? 'N/A',
                         ),
 
                         if (professional.createdAt != null)
@@ -173,7 +173,7 @@ class StaffDetailsDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              professional.businessName ?? professional.fullName!,
+              professional.businessName ?? professional.fullName ?? 'Professional',
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:languist/languist.dart';
 import 'package:shared/shared.dart';
+import 'package:ui_kit/ui_kit.dart';
 
 import '../admin/kyc_review_page.dart';
 import '../bookings/bookings_page.dart';
@@ -32,61 +33,52 @@ class _MainLayoutState extends State<MainLayout> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
     final l10n = Languist.of(context);
-    return Scaffold(
+    return PageScaffold(
       body: Row(
         children: <Widget>[
           // Side navigation rail
-          NavigationRail(
+          NavigationSidebar(
             selectedIndex: _selectedIndex,
-            onDestinationSelected: (int index) {
+            onDestinationSelected: (index) {
               setState(() {
                 _selectedIndex = index;
               });
             },
-            labelType: NavigationRailLabelType.all,
-            backgroundColor: theme.colorScheme.surface,
-            leading: _buildUserProfile(context, theme, l10n),
-            trailing: _buildLogoutButton(context, theme, l10n),
-            destinations: <NavigationRailDestination>[
-              NavigationRailDestination(
-                icon: const Icon(Icons.dashboard_outlined),
-                selectedIcon: const Icon(Icons.dashboard),
-                label: Text(l10n.dashboard),
+            header: _buildUserProfile(context, l10n),
+            footer: _buildLogoutButton(context, l10n),
+            destinations: [
+              NavigationDestinationInfo(
+                icon: Icons.dashboard_outlined,
+                selectedIcon: Icons.dashboard,
+                label: l10n.dashboard,
               ),
-              NavigationRailDestination(
-                icon: const Icon(Icons.calendar_today_outlined),
-                selectedIcon: const Icon(Icons.calendar_today),
-                label: Text(l10n.bookings),
+              NavigationDestinationInfo(
+                icon: Icons.calendar_today_outlined,
+                selectedIcon: Icons.calendar_today,
+                label: l10n.bookings,
               ),
-              NavigationRailDestination(
-                icon: const Icon(Icons.people_outline),
-                selectedIcon: const Icon(Icons.people),
-                label: Text(l10n.staff),
+              NavigationDestinationInfo(
+                icon: Icons.people_outline,
+                selectedIcon: Icons.people,
+                label: l10n.staff,
               ),
-              NavigationRailDestination(
-                icon: const Icon(Icons.verified_user_outlined),
-                selectedIcon: const Icon(Icons.verified_user),
-                label: Text(l10n.dashboardNavigationKyc),
+              NavigationDestinationInfo(
+                icon: Icons.verified_user_outlined,
+                selectedIcon: Icons.verified_user,
+                label: l10n.dashboardNavigationKyc,
               ),
-              NavigationRailDestination(
-                icon: const Icon(Icons.fact_check_outlined),
-                selectedIcon: const Icon(Icons.fact_check),
-                label: Text(l10n.dashboardNavigationBookings),
+              NavigationDestinationInfo(
+                icon: Icons.fact_check_outlined,
+                selectedIcon: Icons.fact_check,
+                label: l10n.dashboardNavigationBookings,
               ),
-              NavigationRailDestination(
-                icon: const Icon(Icons.supervised_user_circle_outlined),
-                selectedIcon: const Icon(Icons.supervised_user_circle),
-                label: Text(l10n.dashboardNavigationUsers),
+              NavigationDestinationInfo(
+                icon: Icons.supervised_user_circle_outlined,
+                selectedIcon: Icons.supervised_user_circle,
+                label: l10n.dashboardNavigationUsers,
               ),
             ],
-          ),
-          // Vertical divider
-          VerticalDivider(
-            thickness: 1,
-            width: 1,
-            color: theme.colorScheme.outline.withValues(alpha: 0.1),
           ),
           // Main content
           Expanded(child: _pages[_selectedIndex]),
@@ -95,71 +87,74 @@ class _MainLayoutState extends State<MainLayout> {
     );
   }
 
-  Widget _buildUserProfile(BuildContext context, ThemeData theme, IntlLocalizations l10n) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: 24,
-            backgroundColor: theme.colorScheme.primary,
-            child: Icon(
-              Icons.person,
-              color: theme.colorScheme.onPrimary,
-              size: 24,
-            ),
+  Widget _buildUserProfile(BuildContext context, IntlLocalizations l10n) {
+    return StoreConnector<AppState, User?>(
+      converter: (store) => store.state.authState.user,
+      builder: (context, user) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              CircleAvatar(
+                radius: 24,
+                backgroundImage: user?.avatarUrl != null ? NetworkImage(user!.avatarUrl!) : null,
+                child: user?.avatarUrl == null
+                    ? Text(user?.fullName?.substring(0, 1) ?? 'A')
+                    : null,
+              ),
+              const SizedBox(width: 16),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    user?.fullName ?? 'Admin',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
+                  Text(
+                    user?.role.name ?? 'Administrator',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            'Admin',
-            style: theme.textTheme.labelSmall?.copyWith(
-              color: theme.colorScheme.onSurface,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
-  Widget _buildLogoutButton(BuildContext context, ThemeData theme, IntlLocalizations l10n) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      child: IconButton(
+  Widget _buildLogoutButton(BuildContext context, IntlLocalizations l10n) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Button(
+        label: l10n.logout,
         onPressed: () => _showLogoutDialog(context, l10n),
-        icon: Icon(
-          Icons.logout,
-          color: theme.colorScheme.error,
-        ),
-        tooltip: l10n.logout,
+        type: ButtonType.secondary,
+        icon: Icons.logout,
       ),
     );
   }
 
   void _showLogoutDialog(BuildContext context, IntlLocalizations l10n) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text(l10n.logout),
-        content: Text(l10n.logoutConfirmation),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(l10n.commonCancel),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              StoreProvider.of<AppState>(context, listen: false)
-                  .dispatch(const SignOutAction());
-            },
-            child: Text(
-              l10n.logout,
-              style: TextStyle(color: Theme.of(context).colorScheme.error),
-            ),
-          ),
-        ],
-      ),
+    showGenericDialog(
+      context,
+      title: l10n.logout,
+      content: Text(l10n.logoutConfirmation),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.commonCancel),
+        ),
+        Button(
+          label: l10n.logout,
+          onPressed: () {
+            Navigator.pop(context);
+            StoreProvider.of<AppState>(context, listen: false)
+                .dispatch(const SignOutAction());
+          },
+          type: ButtonType.danger,
+        ),
+      ],
     );
   }
 }

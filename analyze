@@ -1,0 +1,755 @@
+melos run analyze
+  └> melos exec -c 8  -- flutter analyze
+     └> RUNNING
+
+$ melos exec
+  └> flutter analyze
+     └> RUNNING (in 13 packages)
+
+--------------------------------------------------------------------------------
+[auth_flow_example]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[basic_app_example]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[device_sensors]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[auth_flow_redux]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[languist]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[shared]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[domain]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[core]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[auth_flow_example]: Downloading packages...
+[basic_app_example]: Downloading packages...
+[auth_flow_redux]: Downloading packages...
+[device_sensors]: Downloading packages...
+[auth_flow_example]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[auth_flow_example]:   analyzer 7.7.1 (8.1.1 available)
+[auth_flow_example]:   characters 1.4.0 (1.4.1 available)
+[auth_flow_example]:   connectivity_plus 6.1.5 (7.0.0 available)
+[auth_flow_example]:   flutter_lints 5.0.0 (6.0.0 available)
+[auth_flow_example]:   flutter_markdown 0.7.7+1 (discontinued)
+[auth_flow_example]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[auth_flow_example]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[auth_flow_example]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[auth_flow_example]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[auth_flow_example]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[auth_flow_example]:   js 0.6.7 (0.7.2 available)
+[auth_flow_example]:   lints 5.1.1 (6.0.0 available)
+[auth_flow_example]:   material_color_utilities 0.11.1 (0.13.0 available)
+[auth_flow_example]:   meta 1.16.0 (1.17.0 available)
+[auth_flow_example]:   sensors_plus 6.1.2 (7.0.0 available)
+[auth_flow_example]:   test 1.26.2 (1.26.3 available)
+[auth_flow_example]:   test_api 0.7.6 (0.7.7 available)
+[auth_flow_example]:   test_core 0.6.11 (0.6.12 available)
+[auth_flow_example]:   url_launcher_android 6.3.21 (6.3.22 available)
+[auth_flow_example]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[auth_flow_example]: 1 package is discontinued.
+[auth_flow_example]: 19 packages have newer versions incompatible with dependency constraints.
+[auth_flow_example]: Try `flutter pub outdated` for more information.
+[basic_app_example]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[basic_app_example]:   analyzer 7.7.1 (8.1.1 available)
+[basic_app_example]:   characters 1.4.0 (1.4.1 available)
+[basic_app_example]:   connectivity_plus 6.1.5 (7.0.0 available)
+[basic_app_example]:   flutter_lints 5.0.0 (6.0.0 available)
+[basic_app_example]:   flutter_markdown 0.7.7+1 (discontinued)
+[basic_app_example]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[basic_app_example]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[basic_app_example]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[basic_app_example]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[basic_app_example]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[basic_app_example]:   js 0.6.7 (0.7.2 available)
+[basic_app_example]:   lints 5.1.1 (6.0.0 available)
+[basic_app_example]:   material_color_utilities 0.11.1 (0.13.0 available)
+[basic_app_example]:   meta 1.16.0 (1.17.0 available)
+[basic_app_example]:   sensors_plus 6.1.2 (7.0.0 available)
+[basic_app_example]:   test 1.26.2 (1.26.3 available)
+[basic_app_example]:   test_api 0.7.6 (0.7.7 available)
+[basic_app_example]:   test_core 0.6.11 (0.6.12 available)
+[basic_app_example]:   url_launcher_android 6.3.21 (6.3.22 available)
+[basic_app_example]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[basic_app_example]: 1 package is discontinued.
+[basic_app_example]: 19 packages have newer versions incompatible with dependency constraints.
+[basic_app_example]: Try `flutter pub outdated` for more information.
+[auth_flow_redux]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[auth_flow_redux]:   analyzer 7.7.1 (8.1.1 available)
+[auth_flow_redux]:   characters 1.4.0 (1.4.1 available)
+[auth_flow_redux]:   connectivity_plus 6.1.5 (7.0.0 available)
+[auth_flow_redux]:   flutter_lints 5.0.0 (6.0.0 available)
+[auth_flow_redux]:   flutter_markdown 0.7.7+1 (discontinued)
+[auth_flow_redux]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[auth_flow_redux]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[auth_flow_redux]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[auth_flow_redux]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[auth_flow_redux]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[auth_flow_redux]:   js 0.6.7 (0.7.2 available)
+[auth_flow_redux]:   lints 5.1.1 (6.0.0 available)
+[auth_flow_redux]:   material_color_utilities 0.11.1 (0.13.0 available)
+[auth_flow_redux]:   meta 1.16.0 (1.17.0 available)
+[auth_flow_redux]:   sensors_plus 6.1.2 (7.0.0 available)
+[auth_flow_redux]:   test 1.26.2 (1.26.3 available)
+[auth_flow_redux]:   test_api 0.7.6 (0.7.7 available)
+[auth_flow_redux]:   test_core 0.6.11 (0.6.12 available)
+[auth_flow_redux]:   url_launcher_android 6.3.21 (6.3.22 available)
+[device_sensors]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[device_sensors]:   analyzer 7.7.1 (8.1.1 available)
+[device_sensors]:   characters 1.4.0 (1.4.1 available)
+[device_sensors]:   connectivity_plus 6.1.5 (7.0.0 available)
+[device_sensors]:   flutter_lints 5.0.0 (6.0.0 available)
+[device_sensors]:   flutter_markdown 0.7.7+1 (discontinued)
+[device_sensors]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[device_sensors]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[device_sensors]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[device_sensors]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[device_sensors]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[device_sensors]:   js 0.6.7 (0.7.2 available)
+[device_sensors]:   lints 5.1.1 (6.0.0 available)
+[device_sensors]:   material_color_utilities 0.11.1 (0.13.0 available)
+[device_sensors]:   meta 1.16.0 (1.17.0 available)
+[device_sensors]:   sensors_plus 6.1.2 (7.0.0 available)
+[device_sensors]:   test 1.26.2 (1.26.3 available)
+[device_sensors]:   test_api 0.7.6 (0.7.7 available)
+[device_sensors]:   test_core 0.6.11 (0.6.12 available)
+[device_sensors]:   url_launcher_android 6.3.21 (6.3.22 available)
+[auth_flow_redux]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[auth_flow_redux]: 1 package is discontinued.
+[device_sensors]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[auth_flow_redux]: 19 packages have newer versions incompatible with dependency constraints.
+[auth_flow_redux]: Try `flutter pub outdated` for more information.
+[device_sensors]: 1 package is discontinued.
+[device_sensors]: 19 packages have newer versions incompatible with dependency constraints.
+[device_sensors]: Try `flutter pub outdated` for more information.
+[languist]: Downloading packages...
+[shared]: Downloading packages...
+[domain]: Downloading packages...
+[shared]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[shared]:   analyzer 7.7.1 (8.1.1 available)
+[shared]:   characters 1.4.0 (1.4.1 available)
+[shared]:   connectivity_plus 6.1.5 (7.0.0 available)
+[shared]:   flutter_lints 5.0.0 (6.0.0 available)
+[shared]:   flutter_markdown 0.7.7+1 (discontinued)
+[shared]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[shared]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[shared]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[shared]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[shared]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[shared]:   js 0.6.7 (0.7.2 available)
+[shared]:   lints 5.1.1 (6.0.0 available)
+[shared]:   material_color_utilities 0.11.1 (0.13.0 available)
+[shared]:   meta 1.16.0 (1.17.0 available)
+[shared]:   sensors_plus 6.1.2 (7.0.0 available)
+[shared]:   test 1.26.2 (1.26.3 available)
+[shared]:   test_api 0.7.6 (0.7.7 available)
+[shared]:   test_core 0.6.11 (0.6.12 available)
+[shared]:   url_launcher_android 6.3.21 (6.3.22 available)
+[shared]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[shared]: 1 package is discontinued.
+[core]: Downloading packages...
+[shared]: 19 packages have newer versions incompatible with dependency constraints.
+[shared]: Try `flutter pub outdated` for more information.
+[languist]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[languist]:   analyzer 7.7.1 (8.1.1 available)
+[languist]:   characters 1.4.0 (1.4.1 available)
+[languist]:   connectivity_plus 6.1.5 (7.0.0 available)
+[languist]:   flutter_lints 5.0.0 (6.0.0 available)
+[languist]:   flutter_markdown 0.7.7+1 (discontinued)
+[languist]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[languist]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[languist]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[languist]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[languist]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[languist]:   js 0.6.7 (0.7.2 available)
+[languist]:   lints 5.1.1 (6.0.0 available)
+[languist]:   material_color_utilities 0.11.1 (0.13.0 available)
+[languist]:   meta 1.16.0 (1.17.0 available)
+[languist]:   sensors_plus 6.1.2 (7.0.0 available)
+[languist]:   test 1.26.2 (1.26.3 available)
+[languist]:   test_api 0.7.6 (0.7.7 available)
+[languist]:   test_core 0.6.11 (0.6.12 available)
+[languist]:   url_launcher_android 6.3.21 (6.3.22 available)
+[languist]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[languist]: 1 package is discontinued.
+[languist]: 19 packages have newer versions incompatible with dependency constraints.
+[languist]: Try `flutter pub outdated` for more information.
+[domain]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[domain]:   analyzer 7.7.1 (8.1.1 available)
+[domain]:   characters 1.4.0 (1.4.1 available)
+[domain]:   connectivity_plus 6.1.5 (7.0.0 available)
+[domain]:   flutter_lints 5.0.0 (6.0.0 available)
+[domain]:   flutter_markdown 0.7.7+1 (discontinued)
+[domain]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[domain]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[domain]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[domain]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[domain]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[domain]:   js 0.6.7 (0.7.2 available)
+[domain]:   lints 5.1.1 (6.0.0 available)
+[domain]:   material_color_utilities 0.11.1 (0.13.0 available)
+[domain]:   meta 1.16.0 (1.17.0 available)
+[domain]:   sensors_plus 6.1.2 (7.0.0 available)
+[domain]:   test 1.26.2 (1.26.3 available)
+[domain]:   test_api 0.7.6 (0.7.7 available)
+[domain]:   test_core 0.6.11 (0.6.12 available)
+[domain]:   url_launcher_android 6.3.21 (6.3.22 available)
+[domain]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[domain]: 1 package is discontinued.
+[domain]: 19 packages have newer versions incompatible with dependency constraints.
+[domain]: Try `flutter pub outdated` for more information.
+[core]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[core]:   analyzer 7.7.1 (8.1.1 available)
+[core]:   characters 1.4.0 (1.4.1 available)
+[core]:   connectivity_plus 6.1.5 (7.0.0 available)
+[core]:   flutter_lints 5.0.0 (6.0.0 available)
+[core]:   flutter_markdown 0.7.7+1 (discontinued)
+[core]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[core]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[core]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[core]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[core]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[core]:   js 0.6.7 (0.7.2 available)
+[core]:   lints 5.1.1 (6.0.0 available)
+[core]:   material_color_utilities 0.11.1 (0.13.0 available)
+[core]:   meta 1.16.0 (1.17.0 available)
+[core]:   sensors_plus 6.1.2 (7.0.0 available)
+[core]:   test 1.26.2 (1.26.3 available)
+[core]:   test_api 0.7.6 (0.7.7 available)
+[core]:   test_core 0.6.11 (0.6.12 available)
+[core]:   url_launcher_android 6.3.21 (6.3.22 available)
+[core]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[core]: 1 package is discontinued.
+[core]: 19 packages have newer versions incompatible with dependency constraints.
+[core]: Try `flutter pub outdated` for more information.
+[device_sensors]: Analyzing device_sensors...                                     
+[basic_app_example]: Analyzing basic_app...                                          
+[auth_flow_example]: Analyzing auth_flow...                                          
+[languist]: Analyzing languist...                                           
+[shared]: Analyzing shared...                                             
+[auth_flow_redux]: Analyzing auth_flow_redux...                                    
+[domain]: Analyzing domain...                                             
+[core]: Analyzing core...                                               
+[device_sensors]: 
+[device_sensors]: No issues found! (ran in 3.2s)
+[domain]: 
+[domain]: 
+[domain]:    info • Statements in an if should be enclosed in a block • lib/dto/user_dto.dart:114:7 • curly_braces_in_flow_control_structures
+[domain]:    info • Statements in an if should be enclosed in a block • lib/dto/user_dto.dart:116:7 • curly_braces_in_flow_control_structures
+[domain]:    info • Statements in an if should be enclosed in a block • lib/dto/user_dto.dart:118:7 • curly_braces_in_flow_control_structures
+[domain]:    info • Statements in an if should be enclosed in a block • lib/dto/user_dto.dart:198:7 • curly_braces_in_flow_control_structures
+[domain]:    info • Statements in an if should be enclosed in a block • lib/dto/user_dto.dart:200:7 • curly_braces_in_flow_control_structures
+[domain]:   error • Target of URI doesn't exist: 'user_profile.dart' • lib/entities/user/client_profile.dart:1:8 • uri_does_not_exist
+[domain]:   error • Classes can only extend other classes • lib/entities/user/client_profile.dart:4:29 • extends_non_class
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/client_profile.dart:7:20 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/client_profile.dart:8:20 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/client_profile.dart:9:20 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/client_profile.dart:10:20 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/client_profile.dart:11:11 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/client_profile.dart:12:11 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/client_profile.dart:13:11 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/client_profile.dart:14:11 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/client_profile.dart:15:11 • super_formal_parameter_without_associated_named
+[domain]:   error • Undefined name 'id' • lib/entities/user/client_profile.dart:52:11 • undefined_identifier
+[domain]:   error • Undefined name 'createdAt' • lib/entities/user/client_profile.dart:53:18 • undefined_identifier
+[domain]:   error • Undefined name 'userId' • lib/entities/user/client_profile.dart:55:15 • undefined_identifier
+[domain]:   error • The getter 'isPublic' isn't defined for the type 'ClientProfile' • lib/entities/user/client_profile.dart:56:34 • undefined_getter
+[domain]:   error • The getter 'bio' isn't defined for the type 'ClientProfile' • lib/entities/user/client_profile.dart:57:24 • undefined_getter
+[domain]:   error • The getter 'dateOfBirth' isn't defined for the type 'ClientProfile' • lib/entities/user/client_profile.dart:58:40 • undefined_getter
+[domain]:   error • The getter 'preferredLanguage' isn't defined for the type 'ClientProfile' • lib/entities/user/client_profile.dart:59:52 • undefined_getter
+[domain]:   error • The getter 'profileSettings' isn't defined for the type 'ClientProfile' • lib/entities/user/client_profile.dart:60:48 • undefined_getter
+[domain]:   error • Target of URI doesn't exist: 'user_profile.dart' • lib/entities/user/professional_profile.dart:3:8 • uri_does_not_exist
+[domain]:   error • Target of URI doesn't exist: 'user.dart' • lib/entities/user/professional_profile.dart:4:8 • uri_does_not_exist
+[domain]:   error • Classes can only extend other classes • lib/entities/user/professional_profile.dart:7:35 • extends_non_class
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/professional_profile.dart:10:20 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/professional_profile.dart:11:20 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/professional_profile.dart:12:20 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/professional_profile.dart:13:20 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/professional_profile.dart:14:11 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/professional_profile.dart:15:11 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/professional_profile.dart:16:11 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/professional_profile.dart:17:11 • super_formal_parameter_without_associated_named
+[domain]:   error • No associated named super constructor parameter • lib/entities/user/professional_profile.dart:18:11 • super_formal_parameter_without_associated_named
+[domain]:   error • Undefined class 'User' • lib/entities/user/professional_profile.dart:117:9 • undefined_class
+[domain]:   error • Undefined class 'User' • lib/entities/user/professional_profile.dart:178:5 • undefined_class
+[domain]:   error • Undefined name 'id' • lib/entities/user/professional_profile.dart:181:11 • undefined_identifier
+[domain]:   error • Undefined name 'createdAt' • lib/entities/user/professional_profile.dart:182:18 • undefined_identifier
+[domain]:   error • Undefined name 'userId' • lib/entities/user/professional_profile.dart:184:15 • undefined_identifier
+[domain]:   error • The getter 'isPublic' isn't defined for the type 'ProfessionalProfile' • lib/entities/user/professional_profile.dart:185:34 • undefined_getter
+[domain]:   error • The getter 'bio' isn't defined for the type 'ProfessionalProfile' • lib/entities/user/professional_profile.dart:186:24 • undefined_getter
+[domain]:   error • The getter 'dateOfBirth' isn't defined for the type 'ProfessionalProfile' • lib/entities/user/professional_profile.dart:187:40 • undefined_getter
+[domain]:   error • The getter 'preferredLanguage' isn't defined for the type 'ProfessionalProfile' • lib/entities/user/professional_profile.dart:188:52 • undefined_getter
+[domain]:   error • The getter 'profileSettings' isn't defined for the type 'ProfessionalProfile' • lib/entities/user/professional_profile.dart:189:48 • undefined_getter
+[domain]:   error • Undefined class 'User' • lib/repositories/auth_repository.dart:10:3 • undefined_class
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/auth_repository.dart:13:27 • non_type_as_type_argument
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/auth_repository.dart:14:27 • non_type_as_type_argument
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/auth_repository.dart:15:27 • non_type_as_type_argument
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/auth_repository.dart:18:27 • non_type_as_type_argument
+[domain]:    info • Angle brackets will be interpreted as HTML • lib/repositories/notification_repository.dart:12:45 • unintended_html_in_doc_comment
+[domain]:   error • The name 'UserProfile' isn't a type, so it can't be used as a type argument • lib/repositories/profile_repository.dart:6:10 • non_type_as_type_argument
+[domain]:   error • The name 'UserProfile' isn't a type, so it can't be used as a type argument • lib/repositories/profile_repository.dart:7:15 • non_type_as_type_argument
+[domain]:   error • The name 'UserProfile' isn't a type, so it can't be used as a type argument • lib/repositories/profile_repository.dart:8:10 • non_type_as_type_argument
+[domain]:   error • Undefined class 'UserProfile' • lib/repositories/profile_repository.dart:8:28 • undefined_class
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:10:54 • non_type_as_type_argument
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:12:27 • non_type_as_type_argument
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:13:27 • non_type_as_type_argument
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:14:27 • non_type_as_type_argument
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:17:27 • non_type_as_type_argument
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:18:27 • non_type_as_type_argument
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:19:27 • non_type_as_type_argument
+[domain]:   error • The name 'UserProfile' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:26:27 • non_type_as_type_argument
+[domain]:   error • The name 'UserProfile' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:27:27 • non_type_as_type_argument
+[domain]:   error • The name 'UserProfile' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:28:27 • non_type_as_type_argument
+[domain]:   error • The name 'updateProfile' is already defined • lib/repositories/user_repository.dart:28:41 • duplicate_definition
+[domain]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/user_repository.dart:71:32 • non_type_as_type_argument
+[domain]: 
+[tidaro]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[tidaro_mini]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[languist]: 
+[languist]: 
+[languist]:    info • Angle brackets will be interpreted as HTML • lib/src/config/config_reader.dart:53:39 • unintended_html_in_doc_comment
+[languist]:    info • Angle brackets will be interpreted as HTML • lib/src/config/config_reader.dart:74:41 • unintended_html_in_doc_comment
+[languist]: 
+[tidaro]: Downloading packages...
+[basic_app_example]: 
+[auth_flow_example]: 
+[basic_app_example]: No issues found! (ran in 12.6s)
+[auth_flow_example]: No issues found! (ran in 12.4s)
+[tidaro]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[tidaro]:   analyzer 7.7.1 (8.1.1 available)
+[tidaro]:   characters 1.4.0 (1.4.1 available)
+[tidaro]:   connectivity_plus 6.1.5 (7.0.0 available)
+[tidaro]:   flutter_lints 5.0.0 (6.0.0 available)
+[tidaro]:   flutter_markdown 0.7.7+1 (discontinued)
+[tidaro]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[tidaro]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[tidaro]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[tidaro]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[tidaro]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[tidaro]:   js 0.6.7 (0.7.2 available)
+[tidaro]:   lints 5.1.1 (6.0.0 available)
+[tidaro]:   material_color_utilities 0.11.1 (0.13.0 available)
+[tidaro]:   meta 1.16.0 (1.17.0 available)
+[tidaro]:   sensors_plus 6.1.2 (7.0.0 available)
+[tidaro]:   test 1.26.2 (1.26.3 available)
+[tidaro]:   test_api 0.7.6 (0.7.7 available)
+[tidaro]:   test_core 0.6.11 (0.6.12 available)
+[tidaro]:   url_launcher_android 6.3.21 (6.3.22 available)
+[shared]: 
+[shared]: 
+[shared]:   error • Undefined class 'User' • lib/adapters/user_adapter.dart:7:10 • undefined_class
+[shared]:   error • The function 'User' isn't defined • lib/adapters/user_adapter.dart:16:19 • undefined_function
+[shared]:   error • Undefined class 'User' • lib/adapters/user_adapter.dart:50:54 • undefined_class
+[tidaro]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[tidaro]: 1 package is discontinued.
+[shared]:   error • Undefined class 'User' • lib/adapters/user_adapter.dart:61:59 • undefined_class
+[shared]:    info • The import of 'package:fpdart/fpdart.dart' is unnecessary because all of the used elements are also provided by the import of 'package:shared/shared.dart' • lib/redux/actions/auth_actions.dart:1:8 • unnecessary_import
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/actions/auth_actions.dart:38:44 • non_type_as_type_argument
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/actions/auth_actions.dart:51:28 • non_type_as_type_argument
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/actions/auth_actions.dart:61:44 • non_type_as_type_argument
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/actions/auth_actions.dart:86:28 • non_type_as_type_argument
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/actions/auth_actions.dart:157:50 • non_type_as_type_argument
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/actions/auth_actions.dart:173:28 • non_type_as_type_argument
+[shared]:    info • Angle brackets will be interpreted as HTML • lib/redux/core/base_action.dart:26:44 • unintended_html_in_doc_comment
+[shared]:    info • Angle brackets will be interpreted as HTML • lib/redux/core/base_state.dart:17:44 • unintended_html_in_doc_comment
+[shared]:    info • The import of 'package:supabase_flutter/supabase_flutter.dart' is unnecessary because all of the used elements are also provided by the import of 'package:core/core.dart' • lib/redux/middleware/auth_middleware.dart:3:8 • unnecessary_import
+[shared]: warning • The value of the local variable 'result' isn't used • lib/redux/middleware/auth_middleware.dart:197:13 • unused_local_variable
+[shared]:   error • Target of URI doesn't exist: 'package:domain/entities/user/user.dart' • lib/redux/middleware/booking_middleware.dart:5:8 • uri_does_not_exist
+[shared]:   error • Undefined class 'User' • lib/redux/middleware/booking_middleware.dart:52:11 • undefined_class
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/middleware/booking_middleware.dart:52:44 • non_type_as_type_argument
+[shared]:   error • Undefined class 'User' • lib/redux/middleware/booking_middleware.dart:52:64 • undefined_class
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/reducers/auth_reducer.dart:9:55 • non_type_as_type_argument
+[shared]:   error • Undefined class 'User' • lib/redux/reducers/auth_reducer.dart:72:32 • undefined_class
+[shared]:    info • The imported package 'redux_thunk' isn't a dependency of the importing package • lib/redux/redux.dart:7:8 • depend_on_referenced_packages
+[shared]:   error • Target of URI doesn't exist: 'package:domain/entities/user/user.dart' • lib/redux/selectors/auth_selectors.dart:1:8 • uri_does_not_exist
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/states/auth_state.dart:6:40 • non_type_as_type_argument
+[shared]:   error • Undefined class 'User' • lib/redux/states/auth_state.dart:31:35 • undefined_class
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/redux/states/auth_state.dart:65:12 • non_type_as_type_argument
+[shared]:   error • The getter 'id' isn't defined for the type 'ProfessionalProfile' • lib/redux/states/professional_state.dart:119:40 • undefined_getter
+[shared]:   error • Undefined class 'User' • lib/redux/states/user_state.dart:16:9 • undefined_class
+[shared]:   error • Undefined class 'UserProfile' • lib/redux/states/user_state.dart:17:9 • undefined_class
+[shared]:    info • Angle brackets will be interpreted as HTML • lib/repositories/booking_repository_adapter.dart:8:51 • unintended_html_in_doc_comment
+[shared]:   error • Positional super parameters can't be used when the super constructor invocation has a positional argument • lib/repositories/supabase_analytics_repository.dart:8:37 • positional_super_formal_parameter_with_positional_argument
+[shared]:   error • There's no constant named 'other' in 'ActivityType' • lib/repositories/supabase_analytics_repository.dart:34:46 • undefined_enum_constant
+[shared]:   error • The getter 'totalUsers' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:49:29 • undefined_getter
+[shared]:   error • The getter 'activeUsers' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:50:30 • undefined_getter
+[shared]:   error • The getter 'revenue' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:51:25 • undefined_getter
+[shared]:   error • The getter 'orders' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:52:24 • undefined_getter
+[shared]:   error • The getter 'userGrowth' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:53:29 • undefined_getter
+[tidaro]: 19 packages have newer versions incompatible with dependency constraints.
+[tidaro]: Try `flutter pub outdated` for more information.
+[shared]:   error • The getter 'revenueGrowth' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:54:32 • undefined_getter
+[shared]:   error • The getter 'orderGrowth' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:55:30 • undefined_getter
+[shared]:   error • The getter 'activeBookings' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:56:33 • undefined_getter
+[shared]:   error • The method 'toJson' isn't defined for the type 'ActivityItem' • lib/repositories/supabase_analytics_repository.dart:59:79 • undefined_method
+[shared]:   error • The method 'toIso8601String' can't be unconditionally invoked because the receiver can be 'null' • lib/repositories/supabase_analytics_repository.dart:60:38 • unchecked_use_of_nullable_value
+[shared]:   error • Undefined class 'ResultFuture' • lib/repositories/supabase_analytics_repository.dart:66:3 • undefined_class
+[shared]:   error • The method 'right' isn't defined for the type 'SupabaseAnalyticsRepository' • lib/repositories/supabase_analytics_repository.dart:75:14 • undefined_method
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_analytics_repository.dart:77:7 • undefined_identifier
+[shared]:   error • The method 'left' isn't defined for the type 'SupabaseAnalyticsRepository' • lib/repositories/supabase_analytics_repository.dart:78:14 • undefined_method
+[shared]:   error • Undefined name 'Failure' • lib/repositories/supabase_analytics_repository.dart:78:19 • undefined_identifier
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_analytics_repository.dart:80:7 • undefined_identifier
+[shared]:   error • The method 'left' isn't defined for the type 'SupabaseAnalyticsRepository' • lib/repositories/supabase_analytics_repository.dart:81:14 • undefined_method
+[shared]:   error • Undefined name 'Failure' • lib/repositories/supabase_analytics_repository.dart:81:19 • undefined_identifier
+[shared]:   error • Undefined class 'ResultFuture' • lib/repositories/supabase_analytics_repository.dart:86:3 • undefined_class
+[shared]:   error • The method 'right' isn't defined for the type 'SupabaseAnalyticsRepository' • lib/repositories/supabase_analytics_repository.dart:98:14 • undefined_method
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_analytics_repository.dart:104:7 • undefined_identifier
+[shared]:   error • The method 'left' isn't defined for the type 'SupabaseAnalyticsRepository' • lib/repositories/supabase_analytics_repository.dart:105:14 • undefined_method
+[shared]:   error • Undefined name 'Failure' • lib/repositories/supabase_analytics_repository.dart:105:19 • undefined_identifier
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_analytics_repository.dart:107:7 • undefined_identifier
+[shared]:   error • The method 'left' isn't defined for the type 'SupabaseAnalyticsRepository' • lib/repositories/supabase_analytics_repository.dart:108:14 • undefined_method
+[shared]:   error • Undefined name 'Failure' • lib/repositories/supabase_analytics_repository.dart:108:19 • undefined_identifier
+[shared]:   error • Undefined class 'ResultFuture' • lib/repositories/supabase_analytics_repository.dart:125:3 • undefined_class
+[shared]:   error • The getter 'totalUsers' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:146:27 • undefined_getter
+[shared]:   error • The getter 'totalUsers' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:147:22 • undefined_getter
+[shared]:   error • The getter 'revenue' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:151:27 • undefined_getter
+[shared]:   error • The getter 'revenue' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:152:22 • undefined_getter
+[shared]:   error • The getter 'orders' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:156:27 • undefined_getter
+[shared]:   error • The getter 'orders' isn't defined for the type 'DashboardMetrics' • lib/repositories/supabase_analytics_repository.dart:157:22 • undefined_getter
+[shared]:   error • The named parameter 'userGrowth' isn't defined • lib/repositories/supabase_analytics_repository.dart:162:9 • undefined_named_parameter
+[shared]:   error • The named parameter 'revenueGrowth' isn't defined • lib/repositories/supabase_analytics_repository.dart:163:9 • undefined_named_parameter
+[shared]:   error • The named parameter 'orderGrowth' isn't defined • lib/repositories/supabase_analytics_repository.dart:164:9 • undefined_named_parameter
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_analytics_repository.dart:169:7 • undefined_identifier
+[shared]:   error • The method 'left' isn't defined for the type 'SupabaseAnalyticsRepository' • lib/repositories/supabase_analytics_repository.dart:170:14 • undefined_method
+[shared]:   error • Undefined name 'Failure' • lib/repositories/supabase_analytics_repository.dart:170:19 • undefined_identifier
+[shared]:   error • Positional super parameters can't be used when the super constructor invocation has a positional argument • lib/repositories/supabase_analytics_repository.dart:182:36 • positional_super_formal_parameter_with_positional_argument
+[shared]:   error • There's no constant named 'other' in 'ActivityType' • lib/repositories/supabase_analytics_repository.dart:190:36 • undefined_enum_constant
+[shared]:   error • The argument type 'String?' can't be assigned to the parameter type 'String'.  • lib/repositories/supabase_analytics_repository.dart:193:20 • argument_type_not_assignable
+[shared]:   error • The named parameter 'userId' isn't defined • lib/repositories/supabase_analytics_repository.dart:194:7 • undefined_named_parameter
+[shared]:   error • The named parameter 'metadata' isn't defined • lib/repositories/supabase_analytics_repository.dart:195:7 • undefined_named_parameter
+[shared]:   error • The getter 'userId' isn't defined for the type 'ActivityItem' • lib/repositories/supabase_analytics_repository.dart:207:25 • undefined_getter
+[shared]:   error • The getter 'metadata' isn't defined for the type 'ActivityItem' • lib/repositories/supabase_analytics_repository.dart:208:26 • undefined_getter
+[shared]:   error • Undefined class 'ResultFuture' • lib/repositories/supabase_analytics_repository.dart:214:3 • undefined_class
+[shared]:   error • The method 'right' isn't defined for the type 'SupabaseActivityRepository' • lib/repositories/supabase_analytics_repository.dart:225:14 • undefined_method
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_analytics_repository.dart:231:7 • undefined_identifier
+[shared]:   error • The method 'left' isn't defined for the type 'SupabaseActivityRepository' • lib/repositories/supabase_analytics_repository.dart:232:14 • undefined_method
+[shared]:   error • Undefined name 'Failure' • lib/repositories/supabase_analytics_repository.dart:232:19 • undefined_identifier
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_analytics_repository.dart:234:7 • undefined_identifier
+[shared]:   error • The method 'left' isn't defined for the type 'SupabaseActivityRepository' • lib/repositories/supabase_analytics_repository.dart:235:14 • undefined_method
+[shared]:   error • Undefined name 'Failure' • lib/repositories/supabase_analytics_repository.dart:235:19 • undefined_identifier
+[shared]:   error • Undefined class 'ResultFuture' • lib/repositories/supabase_analytics_repository.dart:240:3 • undefined_class
+[shared]:   error • The method 'right' isn't defined for the type 'SupabaseActivityRepository' • lib/repositories/supabase_analytics_repository.dart:249:14 • undefined_method
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_analytics_repository.dart:255:7 • undefined_identifier
+[shared]:   error • The method 'left' isn't defined for the type 'SupabaseActivityRepository' • lib/repositories/supabase_analytics_repository.dart:256:14 • undefined_method
+[shared]:   error • Undefined name 'Failure' • lib/repositories/supabase_analytics_repository.dart:256:19 • undefined_identifier
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_analytics_repository.dart:258:7 • undefined_identifier
+[shared]:   error • The method 'left' isn't defined for the type 'SupabaseActivityRepository' • lib/repositories/supabase_analytics_repository.dart:259:14 • undefined_method
+[shared]:   error • Undefined name 'Failure' • lib/repositories/supabase_analytics_repository.dart:259:19 • undefined_identifier
+[shared]:   error • The method 'toJson' isn't defined for the type 'ActivityItem' • lib/repositories/supabase_analytics_repository.dart:306:70 • undefined_method
+[shared]:   error • The method 'toJson' isn't defined for the type 'ActivityItem' • lib/repositories/supabase_analytics_repository.dart:341:80 • undefined_method
+[shared]: warning • The operand can't be 'null', so the condition is always 'true' • lib/repositories/supabase_booking_repository.dart:392:18 • unnecessary_null_comparison
+[shared]: warning • The operand can't be 'null', so the condition is always 'true' • lib/repositories/supabase_booking_repository.dart:412:18 • unnecessary_null_comparison
+[shared]: warning • Unnecessary cast • lib/repositories/supabase_booking_repository.dart:779:23 • unnecessary_cast
+[shared]: warning • Unnecessary cast • lib/repositories/supabase_booking_repository.dart:812:28 • unnecessary_cast
+[shared]: warning • Dead code • lib/repositories/supabase_realtime_service.dart:43:44 • dead_code
+[shared]: warning • The left operand can't be null, so the right operand is never executed • lib/repositories/supabase_realtime_service.dart:43:47 • dead_null_aware_expression
+[shared]: warning • The operand can't be 'null', so the condition is always 'true' • lib/repositories/supabase_realtime_service.dart:44:22 • unnecessary_null_comparison
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_realtime_service.dart:183:7 • undefined_identifier
+[shared]:   error • The method 'network' isn't defined for the type 'Failure' • lib/repositories/supabase_realtime_service.dart:184:27 • undefined_method
+[shared]:   error • Undefined name 'CoreLogger' • lib/repositories/supabase_realtime_service.dart:202:7 • undefined_identifier
+[shared]:   error • The method 'network' isn't defined for the type 'Failure' • lib/repositories/supabase_realtime_service.dart:203:27 • undefined_method
+[shared]:   error • Undefined class 'RealtimeChannelStates' • lib/repositories/supabase_realtime_service.dart:245:3 • undefined_class
+[shared]:   error • The getter 'state' isn't defined for the type 'RealtimeChannel' • lib/repositories/supabase_realtime_service.dart:246:36 • undefined_getter
+[shared]:   error • The getter 'state' isn't defined for the type 'RealtimeChannel' • lib/repositories/supabase_realtime_service.dart:252:21 • undefined_getter
+[shared]:   error • Undefined name 'RealtimeChannelStates' • lib/repositories/supabase_realtime_service.dart:252:30 • undefined_identifier
+[shared]: warning • Dead code • lib/repositories/supabase_realtime_service.dart:302:38 • dead_code
+[shared]: warning • The left operand can't be null, so the right operand is never executed • lib/repositories/supabase_realtime_service.dart:302:41 • dead_null_aware_expression
+[shared]: warning • Dead code • lib/repositories/supabase_realtime_service.dart:310:38 • dead_code
+[shared]: warning • The left operand can't be null, so the right operand is never executed • lib/repositories/supabase_realtime_service.dart:310:41 • dead_null_aware_expression
+[shared]:   error • The property 'id' can't be unconditionally accessed because the receiver can be 'null' • lib/repositories/supabase_repository.dart:98:28 • unchecked_use_of_nullable_value
+[shared]:   error • The property 'id' can't be unconditionally accessed because the receiver can be 'null' • lib/repositories/supabase_repository.dart:105:55 • unchecked_use_of_nullable_value
+[shared]:   error • The property 'id' can't be unconditionally accessed because the receiver can be 'null' • lib/repositories/supabase_repository.dart:110:64 • unchecked_use_of_nullable_value
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/supabase_user_repository.dart:14:32 • non_type_as_type_argument
+[shared]:   error • Undefined class 'User' • lib/repositories/supabase_user_repository.dart:18:3 • undefined_class
+[shared]:   error • The function 'User' isn't defined • lib/repositories/supabase_user_repository.dart:19:19 • undefined_function
+[shared]:   error • Undefined class 'User' • lib/repositories/supabase_user_repository.dart:61:31 • undefined_class
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/supabase_user_repository.dart:75:16 • non_type_as_type_argument
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/supabase_user_repository.dart:94:16 • non_type_as_type_argument
+[shared]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/repositories/supabase_user_repository.dart:142:21 • non_type_as_type_argument
+[shared]:    info • Angle brackets will be interpreted as HTML • lib/utils/failures/failure.dart:5:21 • unintended_html_in_doc_comment
+[shared]:    info • Angle brackets will be interpreted as HTML • lib/utils/type_defs.dart:7:68 • unintended_html_in_doc_comment
+[shared]:    info • Angle brackets will be interpreted as HTML • lib/utils/type_defs.dart:12:74 • unintended_html_in_doc_comment
+[shared]:    info • Angle brackets will be interpreted as HTML • lib/utils/type_defs.dart:17:60 • unintended_html_in_doc_comment
+[shared]: warning • Unused import: 'package:languist/languist.dart' • lib/widgets/auth/role_selection_widget.dart:3:8 • unused_import
+[shared]:    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/widgets/auth/role_selection_widget.dart:118:45 • deprecated_member_use
+[shared]:    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/widgets/auth/role_selection_widget.dart:122:52 • deprecated_member_use
+[shared]: 
+[tidash]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[tidaro_mini]: Downloading packages...
+[core]: 
+[core]: 
+[core]:    info • Angle brackets will be interpreted as HTML • lib/utils/redux_logger.dart:8:24 • unintended_html_in_doc_comment
+[core]:    info • Angle brackets will be interpreted as HTML • lib/utils/redux_logger.dart:9:29 • unintended_html_in_doc_comment
+[core]:    info • Angle brackets will be interpreted as HTML • lib/utils/redux_logger.dart:10:35 • unintended_html_in_doc_comment
+[core]: 
+[ui_kit_showcase]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[ui_kit]: Resolving dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`...
+[tidaro_mini]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[tidaro_mini]:   analyzer 7.7.1 (8.1.1 available)
+[tidaro_mini]:   characters 1.4.0 (1.4.1 available)
+[tidaro_mini]:   connectivity_plus 6.1.5 (7.0.0 available)
+[tidaro_mini]:   flutter_lints 5.0.0 (6.0.0 available)
+[tidaro_mini]:   flutter_markdown 0.7.7+1 (discontinued)
+[tidaro_mini]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[tidaro_mini]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[tidaro_mini]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[tidaro_mini]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[tidaro_mini]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[tidaro_mini]:   js 0.6.7 (0.7.2 available)
+[tidaro_mini]:   lints 5.1.1 (6.0.0 available)
+[tidaro_mini]:   material_color_utilities 0.11.1 (0.13.0 available)
+[tidaro_mini]:   meta 1.16.0 (1.17.0 available)
+[tidaro_mini]:   sensors_plus 6.1.2 (7.0.0 available)
+[tidaro_mini]:   test 1.26.2 (1.26.3 available)
+[tidaro_mini]:   test_api 0.7.6 (0.7.7 available)
+[tidaro_mini]:   test_core 0.6.11 (0.6.12 available)
+[tidaro_mini]:   url_launcher_android 6.3.21 (6.3.22 available)
+[tidaro_mini]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[tidaro_mini]: 1 package is discontinued.
+[tidaro_mini]: 19 packages have newer versions incompatible with dependency constraints.
+[tidaro_mini]: Try `flutter pub outdated` for more information.
+[tidaro]: Analyzing tidaro...                                             
+[auth_flow_redux]: 
+[auth_flow_redux]: 
+[auth_flow_redux]: warning • The value of the local variable 'ssi' isn't used • lib/main.dart:9:11 • unused_local_variable
+[auth_flow_redux]:    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard_screen.dart:267:58 • deprecated_member_use
+[auth_flow_redux]:    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/screens/dashboard_screen.dart:277:30 • deprecated_member_use
+[auth_flow_redux]:   error • The getter 'email' isn't defined for the type 'Object' • lib/screens/dashboard_screen.dart:335:24 • undefined_getter
+[auth_flow_redux]:   error • The getter 'role' isn't defined for the type 'Object' • lib/screens/dashboard_screen.dart:336:23 • undefined_getter
+[auth_flow_redux]: 
+[tidash]: Downloading packages...
+[ui_kit_showcase]: Downloading packages...
+[ui_kit]: Downloading packages...
+[tidash]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[tidash]:   analyzer 7.7.1 (8.1.1 available)
+[tidash]:   characters 1.4.0 (1.4.1 available)
+[tidash]:   connectivity_plus 6.1.5 (7.0.0 available)
+[tidash]:   flutter_lints 5.0.0 (6.0.0 available)
+[tidash]:   flutter_markdown 0.7.7+1 (discontinued)
+[tidash]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[tidash]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[tidash]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[tidash]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[tidash]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[tidash]:   js 0.6.7 (0.7.2 available)
+[tidash]:   lints 5.1.1 (6.0.0 available)
+[tidash]:   material_color_utilities 0.11.1 (0.13.0 available)
+[tidash]:   meta 1.16.0 (1.17.0 available)
+[tidash]:   sensors_plus 6.1.2 (7.0.0 available)
+[tidash]:   test 1.26.2 (1.26.3 available)
+[tidash]:   test_api 0.7.6 (0.7.7 available)
+[tidash]:   test_core 0.6.11 (0.6.12 available)
+[tidash]:   url_launcher_android 6.3.21 (6.3.22 available)
+[tidash]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[tidash]: 1 package is discontinued.
+[tidash]: 19 packages have newer versions incompatible with dependency constraints.
+[tidash]: Try `flutter pub outdated` for more information.
+[ui_kit_showcase]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[ui_kit_showcase]:   analyzer 7.7.1 (8.1.1 available)
+[ui_kit_showcase]:   characters 1.4.0 (1.4.1 available)
+[ui_kit_showcase]:   connectivity_plus 6.1.5 (7.0.0 available)
+[ui_kit_showcase]:   flutter_lints 5.0.0 (6.0.0 available)
+[ui_kit_showcase]:   flutter_markdown 0.7.7+1 (discontinued)
+[ui_kit_showcase]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[ui_kit_showcase]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[ui_kit_showcase]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[ui_kit_showcase]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[ui_kit_showcase]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[ui_kit_showcase]:   js 0.6.7 (0.7.2 available)
+[ui_kit_showcase]:   lints 5.1.1 (6.0.0 available)
+[ui_kit_showcase]:   material_color_utilities 0.11.1 (0.13.0 available)
+[ui_kit_showcase]:   meta 1.16.0 (1.17.0 available)
+[ui_kit_showcase]:   sensors_plus 6.1.2 (7.0.0 available)
+[ui_kit_showcase]:   test 1.26.2 (1.26.3 available)
+[ui_kit_showcase]:   test_api 0.7.6 (0.7.7 available)
+[ui_kit_showcase]:   test_core 0.6.11 (0.6.12 available)
+[ui_kit_showcase]:   url_launcher_android 6.3.21 (6.3.22 available)
+[ui_kit_showcase]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[ui_kit_showcase]: 1 package is discontinued.
+[ui_kit_showcase]: 19 packages have newer versions incompatible with dependency constraints.
+[ui_kit_showcase]: Try `flutter pub outdated` for more information.
+[ui_kit]:   _fe_analyzer_shared 85.0.0 (88.0.0 available)
+[ui_kit]:   analyzer 7.7.1 (8.1.1 available)
+[ui_kit]:   characters 1.4.0 (1.4.1 available)
+[ui_kit]:   connectivity_plus 6.1.5 (7.0.0 available)
+[ui_kit]:   flutter_lints 5.0.0 (6.0.0 available)
+[ui_kit]:   flutter_markdown 0.7.7+1 (discontinued)
+[ui_kit]:   flutter_secure_storage_linux 1.2.3 (2.0.1 available)
+[ui_kit]:   flutter_secure_storage_macos 3.1.3 (4.0.0 available)
+[ui_kit]:   flutter_secure_storage_platform_interface 1.1.2 (2.0.1 available)
+[ui_kit]:   flutter_secure_storage_web 1.2.1 (2.0.0 available)
+[ui_kit]:   flutter_secure_storage_windows 3.1.2 (4.0.0 available)
+[ui_kit]:   js 0.6.7 (0.7.2 available)
+[ui_kit]:   lints 5.1.1 (6.0.0 available)
+[ui_kit]:   material_color_utilities 0.11.1 (0.13.0 available)
+[ui_kit]:   meta 1.16.0 (1.17.0 available)
+[ui_kit]:   sensors_plus 6.1.2 (7.0.0 available)
+[ui_kit]:   test 1.26.2 (1.26.3 available)
+[ui_kit]:   test_api 0.7.6 (0.7.7 available)
+[ui_kit]:   test_core 0.6.11 (0.6.12 available)
+[ui_kit]:   url_launcher_android 6.3.21 (6.3.22 available)
+[ui_kit]: Got dependencies in `/home/odin/Documents/Vaults/neo-tidaro/workspace`!
+[ui_kit]: 1 package is discontinued.
+[ui_kit]: 19 packages have newer versions incompatible with dependency constraints.
+[ui_kit]: Try `flutter pub outdated` for more information.
+[tidaro_mini]: Analyzing tidaro_mini...                                        
+[ui_kit]: Analyzing ui_kit...                                             
+[tidash]: Analyzing tidash...                                             
+[ui_kit_showcase]: Analyzing ui_kit_showcase...                                    
+[tidaro]: 
+[tidaro]: No issues found! (ran in 6.6s)
+[tidaro_mini]: 
+[tidaro_mini]: No issues found! (ran in 6.4s)
+[ui_kit]: 
+[ui_kit]: 
+[ui_kit]:    info • The import of 'dart:ui' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart' • lib/src/app/loading_screen.dart:2:8 • unnecessary_import
+[ui_kit]: warning • The declaration '_buildModernTidyStar' isn't referenced • lib/src/app/loading_screen.dart:546:10 • unused_element
+[ui_kit]:    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/src/widgets/input_field.dart:68:46 • deprecated_member_use
+[ui_kit]:    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/src/widgets/input_field.dart:178:58 • deprecated_member_use
+[ui_kit]:    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/src/widgets/markdown_widget.dart:67:38 • deprecated_member_use
+[ui_kit]:    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/src/widgets/markdown_widget.dart:95:38 • deprecated_member_use
+[ui_kit]: 
+[ui_kit_showcase]: 
+[ui_kit_showcase]: 
+[ui_kit_showcase]:   error • Undefined name 'l10n' • lib/parallax_example_page.dart:53:21 • undefined_identifier
+[ui_kit_showcase]:   error • Undefined name 'l10n' • lib/parallax_example_page.dart:84:25 • undefined_identifier
+[ui_kit_showcase]:   error • Undefined name 'l10n' • lib/parallax_example_page.dart:85:25 • undefined_identifier
+[ui_kit_showcase]:   error • Undefined name 'l10n' • lib/parallax_example_page.dart:102:29 • undefined_identifier
+[ui_kit_showcase]:   error • Undefined name 'l10n' • lib/parallax_example_page.dart:115:29 • undefined_identifier
+[ui_kit_showcase]:   error • Undefined name 'l10n' • lib/parallax_example_page.dart:126:27 • undefined_identifier
+[ui_kit_showcase]: 
+[tidash]: 
+[tidash]: 
+[tidash]:    info • The imported package 'flutter_redux' isn't a dependency of the importing package • lib/app/app.dart:1:8 • depend_on_referenced_packages
+[tidash]:   error • Target of URI doesn't exist: 'package:shared/redux/app_state.dart' • lib/app/app.dart:2:8 • uri_does_not_exist
+[tidash]:   error • The name 'AppState' isn't a type, so it can't be used as a type argument • lib/app/app.dart:14:25 • non_type_as_type_argument
+[tidash]:   error • The named parameter 'theme' isn't defined • lib/app/app.dart:19:11 • undefined_named_parameter
+[tidash]:   error • Undefined name 'kuiTheme' • lib/app/app.dart:19:18 • undefined_identifier
+[tidash]:    info • The imported package 'flutter_redux' isn't a dependency of the importing package • lib/main.dart:2:8 • depend_on_referenced_packages
+[tidash]:    info • The imported package 'redux' isn't a dependency of the importing package • lib/main.dart:3:8 • depend_on_referenced_packages
+[tidash]:   error • Target of URI doesn't exist: 'package:shared/redux/app_state.dart' • lib/main.dart:4:8 • uri_does_not_exist
+[tidash]:   error • Target of URI doesn't exist: 'package:shared/redux/store.dart' • lib/main.dart:5:8 • uri_does_not_exist
+[tidash]:   error • The function 'createStore' isn't defined • lib/main.dart:16:23 • undefined_function
+[tidash]:   error • The name 'AppState' isn't a type, so it can't be used as a type argument • lib/main.dart:24:15 • non_type_as_type_argument
+[tidash]:   error • The name 'AppState' isn't a type, so it can't be used as a type argument • lib/main.dart:100:26 • non_type_as_type_argument
+[tidash]:   error • The named parameter 'content' is required, but there's no corresponding argument • lib/pages/admin/admin_bookings_page.dart:16:16 • missing_required_argument
+[tidash]:   error • The named parameter 'header' isn't defined • lib/pages/admin/admin_bookings_page.dart:17:11 • undefined_named_parameter
+[tidash]:   error • The name 'Header' isn't a class • lib/pages/admin/admin_bookings_page.dart:17:25 • creation_with_non_type
+[tidash]:   error • The named parameter 'body' isn't defined • lib/pages/admin/admin_bookings_page.dart:18:11 • undefined_named_parameter
+[tidash]:   error • The method 'Select' isn't defined for the type 'BookingCard' • lib/pages/admin/admin_bookings_page.dart:65:17 • undefined_method
+[tidash]:   error • The method 'SelectOption' isn't defined for the type 'BookingCard' • lib/pages/admin/admin_bookings_page.dart:73:40 • undefined_method
+[tidash]:   error • The named parameter 'content' is required, but there's no corresponding argument • lib/pages/admin/admin_users_page.dart:18:16 • missing_required_argument
+[tidash]:   error • The named parameter 'header' isn't defined • lib/pages/admin/admin_users_page.dart:19:11 • undefined_named_parameter
+[tidash]:   error • The name 'Header' isn't a class • lib/pages/admin/admin_users_page.dart:19:25 • creation_with_non_type
+[tidash]:   error • The named parameter 'body' isn't defined • lib/pages/admin/admin_users_page.dart:20:11 • undefined_named_parameter
+[tidash]:   error • The method 'InputField' isn't defined for the type '_AdminUsersFilterState' • lib/pages/admin/admin_users_page.dart:63:20 • undefined_method
+[tidash]:   error • The method 'Select' isn't defined for the type '_AdminUsersFilterState' • lib/pages/admin/admin_users_page.dart:81:11 • undefined_method
+[tidash]:   error • The name 'SelectOption' isn't a class • lib/pages/admin/admin_users_page.dart:92:21 • creation_with_non_type
+[tidash]:   error • The method 'SelectOption' isn't defined for the type '_AdminUsersFilterState' • lib/pages/admin/admin_users_page.dart:97:34 • undefined_method
+[tidash]:    info • Unnecessary use of 'toList' in a spread • lib/pages/admin/admin_users_page.dart:98:20 • unnecessary_to_list_in_spreads
+[tidash]:   error • The method 'Select' isn't defined for the type 'UserCard' • lib/pages/admin/admin_users_page.dart:156:17 • undefined_method
+[tidash]:   error • The method 'SelectOption' isn't defined for the type 'UserCard' • lib/pages/admin/admin_users_page.dart:167:38 • undefined_method
+[tidash]:   error • The method 'Select' isn't defined for the type 'UserCard' • lib/pages/admin/admin_users_page.dart:171:17 • undefined_method
+[tidash]:   error • The method 'SelectOption' isn't defined for the type 'UserCard' • lib/pages/admin/admin_users_page.dart:182:40 • undefined_method
+[tidash]:   error • The named parameter 'content' is required, but there's no corresponding argument • lib/pages/admin/kyc_review_page.dart:16:16 • missing_required_argument
+[tidash]:   error • The named parameter 'header' isn't defined • lib/pages/admin/kyc_review_page.dart:17:11 • undefined_named_parameter
+[tidash]:   error • The name 'Header' isn't a class • lib/pages/admin/kyc_review_page.dart:17:25 • creation_with_non_type
+[tidash]:   error • The named parameter 'body' isn't defined • lib/pages/admin/kyc_review_page.dart:18:11 • undefined_named_parameter
+[tidash]:    info • 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss • lib/pages/admin/kyc_review_page.dart:77:53 • deprecated_member_use
+[tidash]:   error • The method 'InputField' isn't defined for the type '_KycDetailContentState' • lib/pages/admin/kyc_review_page.dart:151:11 • undefined_method
+[tidash]:   error • The method 'Button' isn't defined for the type '_KycDetailContentState' • lib/pages/admin/kyc_review_page.dart:160:15 • undefined_method
+[tidash]:   error • Undefined name 'ButtonType' • lib/pages/admin/kyc_review_page.dart:164:23 • undefined_identifier
+[tidash]:   error • The method 'Button' isn't defined for the type '_KycDetailContentState' • lib/pages/admin/kyc_review_page.dart:168:15 • undefined_method
+[tidash]:   error • Undefined name 'ButtonType' • lib/pages/admin/kyc_review_page.dart:172:23 • undefined_identifier
+[tidash]:   error • The method 'showGenericDialog' isn't defined for the type '_ModernLoginFormState' • lib/pages/auth/login_page.dart:54:5 • undefined_method
+[tidash]:   error • The method 'InputField' isn't defined for the type '_ModernLoginFormState' • lib/pages/auth/login_page.dart:62:11 • undefined_method
+[tidash]:   error • The method 'Button' isn't defined for the type '_ModernLoginFormState' • lib/pages/auth/login_page.dart:76:9 • undefined_method
+[tidash]:   error • The method 'showInfo' isn't defined for the type '_ModernLoginFormState' • lib/pages/auth/login_page.dart:88:15 • undefined_method
+[tidash]:   error • Undefined name 'InfoType' • lib/pages/auth/login_page.dart:92:23 • undefined_identifier
+[tidash]:   error • The method 'Header' isn't defined for the type '_ModernLoginFormState' • lib/pages/auth/login_page.dart:114:15 • undefined_method
+[tidash]:   error • The method 'InputField' isn't defined for the type '_ModernLoginFormState' • lib/pages/auth/login_page.dart:119:15 • undefined_method
+[tidash]:   error • The method 'InputField' isn't defined for the type '_ModernLoginFormState' • lib/pages/auth/login_page.dart:128:15 • undefined_method
+[tidash]:   error • The named parameter 'failure' is required, but there's no corresponding argument • lib/pages/auth/login_page.dart:171:17 • missing_required_argument
+[tidash]:   error • The named parameter 'message' isn't defined • lib/pages/auth/login_page.dart:172:19 • undefined_named_parameter
+[tidash]:   error • The method 'Button' isn't defined for the type '_ModernLoginFormState' • lib/pages/auth/login_page.dart:176:15 • undefined_method
+[tidash]:   error • The method 'Header' isn't defined for the type '_SignUpFormState' • lib/pages/auth/signup_page.dart:55:15 • undefined_method
+[tidash]:   error • The named parameter 'failure' is required, but there's no corresponding argument • lib/pages/auth/signup_page.dart:69:17 • missing_required_argument
+[tidash]:   error • The named parameter 'message' isn't defined • lib/pages/auth/signup_page.dart:70:19 • undefined_named_parameter
+[tidash]:   error • The method 'Button' isn't defined for the type '_SignUpFormState' • lib/pages/auth/signup_page.dart:74:15 • undefined_method
+[tidash]:   error • The method 'InputField' isn't defined for the type '_SignUpFormState' • lib/pages/auth/signup_page.dart:91:12 • undefined_method
+[tidash]:   error • The method 'InputField' isn't defined for the type '_SignUpFormState' • lib/pages/auth/signup_page.dart:108:12 • undefined_method
+[tidash]:   error • The method 'InputField' isn't defined for the type '_SignUpFormState' • lib/pages/auth/signup_page.dart:120:12 • undefined_method
+[tidash]:   error • The method 'InputField' isn't defined for the type '_SignUpFormState' • lib/pages/auth/signup_page.dart:150:12 • undefined_method
+[tidash]:   error • The named parameter 'content' is required, but there's no corresponding argument • lib/pages/bookings/bookings_page.dart:18:16 • missing_required_argument
+[tidash]:   error • The named parameter 'header' isn't defined • lib/pages/bookings/bookings_page.dart:19:11 • undefined_named_parameter
+[tidash]:   error • The method 'Header' isn't defined for the type 'BookingsPage' • lib/pages/bookings/bookings_page.dart:19:19 • undefined_method
+[tidash]:   error • The method 'Button' isn't defined for the type 'BookingsPage' • lib/pages/bookings/bookings_page.dart:22:15 • undefined_method
+[tidash]:   error • The named parameter 'body' isn't defined • lib/pages/bookings/bookings_page.dart:34:11 • undefined_named_parameter
+[tidash]:   error • The method 'Button' isn't defined for the type 'BookingsPage' • lib/pages/bookings/bookings_page.dart:41:31 • undefined_method
+[tidash]:   error • The getter 'filter' isn't defined for the type 'BookingState' • lib/pages/bookings/bookings_view_model.dart:40:47 • undefined_getter
+[tidash]:   error • The named parameter 'content' is required, but there's no corresponding argument • lib/pages/dashboard/dashboard_page.dart:16:16 • missing_required_argument
+[tidash]:   error • The named parameter 'header' isn't defined • lib/pages/dashboard/dashboard_page.dart:17:11 • undefined_named_parameter
+[tidash]:   error • The named parameter 'body' isn't defined • lib/pages/dashboard/dashboard_page.dart:22:11 • undefined_named_parameter
+[tidash]:   error • The method 'Button' isn't defined for the type '_DashboardContent' • lib/pages/dashboard/dashboard_page.dart:43:20 • undefined_method
+[tidash]:   error • The getter 'isRefreshing' isn't defined for the type 'DashboardState' • lib/pages/dashboard/dashboard_view_model.dart:7:48 • undefined_getter
+[tidash]:   error • The named parameter 'content' is required, but there's no corresponding argument • lib/pages/home_page.dart:35:24 • missing_required_argument
+[tidash]:   error • The named parameter 'body' isn't defined • lib/pages/home_page.dart:36:13 • undefined_named_parameter
+[tidash]:   error • The method 'showInfo' isn't defined for the type '_TiDashHomeState' • lib/pages/home_page.dart:85:11 • undefined_method
+[tidash]:   error • Undefined name 'InfoType' • lib/pages/home_page.dart:89:19 • undefined_identifier
+[tidash]:   error • The named parameter 'content' is required, but there's no corresponding argument • lib/pages/main/main_layout.dart:37:12 • missing_required_argument
+[tidash]:   error • The named parameter 'body' isn't defined • lib/pages/main/main_layout.dart:38:7 • undefined_named_parameter
+[tidash]:   error • The method 'NavigationSidebar' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:41:11 • undefined_method
+[tidash]:   error • The method 'NavigationDestinationInfo' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:51:15 • undefined_method
+[tidash]:   error • The method 'NavigationDestinationInfo' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:56:15 • undefined_method
+[tidash]:   error • The method 'NavigationDestinationInfo' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:61:15 • undefined_method
+[tidash]:   error • The method 'NavigationDestinationInfo' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:66:15 • undefined_method
+[tidash]:   error • The method 'NavigationDestinationInfo' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:71:15 • undefined_method
+[tidash]:   error • The method 'NavigationDestinationInfo' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:76:15 • undefined_method
+[tidash]:   error • The name 'User' isn't a type, so it can't be used as a type argument • lib/pages/main/main_layout.dart:91:37 • non_type_as_type_argument
+[tidash]:   error • The getter 'user' isn't defined for the type 'AuthState' • lib/pages/main/main_layout.dart:92:51 • undefined_getter
+[tidash]:   error • The getter 'avatarUrl' isn't defined for the type 'Object' • lib/pages/main/main_layout.dart:100:40 • undefined_getter
+[tidash]:   error • The getter 'avatarUrl' isn't defined for the type 'Object' • lib/pages/main/main_layout.dart:100:79 • undefined_getter
+[tidash]:   error • The getter 'avatarUrl' isn't defined for the type 'Object' • lib/pages/main/main_layout.dart:101:30 • undefined_getter
+[tidash]:   error • The getter 'fullName' isn't defined for the type 'Object' • lib/pages/main/main_layout.dart:102:34 • undefined_getter
+[tidash]:   error • The getter 'fullName' isn't defined for the type 'Object' • lib/pages/main/main_layout.dart:110:27 • undefined_getter
+[tidash]:   error • The getter 'role' isn't defined for the type 'Object' • lib/pages/main/main_layout.dart:114:27 • undefined_getter
+[tidash]:   error • The method 'Button' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:129:14 • undefined_method
+[tidash]:   error • Undefined name 'ButtonType' • lib/pages/main/main_layout.dart:132:15 • undefined_identifier
+[tidash]:   error • The method 'showGenericDialog' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:139:5 • undefined_method
+[tidash]:   error • The method 'Button' isn't defined for the type '_MainLayoutState' • lib/pages/main/main_layout.dart:148:9 • undefined_method
+[tidash]:   error • Undefined name 'ButtonType' • lib/pages/main/main_layout.dart:155:17 • undefined_identifier
+[tidash]:   error • The named parameter 'content' is required, but there's no corresponding argument • lib/pages/staff/staff_page.dart:18:16 • missing_required_argument
+[tidash]:   error • The named parameter 'header' isn't defined • lib/pages/staff/staff_page.dart:19:11 • undefined_named_parameter
+[tidash]:   error • The method 'Header' isn't defined for the type 'StaffPage' • lib/pages/staff/staff_page.dart:19:19 • undefined_method
+[tidash]:   error • The method 'Button' isn't defined for the type 'StaffPage' • lib/pages/staff/staff_page.dart:22:15 • undefined_method
+[tidash]:   error • The named parameter 'body' isn't defined • lib/pages/staff/staff_page.dart:34:11 • undefined_named_parameter
+[tidash]:   error • The method 'Button' isn't defined for the type 'StaffPage' • lib/pages/staff/staff_page.dart:41:31 • undefined_method
+[tidash]:   error • The argument type 'ProfessionalKycStatus?' can't be assigned to the parameter type 'ProfessionalActivityStatus?'.  • lib/pages/staff/staff_page.dart:64:24 • argument_type_not_assignable
+[tidash]:   error • The method 'InputField' isn't defined for the type '_StaffFilter' • lib/pages/staff/staff_page.dart:105:18 • undefined_method
+[tidash]:   error • The method 'Select' isn't defined for the type '_StaffFilter' • lib/pages/staff/staff_page.dart:114:9 • undefined_method
+[tidash]:   error • The name 'SelectOption' isn't a class • lib/pages/staff/staff_page.dart:118:19 • creation_with_non_type
+[tidash]:   error • The method 'SelectOption' isn't defined for the type '_StaffFilter' • lib/pages/staff/staff_page.dart:120:27 • undefined_method
+[tidash]:   error • The getter 'id' isn't defined for the type 'ProfessionalProfile' • lib/pages/staff/staff_page.dart:151:58 • undefined_getter
+[tidash]:    info • The type of the right operand ('ProfessionalActivityStatus') isn't a subtype or a supertype of the left operand ('ProfessionalKycStatus') • lib/pages/staff/staff_view_model.dart:26:22 • unrelated_type_equality_checks
+[tidash]:    info • The type of the right operand ('ProfessionalActivityStatus') isn't a subtype or a supertype of the left operand ('ProfessionalKycStatus') • lib/pages/staff/staff_view_model.dart:33:22 • unrelated_type_equality_checks
+[tidash]:   error • The argument type 'Option<Exception>' can't be assigned to the parameter type 'String?'.  • lib/pages/staff/staff_view_model.dart:41:14 • argument_type_not_assignable
+[tidash]:   error • The getter 'status' isn't defined for the type 'ProfessionalSearchDto' • lib/pages/staff/staff_view_model.dart:42:60 • undefined_getter
+[tidash]:   error • The named parameter 'status' isn't defined • lib/pages/staff/staff_view_model.dart:47:69 • undefined_named_parameter
+[tidash]:    info • The imported package 'fpdart' isn't a dependency of the importing package • lib/services/auth_service.dart:4:8 • depend_on_referenced_packages
+[tidash]:    info • The import of 'package:supabase_flutter/supabase_flutter.dart' is unnecessary because all of the used elements are also provided by the import of 'package:core/core.dart' • lib/services/auth_service.dart:5:8 • unnecessary_import
+[tidash]:    info • The imported package 'supabase_flutter' isn't a dependency of the importing package • lib/services/auth_service.dart:5:8 • depend_on_referenced_packages
+[tidash]: warning • The declaration 'rating' isn't referenced • lib/widgets/dialogs/booking_details_dialog.dart:305:14 • unused_element
+[tidash]: warning • The declaration 'review' isn't referenced • lib/widgets/dialogs/booking_details_dialog.dart:307:14 • unused_element
+[tidash]:   error • The getter 'createdAt' isn't defined for the type 'ProfessionalProfile' • lib/widgets/dialogs/staff_details_dialog.dart:53:42 • undefined_getter
+[tidash]:   error • The getter 'createdAt' isn't defined for the type 'ProfessionalProfile' • lib/widgets/dialogs/staff_details_dialog.dart:56:61 • undefined_getter
+[tidash]:   error • The getter 'id' isn't defined for the type 'ProfessionalProfile' • lib/widgets/dialogs/staff_details_dialog.dart:316:38 • undefined_getter
+[tidash]: 
+--------------------------------------------------------------------------------
+
+$ melos exec
+  └> flutter analyze
+     └> FAILED (in 8 packages)
+        └> domain (with exit code 1)
+        └> languist (with exit code 1)
+        └> shared (with exit code 1)
+        └> core (with exit code 1)
+        └> auth_flow_redux (with exit code 1)
+        └> ui_kit (with exit code 1)
+        └> ui_kit_showcase (with exit code 1)
+        └> tidash (with exit code 1)
+
+analyze
+  └> FAILED

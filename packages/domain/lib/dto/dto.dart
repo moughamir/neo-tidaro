@@ -16,3 +16,4 @@ export 'response_dto.dart';
 export 'submit_kyc_dto.dart';
 export 'supabase_profile_dto.dart';
 export 'time_slot_dto.dart';
+export 'user_dto.dart';

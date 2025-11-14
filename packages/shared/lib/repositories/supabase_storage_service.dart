@@ -3,9 +3,6 @@ import 'dart:typed_data';
 
 import 'package:core/core.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:shared/utils/failures/failure.dart';
-import 'package:shared/utils/type_defs.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 /// Comprehensive Supabase Storage Service for file management
 class SupabaseStorageService {
@@ -23,7 +20,7 @@ class SupabaseStorageService {
     try {
       final result = await _client.storage
           .from(bucket)
-          .upload(path, file, fileOptions: options);
+          .upload(path, file, fileOptions: options ?? const FileOptions());
 
       return right(result);
     } on StorageException catch (e) {
@@ -45,7 +42,11 @@ class SupabaseStorageService {
     try {
       final result = await _client.storage
           .from(bucket)
-          .uploadBinary(path, bytes, fileOptions: options);
+          .uploadBinary(
+            path,
+            bytes,
+            fileOptions: options ?? const FileOptions(),
+          );
 
       return right(result);
     } on StorageException catch (e) {
@@ -117,7 +118,10 @@ class SupabaseStorageService {
     try {
       final result = await _client.storage
           .from(bucket)
-          .list(path: path, searchOptions: searchOptions);
+          .list(
+            path: path,
+            searchOptions: searchOptions ?? const SearchOptions(),
+          );
 
       return right(result);
     } on StorageException catch (e) {
@@ -206,10 +210,13 @@ class SupabaseStorageService {
   /// Create storage bucket
   ResultFuture<String> createBucket({
     required String bucketId,
-    CreateBucketOptions? options,
+    BucketOptions? options,
   }) async {
     try {
-      final result = await _client.storage.createBucket(bucketId, options);
+      final result = await _client.storage.createBucket(
+        bucketId,
+        options ?? const BucketOptions(public: false),
+      );
 
       return right(result);
     } on StorageException catch (e) {
@@ -281,8 +288,8 @@ class SupabaseStorageService {
     }
   }
 
-  /// Empty bucket (delete all files)
-  ResultFuture<List<FileObject>> emptyBucket(String bucketId) async {
+  /// Empty bucket (remove all files)
+  ResultFuture<String> emptyBucket(String bucketId) async {
     try {
       final result = await _client.storage.emptyBucket(bucketId);
       return right(result);

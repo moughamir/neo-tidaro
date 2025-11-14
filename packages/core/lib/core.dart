@@ -17,5 +17,4 @@ export 'network/supabase_service.dart';
 // Core utilities exports
 export 'utils/logger.dart';
 export 'utils/platform_utils.dart';
-export 'package:supabase_flutter/supabase_flutter.dart'
-    hide User, AuthState, AuthUser;
+export 'package:supabase_flutter/supabase_flutter.dart';

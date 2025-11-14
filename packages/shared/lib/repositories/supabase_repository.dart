@@ -19,6 +19,9 @@ abstract class SupabaseRepository<T, C, U> {
   /// The Supabase client
   final SupabaseClient _client;
 
+  /// Protected getter for the client
+  SupabaseClient get client => _client;
+
   /// Converts a Map from Supabase to an entity
   T fromJson(Map<String, dynamic> json);
 

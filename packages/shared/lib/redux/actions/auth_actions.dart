@@ -1,4 +1,4 @@
-import 'package:fpdart/fpdart.dart';
+import 'package:core/core.dart';
 import 'package:shared/shared.dart';
 
 /// Authentication action types - consolidated from duplicate files
@@ -201,28 +201,6 @@ class PhoneSignInAction extends BaseAsyncAction<void> {
   List<Object?> get props => [phoneNumber];
 }
 
-/// Domain models
-class AuthUser {
-  const AuthUser({
-    required this.id,
-    required this.email,
-    this.fullName,
-    this.avatarUrl,
-    this.phoneNumber,
-    this.role = PlatformUserRole.clientConsumer,
-    this.emailVerified = false,
-    this.phoneVerified = false,
-  });
-
-  final String id;
-  final String email;
-  final String? fullName;
-  final String? avatarUrl;
-  final String? phoneNumber;
-  final bool emailVerified;
-  final bool phoneVerified;
-
-  final PlatformUserRole role;
-}
+/// Domain models - Use domain.User instead of duplicate AuthUser
 
 enum SocialProvider { google, facebook, apple, github }
