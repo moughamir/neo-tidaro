@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # Contributing Guide
 
 Thank you for investing your time in Neo-Tidaro! Please follow this guide to keep contributions consistent and high quality.

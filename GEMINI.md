@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # GEMINI.md: AI Collaboration Guide
 
 This document provides essential context for AI models and contributors working in this project. Adhering to these guidelines ensures consistency, modularity, and long-term maintainability.
@@ -195,10 +199,10 @@ This project follows a **Melos workspace** layout, with configuration embedded i
 
   - Follow Conventional Commits:
 
-    - `feat:` → new feature
-    - `fix:` → bug fix
-    - `chore:` → infra/tooling updates
-    - `docs:` → documentation changes
+	- `feat:` → new feature
+	- `fix:` → bug fix
+	- `chore:` → infra/tooling updates
+	- `docs:` → documentation changes
 
 ## 8. Business KPIs
 

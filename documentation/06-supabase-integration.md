@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # 6. Supabase Integration
 
 Supabase serves as the primary backend for the Tidaro platform, providing authentication, real-time capabilities, and a PostgreSQL database. This guide provides an overview of how Supabase is integrated and key considerations for working with it.
@@ -34,8 +38,8 @@ For example, you might find Supabase client usage within:
 
 *   **Environment Variables**: Always use environment variables to manage Supabase credentials. For Flutter applications, this typically involves using a package like `flutter_dotenv` or similar mechanisms to load keys at runtime.
 
-    *   **Local Development**: Use a `.env` file (which should be in your `.gitignore`) for local development.
-    *   **Production**: Configure your CI/CD pipeline to inject these environment variables securely during the build and deployment process.
+	*   **Local Development**: Use a `.env` file (which should be in your `.gitignore`) for local development.
+	*   **Production**: Configure your CI/CD pipeline to inject these environment variables securely during the build and deployment process.
 
 *   **Row Level Security (RLS)**: Leverage Supabase's Row Level Security (RLS) policies on your PostgreSQL tables to control data access based on user roles and authentication status. This is crucial for securing your data and preventing unauthorized access.
 

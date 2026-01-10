@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # Neo-Tidaro Examples
 
 This directory contains comprehensive examples demonstrating how to use the Neo-Tidaro workspace packages effectively.

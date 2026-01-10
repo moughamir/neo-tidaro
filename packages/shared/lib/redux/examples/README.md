@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # Redux Examples & Scaffolds
 
 This directory provides minimal, production-aligned Redux scaffolds to standardize patterns across apps and features.

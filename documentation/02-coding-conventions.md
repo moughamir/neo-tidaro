@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # Neo-Tidaro Coding Conventions
 
 This document outlines the coding standards and conventions used across the Neo-Tidaro workspace.

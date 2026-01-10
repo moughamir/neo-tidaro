@@ -1,3 +1,7 @@
+---
+created_date: 13/09/2025
+updated_date: 20/11/2025
+---
 # auth_flow_redux
 
 A new Flutter project.

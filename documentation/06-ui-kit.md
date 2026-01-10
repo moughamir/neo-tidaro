@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # UI Kit: Design System and Components
 
 This document describes the Neo‑Tidaro UI Kit: design principles, theming, localization, mixins, and primary components available for app teams.

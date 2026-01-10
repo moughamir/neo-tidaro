@@ -1,3 +1,7 @@
+---
+created_date: 13/09/2025
+updated_date: 20/11/2025
+---
 # New Package Specifications for Bouskoura MVP
 
 ## Missing Core Capabilities Analysis

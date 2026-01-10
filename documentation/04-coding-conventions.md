@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # 4. Coding Conventions and Style Guide
 
 Adhering to consistent coding conventions and a style guide is paramount in a monorepo environment. It ensures code readability, maintainability, and seamless collaboration across different packages and teams. This document outlines the key conventions to follow in the Tidaro project.
@@ -6,13 +10,13 @@ Adhering to consistent coding conventions and a style guide is paramount in a mo
 
 *   **Automated Formatting**: Always use `dart format` to automatically format your code. This ensures consistent indentation (2 spaces), line breaks, and other stylistic elements.
 
-    ```bash
+	```bash
     dart format .
     ```
 
 *   **Trailing Commas**: Use trailing commas for better readability and easier diffs, especially in multi-line lists, argument lists, and collections.
 
-    ```dart
+	```dart
     Widget build(BuildContext context) {
       return Column(
         children: <Widget>[
@@ -25,7 +29,7 @@ Adhering to consistent coding conventions and a style guide is paramount in a mo
 
 *   **Linting**: All code must pass `flutter analyze` (or `dart analyze` for pure Dart packages). The `analysis_options.yaml` file at the root of each package defines the linting rules. Address all warnings and errors before committing.
 
-    ```bash
+	```bash
     flutter analyze
     ```
 
@@ -35,28 +39,28 @@ Follow standard Dart naming conventions:
 
 *   **Variables and Functions**: Use `camelCase`.
 
-    ```dart
+	```dart
     String userName = 'John Doe';
     void calculateTotalAmount() { /* ... */ }
     ```
 
 *   **Classes, Enums, Extensions, Mixins, and Widgets**: Use `PascalCase`.
 
-    ```dart
+	```dart
     class UserProfileScreen extends StatelessWidget { /* ... */ }
     enum AuthStatus { authenticated, unauthenticated }
     ```
 
 *   **Files and Directories**: Use `snake_case.dart` for file names and `snake_case` for directories.
 
-    ```
+	```
     lib/src/user_profile/user_profile_screen.dart
     lib/src/auth_repository/
     ```
 
 *   **Constants**: Use `camelCase` for `const` and `final` variables, unless they are global constants, in which case `SCREAMING_SNAKE_CASE` can be used (though `camelCase` is generally preferred for consistency with other variables).
 
-    ```dart
+	```dart
     const int maxRetries = 3;
     final String appName = 'Tidaro';
     ```
@@ -77,7 +81,7 @@ Follow standard Dart naming conventions:
 
 *   **Asynchronous Operations**: Always handle errors in asynchronous operations using `try/catch` blocks, `FutureBuilder` snapshots, or other appropriate mechanisms.
 
-    ```dart
+	```dart
     try {
       final data = await someApiService.fetchData();
       // Process data
@@ -96,7 +100,7 @@ Follow standard Dart naming conventions:
 *   **Purpose**: Use comments to explain *why* a piece of code exists or *what* a complex algorithm does, rather than simply restating *what* the code does (which should be clear from the code itself).
 *   **Doc Comments**: Use `///` for documentation comments on public APIs (classes, methods, functions, fields) to generate API documentation.
 
-    ```dart
+	```dart
     /// Calculates the sum of two integers.
     ///
     /// Throws [ArgumentError] if either [a] or [b] is negative.

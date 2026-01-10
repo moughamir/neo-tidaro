@@ -1,3 +1,7 @@
+---
+created_date: 19/09/2025
+updated_date: 20/11/2025
+---
 # Shopify-Style Architecture for Next.js E-commerce App
 
 Based on the Shopify theme architecture components you've provided, I'll map them to Next.js equivalents and design a file/folder structure that mimics Shopify's organization.
@@ -274,8 +278,6 @@ export const themeSettings = {
   },
 };
 ```
-
-
 
 # Implementing Shopify-Style Architecture in Your Next.js App
 

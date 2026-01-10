@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # 5. Testing Workflow
 
 Testing is an integral part of the development process in the Tidaro monorepo. Each package should maintain its own set of tests to ensure the reliability and correctness of its features. This guide outlines the testing workflow and best practices.
@@ -76,9 +80,9 @@ melos run test
 *   **Testable Code**: Write code with testability in mind. Use dependency injection to easily mock dependencies.
 *   **Clear Test Names**: Give your tests descriptive names that clearly indicate what they are testing.
 *   **Arrange-Act-Assert (AAA)**: Structure your tests using the AAA pattern:
-    *   **Arrange**: Set up the test environment and data.
-    *   **Act**: Perform the action you want to test.
-    *   **Assert**: Verify the expected outcome.
+	*   **Arrange**: Set up the test environment and data.
+	*   **Act**: Perform the action you want to test.
+	*   **Assert**: Verify the expected outcome.
 *   **Mocking**: Use mocking libraries (e.g., `mockito`) to isolate units under test from their dependencies.
 *   **Coverage**: Strive for good test coverage, especially for critical business logic.
 

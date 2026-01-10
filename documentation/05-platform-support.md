@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # Platform Support
 
 This workspace provides comprehensive platform support for all Flutter-supported platforms across all applications.
@@ -5,7 +9,7 @@ This workspace provides comprehensive platform support for all Flutter-supported
 ## Supported Platforms
 
 - **Android** - Mobile platform
-- **iOS** - Mobile platform  
+- **iOS** - Mobile platform
 - **Linux** - Desktop platform
 - **macOS** - Desktop platform
 - **Web** - Browser platform

@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # 3. Creating New Packages
 
 One of the core principles of this monorepo is **modularity**. New features, shared utilities, or reusable UI components should ideally be developed as independent packages within the `packages/` directory. This guide will walk you through the process of creating and integrating a new package.

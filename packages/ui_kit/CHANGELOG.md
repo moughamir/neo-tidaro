@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 ## 0.0.1
 
 Initial release of Neo‑Tidaro UI Kit.
@@ -16,7 +20,7 @@ Initial release of Neo‑Tidaro UI Kit.
   - `LoadingApp`, `ErrorApp`, `LoadingScreen`
   
 This release focuses on providing a consistent, reusable UI foundation across Neo‑Tidaro apps, following Clean Architecture and DRY principles.
- 
+
 ## 0.0.2
 
 * Centralized reusable app scaffolding widgets moved from apps to UI Kit:

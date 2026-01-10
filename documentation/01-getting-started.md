@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # 1. Getting Started with the Tidaro Monorepo
 
 This guide will walk you through the initial setup of the Tidaro monorepo, bootstrapping the workspace, and running your first application.
@@ -9,7 +13,7 @@ Before you begin, ensure you have the following installed:
 *   **Flutter SDK**: Make sure you have the latest stable version of the Flutter SDK installed and configured. You can find installation instructions on the [official Flutter website](https://flutter.dev/docs/get-started/install).
 *   **Melos**: This project uses Melos for monorepo management. Install it globally:
 
-    ```bash
+	```bash
     pnpm add -g @invertase/melos
     # or
     # dart pub global activate melos
@@ -34,13 +38,13 @@ After bootstrapping, you can run any of the applications located in the `apps/` 
 
 1.  Navigate into the `apps/tidaro` directory:
 
-    ```bash
+	```bash
     cd apps/tidaro
     ```
 
 2.  Run the Flutter application:
 
-    ```bash
+	```bash
     flutter run
     ```
 

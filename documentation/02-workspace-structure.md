@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # 2. Workspace Structure
 
 This project is a multi-package Flutter/Dart monorepo managed with [Melos](https://melos.invertase.dev). Understanding its structure is crucial for efficient development and maintaining modularity.
@@ -33,7 +37,7 @@ This directory contains the actual deployable applications. Each subdirectory wi
 *   **Minimal Entrypoints**: Applications in this directory are designed to be minimal. They primarily serve as entry points that compose features and UI from the shared `packages/`.
 *   **No Business Logic**: Crucially, `apps/` should contain very little to no business logic. All core functionalities, services, and reusable UI components reside in the `packages/` directory.
 
-    *Example: `apps/tidaro/` is the main mobile application for Tidaro.*
+	*Example: `apps/tidaro/` is the main mobile application for Tidaro.*
 
 ### `packages/`
 

@@ -1,3 +1,7 @@
+---
+created_date: 13/09/2025
+updated_date: 20/11/2025
+---
 # WARP.md
 
 This file provides guidance to WARP (warp.dev) when working with code in this repository.
@@ -149,7 +153,7 @@ Core ← Domain  ← Languist
 
 ### Key Architectural Principles
 1. **Clean Architecture**: Separation of concerns between layers
-2. **Dependency Inversion**: Core packages define interfaces, implementations in higher layers  
+2. **Dependency Inversion**: Core packages define interfaces, implementations in higher layers
 3. **Domain-Driven Design**: Business logic encapsulated in domain entities
 4. **Redux Pattern**: Predictable state updates with immutable state objects
 5. **Multi-Platform Support**: Write once, run everywhere with platform-specific adaptations
@@ -209,7 +213,7 @@ This monorepo prioritizes modularity, multi-platform support, and clean architec
 
 <citations>
   <document>
-      <document_type>WARP_DOCUMENTATION</document_type>
-      <document_id>getting-started/quickstart-guide/coding-in-warp</document_id>
+	  <document_type>WARP_DOCUMENTATION</document_type>
+	  <document_id>getting-started/quickstart-guide/coding-in-warp</document_id>
   </document>
 </citations>

@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # 06 - KPIs and Analytics
 
 This guide documents the business KPIs for Tidaro, how they are computed from the database, and how to consume them in `apps/tidash/`.

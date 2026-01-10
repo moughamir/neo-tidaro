@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # ADR: Canonical Domain Shape and Supabase Mapping Strategy
 
 Date: 2025-09-07

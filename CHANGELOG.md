@@ -1,3 +1,7 @@
+---
+created_date: 07/09/2025
+updated_date: 20/11/2025
+---
 # Changelog
 
 All notable changes to the Neo-Tidaro project will be documented in this file.
@@ -8,7 +12,7 @@ All notable changes to the Neo-Tidaro project will be documented in this file.
 - **Publishing Issues**: Resolved several warnings and errors that prevented publishing the package.
 - **LICENSE**: Added a `LICENSE` file to the root of the project.
 - **Directory Structure**: Renamed `examples` directory to `example` to align with pub.dev conventions.
-- **pubspec.yaml**: 
+- **pubspec.yaml**:
   - Added `homepage` and `repository` fields.
   - Loosened dependency constraints to allow for more flexible versioning.
 
@@ -19,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **Comprehensive Platform Support**: Added support for all Flutter platforms (Android, iOS, Linux, macOS, Web, Windows)
-- **Platform-Specific Melos Scripts**: 
+- **Platform-Specific Melos Scripts**:
   - Run commands for each app on all platforms (`melos run run:tidaro:android`, etc.)
   - Build commands for production releases (`melos run build:android`, etc.)
   - Web apps configured with separate ports (8080, 8081, 8082)

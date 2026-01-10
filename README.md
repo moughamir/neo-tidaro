@@ -1,3 +1,7 @@
+---
+created_date: 13/09/2025
+updated_date: 20/11/2025
+---
 # Neo-Tidaro Workspace
 
 This is the root of the Neo-Tidaro monorepo, managed with Melos.
