@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: 01-workspace-structure
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # Neo-Tidaro Workspace Structure
 
 This document provides an overview of the Neo-Tidaro workspace structure and organization.

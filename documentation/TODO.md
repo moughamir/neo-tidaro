@@ -1,7 +1,12 @@
 ---
-created_date: 17/09/2025
-updated_date: 20/11/2025
+title: TODO
+aliases: []
+tags: []
+created: '2025-09-17'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 - [ ] FrontStore => Next
 
 # Integration Guide: Shopify + Next.js + Vercel

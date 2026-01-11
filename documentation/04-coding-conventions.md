@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: 04-coding-conventions
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # 4. Coding Conventions and Style Guide
 
 Adhering to consistent coding conventions and a style guide is paramount in a monorepo environment. It ensures code readability, maintainability, and seamless collaboration across different packages and teams. This document outlines the key conventions to follow in the Tidaro project.

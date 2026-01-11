@@ -1,7 +1,12 @@
 ---
-created_date: 13/09/2025
-updated_date: 20/11/2025
+title: MVP_ALIGNMENT
+aliases: []
+tags: []
+created: '2025-09-13'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # MVP-to-Workspace Alignment Analysis
 
 ## Bouskoura Housekeeping MVP Feature Matrix

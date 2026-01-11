@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: 07-internationalization
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # 7. Internationalization (i18n) and Localization (l10n)
 
 The Tidaro platform is designed with a strong emphasis on multi-language accessibility, targeting a global market with a particular focus on Morocco. This guide outlines the project's approach to internationalization and localization.

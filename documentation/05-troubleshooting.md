@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: 05-troubleshooting
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # Troubleshooting Guide
 
 This document provides solutions to common issues encountered when working with the Neo-Tidaro workspace.

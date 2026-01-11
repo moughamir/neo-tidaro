@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: CONTRIBUTING
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # Contributing Guide
 
 Thank you for investing your time in Neo-Tidaro! Please follow this guide to keep contributions consistent and high quality.

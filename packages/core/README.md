@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: README
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # Core Package
 
 A foundational package for Neo-Tidaro applications that provides essential utilities, services, and abstractions following clean architecture principles.

@@ -1,3 +1,12 @@
+---
+title: PULL_REQUEST_TEMPLATE
+aliases: []
+tags: []
+created: '2026-01-11'
+updated: '2026-01-11'
+status: in_progress
+---
+
 # Pull Request
 
 ## Summary

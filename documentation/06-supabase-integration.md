@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: 06-supabase-integration
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # 6. Supabase Integration
 
 Supabase serves as the primary backend for the Tidaro platform, providing authentication, real-time capabilities, and a PostgreSQL database. This guide provides an overview of how Supabase is integrated and key considerations for working with it.

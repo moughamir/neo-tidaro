@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: 06-adr-domain-shape-and-mapping
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # ADR: Canonical Domain Shape and Supabase Mapping Strategy
 
 Date: 2025-09-07

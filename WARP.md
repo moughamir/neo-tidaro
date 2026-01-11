@@ -1,7 +1,12 @@
 ---
-created_date: 13/09/2025
-updated_date: 20/11/2025
+title: WARP
+aliases: []
+tags: []
+created: '2025-09-13'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # WARP.md
 
 This file provides guidance to WARP (warp.dev) when working with code in this repository.

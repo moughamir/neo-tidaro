@@ -1,7 +1,12 @@
 ---
-created_date: 10/09/2025
-updated_date: 20/11/2025
+title: 06-ui-kit-design-system
+aliases: []
+tags: []
+created: '2025-09-10'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # UI Kit Design System
 
 The Neo-Tidaro UI Kit features a centralized, unified design system that consolidates all previous theme implementations into a single, cohesive foundation. This document outlines the architecture, usage patterns, and migration guide for the new design system.

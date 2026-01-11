@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: README
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # Neo‑Tidaro UI Kit
 
 A centralized, unified Flutter UI component library featuring a comprehensive design system that combines Neumorphism and Glassmorphism effects. Built for Clean Architecture with DRY, SOLID, KISS, and YAGNI principles. Fully localized via the Languist package.

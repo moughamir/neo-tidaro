@@ -1,7 +1,12 @@
 ---
-created_date: 17/09/2025
-updated_date: 20/11/2025
+title: README
+aliases: []
+tags: []
+created: '2025-09-17'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # Launch Screen Assets
 
 You can customize the launch screen with your own desired assets by replacing the image files in this directory.

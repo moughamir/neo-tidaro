@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: GEMINI
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # GEMINI.md: AI Collaboration Guide
 
 This document provides essential context for AI models and contributors working in this project. Adhering to these guidelines ensures consistency, modularity, and long-term maintainability.

@@ -1,4 +1,10 @@
 ---
+title: bug_report
+aliases: []
+tags: []
+created: '2026-01-11'
+updated: '2026-01-11'
+status: in_progress
 name: Bug report
 about: Create a report to help us improve
 labels: bug

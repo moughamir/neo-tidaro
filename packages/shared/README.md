@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: README
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # KUI Shared Package
 
 A collection of shared widgets, utilities, and domain objects for TiDaro applications using Material UI with Neumorphic styling.

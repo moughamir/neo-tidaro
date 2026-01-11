@@ -1,7 +1,12 @@
 ---
-created_date: 13/09/2025
-updated_date: 20/11/2025
+title: NEW_PACKAGE_SPECS
+aliases: []
+tags: []
+created: '2025-09-13'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # New Package Specifications for Bouskoura MVP
 
 ## Missing Core Capabilities Analysis

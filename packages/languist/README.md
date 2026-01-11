@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: README
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # Languist - Comprehensive Localization Package
 
 Languist is a comprehensive Flutter localization package designed to serve as the main l10n source for multiple projects. It provides extensive translations across 4 languages with over 140 common UI strings, making it perfect for rapid application development.

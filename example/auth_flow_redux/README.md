@@ -1,7 +1,12 @@
 ---
-created_date: 13/09/2025
-updated_date: 20/11/2025
+title: README
+aliases: []
+tags: []
+created: '2025-09-13'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # auth_flow_redux
 
 A new Flutter project.

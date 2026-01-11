@@ -1,7 +1,12 @@
 ---
-created_date: 07/09/2025
-updated_date: 20/11/2025
+title: 01-getting-started
+aliases: []
+tags: []
+created: '2025-09-07'
+updated: '2025-11-20'
+status: in_progress
 ---
+
 # 1. Getting Started with the Tidaro Monorepo
 
 This guide will walk you through the initial setup of the Tidaro monorepo, bootstrapping the workspace, and running your first application.
