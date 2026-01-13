@@ -9,7 +9,7 @@ status: in_progress
 
 # Packages Overview
 
-This document provides detailed information about each package in the Neo-Tidaro workspace.
+This document provides detailed information about each package in the Neo-[[Tidaro]] workspace.
 
 ## Core Package (`packages/core`)
 

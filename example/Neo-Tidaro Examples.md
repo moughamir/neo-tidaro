@@ -7,11 +7,11 @@ updated: '2025-11-20'
 status: in_progress
 ---
 
-# Neo-Tidaro Examples
+# [[Neo-Tidaro]] Examples
 
-This directory contains comprehensive examples demonstrating how to use the Neo-Tidaro workspace packages effectively.
+This directory contains comprehensive [[examples]] demonstrating how to use the Neo-[[Tidaro]] [[workspace]] packageseffectively.
 
-## 🚀 Quick Start
+## 🚀 [[Quick Start]]
 
 ```bash
 # Bootstrap the workspace

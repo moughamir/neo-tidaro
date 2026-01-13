@@ -9,7 +9,7 @@ status: in_progress
 
 # 06 - KPIs and Analytics
 
-This guide documents the business KPIs for Tidaro, how they are computed from the database, and how to consume them in `apps/tidash/`.
+This guide documents the business KPIs for [[Tidaro]], how they are computed from the database, and how to consume them in `apps/tidash/`.
 
 See also: [[../GEMINI.md#Real-World Goal]] and [[../GEMINI.md#8-business-kpis]].
 
